@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>电路原理 &mdash; MyKnowledge MyKnowledge 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="Welcome to Knowledge Summary’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MyKnowledge
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">电路原理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1 电路变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2 电路元件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">电压源和电流源</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">3 简单电阻电路</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">电阻的串联并联</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">分压器和分流器电路</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">分压器电路</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">分流器电路</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">惠斯通电桥</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delta-y"><span class="math notranslate nohighlight">\(\Delta-Y\)</span> 等效电路</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">4 电路分析法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">戴维南与诺顿等效电路</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">叠加原理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">5 运算放大器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">端电压和端电流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">反相放大器电路</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">求和放大器电路</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MyKnowledge</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>电路原理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/demo/电路原理.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>电路原理<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>1 电路变量<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<p>电路理论是研究静止和运动电荷的电磁理论的特例。如果满足3个基本假设，就可以利用电路理论而不是电磁理论研究研究电路形式的物理系统。这3个假设如下所示：</p>
+<ol class="arabic simple">
+<li><p>电效应在瞬间贯穿整个系统。如果系统在物理结构上相当小，电信号通过它又如此迅速，则可以认为电信号同时影响系统中的所有点。这种系统也被称为集总参数系统。</p></li>
+<li><p>系统里每个元件的净电荷总是零。没有元件能够收集到额外的净电荷，尽管有些元件可以保持等量的相对隔离的电荷。</p></li>
+<li><p>系统里的元件之间没有磁耦合。磁耦合能够发生在元件内部。</p></li>
+</ol>
+<p>对于第1个假设，如果信号的波长 <span class="math notranslate nohighlight">\(\lambda = c/f\)</span> 比系统的物理尺寸大得多，一般标准为电力系统的物理尺寸是波长的十分之一，那么就可以将它看做为集总参数系统。如果研究中的系统其物理尺寸与信号的波长接近，就必须使用电磁理论去分析该系统。</p>
+<p>在电路理论中，电荷的分离引起电能（电压），电荷的运动引起电的流动（电流）。</p>
+<dl>
+<dt>定义<span class="classifier">电压</span></dt><dd><p>电压是由分离引起的单位电荷的能量，将它表示为微分量的比：</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+   u = \frac{\mathrm{d}w}{\mathrm{d}q}
+\end{aligned}\]</div>
+<p>其中， <span class="math notranslate nohighlight">\(u\)</span> 是电压，单位为 <span class="math notranslate nohighlight">\(V\)</span> （伏特）； <span class="math notranslate nohighlight">\(w\)</span> 是能量，单位为 <span class="math notranslate nohighlight">\(J\)</span> （焦耳）； <span class="math notranslate nohighlight">\(q\)</span> 是电荷量，单位为 <span class="math notranslate nohighlight">\(C\)</span> （库伦）。</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h2>2 电路元件<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<p>有5个理想的基本电路元件：电压源、电流源、电阻、电感和电容。本章将讨论电压源、电流源和电阻的特性。</p>
+<section id="id4">
+<h3>电压源和电流源<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>理想电压源是一种电路元件，无论流过其两端电流的大小如何，都将保持端电压为规定值。与此类似，理性电流源也是一种电路元件，它保持端电流为规定值，而不论端电压的大小如何。</p>
+<dl>
+<dt>定义<span class="classifier">独立源和非独立源</span></dt><dd><p>可以将理想电压源和电流源进一步描述为独立源和非独立源两种形式：</p>
+<ul class="simple">
+<li><p>在电路中建立的电压或电流不依赖电路其他处的电压或电流，则为独立源。电压或电流值由独立源的数值指定。</p></li>
+<li><p>非独立源建立的电压或电流则取决于电路其他处的电压或电流，如果不知道控制非独立源的电压或电流，也就不知道它的数值。</p></li>
+</ul>
+</dd>
+<dt>定理<span class="classifier">基尔霍夫电流定律</span></dt><dd><p>在电路上，任何节点上的所有电流的代数和等于零。</p>
+<p>使用基尔霍夫电流定律，对应参考方向的代数符号必须分配给每一个节点电流。离开节点的电流为正号，进入节点的电流为负号；或者反过来，离开节点的电流为负号，进入节点的电流为正号。</p>
+<p>所有含 <span class="math notranslate nohighlight">\(n\)</span> 个节点的电路中，利用基尔霍夫电流定律可以得到 <span class="math notranslate nohighlight">\(n-1\)</span> 个独立的电流方程式。</p>
+</dd>
+<dt>定理<span class="classifier">基尔霍夫电压定律</span></dt><dd><p>在电路中，环绕任何闭合路径的所有电压的代数和等于零。</p>
+<p>要使用基尔霍夫电压定律，必须对回路中每一个电压分配代数符号（参考方向）。当沿着闭合路径时，电压将沿着相应方向升高或降低。正号表示电压升，负号表示电压降；反过来，如果令电压升为负号，电压降则为正号。</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id5">
+<h2>3 简单电阻电路<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<section id="id6">
+<h3>电阻的串联并联<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>一般来说，如果 <span class="math notranslate nohighlight">\(k\)</span> 个电阻串联连接，就可以等效为一个电阻，等效电阻的阻值等于 <span class="math notranslate nohighlight">\(k\)</span> 个电阻值的和，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    R_{eq} = \sum_{i = 1}^{k} = R_{1} + R_{2} + \cdots + R_{k}
+\end{align*}\]</div>
+<p>需要注意的是，等效电阻的阻值永远大于串联中最大的电阻值。</p>
+<p>对于 <span class="math notranslate nohighlight">\(k\)</span> 个电阻的并联，有如下的代替关系：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    \frac{1}{R_{eq}} = \sum_{i = 1}^{k}\frac{1}{R_{i}} = \frac{1}{R_{1}} + \frac{1}{R_{2}} + \cdots + \frac{1}{R_{k}}
+\end{align*}\]</div>
+<p>需要注意的是，等效电阻的阻值永远小于并联连接中的最小电阻值。有时候处理并联连接电阻使用电导更为方便，于是上式可以改写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    G_{eq} = \sum_{i = 1}^{k}G_{i} = G_{1} + G_{2} + \cdots + G_{k}
+\end{align*}\]</div>
+<p>对于只有两个电阻并联的特殊情况，可以进一步改写为如下形式：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    R_{eq} = \frac{R_{1}R_{2}}{R_{1} + R_{2}}
+\end{align*}\]</div>
+</section>
+<section id="id7">
+<h3>分压器和分流器电路<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<section id="id8">
+<h4>分压器电路<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h4>
+<p>利用 <span class="math notranslate nohighlight">\(R_{1}\)</span> 和 <span class="math notranslate nohighlight">\(R_{2}\)</span> 的无穷种组合可以产生各种比值，每个电阻的分压也就可以达到某个需要的特定值。需要讨论的是，<span class="math notranslate nohighlight">\(R_{1}\)</span> 和 <span class="math notranslate nohighlight">\(R_{2}\)</span> 的选择、电源电压分压产生的功率损耗以及分压电路对其他电路元件的影响。</p>
+<p>将电阻 <span class="math notranslate nohighlight">\(R_{L}\)</span> 与 <span class="math notranslate nohighlight">\(R_{2}\)</span> 并联，电阻 <span class="math notranslate nohighlight">\(R_{L}\)</span> 为分压器电路的负载。电路的负载由一个或多个电路元件组成，它消耗电路的功率。由于负载的连接，输出电压的表达式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    u_{o} = \frac{R_{eq}}{R_{1} + R_{eq}}u_{s}
+\end{align*}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(R_{eq} = \frac{R_{2}R_{L}}{R_{2} + R_{L}}\)</span> ，从而</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    u_{o} = \frac{R_{2}}{R_{1}[1+(R_{2}/R_{L})]+R_{2}}u_{s}
+\end{align*}\]</div>
+<p>可以注意到，当 <span class="math notranslate nohighlight">\(R_{L} \to \infty\)</span> 时，上式可以简化为一般分压情况。也就是说，只要 <span class="math notranslate nohighlight">\(R_{L} \gg R_{2}\)</span> ，电压比 <span class="math notranslate nohighlight">\(u_{o}/u_{s}\)</span> 就基本不会受负载加入的影响。</p>
+<p>分压器电路另一个值得关注的特性是电阻容差的敏感程度。商用电阻的阻值是变化的，这种取值偏差称为容差，其变化范围在稳定值的某个百分数之内。这就会导致分压器的空载输出电压也会在一个区间。</p>
+</section>
+<section id="id9">
+<h4>分流器电路<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h4>
+<p>最基本的分流器电路包含两个并联电阻和电流源，分流指的是 <span class="math notranslate nohighlight">\(R_{1}\)</span> 和 <span class="math notranslate nohighlight">\(R_{2}\)</span> 分配电流 <span class="math notranslate nohighlight">\(i_{s}\)</span> 。根据欧姆定律和基尔霍夫电流定律不难得到电流 <span class="math notranslate nohighlight">\(i_{s}\)</span> 和每个电阻上的电流的关系为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+    i_{1} = \frac{R_{2}}{R_{1} + R_{2}}i_{s} \\
+    i_{2} = \frac{R_{1}}{R_{1} + R_{2}}i_{s}
+\end{align*}\end{split}\]</div>
+<p>也即一个电阻上的电流等于进入并联电路的电流乘以另一个电阻再除以两电阻之和。</p>
+<p>将上述两个基本电路结构推广，即可得到两个有用的电路分析方法：分压法和分流法。</p>
+</section>
+</section>
+<section id="id10">
+<h3>惠斯通电桥<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h3>
+<p>惠斯通电桥电路可以用来精确地测量一定范围内的电阻值，测量范围从 <span class="math notranslate nohighlight">\(1~\Omega \sim 1~\mathrm{M}\Omega\)</span> 。电桥电路包含四个电阻、一个直流电压源和一个探测器。四个电阻中有一个电阻可以变化，如图所示的 <span class="math notranslate nohighlight">\(R_{3}\)</span> 是可变电阻。探测器一般是一个微安范围的检流计。为了求 <span class="math notranslate nohighlight">\(R_{x}\)</span> ，通过调节可变电阻 <span class="math notranslate nohighlight">\(R_{3}\)</span> 直到检流计中的电流 <span class="math notranslate nohighlight">\(i_{g} = 0\)</span> ，然后根据基尔霍夫定律可容易得到电阻满足</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    R_{x} = \frac{R_{2}}{R_{1}}R_{3}
+\end{align*}\]</div>
+<p>如果 <span class="math notranslate nohighlight">\(R_{2}/R_{1} = 1\)</span> ，则未知电阻 <span class="math notranslate nohighlight">\(R_{x} = R_{3}\)</span> ，这种情况下要求电桥电阻 <span class="math notranslate nohighlight">\(R_{3}\)</span> 的变化范围必须覆盖 <span class="math notranslate nohighlight">\(R_{x}\)</span> 的值。为了能在很宽的范围内覆盖未知电阻， <span class="math notranslate nohighlight">\(R_{1}\)</span> 和 <span class="math notranslate nohighlight">\(R_{2}\)</span> 通常由开关控制的值为 <span class="math notranslate nohighlight">\(10\)</span> 的幂的电阻组成。</p>
+<p>太小的电阻用标准惠斯通电桥测量非常困难，因为产生在不同金属连接点上的热电压会产生热效应；太大的电阻测量起来也很困难，因为有泄漏电流，也即电绝缘体的泄漏电流与电桥电路的分支电流数值上会不相上下。</p>
+<p><strong>例题</strong> 求图所示电路中 <span class="math notranslate nohighlight">\(3 ~\mathrm{k}\Omega\)</span> 电阻的功率消耗。</p>
+<p><strong>解</strong> 由于两个三角边位置的电阻值的比例相等，因此中间电桥不通过电流，所以中间的电阻是无效的，可以拆除。</p>
+<figure class="align-default" id="id28">
+<img alt="../_images/假电桥电路.png" src="../_images/假电桥电路.png" />
+<figcaption>
+<p><span class="caption-text">假电桥电路</span><a class="headerlink" href="#id28" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="delta-y">
+<h3><span class="math notranslate nohighlight">\(\Delta-Y\)</span> 等效电路<a class="headerlink" href="#delta-y" title="此标题的永久链接"></a></h3>
+<dl>
+<dt>定理<span class="classifier"><span class="math notranslate nohighlight">\(\Delta-Y\)</span> 变换</span></dt><dd><p>在 <span class="math notranslate nohighlight">\(\Delta\)</span> 连接电路的每个端口，使用串联和并联简化方法进行代数化简，可以发现 <span class="math notranslate nohighlight">\(\Delta\)</span> 连接电阻和 <span class="math notranslate nohighlight">\(Y\)</span> 连接电阻具有如下的等效关系：</p>
+<ul>
+<li><p>从 <span class="math notranslate nohighlight">\(\Delta\)</span> 结构转换为 <span class="math notranslate nohighlight">\(Y\)</span> 结构：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+  R_{1} = \frac{R_{b}R_{c}}{R_{a} + R_{b} + R_{c}} \\
+  R_{2} = \frac{R_{a}R_{c}}{R_{a} + R_{b} + R_{c}} \\
+  R_{3} = \frac{R_{a}R_{b}}{R_{a} + R_{b} + R_{c}}
+\end{align*}\end{split}\]</div>
+</li>
+<li><p>从 <span class="math notranslate nohighlight">\(Y\)</span> 结构转换为 <span class="math notranslate nohighlight">\(\Delta\)</span> 结构：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+  R_{a} = R_{2} + R_{3} + \frac{R_{2}R_{3}}{R_{1}} \\
+  R_{b} = R_{1} + R_{3} + \frac{R_{1}R_{3}}{R_{2}} \\
+  R_{c} = R_{1} + R_{2} + \frac{R_{1}R_{2}}{R_{3}}
+\end{align*}\end{split}\]</div>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>证明</strong> 无论使用 <span class="math notranslate nohighlight">\(\Delta\)</span> 连接还是使用Y连接，端子a和b之间的电阻必须是相同的。在 <span class="math notranslate nohighlight">\(\Delta\)</span> 连接电路的每个端口，使用串联和并联化简方法计算等效电阻得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+    &amp; R_{ab} = \frac{R_{c}(R_{a} + R_{b})}{R_{a} + R_{b} + R_{c}} = R_{1} + R_{2} \\
+    &amp; R_{bc} = \frac{R_{a}(R_{b} + R_{c})}{R_{a} + R_{b} + R_{c}} = R_{2} + R_{3} \\
+    &amp; R_{ca} = \frac{R_{b}(R_{c} + R_{a})}{R_{a} + R_{b} + R_{c}} = R_{1} + R_{3}
+\end{align*}\end{split}\]</div>
+<p>对上面的式子进行简单的代数处理，即可获得用 <span class="math notranslate nohighlight">\(\Delta\)</span> 连接电阻表示的Y连接电阻，反过来也类似。</p>
+<figure class="align-default" id="id29">
+<img alt="../_images/Delta-Y变换.png" src="../_images/Delta-Y变换.png" />
+<figcaption>
+<p><span class="caption-text"><span class="math notranslate nohighlight">\(\Delta\)</span> -Y变换</span><a class="headerlink" href="#id29" title="此图像的永久链接"></a></p>
+</figcaption>
+</figure>
+<p><strong>例题</strong> 求如图所示二端网络的等效电阻 <span class="math notranslate nohighlight">\(R_{ab}\)</span> 。</p>
+<p><strong>解</strong>   根据等势点重新将该二端网络绘制成如图所示的电路结构，经过简单的并联等效电阻和 <span class="math notranslate nohighlight">\(\Delta - Y\)</span> 变换，可以得到 <span class="math notranslate nohighlight">\(R_{ab} = \frac{R}{2}\)</span> 。</p>
+<figure class="align-center">
+<img alt="../_images/非平面电路.png" src="../_images/非平面电路.png" />
+</figure>
+<p><em>非平面电路</em></p>
+<figure class="align-center">
+<img alt="../_images/等势点转换后的电路.png" src="../_images/等势点转换后的电路.png" />
+</figure>
+<p><em>等势点转换后的电路</em></p>
+</section>
+</section>
+<section id="id11">
+<h2>4 电路分析法<a class="headerlink" href="#id11" title="此标题的永久链接"></a></h2>
+<section id="id12">
+<h3>戴维南与诺顿等效电路<a class="headerlink" href="#id12" title="此标题的永久链接"></a></h3>
+<p>戴维南与诺顿等效电路是电路简化方法，这种方法将注意力集中在端子特性上，因而对电路分析有很大的帮助。尽管在这里讨论它们是因为它们适合电阻电路，而实际上戴维南与诺顿等效电路可以用于任何由线性元件组成的电路。</p>
+<p>电源（独立源和非独立源）和电阻组成的任何电路，现在关心其中 <span class="math notranslate nohighlight">\(a,b\)</span> 这对端子，而戴维南等效电路是一个独立电压源 <span class="math notranslate nohighlight">\(V_{Th}\)</span> 和一个电阻 <span class="math notranslate nohighlight">\(R_{Th}\)</span> 的串联，其替代了电源和电阻的互连， <span class="math notranslate nohighlight">\(V_{Th}\)</span> 和 <span class="math notranslate nohighlight">\(R_{Th}\)</span> 的串联等效于原始电路。如果将相同的负载接到每个电路的 <span class="math notranslate nohighlight">\(a,b\)</span> 端，则在负载端将得到相同的电压和电流。对于负载电阻所有可能的值，等效性保持不变。</p>
+<dl>
+<dt>定理<span class="classifier">戴维南等效电路</span></dt><dd><p>戴维南电压 <span class="math notranslate nohighlight">\(V_{Th}\)</span> 与电路 <span class="math notranslate nohighlight">\(a,b\)</span> 端的开路电压相等，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    V_{Th} = v_{ab}
+\end{align*}\]</div>
+<p>设从 <span class="math notranslate nohighlight">\(a\)</span> 到 <span class="math notranslate nohighlight">\(b\)</span> 的短路电流时 <span class="math notranslate nohighlight">\(i_{sc}\)</span> ，则戴维南电阻 <span class="math notranslate nohighlight">\(R_{Th}\)</span> 满足 <span class="math notranslate nohighlight">\(i_{sc} = \frac{V_{Th}}{R_{Th}}\)</span> ，于是戴维南电阻是开路电压与短路电流的比，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    R_{Th} = \frac{V_{Th}}{i_{sc}}
+\end{align*}\]</div>
+<p>注意戴维南电压降的方向应与短路电流方向一致。</p>
+</dd>
+</dl>
+<p>诺顿等效电路由一个独立电流源和诺顿等效电阻并联组成。利用电源变换，可以简单地从戴维南等效电路得到诺顿等效电路，因此诺顿电流等于端口的短路电流，诺顿电阻等于戴维南电阻。</p>
+</section>
+<section id="id13">
+<h3>叠加原理<a class="headerlink" href="#id13" title="此标题的永久链接"></a></h3>
+<dl class="simple">
+<dt>定理<span class="classifier">叠加原理</span></dt><dd><p>当一个线性系统被一个以上的独立源激励或驱动时，总相应是单独相应的代数和。单独相应是独立源单独激励的结果。因为处理的电路是由线性电路元件互连构成的，所以可以直接应用叠加原理分析由一个以上独立源驱动的电路。</p>
+</dd>
+</dl>
+<p>在分析一个包含多个独立电压源和电流源的复杂电路时，如果一次考虑一个独立源的影响，则需求解的方程通常数量较少而且简单。 <a class="footnote-reference brackets" href="#id15" id="id14">1</a> 对于包含独立源和非独立源两种电源的线性电路，应用叠加原理分析时，一定要注意非独立源从不无效。</p>
+<dl class="footnote brackets">
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id14">1</a></span></dt>
+<dd><p>但是有时应用叠加原理实际上是使分析复杂化。如果电路中的独立源时根本不同的，才需要使用叠加原理。如果所有的独立源都是直流电源，就不需要使用叠加原理。</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id16">
+<h2>5 运算放大器<a class="headerlink" href="#id16" title="此标题的永久链接"></a></h2>
+<section id="id17">
+<h3>端电压和端电流<a class="headerlink" href="#id17" title="此标题的永久链接"></a></h3>
+<p>电压变量根据公共参考节点测量，所有电压相对于公共节点为电压升。 <a class="footnote-reference brackets" href="#id21" id="id18">2</a> 正电源电压（ <span class="math notranslate nohighlight">\(V_{CC}\)</span> ）接在 <span class="math notranslate nohighlight">\(V^{+}\)</span> 与公共节点之间。负电源电压（ <span class="math notranslate nohighlight">\(-V_{CC}\)</span> ）接在 <span class="math notranslate nohighlight">\(V^{-}\)</span> 与公共节点之间。反相输入端和公共节点之间的电压标记为 <span class="math notranslate nohighlight">\(v_{n}\)</span> ；同相输入端和公共节点之间的电压标记为 <span class="math notranslate nohighlight">\(v_{p}\)</span> ；输出端和公共节点之间的电压标记为 <span class="math notranslate nohighlight">\(v_{o}\)</span> 。</p>
+<p>应当注意，所有电流的参考方向都是进入运算放大器的端子： <span class="math notranslate nohighlight">\(i_{n}\)</span> 是进入反相输入端的电流； <span class="math notranslate nohighlight">\(i_{p}\)</span> 是进入同相输入端的电流； <span class="math notranslate nohighlight">\(i_{o}\)</span> 是进入输出端的电流； <span class="math notranslate nohighlight">\(i_{c^{+}}\)</span> 是进入正电源端的电流； <span class="math notranslate nohighlight">\(i_{c^{-}}\)</span> 是进入负电源端的电流。</p>
+<figure class="align-center">
+<img alt="../_images/端电压变量.png" src="../_images/端电压变量.png" />
+</figure>
+<p><em>运算放大器的端电压变量</em></p>
+<p>运放的端子特性与线性电路元件相同，特性受输入电压和输入电流的约束。如图所示，对于运放，输出电压时两个输入电压之差 <span class="math notranslate nohighlight">\((v_{p} - v_{n})\)</span> 的函数，电压传输特性的方程是 <a class="footnote-reference brackets" href="#id22" id="id19">3</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+   v_{o} =
+   \left\{\begin{array}{cl}
+   -V_{CC} &amp; A(v_{p} - v_{n}) &lt; -V_{CC} \\
+   A(v_{p} - v_{n}) &amp; -V_{CC} \leqslant A(v_{p} - v_{n}) \leqslant +V_{CC} \\
+   +V_{CC} &amp; A(v_{p} - v_{n}) &gt; +V_{CC}
+   \end{array}\right.
+\end{align*}\end{split}\]</div>
+<figure class="align-center">
+<img alt="../_images/运放的电压传输特性.png" src="../_images/运放的电压传输特性.png" />
+</figure>
+<p><em>运放的电压传输特性</em></p>
+<p>当运放处于线性工作状态时，其输出电压等于输入电压之差乘以一个常数（即增益）:math:<cite>A</cite> 。将运放限制在线性工作区时，输入电压 <span class="math notranslate nohighlight">\(v_{p}\)</span> 和 <span class="math notranslate nohighlight">\(v_{n}\)</span> 受到约束，约束来自 <span class="math notranslate nohighlight">\(V_{CC}\)</span> 和 <span class="math notranslate nohighlight">\(A\)</span> 的典型值。</p>
+<dl>
+<dt>定义<span class="classifier">虚短条件</span></dt><dd><p>在运放处于线性工作区而且节点电压又比 $2 ~mathrm{mV}$ 大得多的时候，运放的输入电压约束是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+   v_{p} = v_{n}
+\end{align*}\]</div>
+<p>这便是理想运放输入电压之间的关系。理想运放的 <span class="math notranslate nohighlight">\(A\)</span> 值无穷大。</p>
+</dd>
+</dl>
+<p>为了运放嵌入在电路中时输入仍能维持虚短确保线性工作，可以将信号从输出端反馈到反相输入端，这种结构被称为负反馈。因为输入信号要减去从输出端反馈来的信号，负反馈将引起输入电压差的减小。由于输出电压与减小的输入电压成比例，所以输出电压也减小了，而运放工作在它的线性区。如果运放受到电路的限制，不能提供一条反馈路径从运放的输出到反相输入端，那么运放通常会饱和。</p>
+<p>但是，即使电路为运放提供了负反馈路径，也不能确保它工作在线性区。要想知道运放是否工作在线性区，首先假定电路工作在线性状态，进行电路分析，然后检查结果是否矛盾（运放的输出电压不会比 <span class="math notranslate nohighlight">\(V_{CC}\)</span> 大）。</p>
+<dl>
+<dt>定义<span class="classifier">虚断条件</span></dt><dd><p>现在考虑输入电流的约束。集成运放电路的分析表明，从运放输入端看进去的等效电阻非常大，典型值为 <span class="math notranslate nohighlight">\(1 ~\mathrm{M}\Omega\)</span> 或更大。理想情况下，等效输入电阻无穷大，因而电流约束是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+   i_{p} = i_{n} = 0
+\end{align*}\]</div>
+<p>电流约束与电压约束不同，它不以运放工作在线性区的假设为基础。因此即使运放在饱和状态，也一样有虚断条件。</p>
+</dd>
+</dl>
+<p>输入电压约束与电流约束一起形成了端子特性的约束，它定义了理想运放的模型：</p>
+<dl>
+<dt>定理<span class="classifier">理想运放模型</span></dt><dd><p>理想运放的输入电压与输入电流分别满足下面的约束方程：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+   &amp; v_{p} = v_{n} \\
+   &amp; i_{p} = i_{n} = 0
+\end{align*}\end{split}\]</div>
+</dd>
+</dl>
+<p>已知放大器在线性区，那么直流电源 <span class="math notranslate nohighlight">\(\pm V_{CC}\)</span> 不进入电路方程，于是可以去掉电源端以进一步简化电路符号，如图所示。但是需要特别注意的是，电源端子的符号被去掉了，并不意味着 <span class="math notranslate nohighlight">\(i_{p} + i_{n} + i_{o} = 0\)</span> ，换句话说，理想运放的模型约束 <span class="math notranslate nohighlight">\(i_{p} = i_{n} = 0\)</span> ，并不意味着 <span class="math notranslate nohighlight">\(i_{o} = 0\)</span> 。 <a class="footnote-reference brackets" href="#id23" id="id20">4</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id18">2</a></span></dt>
+<dd><p>公共参考节点在运算放大器的外部。它是嵌入运算放大器电路的参考端。</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id19">3</a></span></dt>
+<dd><p>正负电源电压在数值上不一定相等。在线性区内， <span class="math notranslate nohighlight">\(v_{o}\)</span> 必须位于两个电源之间，即 <span class="math notranslate nohighlight">\(V^{+} \leqslant v_{o} \leqslant V^{+}\)</span> 。</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id20">4</a></span></dt>
+<dd><p>根据基尔霍夫电流定律，知道进入运算放大器的电流之和为零，即 <span class="math notranslate nohighlight">\(i_{p} + i_{n} + i_{o} + i_{c^{+}} + i_{c^{-}} = 0\)</span> ，将电流约束代入得到 <span class="math notranslate nohighlight">\(i_{o} = -(i_{c^{+}} + i_{c^{-}})\)</span> ，所以尽管输入端的电流忽略不计，输出端的电流依然可以估计。</p>
+</dd>
+</dl>
+</section>
+<section id="id24">
+<h3>反相放大器电路<a class="headerlink" href="#id24" title="此标题的永久链接"></a></h3>
+<p>下图给出了反相放大器电路，假定运放是理想运放且工作在线性区，电路还包含两个电阻（ <span class="math notranslate nohighlight">\(R_{f}\)</span> 和 <span class="math notranslate nohighlight">\(R_{s}\)</span> ）、一个电压信号源（ <span class="math notranslate nohighlight">\(v_{s}\)</span> ）、一根同相输入端和公共节点之间的短路线。</p>
+<dl>
+<dt>定理<span class="classifier">反相放大器</span></dt><dd><p>理想反相放大器 <a class="footnote-reference brackets" href="#id26" id="id25">5</a> 的输出电压与输入是反相的且成比例，比例系数（增益）为 <span class="math notranslate nohighlight">\(R_{f}/R_{s}\)</span> ，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+   v_{o} = \frac{-R_{f}}{R_{s}}v_{s}
+\end{align*}\]</div>
+<p>对于实际的运放，上式是近似地，通常也可以使用。增益 <span class="math notranslate nohighlight">\(R_{f}/R_{s}\)</span> 的上限由电源电压和信号电压 <span class="math notranslate nohighlight">\(v_{s}\)</span> 确定。假定两个电源电压相等，即 <span class="math notranslate nohighlight">\(V^{+} = -V^{-} = V_{CC}\)</span> ，可得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+   |v_{o}| \leqslant V_{CC},
+   \quad
+   \left|\frac{R_{f}}{R_{s}}v_{s}\right| \leqslant V_{CC},
+   \quad
+   \frac{R_{f}}{R_{s}} \leqslant \left|\frac{V_{CC}}{v_{s}}\right|
+\end{align*}\]</div>
+</dd>
+</dl>
+<p><strong>证明</strong> 在运放的反相输入端，用节点电压方程，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+       i_{s} + i_{f} = i_{n}
+\end{align*}\]</div>
+<p>因为电压 <span class="math notranslate nohighlight">\(v_{p} = 0\)</span> ，根据运放的电压约束，得到 <span class="math notranslate nohighlight">\(v_{n} = 0\)</span> ，因此</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+       &amp; i_{s} = \frac{v_{s}}{R_{s}} \\
+       &amp; i_{f} = \frac{v_{o}}{R_{f}}
+\end{align*}\end{split}\]</div>
+<p>由运放的电流约束可知 <span class="math notranslate nohighlight">\(i_{n} = 0\)</span> ，则三个式子代入方程可得</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+       v_{o} = \frac{-R_{f}}{R_{s}}v_{s}
+\end{align*}\]</div>
+<p>如图所示的反相放大器电路中，电阻器 <span class="math notranslate nohighlight">\(R_{f}\)</span> 提供了负反馈的连接（将输出端和反相输入端连在一起）。如果将 <span class="math notranslate nohighlight">\(R_{f}\)</span> 移走，负反馈路径开路，放大器称为工作在开环状态。</p>
+<figure class="align-center">
+<img alt="../_images/反相放大器电路.png" src="../_images/反相放大器电路.png" />
+</figure>
+<p><em>反相放大器电路</em></p>
+<p>反馈路径彻底改变了电路的特性。首先，输出电压为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+    v_{o} = -Av_{n}
+\end{align*}\]</div>
+<p>假定 <span class="math notranslate nohighlight">\(V^{+} = -V^{-} = V_{CC}\)</span> ，为了工作在线性区，则 <span class="math notranslate nohighlight">\(|v_{n}| &lt; \frac{V_{CC}}{A}\)</span> 。因为反相输入电流几乎为零， <span class="math notranslate nohighlight">\(R\)</span> 上电压降几乎为零，反相输入电压基本等于 <span class="math notranslate nohighlight">\(v_{s}\)</span> ，即 <span class="math notranslate nohighlight">\(v_{n} \approx v_{s}\)</span> 。因此只有当 <span class="math notranslate nohighlight">\(|v_{n}| &lt; \frac{V_{CC}}{A}\)</span> 时运放才能开环工作在线性区。如果 <span class="math notranslate nohighlight">\(|v_{s}| &gt; \frac{V_{CC}}{A}\)</span> ，运放完全进入饱和。所以输出电压关系在没有反馈路径时发生， <span class="math notranslate nohighlight">\(A\)</span> 的值通常称为运放的开环增益。</p>
+<dl class="footnote brackets">
+<dt class="label" id="id26"><span class="brackets"><a class="fn-backref" href="#id25">5</a></span></dt>
+<dd><p>理想运放满足 <span class="math notranslate nohighlight">\(A\)</span> 是无穷大且输入电阻无穷大。</p>
+</dd>
+</dl>
+</section>
+<section id="id27">
+<h3>求和放大器电路<a class="headerlink" href="#id27" title="此标题的永久链接"></a></h3>
+<p>求和放大器的输出电压时反相的，与放大器输入电压之和成比例。下图给出了有3个输入电压的求和放大器。</p>
+<dl>
+<dt>定理<span class="classifier">理想求和放大器</span></dt><dd><p>输出电压 <span class="math notranslate nohighlight">\(v_{o}\)</span> 和3个输入电压 <span class="math notranslate nohighlight">\(v_{a}\)</span> ，<span class="math notranslate nohighlight">\(v_{b}\)</span> 和 <span class="math notranslate nohighlight">\(v_{c}\)</span> 的关系满足</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+   v_{o} = -\left ( \frac{R_{f}}{R_{a}}v_{a} + \frac{R_{f}}{R_{b}}v_{b} + \frac{R_{f}}{R_{c}}v_{c} \right )
+\end{align*}\]</div>
+<p>如果 <span class="math notranslate nohighlight">\(R_{a} = R_{b} = R_{c} = R_{s}\)</span> ，则上式可化简为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+   v_{o} = -\frac{R_{f}}{R_{s}}(v_{a} + v_{b} + v_{c})
+\end{align*}\]</div>
+</dd>
+</dl>
+<figure class="align-center">
+<img alt="../_images/求和放大器.png" src="../_images/求和放大器.png" />
+</figure>
+<p><em>求和放大器</em></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to Knowledge Summary’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Koishi.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

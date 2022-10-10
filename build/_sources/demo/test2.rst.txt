@@ -1,0 +1,25 @@
+这是第二个文件的内容
+============================
+
+**定理1.2**
+尝试换行不空行的效果
+
+.. math::
+
+
+   \begin{equation}
+   \begin{aligned}
+       &\dot{\boldsymbol{x}}=A \boldsymbol{x}+B \boldsymbol{u}
+       , \quad 
+       \boldsymbol{x}(0)=\boldsymbol{x}_{0}\\
+       &y=C x+D u
+   \end{aligned}
+   \end{equation}
+
++-----------+----------+
+|第一列     |第二列    |
++===========+==========+
+|1第一行adf |2第一行12 |
++-----------+----------+
+|1第二行    |2第二行   |
++-----------+----------+

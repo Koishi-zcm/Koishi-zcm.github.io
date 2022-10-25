@@ -1,0 +1,453 @@
+******
+Python
+******
+
+fitz
+====
+
+图片转PDF
+---------
+
+下面的代码能够实现将目标文件夹内的同类型图片按顺序合并为一个PDF文件。需要导入 :code:`import fitz` ， :code:`import os` ， :code:`import re` 。该函数代码需要传入图片所在目录、图片类型、合并PDF的名称。下面是一个示例：
+
+.. code-block:: python
+
+	img_path = r'C:\Users\25281\Desktop\工作文件\学校相关资料\课程相关\大二上\电路原理\作业\第6周'
+	imgType = '.jpg'
+	combined_pdf_name = '06电路原理.pdf'
+
+具体实现的函数代码如下：
+
+.. code-block:: python
+
+	def img_to_pdf(img_path, imgType, combined_pdf_name):
+	    doc = fitz.open()  # 打开一个用于存放pdf信息的空doc
+
+	    for fileName_in_img_path in os.listdir(img_path):  # 从目录中依次获取每一个文件名
+	        obj = re.compile(r"(?P<imgName>.*?){}".format(imgType), re.S)  # 正则表达式寻找.png后缀的文件
+	        result = obj.finditer(fileName_in_img_path)  # 将目录名放入匹配器，并将匹配结果的迭代器存储到result变量中
+	        for it in result:  # 从迭代器里面获取img文件名进行操作
+	            imgName = it.group('imgName')  # 获取png文件名
+	            img_file = img_path + '\\' + imgName + imgType  # 获取完整的img文件路径
+	            imgdoc = fitz.open(img_file)  # 打开img文件获取图片数据
+	            pdfbytes = imgdoc.convert_to_pdf()  # 将图片数据转换为pdf格式数据
+	            subPDF_name = imgName + '.pdf'  # 获取子pdf文件名，以原img文件名字命名
+	            imgpdf = fitz.open(subPDF_name, pdfbytes)  # 将子pdf文件名与pdf格式数据打开为pdf文件
+	            doc.insert_pdf(imgpdf)  # 将上述pdf文件插入到doc当中
+
+	    doc_position = img_path + '\\' + combined_pdf_name
+	    doc.save(doc_position)  # 将doc保存到目标路径
+	    doc.close()
+	    return
+
+
+
+matplotlib
+==========
+
+显示方式
+---------
+
+文字显示
+^^^^^^^^
+
+要想让matplotlib生成的图表支持中文，需要加入以下代码：
+
+.. code-block:: python
+
+    plt.rcParams['font.sans-serif'] = ['SimHei']  # 中文
+
+
+要想让matplotlib生成的图表正常显示负号，需要加入以下代码：
+
+.. code-block:: python
+
+    plt.rcParams['axes.unicode_minus'] = False    # 显示负号
+
+
+
+线条样式
+^^^^^^^^
+
+使用 :code:`plt.style.available` 输出matplotlib提供的所有风格名称，共计26种（已经导入 :code:`import matplotlib.pyplot as plt` ）。要使用某种预设的样式时，只需要像如下方式调用即可：
+
+.. code-block:: python
+
+	plt.style.use('ggplot')
+
+
+如果需要调整 **线条的颜色** ，可以修改 :code:`plt.plot()` 函数的 :code:`color` 参数。有下面几种方式来进行赋值：
+
+.. code-block:: python
+
+	plt.plot(x, np.sin(x - 0), color='blue') # 标准颜色名称
+	plt.plot(x, np.sin(x - 1), color='g') # 缩写颜色代码（rgbcmyk）
+	plt.plot(x, np.sin(x - 2), color='0.75') # 范围在0~1的灰度值
+	plt.plot(x, np.sin(x - 3), color='#FFDD44') # 十六进制（RRGGBB，00~FF）
+	plt.plot(x, np.sin(x - 4), color=(1.0,0.2,0.3)) # RGB元组，范围在0~1 
+	plt.plot(x, np.sin(x - 5), color='chartreuse'); # HTML颜色名称
+
+也有一些常用颜色的缩写可以直接赋值使用：
+
++------+------+----------+
+| 字符 | 颜色 | 英文全称 |
++======+======+==========+
+| 'b'  | 蓝色 | blue     |
++------+------+----------+
+| 'g'  | 绿色 | green    |
++------+------+----------+
+| 'r'  | 红色 | red      |
++------+------+----------+
+| 'c'  | 青色 | cyan     |
++------+------+----------+
+| 'm'  | 品红 | magenta  |
++------+------+----------+
+| 'y'  | 黄色 | yellow   |
++------+------+----------+
+| 'k'  | 黑色 | black    |
++------+------+----------+
+| 'w'  | 白色 | white    |
++------+------+----------+
+
+
+如果需要调整 **线条样式** ，可以修改 :code:`linestyle` 参数。下面是一些常见的线条样式。
+
++------+--------+------+------------+
+| 字符 | 类型   | 字符 | 类型       |
++======+========+======+============+
+| '-'  | 实线   | '2'  | 上三叉点   |
++------+--------+------+------------+
+| '-.' | 虚点线 | '4'  | 右三叉点   |
++------+--------+------+------------+
+| '.'  | 点     | '1'  | 下三叉点   |
++------+--------+------+------------+
+| 'o'  | 圆点   | '3'  | 左三叉点   |
++------+--------+------+------------+
+| '_'  | 横线点 | 'D'  | 实心菱形点 |
++------+--------+------+------------+
+| '*'  | 星型点 | 'h'  | 六边形点   |
++------+--------+------+------------+
+| '__' | 虚线   | '^'  | 上三角形   |
++------+--------+------+------------+
+| ':'  | 点线   | '>'  | 右三角形   |
++------+--------+------+------------+
+| '+'  | 加号点 | 'v'  | 下三角形   |
++------+--------+------+------------+
+| 'x'  | 乘号点 | '<'  | 左三角形   |
++------+--------+------+------------+
+| 'p'  | 五角点 | 's'  | 正方点     |
++------+--------+------+------------+
+| ','  | 像素点 | 'd'  | 瘦菱形点   |
++------+--------+------+------------+
+
+
+如果需要修改 **线条宽度** ，可以使用 :code:`linewidth` 参数来修改线条的粗细。默认情况下， :code:`linewidth` 设置为1个单位。利用线条的粗细可以在视觉上强调某条特定的曲线。
+
+
+坐标轴
+^^^^^^
+
+
+如果希望自定义 **坐标轴上下限** ，最基础的方法是 :code:`plt.xlim()` 和 :code:`plt.ylim()` ，例如
+
+.. code-block:: python
+
+	plt.xlim(-1, 11) 
+	plt.ylim(-1.5, 1.5)
+
+如果你想要让 **坐标轴逆序显示** ，那么也可以逆序设置坐标轴刻度值，例如
+
+.. code-block:: python
+
+	plt.xlim(10, 0) 
+	plt.ylim(1.2, -1.2)
+
+
+还有一个方法是 :code:`plt.axis()` 。通过传入 :code:`[xmin, xmax, ymin, ymax]` 对应的值，可以只用一行代码就设置好x和y的限值：
+
+.. code-block:: python
+
+    plt.axis([-1, 11, -1.5, 1.5])
+
+还可以用 :code:`plt.axis('tight')` 按照图形的内容 **自动收紧坐标轴** ，不留空白区域；使用 :code:`plt.axis('equal')` 让屏幕上显示的图形分辨率为1:1， **x轴单位长度与y轴单位长度相等** 。
+
+
+
+如果希望将原本的浮点数显示转变为 **百分数显示** 在坐标轴刻度，可以使用FuncFormatter函数。需要导入 :code:`from matplotlib.ticker import FuncFormatter` 。首先自定义转换浮点数为百分数刻度显示的函数：
+
+.. code-block:: python
+
+	def to_percent(temp, position):
+	    """
+	    用来将坐标轴的浮点数转换为百分比显示
+	    :param temp: 坐标轴数据，一般由plt.gca().yaxis.set_major_formatter自动提供
+	    :param position: 显示位置，一般由plt.gca().yaxis.set_major_formatter自动提供
+	    :return: 百分比显示的str文字
+	    """
+	    return '%1.0f' % (100 * temp) + '%'
+
+之后只需要在绘图代码中利用 :code:`plt.gca()` 修改对应坐标轴的显示格式即可。例如
+
+.. code-block:: python
+
+	plt.gca().yaxis.set_major_formatter(FuncFormatter(to_percent))  # 将y轴原本的浮点数转换为百分比显示
+
+
+
+
+图形标签
+^^^^^^^^
+
+图形标题与坐标轴标题是最简单的标签，快速设置方法如下所示
+
+.. code-block:: python
+
+	plt.title("A Sine Curve") 
+	plt.xlabel("x") 
+	plt.ylabel("sin(x)")
+
+在单个坐标轴上显示多条线时，创建图例显示每条线是很有效的方法。Matplotlib 内置了 :code:`plt.legend()` 用来创建图例，例如
+
+.. code-block:: python
+
+	plt.plot(x, np.sin(x), '-g', label='sin(x)') 
+	plt.plot(x, np.cos(x), ':b', label='cos(x)') 
+	plt.axis('equal')
+
+	plt.legend()
+
+
+多列柱状图
+----------
+
+下面给出一个通用的创建多列柱状图的函数代码。它要求分别传入x轴标签、柱状形标签和二维数据数组。这些内容都通过列表来记录，如果不希望产生柱状形标签，那么就传入一个空列表。例如下面是一个5组4列柱状图的数据集
+
+.. code-block:: python
+	
+	xlabels = ['G1', 'G2', 'G3', 'G4', 'G5']
+	bar_labels = ['1', '2', '3', '4']
+	first = [20, 34, 30, 35, 27]
+	second = [25, 32, 34, 20, 25]
+	third = [21, 31, 37, 21, 28]
+	fourth = [26, 31, 35, 27, 21]
+	data = [first, second, third, fourth]
+
+具体的绘图函数代码如下（已经导入 :code:`import matplotlib.pyplot as plt` 和 :code:`import numpy as np` ）。可以根据需要调整每组柱子之间的空隙、y轴标签、生成图片的文件名。如果希望生成图表标题，可以加入 :code:`plt.title('my title')` 。
+
+.. code-block:: python
+
+	def create_multi_bars(xlabels, bar_labels, datas, tick_step=1, group_gap=0.2, bar_gap=0):
+	    """
+	    xlabels : x轴坐标标签序列
+	    bar_labels : 一组中各柱子的图例
+	    datas ：数据集，二维列表，要求列表每个元素的长度必须与labels的长度一致
+	    tick_step ：默认x轴刻度步长为1，通过tick_step可调整x轴刻度步长。
+	    group_gap : 柱子组与组之间的间隙，最好为正值，否则组与组之间重叠
+	    bar_gap ：每组柱子之间的空隙，默认为0，每组柱子紧挨，正值每组柱子之间有间隙，负值每组柱子之间重叠
+	    """
+	    ticks = np.arange(len(xlabels)) * tick_step  # ticks为x轴刻度
+	    group_num = len(datas)  # group_num为数据的组数，即每组柱子的柱子个数
+	    group_width = tick_step - group_gap  # group_width为每组柱子的总宽度，group_gap 为柱子组与组之间的间隙。
+	    bar_span = group_width / group_num  # bar_span为每组柱子之间在x轴上的距离，即柱子宽度和间隙的总和
+	    bar_width = bar_span - bar_gap  # bar_width为每个柱子的实际宽度
+
+	    # baseline_x为每组柱子第一个柱子的基准x轴位置，随后的柱子依次递增bar_span即可
+	    baseline_x = ticks - (group_width - bar_span) / 2
+	    for index, y in enumerate(datas):
+	        plt.bar(baseline_x + index * bar_span, y, bar_width)
+
+	    plt.legend(bar_labels, loc='best')  # 设置各柱形图例
+	    plt.ylabel('Scores')  # 设置y轴标签
+	    plt.xticks(ticks, xlabels)  # x轴刻度标签位置与x轴刻度一致
+
+	    plt.savefig('test.png')
+	    return 
+
+
+
+numpy
+=====
+
+numpy模块一般的导入方式都是 :code:`import numpy as np` 。
+
+基本数学运算
+------------
+
+numpy提供了各种三角函数。例如 :code:`np.sin()` ， :code:`np.cos()` ， :code:`np.tan()` ， :code:`np.arcsin()` ， :code:`np.arccos()` ， :code:`np.arctan()` 。需要注意的是，这些三角函数的计算内容应该是弧度制，所以对于以角度为单位的数 :code:`degree` ，需要通过 :code:`degree*np.pi/180` 来将角度转换为弧度。而弧度可以利用 :code:`np.degrees()` 函数来将其转换为角度。
+
+在指数运算方面，numpy提供了自然常数e为底的指数函数 :code:`np.exp()` ，一般的指数计算可以使用 :code:`np.power(a, b)` 来计算 :math:`a^{b}` 。
+
+在对数运算方面，nump提供了自然常数e为底的对数函数 :code:`np.log()` 和以10为底的对数函数 :code:`np.log10()` 。
+
+
+数据类型转换
+------------
+
+numpy数据类型转换需要调用方法 :code:`astype()` ，例如 :code:`np.array(x).astype(int)` 。调用astype返回进行了数据类型修改后的数据，但是源数据的类型不会变，需要进一步对源数据的使用dtype进行操作才能改变，例如 :code:`a.astype(np.int16)` 。但是，没有使用astype而直接修改dtype数据会强制用新数据类型表示，将会导致输出错误数据。
+
+
+scipy
+=====
+
+最小二乘法拟合
+--------------
+
+最小二乘法的数学原理就是使下面公式中的 :math:`S` 最小。其中的 :math:`p` 表示拟合函数 :math:`f` 的所有参数集合。
+
+.. math::
+	\begin{align}
+	S(p)=\sum_{i=1}^{m}[y_{i}-f(x_{i},p)]^{2}
+	\end{align}
+
+scipy中的子函数库optimize已经提供了实现最小二乘拟合算法的函数leastsq。需要导入 :code:`import numpy as np` 和 :code:`from scipy.optimize import leastsq` 。
+
+首先要获取用于拟合的数据。作为测试，下面使用真实函数数据与噪声组合的方式来获取用于拟合的数据，数据集要以列表或数组的形式存在。
+
+.. code-block:: python
+
+	x = np.linspace(0, -2*np.pi, 100)
+	A, k, theta = 10, 0.34, np.pi/6 # 真实数据的函数参数
+	y0 = func(x, [A, k, theta]) # 真实数据
+	y1 = y0 + 2 * np.random.randn(len(x)) # 加入噪声之后的实验数据
+
+接下来要自定义拟合函数和残差计算函数。例如下面的拟合函数为 :math:`A\sin(2\pi kx+\theta)` ，拟合参数 :math:`p` 包括 :math:`A,k,\theta` 。
+
+.. code-block:: python
+
+	def func(x, p):
+	    """
+	    数据拟合所用的函数: A*sin(2*pi*k*x + theta)
+	    """
+	    A, k, theta = p
+	    return A*np.sin(2*np.pi*k*x+theta)
+
+.. code-block:: python
+
+	def residuals(p, y, x):
+	    """
+	    实验数据x, y和拟合函数之间的差，p为拟合需要找到的系数
+	    """
+	    return y - func(x, p)
+
+接下来开始进行最小二乘法拟合。首先需要自行猜测一组参数，在这个例子里就可以如下猜测：
+
+.. code-block:: python
+	
+	p0 = [7, 0.2, 0] # 第一次猜测的函数拟合参数
+
+
+之后就开始调用leastsq进行数据拟合，分别传入计算误差的函数、猜测的拟合参数和需要拟合的实验数据：
+
+.. code-block:: python
+	
+	plsq = leastsq(residuals, p0, args=(y1, x))
+
+调用成功后，通过 :code:`plsq[0]` 就可以获得拟合参数的列表。如果需要进行拟合曲线绘制，只需要plot即可。
+
+.. code-block:: python
+	
+	plt.plot(x, func(x, plsq[0]), label='拟合曲线')
+
+
+
+如果需要求 **决定系数** ，可以使用下面的函数代码。需要依次传入实际y数据、拟合y数据。
+
+.. code-block:: python
+
+	def get_R2(y, y_fit):
+	    y = np.array(y)
+	    y_fit = np.array(y_fit)
+	    
+	    SSE = ((y - y_fit)**2).sum()
+	    SST = ((y - y.mean())**2).sum()
+
+	    R2 = 1 - SSE / SST
+	    return R2
+
+
+
+
+非线性方程组求解
+----------------
+
+optimize库中的fsolve函数可以用来对非线性方程组进行求解，需要导入 :code:`from scipy.optimize import fsolve` 。它进行的数学计算逻辑如下，其中 :math:`f` 是方程组函数， :math:`X` 是未知数矢量。求未知数即是需要找到能令方程组计算误差趋于零的参数。
+
+.. math::
+	\begin{align}
+	f(X) & = 0
+	\end{align}
+
+首先要自定义函数来表示方程组及方程组计算的误差。下面以如下的含有三个未知数的非线性方程组为例（已经导入了 :code:`from math import sin,cos` ）：
+
+.. math::
+	\begin{align}
+	5x_{1}+3 & = 0 \\
+	4x_{0}^{2}-2\sin(x_{1}\cdot x_{2}) &=0 \\
+	x_{1}\cdot x_{2} - 1.5 &= 0
+	\end{align}
+
+.. code-block:: python
+
+	def func(x):
+	    x0 = float(x[0])
+	    x1 = float(x[1])
+	    x2 = float(x[2])
+	    return [
+	        5*x1+3,
+	        4*x0*x0 - 2*sin(x1*x2),
+	        x1*x2 - 1.5
+	    ]
+
+
+之后只需要直接调用fsolve函数即可。需要传入一组试验未知数参数，这里用的试验参数是 :code:`[1,1,1]` 。返回的result就是以列表形式储存的参数向量。可以用 :code:`func(result)` 来检查误差情况。
+
+.. code-block:: python
+
+	result = fsolve(func, [1,1,1])
+
+在对方程组进行求解时，fsolve会自动计算方程组的雅可比矩阵，如果方程组中的未知数很多，而与每个方程有关的未知数较少时，即雅可比矩阵比较稀疏时，传递一个计算雅可比矩阵的函数将能大幅度提高运算速度。对于上面的非线性方程组，使用雅可比矩阵的fsolve方法如下。计算雅可比矩阵的函数j通过fprime参数传递给fsolve，即 :code:`result = fsolve(f, [1,1,1], fprime=j)` 。
+
+.. code-block:: python
+
+	def j(x):
+	    x0 = float(x[0])
+	    x1 = float(x[1])
+	    x2 = float(x[2])
+	    return [
+	        [0, 5, 0],
+	        [8*x0, -2*x2*cos(x1*x2), -2*x1*cos(x1*x2)],
+	        [0, x2, x1]
+	        ]
+
+
+
+
+
+Sphinx
+======
+
+Sphinx是一个静态网页发布工具，可将rST和md文件，发布为各类常见的用户帮助如联机帮助，用户手册等。
+
+快速新建项目
+------------
+
+详细内容可以参考 `sphinx快速入门`_ 
+
+.. _sphinx快速入门: https://doclikecode.readthedocs.io/zh_CN/latest/1_sphinx/sphinx101.html#:~:text=%E5%BF%AB%E9%80%9F%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%BB%A5Mac%E7%B3%BB%E7%BB%9F%E4%B8%BA%E4%BE%8B%EF%BC%8CWindow%E7%B3%BB%E7%BB%9F%E7%B1%BB%E4%BC%BC%EF%BC%89%20%C2%B6%201%20%E5%9C%A8%E6%A1%8C%E9%9D%A2%E4%B8%8A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E5%B9%B6%E5%91%BD%E5%90%8D%E4%B8%BA%20sphinx-demo%202%20%E5%9C%A8Terminal%E4%B8%AD%E6%B5%8F%E8%A7%88%E8%87%B3%E4%B8%8A%E8%BF%B0%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%EF%BC%9A,sphinx-quickstart%203%20%E5%9C%A8%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%BC%8F%E7%9A%84%E9%80%89%E6%8B%A9%E4%B8%AD%EF%BC%8CY%2FN%E7%9A%84%E9%80%89%E9%A1%B9%EF%BC%8C%E9%80%89Y%EF%BC%9B%E5%A6%82%E6%9E%9C%E8%AF%A2%E9%97%AE%E9%85%8D%E7%BD%AE%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%20%5B%5D%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%8C%E5%A6%82%20%5B.rst%5D%EF%BC%8C%E5%88%99%E5%A1%AB%E5%86%99.rst%204%20%E6%96%B0%E5%BB%BA%E6%88%90%E5%8A%9F%E5%90%8E%EF%BC%8C%E5%88%99%E4%BC%9A%E5%BE%97%E5%88%B0%E5%A6%82%E5%9B%BE%E6%89%80%E7%A4%BA%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84
+
+首先新建希望存放项目文件的文件夹，然后在Terminal中浏览至上述文件夹，并运行命令： :code:`sphinx-quickstart` 。在对话框式的选择中，Y/N的选项，根据需要选Y；语言设置时，填入 :code:`zh-CN` 以支持中文简体。
+
+新建完成后，浏览至 source 文件夹，并在其根目录下创建新文件夹demo，在demo文件夹中放置用于生成页面的rst文件。放置完成后，打开source文件中的 index.rst，将demo内的文件添加至目录中。例如
+
+.. code-block:: rst
+
+    .. toctree::
+       :maxdepth: 2
+       :caption: Contents:
+
+       demo/电路原理.rst
+       demo/数字电路.rst
+
+完成后在Terminal中运行编译命令： :code:`sphinx-build -b html source build` ，编译成功后在 build 文件夹中则有刚才发布的网站。
+
+如果需要修改网页主题，打开 source 文件夹中的conf.py，并找到主题配置行 html_theme = ‘alabaster’ ，修改该参数即可。如果要使用ReadtheDoc主题，则修改为 html_theme = ‘sphinx_rtd_theme’ 。

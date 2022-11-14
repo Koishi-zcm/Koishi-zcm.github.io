@@ -1,0 +1,29 @@
+.. Knowledge Summary documentation master file, created by
+   sphinx-quickstart on Fri Oct  7 10:16:08 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Koishi's documentation!
+=============================================
+
+.. figure:: ./_images/KOISATO.png
+  :align: center
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   demo/电路原理.rst
+   demo/数字电路.rst
+   demo/AutoCAD.rst
+   demo/Latex.rst
+   demo/Python.rst
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

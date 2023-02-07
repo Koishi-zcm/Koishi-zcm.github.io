@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>流体力学 &mdash; MyKnowledge MyKnowledge 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="AutoCAD" href="AutoCAD.html" />
+    <link rel="prev" title="数值分析与算法" href="%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%E4%B8%8E%E7%AE%97%E6%B3%95.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MyKnowledge
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E5%BE%AE%E7%A7%AF%E5%88%86.html">微积分</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.html">线性代数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0.html">复变函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%94%B5%E8%B7%AF%E5%8E%9F%E7%90%86.html">电路原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF.html">数字电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%E4%B8%8E%E7%AE%97%E6%B3%95.html">数值分析与算法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">流体力学</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">基本概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">体积通量和质量通量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">扩散通量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">速度散度</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">连续性方程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">微分形式的连续性方程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">积分形式的连续性方程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="AutoCAD.html">AutoCAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C%2B%2B.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Latex.html">Latex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM.html">OpenFOAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Salome.html">Salome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solidworks.html">Solidworks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MyKnowledge</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>流体力学</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/demo/流体力学.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>流体力学<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="id2">
+<h2>基本概念<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<section id="id3">
+<h3>体积通量和质量通量<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>体积通量的物理意义为单位时间内流经某个网格单元面流体的体积，单位为 <span class="math notranslate nohighlight">\(\mathrm{m}^{3}/\mathrm{s}\)</span> 。质量通量的物理意义为单位时间内流经某个网格单元面流体的质量，单位为 <span class="math notranslate nohighlight">\(\mathrm{kg}/\mathrm{s}\)</span> 。对于不可压缩流体，通常选择体积通量；对于可压缩流体，通常选择质量通量。</p>
+<p>体积通量在数学上是很好理解的，即每单位时间流经某个网格单元面多少立方米的流体：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\phi_{f}=\boldsymbol{U}_{f}\cdot \boldsymbol{S}_{f}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\phi_{f}\)</span> 表示网格单元面 <span class="math notranslate nohighlight">\(\boldsymbol{S}_{f}\)</span> 上的通量， <span class="math notranslate nohighlight">\(\boldsymbol{S}_{f}\)</span> 称为面矢量， <span class="math notranslate nohighlight">\(\boldsymbol{U}_{f}\)</span> 是定义在网格单元面上的速度。在 <span class="math notranslate nohighlight">\(\phi_{f}\)</span> 的基础上除以网格面积，就得到每单位时间每单位面积流经的体积：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\phi_{f}}{|\boldsymbol{S}_{f}|}=\boldsymbol{U}_{f}\cdot \frac{\boldsymbol{S}_{f}}{|\boldsymbol{S}_{f}|}=\boldsymbol{U}_{f}\cdot\boldsymbol{n}_{f}
+\end{align}\]</div>
+<p>面矢量 <span class="math notranslate nohighlight">\(\boldsymbol{S}_{f}\)</span> 的大小为 <span class="math notranslate nohighlight">\(|\boldsymbol{S}_{f}|=\sqrt{S_{x}^{2}+S_{y}^{2}+S_{z}^{2}}\)</span> ，其中 <span class="math notranslate nohighlight">\(S_{x},S_{y},S_{z}\)</span> 表示面矢量的分量。类似的可知， <span class="math notranslate nohighlight">\(\rho_{f}\boldsymbol{U}_{f}\cdot \boldsymbol{S}_{f}\)</span> 表示每单位时间经过某个网格面多少千克流体。</p>
+<p>上面引入的面法向矢量 <span class="math notranslate nohighlight">\(\boldsymbol{n}_{f}=\frac{\boldsymbol{S}_{f}}{|\boldsymbol{S}_{f}|}\)</span> 定义了面的法向，每个网格单元都会分别对应一个面矢量和面法向矢量。除了边界面，网格的内部面也存在面矢量。两个网格连接面的矢量 <span class="math notranslate nohighlight">\(\boldsymbol{S}\)</span> 垂直于网格面，大小等于面的面积；而常用的近似矢量是由宿主网格指向相邻网格，而连接宿主网格体心和相邻网格体心的矢量方向在非正交的情况下并不相同，这就会导致梯度计算存在差异，也就需要非正交修正算法。</p>
+</section>
+<section id="id4">
+<h3>扩散通量<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>通常用 <span class="math notranslate nohighlight">\(D\)</span> 表示扩散系数，那么每单位时间每单位面积由于扩散导致的通量可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\boldsymbol{J}=D\nabla \phi
+\end{align}\]</div>
+<p>由于在一些情况下，各个方向由于扩散系数的不同会导致呈现各向异性扩散，且一般情况下各个方向的梯度也不相同，因此扩散通量为一个分量不同的矢量。扩散通量的驱动因素是变量的梯度。类似的，每单位时间由于扩散导致的通量可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\boldsymbol{J}_{f}\cdot \boldsymbol{S}_{f}=D(\nabla \phi)_{f}\cdot \boldsymbol{S}_{f}=D(\nabla \phi)_{f}\cdot \frac{\boldsymbol{S}_{f}}{|\boldsymbol{S}_{f}|} |\boldsymbol{S}_{f}|
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\((\nabla \phi)_{f}\cdot \frac{\boldsymbol{S}_{f}}{|\boldsymbol{S}_{f}|}\)</span> 表示面法向梯度。上述公式可以整理为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+(\nabla \phi)_{f}\cdot \boldsymbol{n}_{f}=\frac{\boldsymbol{J}_{f}\cdot \boldsymbol{n}_{f}}{D}
+\end{align}\]</div>
+<p>上述公式通常可以用于施加边界条件。</p>
+</section>
+<section id="id5">
+<h3>速度散度<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<p>体积通量 <span class="math notranslate nohighlight">\(\phi_{f}\)</span> 是单位时间内流经某个面的流体体积，在此基础上乘以时间 <span class="math notranslate nohighlight">\(\Delta t\)</span> 则表示体积为 <span class="math notranslate nohighlight">\(V\)</span> 的流动控制体。由于其中的面 <span class="math notranslate nohighlight">\(\mathrm{d}\boldsymbol{S}\)</span> 以 <span class="math notranslate nohighlight">\(\boldsymbol{U}\)</span> 的速度移动，因此在 <span class="math notranslate nohighlight">\(Delta t\)</span> 时间内体积的变化量为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathrm{d}V_{f}=\phi_{f}\Delta t=\boldsymbol{U}_{f}\cdot\mathrm{d}\boldsymbol{S}_{f}\Delta t
+\end{align}\]</div>
+</section>
+</section>
+<section id="id6">
+<h2>连续性方程<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<section id="id7">
+<h3>微分形式的连续性方程<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<p>接下来从空间位置固定的无穷小微团角度出发来推导连续性方程。欧拉观点下，质量守恒意味着固定无穷小微团质量的变化=流入无穷小微团质量-流出无穷小微团质量，也即位置固定无穷小微团质量的变化率=(流入无穷小微团质量-流出无穷小微团质量)的变化率。</p>
+<p>流体微团的体积可以表示为 <span class="math notranslate nohighlight">\(\mathrm{d}V=\mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> ，结合密度 <span class="math notranslate nohighlight">\(\rho\)</span> 则得到对应的无穷小微团质量为 <span class="math notranslate nohighlight">\(\mathrm{d}m=\rho\mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> 。根据质量变化率的定义，其可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial \mathrm{d}m }{\partial t}=\frac{\partial \rho \mathrm{d}x\mathrm{d}y\mathrm{d}z }{\partial t}=\frac{\partial \rho}{\partial t}\mathrm{d}x\mathrm{d}y\mathrm{d}z
+\end{align}\]</div>
+<p>下面考虑笛卡尔坐标系下无穷小微团的流入和流出。先说明 <span class="math notranslate nohighlight">\(x\)</span> 方向上的通量。定义无穷小微团立方体左侧单位面积的质量为 <span class="math notranslate nohighlight">\(\rho u\)</span> ，同时也是单位时间内流入单位面积的质量，而立方体左侧的面积为 <span class="math notranslate nohighlight">\(\mathrm{d}y\mathrm{d}z\)</span> ，因此得到单位时间内流入的质量为 <span class="math notranslate nohighlight">\(\rho u\mathrm{d}y\mathrm{d}z\)</span> 。对于立方体右侧的面，在已知立方体左侧面 <span class="math notranslate nohighlight">\(\rho u\)</span> 的定义的时候，可以通过泰勒公式求出单位时间内流出立方体右侧的单位面积的质量为 <span class="math notranslate nohighlight">\(\rho u+\frac{\partial \rho u}{\partial x}\mathrm{d}x\)</span> 。同样的，立方体右侧面的面积为 <span class="math notranslate nohighlight">\(\mathrm{d}y\mathrm{d}z\)</span> ，因此有单位时间内流出的质量约为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\left ( \rho u + \frac{\partial \rho u}{\partial x} \mathrm{d}x \right ) \mathrm{d}y\mathrm{d}z
+\end{align}\]</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这里利用的是带步长表示的泰勒公式，即对于一个函数， <span class="math notranslate nohighlight">\(x_{0}\)</span> 点的值为 <span class="math notranslate nohighlight">\(f(x_{0})\)</span> ，那么函数在 <span class="math notranslate nohighlight">\(x_{0}+h\)</span> 的值通过下面方程求得</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(x_{0}+h)=f(x_{0})+f'(x_{0})h+O(h)\approx f(x_{0})+f'(x_{0})h
+\end{align}\]</div>
+<p>在上述推导的情景中， <span class="math notranslate nohighlight">\(h\)</span> 为 <span class="math notranslate nohighlight">\(dx\)</span> ，求导操作变为 <span class="math notranslate nohighlight">\(\rho u\)</span> 在 <span class="math notranslate nohighlight">\(x\)</span> 方向的偏导。因为忽略了无穷小量 <span class="math notranslate nohighlight">\(O(h)\)</span> ，所以结果是约等于。</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>因为使用了泰勒公式，假定了函数是连续可微的，然而当存在激波之类的问题时该假定不成立，这种情况下需要从积分的角度来推导连续性方程。</p>
+</div>
+<p>结合无穷小微团单位时间的流出质量和无穷小单位时间的流入质量，就可以得到单位时间内 <span class="math notranslate nohighlight">\(x\)</span> 方向的净质量变化率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\rho u\mathrm{d}y\mathrm{d}z - \left ( \rho u + \frac{\partial \rho u}{\partial x}\mathrm{d}x\right ) \mathrm{d}y\mathrm{d}z = -\frac{\partial \rho u}{\partial x}\mathrm{d}x\mathrm{d}y\mathrm{d}z
+\end{align}\]</div>
+<p>同理可以得到 <span class="math notranslate nohighlight">\(y\)</span> 方向的净质量变化率为 <span class="math notranslate nohighlight">\(-\frac{\partial \rho v}{\partial y}\mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> ， <span class="math notranslate nohighlight">\(z\)</span> 方向的净质量变化率为 <span class="math notranslate nohighlight">\(-\frac{\partial \rho w}{\partial z}\mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> ，将各个方向的质量变化率加起来就得到总质量变化率为 <span class="math notranslate nohighlight">\(-\left ( \frac{\partial \rho u}{\partial x} + \frac{\partial \rho v}{\partial y} + \frac{\partial \rho w}{\partial z}  \right )\mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> 。回到最开始质量变化率的定义，即可得到连续性方程：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial \rho}{\partial t}\mathrm{d}x\mathrm{d}y\mathrm{d}z = -\left ( \frac{\partial \rho u}{\partial x} + \frac{\partial \rho v}{\partial y} + \frac{\partial \rho w}{\partial z}  \right )\mathrm{d}x\mathrm{d}y\mathrm{d}z
+\quad \Rightarrow \quad
+\frac{\partial \rho}{\partial t} + \frac{\partial \rho u}{\partial x} + \frac{\partial \rho v}{\partial y} + \frac{\partial \rho w}{\partial z} =0
+\end{align}\]</div>
+</section>
+<section id="id8">
+<h3>积分形式的连续性方程<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
+<p>下面考虑从空间位置固定的有限控制体推导连续性方程。有限控制体和无穷小微团的关系可以理解为，有限控制体包含着很多的无穷小微团，因此有限控制体中的量都需要用积分来进行计算。对于空间位置固定的有限控制体，其质量为 <span class="math notranslate nohighlight">\(\int \rho~\mathrm{d}V\)</span> ，则对应的质量变化率为 <span class="math notranslate nohighlight">\(\frac{\partial }{\partial t}\int \rho~\mathrm{d}V\)</span> 。在有限控制体表面上的面微元的通量可以定义为 <span class="math notranslate nohighlight">\(\rho \boldsymbol{U}\cdot \mathrm{d}\boldsymbol{S}\)</span> ，那么整个有限控制体的净通量可以表示为 <span class="math notranslate nohighlight">\(-\int_{\boldsymbol{S}}\rho \boldsymbol{U}\cdot \mathrm{d}\boldsymbol{S}\)</span> ，从而就有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial }{\partial t}\int _{V}\rho~\mathrm{d}V + \int_{\boldsymbol{S}}\rho\boldsymbol{U}\cdot\mathrm{d}\boldsymbol{S}=0
+\end{align}\]</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>封闭面的面矢量 <span class="math notranslate nohighlight">\(\boldsymbol{S}\)</span> 一般指向外部，因此考虑到需要的是流入减去流出的通量，所以净通量在表示的时候引入了负号。</p>
+</div>
+<p>假定函数是光滑连续的，则使用高斯定律，上述方程就可以化简为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial \rho}{\partial t}+\nabla \cdot \rho \boldsymbol{U}=0
+\end{align}\]</div>
+<p>此外，对原积分形式连续性方程对时间做积分，就得到另一种积分形式的连续性方程：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\int_{t}^{t+\Delta t}\frac{\partial }{\partial t}\int_{V}\rho~\mathrm{d}V\mathrm{d}\tau + \int_{t}^{t+\Delta t}\int_{\boldsymbol{S}}\rho\boldsymbol{U}\cdot\mathrm{d}\boldsymbol{S}\mathrm{d}\tau=0
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\int_{V}\rho(t+\Delta t)\mathrm{d}V-\int_{V}\rho(t)\mathrm{d}V=-\int_{t}^{t+\Delta t}\left ( \int_{\boldsymbol{S}}\rho(\tau)\boldsymbol{U}(\tau)\cdot \mathrm{d}\boldsymbol{S}  \right )\mathrm{d}\tau
+\end{align}\]</div>
+<p>上述方程左侧表示在体积 <span class="math notranslate nohighlight">\(V\)</span> 上时间间隔 <span class="math notranslate nohighlight">\(\Delta t\)</span> 上质量的变化；右侧则考虑通量的变化形式，同样表示体积 <span class="math notranslate nohighlight">\(V\)</span> 上时间间隔 <span class="math notranslate nohighlight">\(\Delta t\)</span> 上质量的变化。如果知道右侧 <span class="math notranslate nohighlight">\(\rho(t')\boldsymbol{U}(t')\)</span> 的精确值，那么结果就是精确的。该方程主要用于双曲系统来推导高阶通量格式，例如HLL格式，其通过 <span class="math notranslate nohighlight">\(V\)</span> 将黎曼扇区域进行包围并假定 <span class="math notranslate nohighlight">\(\rho(t')\boldsymbol{U}(t')\)</span> 的近似值即可获得网格面上的通量。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%E4%B8%8E%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-left" title="数值分析与算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="AutoCAD.html" class="btn btn-neutral float-right" title="AutoCAD" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Koishi.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latex &mdash; MyKnowledge MyKnowledge 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="OpenFOAM" href="OpenFOAM.html" />
+    <link rel="prev" title="C++" href="C%2B%2B.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MyKnowledge
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E5%BE%AE%E7%A7%AF%E5%88%86.html">微积分</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.html">线性代数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0.html">复变函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%94%B5%E8%B7%AF%E5%8E%9F%E7%90%86.html">电路原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF.html">数字电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%E4%B8%8E%E7%AE%97%E6%B3%95.html">数值分析与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6.html">流体力学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutoCAD.html">AutoCAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C%2B%2B.html">C++</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Latex</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">图片排版</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">并排插入图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">并排插入子图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">多行多列排版子图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">跨栏放置图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">图片标题设置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">表格排版</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">表格标题设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">三线表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pythondataframelatex">将Python的DataFrame打印为LaTeX三线表</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">算法环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">代码环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">特殊物理单位</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">特殊数学符号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">多栏文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">引用与注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">超链接</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">字体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">颜色</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">插入参考文献</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM.html">OpenFOAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Salome.html">Salome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solidworks.html">Solidworks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MyKnowledge</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Latex</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/demo/Latex.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="latex">
+<h1>Latex<a class="headerlink" href="#latex" title="此标题的永久链接"></a></h1>
+<section id="id1">
+<h2>图片排版<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>需要在导言区导入以下宏包：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>graphicx, subfigure, float, caption<span class="nb">}</span>
+</pre></div>
+</div>
+<p>一般的图片插入格式为</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[H]
+<span class="k">\centering</span>
+<span class="k">\includegraphics</span><span class="na">[scale=0.2]</span><span class="nb">{</span>图片名字<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>图例信息<span class="nb">}</span>
+<span class="k">\label</span><span class="nb">{</span>fig:引用标签<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+</pre></div>
+</div>
+<p>其中图片放置位置的选项有[htbp]或[H]，各选项的含义为</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">h</span></code> ：当前位置。将图形放置在正文文本中给出该图形环境的地方。如果本页所剩的页面不够，这一参数将不起作用。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">t</span></code> ：顶部。将图形放置在页面的顶部。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">b</span></code> ：底部。将图形放置在页面的底部。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">p</span></code> ：浮动页。将图形放置在一只允许有浮动对象的页面上。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">H</span></code> ：float宏包下设置为当前位置，若放不下需要手工调整。</p></li>
+</ul>
+<section id="id2">
+<h3>并排插入图片<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
+<p>借助minipage来实现并排插入多张图片。下面是一个并排插入两张图片示例：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[H]
+<span class="k">\centering</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}{</span>0.45<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[width=0.9\linewidth]</span><span class="nb">{</span>1<span class="nb">}</span>
+    <span class="k">\caption</span><span class="nb">{</span>1<span class="nb">}</span>
+    <span class="k">\label</span><span class="nb">{</span>fig:1<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}{</span>0.45<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[width=0.9\linewidth]</span><span class="nb">{</span>2<span class="nb">}</span>
+    <span class="k">\caption</span><span class="nb">{</span>2<span class="nb">}</span>
+    <span class="k">\label</span><span class="nb">{</span>fig:2<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+</pre></div>
+</div>
+<p>如果希望插入更多张图片，只需要调整minipage的宽度，让一行能够放下对应的minipage数量即可。同时，可以在minipage之间添加 <code class="code docutils literal notranslate"><span class="pre">\quad</span></code> 来使图片之间拉开一定间距。</p>
+<p>如果需要插入多行图片，则是需要让两行minipage之间空出一行来换行即可。</p>
+</section>
+<section id="id3">
+<h3>并排插入子图片<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>如果需要插入多张子图片并显示为一横排，使用 <code class="code docutils literal notranslate"><span class="pre">\subfigure</span></code> 和minipage来实现。下面是一个示例：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[H]
+<span class="k">\centering</span>
+<span class="k">\subfigure</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>0.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>图片名1<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\subfigure</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>0.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>图片名2<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\subfigure</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>0.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>图片名3<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>figure title<span class="nb">}</span>
+<span class="k">\label</span><span class="nb">{</span>fig:main<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+</pre></div>
+</div>
+<p>如果需要为每张图片添加单独的序号，则只需要在 <code class="code docutils literal notranslate"><span class="pre">\subfigure</span></code> 后加一对方括号[]即可。如果需要进一步为每张图片添加单独的描述信息，则在 <code class="code docutils literal notranslate"><span class="pre">\subfigure</span></code> 后的那一对方括号[]内填写描述信息即可。</p>
+</section>
+<section id="id4">
+<h3>多行多列排版子图片<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<p>与并排插入图片类似，简单地叠加 <code class="code docutils literal notranslate"><span class="pre">\subfigure</span></code> 即可，通过控制minipage的宽度来控制一行插入的图片数量，空行来实现换行（或者由minipage宽度限制来自动换行）。</p>
+<p>如果要实现子图片分组共用一个子标题，那么可以在同一个 <code class="code docutils literal notranslate"><span class="pre">\subfigure</span></code> 内放入多个minipage。下面是一个示例：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[H]
+<span class="k">\centering</span>
+<span class="k">\subfigure</span><span class="na">[figure 1]</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\subfigure</span><span class="na">[figure 2]</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>figure title<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+</pre></div>
+</div>
+<p>如果想实现竖排的分组，那么可以通过对 <code class="code docutils literal notranslate"><span class="pre">\includegraphics</span></code> 进行换行 <code class="code docutils literal notranslate"><span class="pre">\\</span></code> 操作来实现。下面是一个示例：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[H]
+<span class="k">\centering</span>
+<span class="k">\subfigure</span><span class="na">[figure 1]</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span> <span class="k">\\</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\subfigure</span><span class="na">[figure 2]</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span> <span class="k">\\</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\subfigure</span><span class="na">[figure 3]</span><span class="nb">{</span>
+<span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[b]<span class="nb">{</span>.3<span class="k">\linewidth</span><span class="nb">}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span> <span class="k">\\</span>
+    <span class="k">\includegraphics</span><span class="na">[scale=0.1]</span><span class="nb">{</span>girl.eps<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>figure title<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+</pre></div>
+</div>
+<p>除了上述方法，还可以使用 <code class="code docutils literal notranslate"><span class="pre">subcaption</span></code> 宏包来处理，下面是使用该宏包来实现的示例：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>
+  <span class="k">\centering</span>
+  <span class="k">\subcaptionbox</span><span class="nb">{</span>分图 A<span class="k">\label</span><span class="nb">{</span>fig:subfig-a<span class="nb">}}</span>
+    <span class="nb">{</span><span class="k">\includegraphics</span><span class="na">[width=0.35\linewidth]</span><span class="nb">{</span>example-image-a.pdf<span class="nb">}}</span>
+  <span class="k">\subcaptionbox</span><span class="nb">{</span>分图 B<span class="k">\label</span><span class="nb">{</span>fig:subfig-b<span class="nb">}}</span>
+    <span class="nb">{</span><span class="k">\includegraphics</span><span class="na">[width=0.35\linewidth]</span><span class="nb">{</span>example-image-b.pdf<span class="nb">}}</span>
+  <span class="k">\caption</span><span class="nb">{</span>多个分图的示例<span class="nb">}</span>
+  <span class="k">\label</span><span class="nb">{</span>fig:multi-image<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>跨栏放置图片<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<p>在文章排版为双栏时，如果需要跨栏放置图片，只需要在 <code class="code docutils literal notranslate"><span class="pre">\begin{figure}</span></code> 和 <code class="code docutils literal notranslate"><span class="pre">\end{figure}</span></code> 上带星号 <code class="code docutils literal notranslate"><span class="pre">*</span></code> 即可。</p>
+</section>
+<section id="id6">
+<h3>图片标题设置<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<p>如果模板生成出来的图片标题格式为 <code class="code docutils literal notranslate"><span class="pre">Figure.</span> <span class="pre">1</span></code> 而需要的格式为 <code class="code docutils literal notranslate"><span class="pre">Fig.</span> <span class="pre">1</span></code> ，那么在导言区引入宏包 <code class="code docutils literal notranslate"><span class="pre">\usepackage{caption}</span></code> ，然后在 <code class="code docutils literal notranslate"><span class="pre">\begin{document}</span></code> 后面加上以下语句：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\captionsetup</span><span class="na">[figure]</span><span class="nb">{</span>labelfont=<span class="nb">{</span>bf<span class="nb">}</span>, name=<span class="nb">{</span>Fig.<span class="nb">}</span>, labelsep=period<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2>表格排版<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<section id="id8">
+<h3>表格标题设置<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
+<p>如果模板生成出来的图片标题格式为 <code class="code docutils literal notranslate"><span class="pre">Tab.</span> <span class="pre">1</span></code> 而需要的格式为 <code class="code docutils literal notranslate"><span class="pre">Table</span> <span class="pre">1</span></code> ，那么在导言区引入宏包 <code class="code docutils literal notranslate"><span class="pre">\usepackage{caption}</span></code> ，然后在 <code class="code docutils literal notranslate"><span class="pre">begin{document}</span></code> 后面加上以下语句：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\captionsetup</span><span class="na">[table]</span><span class="nb">{</span>labelfont=<span class="nb">{</span>bf<span class="nb">}</span>, name=<span class="nb">{</span>Table<span class="nb">}</span>, labelsep=period<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>三线表<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h3>
+<p>三条线可以使用 <code class="code docutils literal notranslate"><span class="pre">booktabs</span></code> 宏包提供的命令生成。下面是一个示例</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>
+  <span class="k">\centering</span>
+  <span class="k">\caption</span><span class="nb">{</span>三线表示例<span class="nb">}</span>
+  <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>ll<span class="nb">}</span>
+    <span class="k">\toprule</span>
+    文件名          <span class="nb">&amp;</span> 描述                         <span class="k">\\</span>
+    <span class="k">\midrule</span>
+    thuthesis.dtx   <span class="nb">&amp;</span> 模板的源文件，包括文档和注释 <span class="k">\\</span>
+    thuthesis.cls   <span class="nb">&amp;</span> 模板文件                     <span class="k">\\</span>
+    thuthesis-*.bst <span class="nb">&amp;</span> BibTeX 参考文献表样式文件    <span class="k">\\</span>
+    <span class="k">\bottomrule</span>
+  <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+  <span class="k">\label</span><span class="nb">{</span>tab:three-line<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>table<span class="nb">}</span>
+</pre></div>
+</div>
+<p>表格如果有附注，尤其是需要在表格中进行标注时，可以使用 <code class="code docutils literal notranslate"><span class="pre">threeparttable</span></code> 宏包。研究生要求使用英文小写字母 a、b、c……顺序编号，本科生使用圈码 ①、②、③……编号，标注的编码需要自己手动填写并对应。下面是一个示例</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>
+  <span class="k">\centering</span>
+  <span class="k">\begin</span><span class="nb">{</span>threeparttable<span class="nb">}</span>[c]
+    <span class="k">\caption</span><span class="nb">{</span>带附注的表格示例<span class="nb">}</span>
+    <span class="k">\label</span><span class="nb">{</span>tab:three-part-table<span class="nb">}</span>
+    <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>ll<span class="nb">}</span>
+      <span class="k">\toprule</span>
+      文件名                 <span class="nb">&amp;</span> 描述                         <span class="k">\\</span>
+      <span class="k">\midrule</span>
+      thuthesis.dtx<span class="k">\tnote</span><span class="nb">{</span>a<span class="nb">}</span> <span class="nb">&amp;</span> 模板的源文件，包括文档和注释 <span class="k">\\</span>
+      thuthesis.cls<span class="k">\tnote</span><span class="nb">{</span>b<span class="nb">}</span> <span class="nb">&amp;</span> 模板文件                     <span class="k">\\</span>
+      thuthesis-*.bst        <span class="nb">&amp;</span> BibTeX 参考文献表样式文件    <span class="k">\\</span>
+      <span class="k">\bottomrule</span>
+    <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+    <span class="k">\begin</span><span class="nb">{</span>tablenotes<span class="nb">}</span>
+      <span class="k">\item</span> [a] 可以通过 xelatex 编译生成模板的使用说明文档；
+        使用 xetex 编译 <span class="k">\file</span><span class="nb">{</span>thuthesis.ins<span class="nb">}</span> 时则会从 <span class="k">\file</span><span class="nb">{</span>.dtx<span class="nb">}</span> 中去除掉文档和注释，得到精简的 <span class="k">\file</span><span class="nb">{</span>.cls<span class="nb">}</span> 文件。
+      <span class="k">\item</span> [b] 更新模板时，一定要记得编译生成 <span class="k">\file</span><span class="nb">{</span>.cls<span class="nb">}</span> 文件，否则编译论文时载入的依然是旧版的模板。
+    <span class="k">\end</span><span class="nb">{</span>tablenotes<span class="nb">}</span>
+  <span class="k">\end</span><span class="nb">{</span>threeparttable<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>table<span class="nb">}</span>
+</pre></div>
+</div>
+<p>如某个表需要转页接排，可以使用 <code class="code docutils literal notranslate"><span class="pre">longtable</span></code> 宏包，需要在随后的各页上重复表的编号。编号后跟表题（可省略）和“（续）”，置于表上方。续表均应重复表头。下面是一个示例</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>longtable<span class="nb">}{</span>cccc<span class="nb">}</span>
+    <span class="k">\caption</span><span class="nb">{</span>跨页长表格的表题<span class="nb">}</span> <span class="k">\\</span>
+    <span class="k">\toprule</span>
+    表头 1 <span class="nb">&amp;</span> 表头 2 <span class="nb">&amp;</span> 表头 3 <span class="nb">&amp;</span> 表头 4 <span class="k">\\</span>
+    <span class="k">\midrule</span>
+  <span class="k">\endfirsthead</span>
+    <span class="k">\caption</span><span class="na">[]</span><span class="nb">{</span>跨页长表格的表题（续）<span class="nb">}</span> <span class="k">\\</span>
+    <span class="k">\toprule</span>
+    表头 1 <span class="nb">&amp;</span> 表头 2 <span class="nb">&amp;</span> 表头 3 <span class="nb">&amp;</span> 表头 4 <span class="k">\\</span>
+    <span class="k">\midrule</span>
+  <span class="k">\endhead</span>
+    <span class="k">\bottomrule</span>
+  <span class="k">\endfoot</span>
+  Row 1  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 2  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 3  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 4  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 5  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 6  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 7  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 8  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 9  <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+  Row 10 <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="nb">&amp;</span> <span class="k">\\</span>
+<span class="k">\end</span><span class="nb">{</span>longtable<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="pythondataframelatex">
+<h3>将Python的DataFrame打印为LaTeX三线表<a class="headerlink" href="#pythondataframelatex" title="此标题的永久链接"></a></h3>
+<p>下面的Python代码函数能够将DataFrame打印为一般的三线表。要求DataFrame包含columns且不含index。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_table</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">begin</span><span class="si">{table}</span><span class="s1">[H]</span><span class="se">\n\\</span><span class="s1">centering</span><span class="se">\n\\</span><span class="s1">caption</span><span class="si">{1}</span><span class="se">\n\\</span><span class="s1">begin</span><span class="si">{tabular}</span><span class="s1">{</span><span class="si">%s</span><span class="s1">}</span><span class="se">\n\\</span><span class="s1">toprule&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span> <span class="o">*</span> <span class="n">cols</span><span class="p">)</span>
+    <span class="n">ender</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">bottomrule</span><span class="se">\n\\</span><span class="s1">end</span><span class="si">{tabular}</span><span class="se">\n\\</span><span class="s1">end</span><span class="si">{table}</span><span class="s1">&#39;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">colsList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">colHeader</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">colHeader</span> <span class="o">+=</span> <span class="n">colsList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\\\\</span><span class="s1">&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">colHeader</span> <span class="o">+=</span> <span class="n">colsList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &amp; &#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">colHeader</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hline&#39;</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">cols</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\\\\\n</span><span class="s1">&#39;</span>
+            <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="n">cols</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">==</span> <span class="n">rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\\\\</span><span class="s1">&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; &amp; &#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ender</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id10">
+<h2>算法环境<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h2>
+<p>算法环境（伪代码）可以使用 <code class="code docutils literal notranslate"><span class="pre">algorithms</span></code> 或者 <code class="code docutils literal notranslate"><span class="pre">algorithm2e</span></code> 宏包，使用方法参考 <a class="reference external" href="https://zhuanlan.zhihu.com/p/166418214">用LaTeX优雅地书写伪代码</a>  。下面是一个示例</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>algorithm<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>Simulation-optimization heuristic<span class="nb">}</span>
+<span class="k">\label</span><span class="nb">{</span>algorithm<span class="nb">}</span>
+<span class="k">\KwData</span><span class="nb">{</span>current period <span class="s">$</span><span class="nb">t</span><span class="s">$</span>, initial inventory <span class="s">$</span><span class="nb">I_{t</span><span class="o">-</span><span class="m">1</span><span class="nb">}</span><span class="s">$</span>, initial capital <span class="s">$</span><span class="nb">B_{t</span><span class="o">-</span><span class="m">1</span><span class="nb">}</span><span class="s">$</span>, demand samples<span class="nb">}</span>
+<span class="k">\KwResult</span><span class="nb">{</span>Optimal order quantity <span class="s">$</span><span class="nb">Q^{</span><span class="nv">\ast</span><span class="nb">}_{t}</span><span class="s">$</span><span class="nb">}</span>
+<span class="s">$</span><span class="nb">r</span><span class="nv">\leftarrow</span><span class="nb"> t</span><span class="s">$</span><span class="k">\;</span>
+<span class="s">$</span><span class="nv">\Delta</span><span class="nb"> B^{</span><span class="nv">\ast</span><span class="nb">}</span><span class="nv">\leftarrow</span><span class="nb"> </span><span class="o">-</span><span class="nv">\infty</span><span class="s">$</span><span class="k">\;</span>
+<span class="k">\While</span><span class="nb">{</span><span class="s">$</span><span class="nv">\Delta</span><span class="nb"> B</span><span class="nv">\leq</span><span class="nb"> </span><span class="nv">\Delta</span><span class="nb"> B^{</span><span class="nv">\ast</span><span class="nb">}</span><span class="s">$</span> and <span class="s">$</span><span class="nb">r</span><span class="nv">\leq</span><span class="nb"> T</span><span class="s">$</span><span class="nb">}{</span><span class="s">$</span><span class="nb">Q</span><span class="nv">\leftarrow\arg\max</span><span class="nb">_{Q</span><span class="nv">\geq</span><span class="nb"> </span><span class="m">0</span><span class="nb">}</span><span class="nv">\Delta</span><span class="nb"> B^{Q}_{t,r}</span><span class="o">(</span><span class="nb">I_{t</span><span class="o">-</span><span class="m">1</span><span class="nb">},B_{t</span><span class="o">-</span><span class="m">1</span><span class="nb">}</span><span class="o">)</span><span class="s">$</span><span class="k">\;</span>
+<span class="s">$</span><span class="nv">\Delta</span><span class="nb"> B</span><span class="nv">\leftarrow</span><span class="nb"> </span><span class="nv">\Delta</span><span class="nb"> B^{Q}_{t,r}</span><span class="o">(</span><span class="nb">I_{t</span><span class="o">-</span><span class="m">1</span><span class="nb">},B_{t</span><span class="o">-</span><span class="m">1</span><span class="nb">}</span><span class="o">)/(</span><span class="nb">r</span><span class="o">-</span><span class="nb">t</span><span class="o">+</span><span class="m">1</span><span class="o">)</span><span class="s">$</span><span class="k">\;</span>
+<span class="k">\If</span><span class="nb">{</span><span class="s">$</span><span class="nv">\Delta</span><span class="nb"> B</span><span class="nv">\geq</span><span class="nb"> </span><span class="nv">\Delta</span><span class="nb"> B^{</span><span class="nv">\ast</span><span class="nb">}</span><span class="s">$</span><span class="nb">}{</span><span class="s">$</span><span class="nb">Q^{</span><span class="nv">\ast</span><span class="nb">}</span><span class="nv">\leftarrow</span><span class="nb"> Q</span><span class="s">$</span><span class="k">\;</span>
+<span class="s">$</span><span class="nv">\Delta</span><span class="nb"> B^{</span><span class="nv">\ast</span><span class="nb">}</span><span class="nv">\leftarrow</span><span class="nb"> </span><span class="nv">\Delta</span><span class="nb"> B</span><span class="s">$</span><span class="k">\;</span><span class="nb">}</span>
+<span class="s">$</span><span class="nb">r</span><span class="nv">\leftarrow</span><span class="nb"> r</span><span class="o">+</span><span class="m">1</span><span class="s">$</span><span class="k">\;</span><span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>algorithm<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h2>代码环境<a class="headerlink" href="#id12" title="此标题的永久链接"></a></h2>
+<p>可以借助 <code class="code docutils literal notranslate"><span class="pre">listings</span></code> 和 <code class="code docutils literal notranslate"><span class="pre">color</span></code> 来实现。更详细内容可以参考 <a class="reference external" href="https://blog.csdn.net/qq_44885695/article/details/124258901">latex中lstlisting使用</a>  先在导言区添加下面的设置：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>listings<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span>
+
+<span class="k">\definecolor</span><span class="nb">{</span>dkgreen<span class="nb">}{</span>rgb<span class="nb">}{</span>0,0.6,0<span class="nb">}</span>
+<span class="k">\definecolor</span><span class="nb">{</span>gray<span class="nb">}{</span>rgb<span class="nb">}{</span>0.5,0.5,0.5<span class="nb">}</span>
+<span class="k">\definecolor</span><span class="nb">{</span>mauve<span class="nb">}{</span>rgb<span class="nb">}{</span>0.58,0,0.82<span class="nb">}</span>
+
+<span class="k">\lstset</span><span class="nb">{</span>frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle=<span class="nb">{</span><span class="k">\small\ttfamily</span><span class="nb">}</span>,
+  numbers=none,
+  numberstyle=<span class="k">\tiny\color</span><span class="nb">{</span>gray<span class="nb">}</span>,
+  keywordstyle=<span class="k">\color</span><span class="nb">{</span>blue<span class="nb">}</span>,
+  commentstyle=<span class="k">\color</span><span class="nb">{</span>dkgreen<span class="nb">}</span>,
+  stringstyle=<span class="k">\color</span><span class="nb">{</span>mauve<span class="nb">}</span>,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+<span class="nb">}</span>
+</pre></div>
+</div>
+<p>之后在在正文里面的时候使用 <code class="code docutils literal notranslate"><span class="pre">lstlisting</span></code> 环境放置代码即可，下面是一个示例：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>lstlisting<span class="nb">}</span>
+import numpy as np
+if <span class="nb">__</span>name<span class="nb">__</span> == &#39;<span class="nb">__</span>main<span class="nb">__</span>&#39;:
+        print(np.arange(10))
+<span class="k">\end</span><span class="nb">{</span>lstlisting<span class="nb">}</span>
+</pre></div>
+</div>
+<p>对于Python代码，可以自行向项目里面添加 <code class="code docutils literal notranslate"><span class="pre">pythonhighlight.sty</span></code> 文件，在导言区导入 <code class="code docutils literal notranslate"><span class="pre">usepackage{graphix}</span></code> 和 <code class="code docutils literal notranslate"><span class="pre">usepackage{pythonhighlight}</span></code> ，就可以在正文里面通过下面的方式来插入Python代码：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>python<span class="nb">}</span>
+import numpy as np
+import pandas as pd
+print(&#39;now we can insert python into latex!&#39;)
+<span class="k">\end</span><span class="nb">{</span>python<span class="nb">}</span>
+</pre></div>
+</div>
+<p>对于其他类型的代码，可以进行自定义设置，例如下面是VHDL代码的显示的示例：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>listings<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span>
+
+<span class="k">\definecolor</span><span class="nb">{</span>dkgreen<span class="nb">}{</span>rgb<span class="nb">}{</span>0,0.6,0<span class="nb">}</span>
+<span class="k">\definecolor</span><span class="nb">{</span>gray<span class="nb">}{</span>rgb<span class="nb">}{</span>0.5,0.5,0.5<span class="nb">}</span>
+<span class="k">\definecolor</span><span class="nb">{</span>mauve<span class="nb">}{</span>rgb<span class="nb">}{</span>0.58,0,0.82<span class="nb">}</span>
+
+<span class="k">\lstset</span><span class="nb">{</span>frame=tb,
+  language=vhdl,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle=<span class="nb">{</span><span class="k">\scriptsize\ttfamily</span><span class="nb">}</span>,
+  numbers=left,
+  numberstyle=<span class="k">\tiny\color</span><span class="nb">{</span>gray<span class="nb">}</span>,
+  keywordstyle=<span class="k">\color</span><span class="nb">{</span>blue<span class="nb">}</span>,
+  commentstyle=<span class="k">\color</span><span class="nb">{</span>dkgreen<span class="nb">}</span>,
+  stringstyle=<span class="k">\color</span><span class="nb">{</span>mauve<span class="nb">}</span>,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  emph=<span class="nb">{</span>std<span class="nb">_</span>logic, std<span class="nb">_</span>logic<span class="nb">_</span>vector, rising<span class="nb">_</span>edge, falling<span class="nb">_</span>edge<span class="nb">}</span>, emphstyle=<span class="k">\color</span><span class="nb">{</span>purple<span class="nb">}</span>
+<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>lstlisting<span class="nb">}</span>
+library ieee;
+use ieee.std<span class="nb">_</span>logic<span class="nb">_</span>1164.all;
+use ieee.std<span class="nb">_</span>logic<span class="nb">_</span>unsigned.all;        -- for addition <span class="nb">&amp;</span> counting
+use ieee.numeric<span class="nb">_</span>std.all;               -- for type conversions
+use ieee.math<span class="nb">_</span>real.all;                 -- for the ceiling and log constant calculation functions
+<span class="k">\end</span><span class="nb">{</span>lstlisting<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h2>特殊物理单位<a class="headerlink" href="#id13" title="此标题的永久链接"></a></h2>
+<p>在导言区引入 <code class="code docutils literal notranslate"><span class="pre">\usepackage{siunitx}</span></code> 。</p>
+<p>“埃”：首先需要在导言区写入 <code class="code docutils literal notranslate"><span class="pre">\DeclareSIUnitangstrom{Å}</span></code> ，之后在正文处通过 <code class="code docutils literal notranslate"><span class="pre">\si{angstrom}</span></code> 来书写该单位。</p>
+<p>“摄氏度”：在正文处通过 <code class="code docutils literal notranslate"><span class="pre">\si{degreeCelsius}</span></code> 来书写该单位。</p>
+</section>
+<section id="id14">
+<h2>特殊数学符号<a class="headerlink" href="#id14" title="此标题的永久链接"></a></h2>
+<p>在导言区引入如下宏包：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, fancyhdr, physics<span class="nb">}</span>
+</pre></div>
+</div>
+<p>“闭曲面积分”：需要在导言区额外引入 <code class="code docutils literal notranslate"><span class="pre">\usepackage{esint}</span></code> ，然后在正文处通过 <code class="code docutils literal notranslate"><span class="pre">\varoiint</span></code> 来书写该符号。</p>
+<p>“二重极限（多行下标）”：使用 <code class="code docutils literal notranslate"><span class="pre">\substack</span></code> 来实现，例如 <code class="code docutils literal notranslate"><span class="pre">\lim_{substack{x</span> <span class="pre">\to</span> <span class="pre">+</span> <span class="pre">\infty</span> <span class="pre">\\</span> <span class="pre">y</span> <span class="pre">\to</span> <span class="pre">+</span> <span class="pre">\infty}}</span></code> 。</p>
+<p>“等号上下文字”：需要在导言区额外引入 <code class="code docutils literal notranslate"><span class="pre">\usepackage{extpfeil}</span></code> 或 <code class="code docutils literal notranslate"><span class="pre">\usepackage{extarrows}</span></code> ，之后通过 <code class="code docutils literal notranslate"><span class="pre">\xlongequal[等号下文字]{等号上文字}</span></code> 的方式来书写。如果只是在普通等号的上面加少量符号，则可以使用 <code class="code docutils literal notranslate"><span class="pre">\usepackage{amsmath}</span></code> 中的 <code class="code docutils literal notranslate"><span class="pre">\overset{等号上符号}{=}</span></code> 来书写。</p>
+<p>一些在字母上加特殊符号的方式是固定的，如下所示：</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 23%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>显示效果</p></th>
+<th class="head"><p>latex写法</p></th>
+<th class="head"><p>显示效果</p></th>
+<th class="head"><p>latex写法</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\hat{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\hat{a}</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\\acute{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\acute{a}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\grave{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\grave{a}</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\\breve{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\breve{a}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bar{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\bar{a}</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\\widetilde{A}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\widetilde{A}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\check{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\check{a}</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\\tilde{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\tilde{a}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\dot{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\dot{a}</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\\ddot{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\ddot{a}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\vec{a}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\vec{a}</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\\widehat{A}\)</span></p></td>
+<td><p><code class="code docutils literal notranslate"><span class="pre">\widehat{A}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id15">
+<h2>多栏文档<a class="headerlink" href="#id15" title="此标题的永久链接"></a></h2>
+<p>可以使用multicol宏包来实现多栏文档。在导言区加入以下语句：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>multicol<span class="nb">}</span>
+<span class="k">\setlength</span><span class="nb">{</span><span class="k">\columnsep</span><span class="nb">}{</span>1cm<span class="nb">}</span>  <span class="c">% 设置栏间距</span>
+<span class="k">\setlength</span><span class="nb">{</span><span class="k">\columnseprule</span><span class="nb">}{</span>1pt<span class="nb">}</span>  <span class="c">% 添加垂直分隔线</span>
+<span class="k">\def\columnseprulecolor</span><span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>blue<span class="nb">}}</span>  <span class="c">% 设置颜色</span>
+</pre></div>
+</div>
+<p>在正文部分，使用multicols环境来进行分栏。例如</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>multicols<span class="nb">}{</span>2<span class="nb">}</span>
+[
+<span class="k">\section</span><span class="nb">{</span>First Section<span class="nb">}</span>
+开头跨栏引文总结文段。该跨栏引文放在中括号内。
+]
+正文部分放在中括号后
+<span class="k">\end</span><span class="nb">{</span>multicols<span class="nb">}</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">\columnbreak</span></code> 命令会插入一个列断点，断点之前的段落会均匀地填满可用的空间。</p>
+</section>
+<section id="id16">
+<h2>引用与注释<a class="headerlink" href="#id16" title="此标题的永久链接"></a></h2>
+<section id="id17">
+<h3>超链接<a class="headerlink" href="#id17" title="此标题的永久链接"></a></h3>
+<p>需要在引言区加入以下语句：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>hyperref<span class="nb">}</span>
+<span class="k">\hypersetup</span><span class="nb">{</span>
+urlcolor=blue,  <span class="c">% 链接到网站的链接</span>
+citecolor=blue,  <span class="c">% 引用符号的颜色</span>
+linkcolor=blue,  <span class="c">% 内部链接交叉引用的颜色</span>
+colorlinks=true,
+<span class="nb">}</span>
+</pre></div>
+</div>
+<p>在正文中，通过 <code class="code docutils literal notranslate"><span class="pre">\url{http://www.overleaf.com}</span></code> 的形式来书写显式地址的链接，通过 <code class="code docutils literal notranslate"><span class="pre">\href{http://www.overleaf.com}{Something</span> <span class="pre">Linky}</span></code> 来书写隐式地址的链接（第二个大括号内为文本显式内容）。</p>
+</section>
+</section>
+<section id="id18">
+<h2>字体<a class="headerlink" href="#id18" title="此标题的永久链接"></a></h2>
+<p>要使用中文字体，需要使用 <code class="code docutils literal notranslate"><span class="pre">\usepackage{ctex}</span></code> 宏包。部分生僻字无法显示时，可以考虑调用windows字体库，例如</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% 导言区写上</span>
+<span class="k">\setCJKfamilyfont</span><span class="nb">{</span>adobesong<span class="nb">}{</span>Adobe Song Std<span class="nb">}</span>
+<span class="c">% 正文中使用</span>
+<span class="nb">{</span><span class="k">\CJKfamily</span><span class="nb">{</span>adobesong<span class="nb">}</span> 宬<span class="nb">}</span>
+</pre></div>
+</div>
+<p>生僻字也可以通过“拼凑”的方法来实现显示，例如</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% 导言区写上</span>
+<span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+<span class="c">% 正文中使用</span>
+<span class="k">\hbox</span><span class="nb">{</span><span class="k">\lower</span>-0.55ex<span class="k">\hbox</span><span class="nb">{</span><span class="k">\kern</span>+.0em<span class="k">\scalebox</span><span class="nb">{</span>0.95<span class="nb">}</span>[0.95]<span class="nb">{</span>宀<span class="nb">}}</span><span class="k">\lower</span>+0.15ex<span class="k">\hbox</span><span class="nb">{</span><span class="k">\kern</span>-0.90em <span class="k">\scalebox</span><span class="nb">{</span>0.8<span class="nb">}</span>[0.8]<span class="nb">{</span>成<span class="nb">}}}</span>
+</pre></div>
+</div>
+<p>在Latex当中，粗体一般会使用下面的命令：</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">\textbf</span></code> ：文本环境加粗。在数学环境使用的话，会使斜体效果消失。并且无法输出加粗的希腊字母。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">\mathbf</span></code> ：会变为粗体，但同样会导致数学字母斜体形式的丢失。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">\boldmath</span></code> ：数学环境里可以加粗且不会使斜体消失。需要添加amsmath宏包。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">\boldsymbol</span></code> ：可以对希腊字母加粗。需要添加amsmath宏包。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">\bm</span></code> ：在数学环境中进行加粗。需要添加bm宏包。</p></li>
+</ul>
+<p>但是在xelatex或Luatex引擎下使用了unicode-math宏包后，上述部分数学环境中使用的加粗手段会报错。此时，可以改用以下命令：</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">\symbfit</span></code> ：加粗，且有斜体效果。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">\symbf</span></code> ：加粗，没有斜体效果。</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">\mathbfcal</span></code> ：加粗的mathcal字体。</p></li>
+</ul>
+</section>
+<section id="id19">
+<h2>颜色<a class="headerlink" href="#id19" title="此标题的永久链接"></a></h2>
+<p>在引言区导入 <code class="code docutils literal notranslate"><span class="pre">\usepackage{color,</span> <span class="pre">xcolor}</span></code> 。已经定义的颜色见 <a class="reference external" href="https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX">https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX</a></p>
+<p>使用 <code class="code docutils literal notranslate"><span class="pre">\definecolor</span></code> 来自定义颜色，例如</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\definecolor</span><span class="nb">{</span>cRed<span class="nb">}{</span>HTML<span class="nb">}{</span>FF0000<span class="nb">}</span>  <span class="c">% 颜色的16进制值</span>
+<span class="k">\definecolor</span><span class="nb">{</span>cGreen<span class="nb">}{</span>RGB<span class="nb">}{</span>0,255,0<span class="nb">}</span>  <span class="c">% 通过RGB，取值为0~255</span>
+<span class="k">\definecolor</span><span class="nb">{</span>cBlue<span class="nb">}{</span>rgb<span class="nb">}{</span>0,0,1<span class="nb">}</span>  <span class="c">% 通过rgb，取值为0~1</span>
+</pre></div>
+</div>
+<p>在正文部分通过 <code class="code docutils literal notranslate"><span class="pre">\color{cRed}{使用自定义红色的文本}</span></code> 的形式来在正文中使用自定义颜色显示文本。</p>
+</section>
+<section id="id20">
+<h2>插入参考文献<a class="headerlink" href="#id20" title="此标题的永久链接"></a></h2>
+<p>LaTeX使用bibtex管理文章的参考文献，文件格式为 <code class="code docutils literal notranslate"><span class="pre">.bib</span></code> ，一般可以通过谷歌学术直接复制所需文献的BibTex文本到自己的bib文件里。但是可能会存在部分文献的bib信息不完整，所以需要自行添加所需信息。</p>
+<p>相关信息可以参考 <a class="reference external" href="https://blog.csdn.net/lly1122334/article/details/90106789">LaTeX参考文献类型</a>  和 <a class="reference external" href="https://www.cnblogs.com/csucat/p/5142471.html">LaTeX中参考文献管理以及注意事项</a></p>
+<p>BibTex的参考文献类型如下所示：</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 22%" />
+<col style="width: 29%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>BibTex标记符号</p></th>
+<th class="head"><p>文献类型</p></th>
+<th class="head"><p>不可少域</p></th>
+<th class="head"><p>可省略域</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&#64;article</p></td>
+<td><p>期刊文章</p></td>
+<td><p>author,title,journal,year</p></td>
+<td><p>volume,number,pages,month,note</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;book</p></td>
+<td><p>有明确出版商的书</p></td>
+<td><p>author或editor,title,publisher,year</p></td>
+<td><p>volume或number,series,address,editon,month,note</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;booklet</p></td>
+<td><p>没有指定出版商或赞助商的印刷品</p></td>
+<td><p>title</p></td>
+<td><p>author,howpublished,address,month,year,note</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;conference</p></td>
+<td><p>会议文章，与inproceedings相同</p></td>
+<td><p>author,title,booktitle,year</p></td>
+<td><p>editor,volume或number,series,pages,address,month,organization,publisher,note</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;inbook</p></td>
+<td><p>书的一部分，可以是章节等</p></td>
+<td><p>author或editor,title,chapter和/或pages,publisher,year</p></td>
+<td><p>volume或number,series,type,address,edition,month,note</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;incollection</p></td>
+<td><p>书的一部分，拥有其自己的标题</p></td>
+<td><p>author,title,booktitle,publisher,year</p></td>
+<td><p>editor,volume或number,series,type,chapter,pages,address,edition,month,note</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;inproceedings</p></td>
+<td><p>会议文章</p></td>
+<td><p>author,title,booktitle,year</p></td>
+<td><p>editor,volume或number,series,pages,address,month,organization,publisher,note</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;manual</p></td>
+<td><p>技术文档</p></td>
+<td><p>title</p></td>
+<td><p>author,organization,address,edition,month,year,note</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;mastersthesis</p></td>
+<td><p>硕士论文</p></td>
+<td><p>author,title,school,year</p></td>
+<td><p>type,address,month,note</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;phdthesis</p></td>
+<td><p>博士论文</p></td>
+<td><p>author,title,school,year</p></td>
+<td><p>type,address,month,note</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;proceedings</p></td>
+<td><p>会议记录</p></td>
+<td><p>title,year</p></td>
+<td><p>editor,volume或number,series,address,month,organization,publisher,note</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;techreport</p></td>
+<td><p>由学校或其他机构出版的报告，通常含编号</p></td>
+<td><p>author,title,institution,year</p></td>
+<td><p>type,number,address,month,note</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;unpublished</p></td>
+<td><p>有作者和标题但未正式出版的文件</p></td>
+<td><p>author,title,note</p></td>
+<td><p>month,year</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;misc</p></td>
+<td><p>大杂烩，当没有其他适合的时候使用这个类型</p></td>
+<td><p>无</p></td>
+<td><p>author,title,howpublished,month,year,note</p></td>
+</tr>
+</tbody>
+</table>
+<p>特别地还有 <code class="code docutils literal notranslate"><span class="pre">&#64;online</span></code> 类型，可以参考下面的方式来制作bib文件信息：</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>@online<span class="nb">{</span>thuthesis,
+  author          = <span class="nb">{</span>薛瑞尼<span class="nb">}</span>,
+  title           = <span class="nb">{</span>ThuThesis: 清华大学学位论文模板<span class="nb">}</span>,
+  urldate         = <span class="nb">{</span>2019-04-27<span class="nb">}</span>,
+  url             = <span class="nb">{</span>https://github.com/xueruini/thuthesis<span class="nb">}</span>,
+  year            = 2017,
+<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="C%2B%2B.html" class="btn btn-neutral float-left" title="C++" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="OpenFOAM.html" class="btn btn-neutral float-right" title="OpenFOAM" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Koishi.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

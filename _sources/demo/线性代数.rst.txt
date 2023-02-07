@@ -1,0 +1,1868 @@
+********
+线性代数
+********
+
+线性方程组
+==========
+
+定理 : 
+    设 :math:`Ax=b` 是非齐次方程组，则 :math:`Ax=b` 有解的充要条件为系数矩阵的秩等于增广矩阵的秩，即 :math:`\operatorname{r}\begin{bmatrix}A\end{bmatrix}=\operatorname{r}\begin{bmatrix}A&b\end{bmatrix}` 。特别地，当系数矩阵满秩时，方程组有唯一解，当增广矩阵不满秩时，方程组有无穷多解。
+
+**例题** 已知数域 :math:`F` 上的线性方程组 :math:`\left[\begin{array}{ccc}1 & 2 & 1 \\ 2 & 3 & \lambda+2 \\ 1 & \lambda & -2\end{array}\right]\left[\begin{array}{l}x_{1} \\ x_{2} \\ x_{3}\end{array}\right]=\left[\begin{array}{l}1 \\ 3 \\ 0\end{array}\right]` 。求当 :math:`\lambda` 为 何值时方程组有无穷多解, 并求出通解.
+
+**例题** 设齐次线性方程组 :math:`(n \geqslant 2)`
+
+  .. math::
+
+     \left\{\begin{array}{c}
+     a x_{1}+b x_{2}+b x_{3}+\cdots+b x_{n}=0, \\
+     b x_{1}+a x_{2}=0, \\
+     b x_{1}+a x_{3}=0, \\
+     \cdots \cdots \cdots \cdots \cdots \cdots \\
+     b x_{1}+a x_{n}=0,
+     \end{array}\right.
+
+其中 :math:`b \neq 0` 。试讨论 :math:`a, b` 取何值时，该方程组只有零解; :math:`a, b` 取何值时, 有非零解, 并在有非零解时，求方程组的通解.
+
+子空间与维数
+============
+
+**例题** 设 :math:`A=\begin{bmatrix}1&2\\1&3\\1&2\end{bmatrix},B=\begin{bmatrix}5&4\\6&3\\5&1\end{bmatrix}` ，求这两个矩阵列空间的交集中的向量。
+
+**解** 设交集中的向量为 :math:`\boldsymbol{w}=k_{1}\alpha_{1}+k_{2}\alpha_{2}+L_{1}\beta_{1}+L_{2}\beta_{2}` ，解矩阵 :math:`[A~~-B]` 的基本解组，得到一组待定系数：
+
+.. math::
+
+   \begin{bmatrix}1&2&-5&-4\\1&3&-6&-3\\1&2&-5&-1\end{bmatrix}
+       \begin{bmatrix}k_{1}\\k_{2}\\L_{1}\\L_{2}\end{bmatrix}=0
+
+解得 :math:`\begin{bmatrix}k_{1}&k_{2}&L_{1}&L_{2}\end{bmatrix}^{T}=c\begin{bmatrix}3&1&1&0\end{bmatrix}^{T}` ，故 :math:`\boldsymbol{w}=3c\begin{bmatrix}1\\1\\1\end{bmatrix}+c\begin{bmatrix}2\\3\\2\end{bmatrix}+c\begin{bmatrix}5\\6\\5\end{bmatrix}` .
+
+通过基础解系来反求矩阵的方法如下：
+
+已知基础解系:math:`k_{1}\alpha_{1}+k_{2}\alpha_{2},\cdots` ，即满足
+
+.. math:: A\begin{pmatrix}\alpha_{1}&\alpha_{2}&\cdots\end{pmatrix}
+
+ 则求出
+
+.. math:: \begin{pmatrix}\alpha_{1}^{T}\\\alpha_{2}^{T}\\\vdots\end{pmatrix}A^{T}=0
+
+的基础解系，即可得到 :math:`A` 的各行向量.
+
+求过点 :math:`(2,-1,4)` 且平行于向量 :math:`\alpha_{1}=(1,-1,1),~\alpha_{2}=(0,1,2)` 的平面方程.
+解：构造矩阵
+
+  .. math:: \begin{pmatrix}\alpha_{1}^{T}\\\alpha_{2}^{T}\end{pmatrix}=\begin{pmatrix}1&-1&1\\0&1&2\end{pmatrix}
+
+  解得其基础解系为 :math:`x=(-3,-2,1)` ，于是所求平面方程为
+
+  .. math:: -3x_{1}-2x_{2}+x_{3}=0
+
+确定参数 :math:`\lambda`, 使齐次线性方程组
+
+.. math:: \left\{\begin{array}{c}x_{1}+x_{2}+x_{3}+4 x_{4}=0 \\ \lambda x_{1}+4 x_{2}+10 x_{3}+x_{4}=0 \\ x_{1}+7 x_{2}+17 x_{3}+3 x_{4}=0 \\ 2 x_{1}+2 x_{2}+4 x_{3}+2 x_{4}=0\end{array}\right.
+
+解空间的维数最大, 并在这种情况下求解这个线性方程组.
+
+初等行变换不改变行空间，所以 :math:`R` 行空间的基就是 :math:`C(A^{T})` 的基，即
+
+.. math:: C(A^{T})=C(R^{T})
+
+初等行变换不改变零空间，所以 :math:`R` 解出的基本解组就是 :math:`N(A)` 的基，即
+
+.. math:: N(A)=N(R)
+
+初等行变换改变列空间，但不改变矩阵列向量间的线性关系，因此 :math:`R` 主元位置对应的原矩阵列向量就是 :math:`C(A)` 的基.
+
+设
+
+  .. math:: A=\left[\begin{array}{lll}1 & 0 & 0 \\ 2 & 3 & 0 \\ 4 & 5 & 6\end{array}\right]\left[\begin{array}{lllll}1 & 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 & 1 \\ 0 & 0 & 0 & 1 & 1\end{array}\right]
+
+  分别找出 :math:`N(A), N\left(A^{T}\right), C(A), C\left(A^{T}\right)`
+  的一组基.
+解：实际上左乘的矩阵就是初等行变换，右边的矩阵可看做阶梯形 :math:`R`.
+
+:math:`R` 解出的基本解组就是 :math:`N(A)` 的一组基；
+
+:math:`R` 中主元位置对应的原矩阵列向量就是 :math:`C(A)` 的一组基；
+
+:math:`R` 中主元位置对应的 :math:`R` 的行向量就是 :math:`C(A^{T})` 的一组基；
+
+正交性和正交矩阵
+================
+
+向量内积与向量投影
+------------------
+
+(Cuachy-Schwarz不等式) :math:`|a^{T}b|\leqslant \left \| a \right \| \left \| b \right \|` ，等号成立当且仅当 :math:`a,b` 共线.
+
+（三角不等式） :math:`\left \| a+b \right \| \leqslant \left \| a \right \| +\left \| b \right \|` ，等号成立当且仅当 :math:`a,b` 共线.
+
+（勾股定理）向量 :math:`a,b` 正交，则 :math:`\left \| a \pm b \right \|^{2}=\left \| a \right \|^{2}+\left \| b \right \|^{2}`.
+
+正交向量
+~~~~~~~~
+
+（正交向量组）设 :math:`a_{1},\cdots ,a_{r}` 是 :math:`\mathbb{R}^{n}` 中的向量组，如果这些向量都非零且两两正交，则称该向量组为正交向量组。特别的，如果正交向量组里面的向量都是单位向量，则称其为正交单位向量组.
+
+（标准正交基）设 :math:`M` 为 :math:`\mathbb{R}^{n}` 中的子空间，如果它的一组基为正交向量组，则称之为 :math:`M` 的一组正交基；如果它的一组基是正交单位向量组，则称之为 :math:`M` 的一组标准正交基.
+
+设 :math:`q_{1},\cdots ,q_{n}` 是 :math:`\mathbb{R}^{n}` 的一组标准正交基，则对任意向量 :math:`a` ，都有分解式 :math:`a=(q_{1}^{T}a)q_{1}+\cdots +(q_{n}^{T}a)q_{n}`.
+
+设 :math:`a_{1},a_{2},a_{3}` 是 :math:`\mathbb{R}^{3}` 的一组标准正交基，证明下列向量组也是一组标准正交基:
+
+.. math:: b_{1}=\frac{1}{3}(2a_{1}+2a_{2}-a_{3}),~b_{2}=\frac{1}{3}(2a_{1}-a_{2}+2a_{3}),~b_{3}=\frac{1}{3}(a_{1}-2a_{2}-2a_{3}).
+
+证：根据标准正交基的定义，先验证相互之间正交，再验证模长等于 :math:`1`.
+
+Gram-Schmidt正交化
+^^^^^^^^^^^^^^^^^^
+
+对于任意给定的一组基，可以通过以下方法得到一组标准正交基：
+
+.. math:: \begin{aligned} \tilde{q}_{1} &=a_{1}, \\ \tilde{q}_{2} &=a_{2}-\frac{\tilde{q}_{1}^{\mathrm{T}} a_{2}}{\tilde{q}_{1}^{\mathrm{T}} \tilde{q}_{1}} \tilde{q}_{1}, \\ \tilde{q}_{3} &=a_{3}-\frac{\tilde{q}_{1}^{\mathrm{T}} a_{3}}{\tilde{q}_{1}^{\mathrm{T}} \tilde{q}_{1}} \tilde{q}_{1}-\frac{\tilde{q}_{2}^{\mathrm{T}} a_{3}}{\tilde{q}_{2}^{\mathrm{T}} \tilde{q}_{2}} \tilde{q}_{2,} \\ & \vdots \\ \tilde{q}_{r} &=a_{r}-\frac{\tilde{q}_{1}^{\mathrm{T}} a_{r}}{\tilde{q}_{1}^{\mathrm{T}} \tilde{q}_{1}} \tilde{q}_{1}-\cdots-\frac{\tilde{q}_{r-1}^{\mathrm{T}} a_{r}}{\tilde{q}_{r-1}^{\mathrm{T}} \tilde{q}_{r-1}} \tilde{q}_{r-1} . \end{aligned}
+
+想要得到标准正交基，还需要进一步将每个单位单位化。
+
+设
+  :math:`\alpha_{1}=\left[\begin{array}{l}1 \\ 0 \\ 0 \\ 1\end{array}\right], \alpha_{2}=\left[\begin{array}{l}0 \\ 1 \\ 0 \\ 0\end{array}\right], \alpha_{3}=\left[\begin{array}{l}0 \\ 1 \\ 1 \\ 0\end{array}\right], \alpha_{4}=\left[\begin{array}{l}1 \\ 1 \\ 1 \\ 1\end{array}\right]`.
+(a) 证明: :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}` 线性无关, 但
+  :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}` 线性相关.
+(b) 按 :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}`
+  顺序写出Gram-Schmidt标准正交化的向量
+  :math:`\beta_{1}, \beta_{2}, \beta_{3}`.
+(c) 记
+  :math:`A=\left[\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}\right]`
+  和 :math:`Q=\left[\beta_{1}, \beta_{2}, \beta_{3}\right]`, 求矩阵
+  :math:`C` 满足 :math:`A=Q C`.
+(d) 求 :math:`\mathbb{R}^{4}` 到 :math:`A` 的列空间的正交投影矩阵.
+解：(1) 利用
+
+  .. math::
+
+     \left(\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}\right)=\left(\begin{array}{cccc}
+     1 & 0 & 0 & 1 \\
+     0 & 1 & 1 & 1 \\
+     0 & 0 & 1 & 1 \\
+     1 & 0 & 0 & 1
+     \end{array}\right) \rightarrow\left(\begin{array}{llll}
+     1 & 0 & 0 & 1 \\
+     0 & 1 & 1 & 1 \\
+     0 & 0 & 1 & 1 \\
+     0 & 0 & 0 & 0
+     \end{array}\right)
+
+   得到 :math:`(1)` 结论. 也可以先判断
+  :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}` 线性无关, 再通过解方程组将
+  :math:`\alpha_{4}` 由 :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}`
+  线性表出.
+(2)
+  :math:`\beta_{1}=\frac{1}{\sqrt{2}} \alpha_{1}=\frac{1}{\sqrt{2}}(1,0,0,1)^{T}, \beta_{2}=\alpha_{2}=(0,1,0,0)^{T}, \beta_{3}=\alpha_{3}-\alpha_{2}=(0,0,1,0)^{T}`.
+(3) 从(2)或一个向量在正交基向量的表示公式得到
+  :math:`\alpha_{1}=\sqrt{2} \beta_{1}, \alpha_{2}=\beta_{2}, \alpha_{3}=\beta_{2}+`
+  :math:`\beta_{3}, \alpha_{4}=\sqrt{2} \beta_{1}+\beta_{2}+\beta_{3}`,
+  得到
+
+  .. math::
+
+     C=\left(\begin{array}{cccc}
+     \sqrt{2} & 0 & 0 & \sqrt{2} \\
+     0 & 1 & 1 & 1 \\
+     0 & 0 & 1 & 1
+     \end{array}\right)
+
+   (4)
+
+  .. math::
+
+     P=\left(\beta_{1}, \beta_{2}, \beta_{3}\right)\left(\beta_{1}, \beta_{2}, \beta_{3}\right)^{T}=\left(\begin{array}{cccc}
+     \frac{1}{2} & 0 & 0 & \frac{1}{2} \\
+     0 & 1 & 0 & 0 \\
+     0 & 0 & 1 & 0 \\
+     \frac{1}{2} & 0 & 0 & \frac{1}{2}
+     \end{array}\right) .
+
+设 :math:`a_{1},a_{2},a_{3},a_{4},a_{5}` 是 :math:`\mathbb{R}^{5}` 的一组标准正交基，令
+
+  .. math::
+
+     b_{1}=a_{1}+a_{5},~
+         b_{2}=a_{1}-a_{2}+a_{4},~
+         b_{3}=2a_{1}+a_{2}+a_{3}
+
+  求 :math:`\operatorname{span}(b_{1},b_{2},b_{3})` 的一组标准正交基.
+解:令 :math:`q_{1}=b_{1}=a_{1}+a_{5}` ，利用Gram-Schmidt正交化可得
+
+实际上，根据这个办法可以求出由两个向量确定的平面的法向量。
+
+正交矩阵
+--------
+
+（正交矩阵）一个 :math:`n` 阶方阵 :math:`Q` 如果满足 :math:`Q^{T}Q=I_{n}` ，则称 :math:`Q` 是 :math:`n` 阶正交矩阵.
+
+正交矩阵要求是一个方阵，并且其列向量是 :math:`\mathbb{R}^{n}` 的一组标准正交基，即
+:math:`Q=\begin{bmatrix}  q_{1} & \cdots & q_{n} \end{bmatrix}`.
+但是也有由正交向量组成的非方阵Q，也满足 :math:`Q^{T}Q=I_{n}` ，此时称其为列正交矩阵，且列正交矩阵 :math:`Q_{m\times n}` 必有 :math:`m \geqslant n`.
+
+求一个四阶正交矩阵，其中前两个列向量分别为： :math:`\frac{1}{3}\smqty[1\\-2\\0\\2], \frac{1}{\sqrt{6}}\smqty[-2\\0\\1\\1]`.
+解：将向量转置排成矩阵，通过求基本解组来得到与这两个向量正交的向量；在得到一个向量之后，要重新构造矩阵.
+
+:math:`n` 阶正交方阵 :math:`Q` ，有以下性质：
+
+1. :math:`Q^{T}Q=QQ^{T}=I_{n}`
+   ；也有 :math:`\sum\limits_{i=1}^{n}q_{i}q_{i}^{T}=I_{n}`.
+
+2. :math:`Q^{-1}=Q^{T}` ，且均为正交矩阵；
+
+3. :math:`Q` 的列向量组成 :math:`\mathbb{R}^{n}` 的一组标准正交基；
+
+4. :math:`Q` 的行向量的转置组成 :math:`\mathbb{R}^{n}` 的一组标准正交基.
+
+5. :math:`Q` 在一组基上保距，即 :math:`\forall x \in \mathbb{R}^{n},\left \| Qx \right \| =\left \| x \right \|`
+
+6. :math:`Q` 在一组基上保内积，即 :math:`\forall x,y \in \mathbb{R}^{n},(Qx)^{T}(Qy)=x^{T}y`.
+
+7. 两个 :math:`n` 阶正交矩阵的乘积还是 :math:`n` 阶正交矩阵.
+
+以上性质中，除了最后一条，都可以作为正交矩阵的判定法则。
+
+可以证明，上三角矩阵是正交矩阵时，必有对角矩阵，且对角元素是 :math:`\pm 1`.
+
+证明：分块上三角矩阵 :math:`\begin{bmatrix}c&a^{T}\\\mathbf{0}&Q\end{bmatrix}` 是正交矩阵时，必有 :math:`c=\pm 1,\boldsymbol{a}=\mathbf{0}` ， :math:`Q` 是正交矩阵.
+证：正交矩阵满足 :math:`\begin{bmatrix}c&a^{T}\\\mathbf{0}&Q\end{bmatrix}^{T}\begin{bmatrix}c&a^{T}\\\mathbf{0}&Q\end{bmatrix}`
+
+设 :math:`a_{1},\cdots,a_{s}` 和 :math:`b_{1},\cdots,b_{s}` 是 :math:`\mathbb{R}^{n}` 的两个向量组，则：存在正交矩阵 :math:`Q` ，使得 :math:`Qa_{i}=b_{i},1\leqslant i\leqslant s` ，当且仅当 :math:`a_{i}^{T}a_{j}=b_{i}^{T}b_{j},1\leqslant i,j\leqslant s`.
+
+QR分解
+~~~~~~
+
+设 :math:`A=\begin{bmatrix}  a_{1} & \cdots & a_{n} \end{bmatrix}, \widetilde{Q} =\begin{bmatrix}  \widetilde{q}_{1} & \cdots & \widetilde{q} _{n} \end{bmatrix}, Q =\begin{bmatrix}  q_{1} & \cdots & q _{n} \end{bmatrix}` ，则Gram-Schmidt正交化可以用矩阵乘法表示：
+
+.. math::
+
+   A=\widetilde{Q} \widetilde{R}, \quad \widetilde{R}=\left[\begin{array}{cccc}
+   1 & \frac{\tilde{q}_{1}^{\mathrm{T}} a_{2}}{\tilde{q}_{1}^{\top} \tilde{q}_{1}} & \cdots & \frac{\tilde{q}_{1}^{\mathrm{T}} a_{n}}{\tilde{q}_{1}^{1} \tilde{q}_{1}} \\
+   & 1 & \ddots & \vdots \\
+   & & \ddots & \left.\frac{\tilde{q}_{n-1}^{\mathrm{T}} a_{n}}{\tilde{q}_{n-1}^{\mathrm{T}}}\right] \\
+   & & & 1
+   \end{array}\right],
+
+第二步单位化可以写成
+:math:`\widetilde{Q}=Q \operatorname{diag}\left(\left\|\tilde{q}_{i}\right\|\right)`,
+因此
+
+.. math:: A=Q \operatorname{diag}\left(\left\|\tilde{\boldsymbol{q}}_{i}\right\|\right) \widetilde{R}=Q R
+
+可以发现，上三角矩阵 :math:`\widetilde{R}` 的元素正好是Gram-Schmidt正交化时对应的系数，且位置由分子的下标决定。
+
+特别的，对于三阶矩阵有简化的表示：
+
+.. math::
+
+   \begin{bmatrix}
+     &  & \\
+    a & b & c\\
+     &  &
+   \end{bmatrix}=
+   \begin{bmatrix}
+     &  & \\
+   q_{1}  & q_{2} & q_{3}\\
+     &  &
+   \end{bmatrix}
+   \begin{bmatrix}
+    q_{1}^{T}a & q_{1}^{T}b & q_{3}^{T}c\\
+     & q_{2}^{T}b & q_{2}^{T}c\\
+     &  & q_{3}^{T}c
+   \end{bmatrix}
+
+对于列满秩方阵可以分解成以上标准形式，但对于任意矩阵 :math:`A_{m\times n}` 满足 :math:`m\geqslant n` ，则有分解形式为 :math:`A=Q_{m}R_{m\times n}`,其中 :math:`R=\begin{bmatrix}  R_{1}\\  O \end{bmatrix}`
+
+计算 :math:`QR` 分解： :math:`\begin{bmatrix}1&0&0\\1&1&0\\1&1&1\end{bmatrix}`.
+解：对其列向量进行Gram-Schmidt正交化可得 :math:`\begin{bmatrix}\frac{1}{\sqrt{3}}&\frac{-\sqrt{2}}{\sqrt{3}}&0\\\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}&\frac{-1}{\sqrt{2}}\\\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}&\frac{1}{\sqrt{2}}\end{bmatrix}`.
+
+根据三阶矩阵的简化表示可得
+:math:`\begin{bmatrix}  q_{1}^{T}a & q_{1}^{T}b & q_{3}^{T}c\\  & q_{2}^{T}b & q_{2}^{T}c\\  & & q_{3}^{T}c \end{bmatrix}= \begin{bmatrix}\sqrt{3}&\frac{2}{\sqrt{3}}&\frac{1}{\sqrt{3}}\\&\frac{2}{\sqrt{6}}&\frac{1}{\sqrt{6}}\\&&\frac{1}{\sqrt{2}}\end{bmatrix}`.
+
+进而 :math:`QR=\begin{bmatrix}\frac{1}{\sqrt{3}}&\frac{-\sqrt{2}}{\sqrt{3}}&0\\\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}&\frac{-1}{\sqrt{2}}\\\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}&\frac{1}{\sqrt{2}}\end{bmatrix} \begin{bmatrix}\sqrt{3}&\frac{2}{\sqrt{3}}&\frac{1}{\sqrt{3}}\\&\frac{2}{\sqrt{6}}&\frac{1}{\sqrt{6}}\\&&\frac{1}{\sqrt{2}}\end{bmatrix}`
+
+正交投影
+--------
+
+正交补
+~~~~~~
+
+（正交补）给定 :math:`\mathbb{R}^{n}` 的子空间 :math:`M` ，则 :math:`\mathbb{R}^{n}` 的子集 :math:`M^{\perp}=\left \{ a \in \mathbb{R}^{n} |~ a\perp M \right \}` 称为 :math:`M` 的正交补.
+
+在 :math:`\mathbb{R}^{n}` 中，正交补有以下性质：
+
+1. :math:`M \cap M^{\perp }=\left \{ 0 \right \}`;
+
+2. :math:`\operatorname{dim} M^{\perp }=n-\operatorname{dim}M`;
+
+3. :math:`(M^{\perp})^{\perp}=M`;
+
+4. :math:`\forall a\in \mathbb{R}^{n}` ，都存在唯一的分解 :math:`a=a_{1}+a_{2}` ，使得 :math:`a_{1}\in M,a_{2}\in M^{\perp}`.
+
+应用到矩阵列空间和行空间的情形，则有以下结论：
+
+给定 :math:`m\times n` 矩阵 :math:`A` ，有
+
+1. :math:`C(A^{T})^{\perp}=N(A),\quad C(A)^{\perp}=N(A^{T})`;
+
+2. :math:`C(A^{T}A)=C(A^{T}),\quad N(A^{T}A)=N(A)`;
+
+3. :math:`C(AA^{T})=C(A),\quad N(AA^{T})=N(A^{T})`.
+
+.. _正交投影-1:
+
+正交投影
+~~~~~~~~
+
+（正交投影）对于 :math:`\mathbb{R}^{n}` 的两个向量 :math:`a,b` ， :math:`b` 有向 :math:`a` 的投影分解式 :math:`b=\frac{a^{T}b}{a^{T}a}a+e` ，其中 :math:`\frac{a^{T}b}{a^{T}a}a` 为 :math:`b` 向 :math:`a` 的正交投影， :math:`e` 为误差。
+
+（正交投影矩阵）对于给定的矩阵 :math:`A` ，其列空间上的正交投影的表示矩阵为 :math:`P_{A}`.
+
+当 :math:`A` 为可逆方阵时， :math:`C(A)=\mathbb{R}^{n}` ，此时正交投影就是恒等变换，即 :math:`P_{A}=I_{n}`.
+
+关于 :math:`A` 的正交投影矩阵有以下性质：
+
+1. :math:`I_{n}-P_{A}=P_{N(A^{T})}`;(疑问：这是关于哪个矩阵的正交投影矩阵？)
+
+2. :math:`P^{2}=P^{T}=P`.这一条也是正交投影矩阵的判别法则.
+
+3. :math:`P_{A}=A(A^{T}A)^{-1}A^{T}`.特别地，如果 :math:`A` 是列正交矩阵，则 :math:`A^{T}A=I_{r},~P_{A}=AA^{T}` ；当 :math:`A` 为秩一矩阵时， :math:`P_{A}=q_{1}q_{1}^{T}`.
+
+当一个方阵仅仅满足 :math:`P^{2}=P` ，则称之为斜投影矩阵.
+
+向量往子空间投影
+^^^^^^^^^^^^^^^^
+
+对于列满秩矩阵 :math:`A` ，向量 :math:`b` 投影到其列空间的投影向量可以由 **正则化方法** 得出:
+
+.. math:: A^{T}A\hat{x}=A^{T}b
+
+则 :math:`b` 在 :math:`C(A)` 的投影 :math:`p=A\hat{x}` ，误差向量 :math:`e=b-p=b-A\hat{x}`.
+
+特别地，当 :math:`A` 是正交矩阵 :math:`Q` 时，正则化方法简化为 :math:`\hat{x}=Q^{T}b`.因此， :math:`A` 进行 :math:`QR` 分解之后，向其列空间投影的投影矩阵为 :math:`QQ^{T}`.
+
+设 :math:`L` 是 :math:`\mathbb{R}^{3}` 中的直线:
+
+  .. math::
+
+     L:\left\{\begin{matrix}
+      x_{1}+x_{2}+x_{3}=0,\\
+      2x_{1}-x_{2}-2x_{3}=0.
+     \end{matrix}\right.
+
+   求 :math:`b=\smqty[1\\0\\1]` 在直线 :math:`L` 上的正交投影.
+解：将直线表达式写成矩阵形式：
+
+  .. math:: \begin{bmatrix}1&1&1\\2&-1&-2\end{bmatrix}\begin{bmatrix}x_{1}\\x_{2}\\x_{3}\end{bmatrix}=0
+
+解出基本解组可知直线向量为 :math:`A=\begin{bmatrix}-\frac{7}{3}\\\frac{4}{3}\\1\end{bmatrix}`.通过正则化方法可得 :math:`p`.
+
+最小二乘法
+^^^^^^^^^^
+
+对于一系列数据点 :math:`(t_{k},b_{k})` ，若考虑使用 :math:`b=A+Bt+Ct^{2}+\cdots` 进行拟合，则代入数据点写成矩阵形式 :math:`Ax=b` ，其中
+
+.. math::
+
+   A=\begin{bmatrix}
+    1 & t_{1} & t_{1}^{2} & \cdots \\
+    1 & t_{2} & t_{2}^{2} & \cdots \\
+    \vdots  & \vdots  & \vdots  & \ddots  
+   \end{bmatrix};~~
+   x=\smqty[A\\B\\C\\\vdots ];~~
+   b=\smqty[b_{1}\\b_{2}\\b_{3}\\\vdots ]
+
+通过正则化方法 :math:`A^{T}A\hat{x}=A^{T}b` 来确定拟合曲线系数 :math:`\hat{x}` ，解 :math:`\hat{x}` 也称为最小二乘解.
+
+设平面上的四个点 :math:`\begin{bmatrix}x_{i}\\y_{i}\end{bmatrix}` 分别是 :math:`\begin{bmatrix}0\\0\end{bmatrix},\begin{bmatrix}1\\8\end{bmatrix},\begin{bmatrix}3\\8\end{bmatrix},\begin{bmatrix}4\\20\end{bmatrix}` ，利用最小二乘法求直线 :math:`y=kx+b` 使得 :math:`\sum\limits_{i=1}^{4}|y_{i}-(kx_{i}+b)|^{2}` 最小.
+解：代入点到直线得到方程组： :math:`0=b,~8=k+b,~8=3k+b,~20=4k+b` ，将其写为矩阵形式得
+
+  .. math:: \begin{bmatrix}0&1\\1&1\\3&1\\4&1\end{bmatrix}\begin{bmatrix}k\\b\end{bmatrix}=\begin{bmatrix}0\\8\\8\\20\end{bmatrix}.
+
+由正则化方法可得 :math:`\begin{bmatrix}26&8\\8&4\end{bmatrix}\hat{x}=\begin{bmatrix}112\\36\end{bmatrix}` ，
+从而 :math:`\hat{x}=\begin{bmatrix}4\\1\end{bmatrix}` 。
+
+行列式
+======
+
+行列式的基本性质
+----------------
+
+1.  对换行列式中的两列（行），行列式的值反号；
+
+    -  :math:`|P|=\pm 1`.
+
+    -  将行列式的行（列）顺序完全翻转之后，则要乘上 :math:`(-1)^{\frac{1}{2}n(n-1)}`.
+
+    -  将行列式的第一行（列）放到最后，则要乘上 :math:`(-1)^{n-1}`.
+
+2.  行列式对每行（列）成线性；
+
+    -  :math:`|cA|=c^{n}|A|`.
+
+    -  行列式可按某一行（列）拆成两个行列式的和.
+
+3.  若 :math:`A` 中有两行（列）成比例，则 :math:`|A|=0`;
+
+4.  对行列式的行或列进行倍加变换，不改变行列式的值；
+
+5.  某一行或列全为零的行列式等于零；
+
+6.  上（下）三角行列式 :math:`|A|=a_{11}a_{22}\cdots a_{nn}` ；
+
+7.  :math:`\exists A^{-1}\Leftrightarrow |A|\ne 0` ，且 :math:`|A^{-1}|=\frac{1}{|A}` ；
+
+8.  :math:`|AB|=|A||B|` ；
+
+9.  :math:`|A^{T}|=A` ；
+
+10. 对于反对称矩阵 :math:`A^{T}=-A` ，当 :math:`n=2m+1` 时， :math:`|A|=0`.
+
+分块矩阵的行列式
+----------------
+
+分块矩阵的行列式具有以下性质：
+
+1. :math:`\begin{vmatrix}  A & C\\  O & B \end{vmatrix}= \begin{vmatrix}  A & O\\  C & B \end{vmatrix}= |AB|`
+
+2. :math:`A` 是n阶方阵， :math:`B` 是 :math:`m` 阶方阵，则
+
+   .. math::
+
+      \begin{vmatrix}
+       O & A\\
+       B & O
+      \end{vmatrix}=(-1)^{mn}\cdot 
+      \begin{vmatrix}
+       A & O\\
+       O & B
+      \end{vmatrix}=(-1)^{mn}\cdot |AB|
+
+3. :math:`\begin{vmatrix}  A & B\\  B & A \end{vmatrix}= |A+B||A-B|`
+
+4. 若 :math:`AB=BA` ，则 :math:`\begin{vmatrix}  A & -B\\  B & A \end{vmatrix}= |A^{2}+B^{2}|`
+
+5. （降阶公式）对于 :math:`\begin{vmatrix}  A & B\\  C & D \end{vmatrix}` ，若 :math:`A,D` 均为可逆矩阵，则有
+
+   .. math:: |A||D-CA^{-1}B|=|D||A-BD^{-1}C|
+
+   特别地，令 :math:`A=D=I,~B=\alpha,C\beta^{T}` ，则有
+
+   .. math:: |I-\alpha \beta^{T}|=|I-\beta^{T}\alpha|
+
+6. 若 :math:`AC=CA` ，则
+   :math:`\begin{vmatrix}  A & B\\  C & D \end{vmatrix}= |AD-CB|`
+
+计算 :math:`A` 的行列式：
+
+.. math::
+
+   A=\left(\begin{array}{cccc}
+   1+a_{1}^{2} & a_{1} a_{2} & \ldots & a_{1} a_{n} \\
+   a_{2} a_{1} & 1+a_{2}^{2} & \ldots & a_{2} a_{n} \\
+   \vdots & \vdots & & \vdots \\
+   a_{n} a_{1} & a_{n} a_{2} & \ldots & 1+a_{n}^{2}
+   \end{array}\right) .
+
+ 解：矩阵 :math:`A` 可化为
+
+.. math:: A=I_{n}+\begin{pmatrix}a_{1}\\a_{2}\\\vdots\\a_{n}\end{pmatrix}\begin{pmatrix}a_{1}&a_{2}&\cdots&a_{n}\end{pmatrix}
+
+由降阶公式可得 :math:`|A|=1+\sum\limits_{i=1}^{n}a_{i}^{2}`.
+
+行列式的计算
+------------
+
+化为上（下）三角行列式
+~~~~~~~~~~~~~~~~~~~~~~
+
+连加法
+^^^^^^
+
+如果所有行的和或所有列的和相等，那么就将所有行（列）加到第一行（列），从而提出公因式得到全1行.
+
+计算行列式：
+  :math:`|A|=\left|\begin{array}{cccccc} 1 & 2 & 3 & \cdots & n-1 & n \\ 2 & 3 & 4 & \cdots & n & 1 \\ 3 & 4 & 5 & \cdots & 1 & 2 \\ \vdots & \vdots & \vdots & & \vdots & \vdots \\ n-1 & n & 1 & \cdots & n-3 & n-2 \\ n & 1 & 2 & \cdots & n-2 & n-1 \end{array}\right|`.
+解：将所有列加到第一行提出公因子 :math:`\frac{1}{2}n(n+1)` ，再消去第一行化为 :math:`n-1` 阶行列式：
+
+  .. math::
+
+     \begin{aligned}
+         |A|&=\frac{1}{2} n(n+1)\left|\begin{array}{cccccc}
+     1 & 1 & 1 & \cdots & 1 & 1 \\
+     2 & 3 & 4 & \cdots & n & 1 \\
+     3 & 1 & 5 & \cdots & 1 & 2 \\
+     \vdots & \vdots & \vdots & & \vdots & \vdots \\
+     n-1 & n & 1 & \cdots & n-3 & n-2 \\
+     n & 1 & 2 & \cdots & n-2 & n-1
+     \end{array}\right|\\
+     &=\frac{1}{2} n(n+1)\left|\begin{array}{cccccc}
+     1 & 0 & 0 & 0 & 0 &0\\
+     2 & 1 & 2 & \ldots & n-2 & -1 \\
+     3 & 1 & 2 & \cdots & -2 & -1 \\
+     \vdots & \vdots & \vdots & & \vdots & \vdots \\
+     n-1 & 1 & 2-n & \cdots & -2 & -1 \\
+     n & 1-n & 2-n & \cdots & -2 & -1
+     \end{array}\right|\end{aligned}
+
+  .. math::
+
+     =\frac{1}{2} n(n+1)\left|\begin{array}{ccccc}
+     1 & 2 & \cdots & n-2 & -1 \\
+     1 & 2 & \cdots & -2 & -1 \\
+     \vdots & \vdots & & \vdots & \vdots \\
+     1 & 2-n & \cdots & -2 & -1 \\
+     1-n & 2-n & \cdots & -2 & -1
+     \end{array}\right|
+
+最后将得到的行列式最后一行乘以 -1 依次加到前面 n-2 行上去, 得到
+
+.. math::
+
+   \left|\begin{array}{ccccc}
+   n & n & \cdots & n & 0 \\
+   n & n & \cdots & 0 & 0 \\
+   \vdots & \vdots & & \vdots & \vdots \\
+   n & 0 & \cdots & 0 & 0 \\
+   1-n & 2-n & \cdots & -2 & -1
+   \end{array}\right|=(-1)^{\frac{1}{2} n(n-1)} n^{n-2}
+
+由此得到
+
+.. math:: |\boldsymbol{A}|=(-1)^{\frac{1}{2} n(n-1)} \cdot \frac{n+1}{2} \cdot n^{n-1}
+
+滚动消去法
+^^^^^^^^^^
+
+如果相邻的行（列）长得比较相似，很多项都长得一样时，就从最后一行（列）开始，每一行（列）都减去上一行（列）.
+
+逐行（列）相加减法
+^^^^^^^^^^^^^^^^^^
+
+将第一行加（减）到第二行，再用新得到的第二行加（减）到第三行，以此类推.
+
+扩增行列法
+~~~~~~~~~~
+
+左上角补充全1行
+^^^^^^^^^^^^^^^
+
+当行列式中出现很多相同的项时，可以通过扩增全1行来化简的到伞形行列式.
+
+配凑Vandermonde行列式
+^^^^^^^^^^^^^^^^^^^^^
+
+扩充后的核心步骤就是找到对应的代数余子式，与公式对比系数.
+
+代数余子式展开
+~~~~~~~~~~~~~~
+
+:math:`M_{ij}` 为元素 :math:`a_{ij}` 的子阵， :math:`|M_{ij}|` 称为对应的余子式，而元素 :math:`a_{ij}` 的代数余子式为 :math:`A_{ij}=(-1)^{i+j}|M_{ij}|`.
+
+行列式的代数余子式展开公式：
+
+.. math:: |A|=a_{t1}A_{t1}+a_{t2}A_{t2}+\cdots +a_{tn}A_{tn}=a_{1t}A_{1k}+a_{2k}A_{2k}+\cdots +a_{nk}A_{nk}
+
+可以逆用这个公式将含有代数余子式的乘积之和转化为行列式；可以发现某一行元素与另一行对应的代数余子式乘积之和结果等于零。
+
+代数余子式展开有一些基本应用：通过对某一行展开，得到行列式的递推关系，而在这之前可能需要先通过倍加变换化简行列式得到比较多的0项，并且优先考虑上三角分块行列式的降阶；通过对第一行和最后一行展开，不断对行列式进行环切缩小，得到递推关系.
+
+特征根法解递推行列式
+~~~~~~~~~~~~~~~~~~~~
+
+对于符合 :math:`aD_{n}+bD_{n-1}+cD_{n-2}` 形式的递推，可以通过以下步骤来解出 :math:`D_{n}`:
+
+(1)作出特征方程 :math:`ax^{2}+bx+c=0` ，解出方程的根 :math:`x_{1},x_{2}`;
+
+(2)若有两个不同的根，则 :math:`D_{n}` 满足形式 :math:`D_{n}=Ax_{1}^{n-1}+Bx_{2}^{n-2}` ；若只有一个根，则 :math:`D_{n}` 满足形式 :math:`D_{n}=(A+Bn)x_{1}^{n-1}`;
+
+(3)其中的待定系数 :math:`A,B` 一般通过令 :math:`n=1,n=2` 得到.
+
+拆分行列式法
+~~~~~~~~~~~~
+
+如果有某一行（列）的元素大小接近，可以考虑使用这个方法进行化简，得到含有全1行的行列式.
+
+根据矩阵乘法与行列式的性质，将矩阵拆成两个矩阵相乘再求行列式也是一种方法
+
+若 :math:`n \geq 3`, 求证下列矩阵 :math:`A` 的行列式值等于零:
+
+.. math::
+
+   \boldsymbol{A}=\left(\begin{array}{cccc}
+   1+x_{1} y_{1} & 1+x_{1} y_{2} & \cdots & 1+x_{1} y_{n} \\
+   1+x_{2} y_{1} & 1+x_{2} y_{2} & \cdots & 1+x_{2} y_{n} \\
+   \vdots & \vdots & & \vdots \\
+   1+x_{n} y_{1} & 1+x_{n} y_{2} & \cdots & 1+x_{n} y_{n}
+   \end{array}\right)
+
+ 证:从下列分解即可得到结论:
+
+.. math::
+
+   A=\left(\begin{array}{ccccc}
+   1 & x_{1} & 0 & \cdots & 0 \\
+   1 & x_{2} & 0 & \cdots & 0 \\
+   1 & x_{3} & 0 & \cdots & 0 \\
+   \vdots & \vdots & \vdots & & \vdots \\
+   1 & x_{n} & 0 & \cdots & 0
+   \end{array}\right)\left(\begin{array}{ccccc}
+   1 & 1 & 1 & \cdots & 1 \\
+   y_{1} & y_{2} & y_{3} & \cdots & y_{n} \\
+   0 & 0 & 0 & \cdots & 0 \\
+   \vdots & \vdots & \vdots & & \vdots \\
+   0 & 0 & 0 & \cdots & 0
+   \end{array}\right)
+
+Big formula
+~~~~~~~~~~~
+
+一般用于行列式相关的理论证明题.
+
+常见行列式的计算公式
+--------------------
+
+Vandermonde行列式
+~~~~~~~~~~~~~~~~~
+
+.. math::
+
+   D_{n}=\left|\begin{array}{cccc}
+   1 & 1 & \cdots & 1 \\
+   a_{1} & a_{2} & \cdots & a_{n} \\
+   a_{1}^{2} & a_{2}^{2} & \cdots & a_{n}^{2} \\
+   \vdots & \vdots & \ddots & \vdots \\
+   a_{1}^{n-1} & a_{2}^{n-1} & \cdots & a_{n}^{n-1}
+   \end{array}\right|
+   =\prod_{1 \leq i<j \leq n}\left(a_{j}-a_{i}\right)
+
+根据升阶扩增行列法，可以得到推广的Vandermonde行列式：
+
+.. math::
+
+   |A|=\left|\begin{array}{cccccc}
+   1 & x_{1} & x_{1}^{2} & \cdots & x_{1}^{n-2} & x_{1}^{n} \\
+   1 & x_{2} & x_{2}^{2} & \cdots & x_{2}^{n-2} & x_{2}^{n} \\
+   \vdots & \vdots & \vdots & & \vdots & \vdots \\
+   1 & x_{n} & x_{n}^{2} & \cdots & x_{n}^{n-2} & x_{n}^{n}
+   \end{array}\right|=
+   (x_{1}+x_{2}+\cdots+x_{n})\prod_{1\geqslant i<\geqslant n}(x_{j}-x_{i}).
+
+伞形行列式
+~~~~~~~~~~
+
+.. math::
+
+   \boldsymbol{D}_{n+1}=\left|\begin{array}{ccccc}
+   \boldsymbol{a}_{\mathbf{0}} & \boldsymbol{b}_{\mathbf{1}} & \boldsymbol{b}_{\mathbf{2}} & \cdots & \boldsymbol{b}_{\boldsymbol{n}} \\
+   \boldsymbol{c}_{\mathbf{1}} & \boldsymbol{a}_{\mathbf{1}} & \mathbf{0} & \cdots & \mathbf{0} \\
+   \boldsymbol{c}_{\mathbf{2}} & \mathbf{0} & \boldsymbol{a}_{\mathbf{2}} & \cdots & \mathbf{0} \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   \boldsymbol{c}_{n} & \mathbf{0} & \mathbf{0} & \cdots & \boldsymbol{a}_{n}
+   \end{array}\right|=
+   \left( \prod_{j=1}^{n} a_{j}\right)\left(a_{0}-\sum_{i=1}^{n} \frac{b_{i} c_{i}}{a_{i}}\right)
+
+三对角行列式
+~~~~~~~~~~~~
+
+两三角行列式
+~~~~~~~~~~~~
+
+伴随矩阵
+--------
+
+矩阵 :math:`A` 的伴随矩阵 :math:`A^{*}` 为
+
+.. math::
+
+   C^{T}=A^{*}=\left[\begin{array}{cccc}
+   A_{11} & A_{21} & \cdots & A_{n 1} \\
+   A_{12} & A_{22} & \cdots & A_{n 2} \\
+   \vdots & \vdots & \ddots & \vdots \\
+   A_{1 n} & A_{2 n} & \cdots & A_{n n}
+   \end{array}\right]
+
+伴随矩阵的性质
+~~~~~~~~~~~~~~
+
+1. :math:`AA^{*}=A^{*}A=|A|I_{n}`;
+
+2. :math:`(cA)^{*}=c^{n-1}A^{*}`;
+
+3. :math:`(AB)^{*}=B^{*}A^{*}`;
+
+4. :math:`(A^{T})^{*}=(A^{*})^{T}`;
+
+5. 若 :math:`A` 可逆则 :math:`A^{*}` 也可逆，且 :math:`(A^{*})^{-1}=(A^{-1})^{*}`;
+
+6. 若 :math:`A^{m}=I_{n}` ， :math:`(A^{*})^{m}=I_{n}`;
+
+7. :math:`|A^{*}|=|A|^{n-1}`
+
+行列式的应用
+------------
+
+设 :math:`A` 是 :math:`m\times n` 矩阵，任取其中的 :math:`k` 行和 :math:`k` 列构成 :math:`k` 阶方阵，它的行列式称为 :math:`A` 的一个 :math:`k` 阶子式.
+
+定义 :math:`\operatorname{rank_{det}}(A)=\operatorname{max}\{k|A\text{有非零的k阶子式}\}`.则
+
+.. math:: \operatorname{rank_{det}}(A)=\operatorname{rank}(A).
+
+设 :math:`n` 阶对称矩阵 :math:`A` 有 :math:`\mathrm{LDL}^{\mathrm{T}}`
+分解 :math:`A=L D L^{\mathrm{T}}` , 其中
+:math:`D=\operatorname{diag}\left(d_{i}\right)` , 并记 :math:`A` 的第
+:math:`i` 个顺序主子阵为 :math:`A_{i}` ,矩阵 :math:`A` 的第 :math:`i`
+个顺序主子阵的行列式称为其第 :math:`i` 个顺序主子式.则有
+
+.. math:: d_{i}=\frac{\operatorname{det}\left(A_{i}\right)}{\operatorname{det}\left(A_{i-1}\right)}.
+
+用行列式求满足条件的方程
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+平面上给定不共线的三个点 :math:`P_{i}(x_{i},y_{i}),i=1,2,3,` 且 :math:`x_{1},x_{2},x_{3}` 互不相同，求过这三个点且对称轴与y轴平行的抛物线方程.
+解：考虑四元一次线性方程组有非零解的条件
+
+  .. math:: \left\{\begin{aligned} x^{2} u+x v+w+y t &=0, \\ x_{1}^{2} u+x_{1} v+w+y_{1} t &=0, \\ x_{2}^{2} u+x_{2} v+w+y_{2} t &=0, \\ x_{3}^{2} u+x_{3} v+w+y_{3} t &=0 . \end{aligned}\right.
+
+  有解 :math:`(a, b, c,-1)`, 于是系数行列式为:
+
+  .. math::
+
+     \left|\begin{array}{cccc}
+     x^{2} & x & 1 & y \\
+     x_{1}{ }^{2} & x_{1} & 1 & y_{1} \\
+     x_{2}{ }^{2} & x_{2} & 1 & y_{2} \\
+     x_{3}{ }^{2} & x_{3} & 1 & y_{3}
+     \end{array}\right|=0 .
+
+用行列式求平面面积
+~~~~~~~~~~~~~~~~~~
+
+平行四边形面积
+^^^^^^^^^^^^^^
+
+.. math::
+
+   S=\begin{vmatrix}
+    v_{1} & v_{2}
+   \end{vmatrix}=
+   \begin{vmatrix}
+    x_{1} & y_{1} \\
+    x_{2} & y_{2}
+   \end{vmatrix}
+
+二维坐标三角形面积
+^^^^^^^^^^^^^^^^^^
+
+原点三角形的面积：
+
+.. math::
+
+   S=\frac{1}{2}\begin{vmatrix}
+    v_{1} & v_{2}
+   \end{vmatrix}=\frac{1}{2}
+   \begin{vmatrix}
+    x_{1} & y_{1} \\
+    x_{2} & y_{2}
+   \end{vmatrix}
+
+一般三角形的面积：
+
+.. math::
+
+   S=\frac{1}{2}
+   \begin{vmatrix}
+    x_{1} & y_{1} & 1\\
+    x_{2} & y_{2} & 1\\
+    x_{3} & y_{3}& 1
+   \end{vmatrix}
+
+已知 :math:`A(1,0,2),B(0,-1,3),C(2,1,-1)`.求 :math:`\triangle ABC`.
+解： :math:`\overrightarrow{AB}=(-1,-1,1)` , 
+  :math:`\overrightarrow{AC}=(1,1,-3)` ,求其叉乘所得向量
+
+  .. math::
+
+     \overrightarrow{AB}\times\overrightarrow{AC}=(1,1,-3)=
+         \mqty|i&j&k\\-1&-1&1\\1&1&-3|=
+         (2,-2,0)
+
+   由叉乘的几何意义知 :math:`S=\frac{1}{2}\sqrt{4+4}=\sqrt{2}`.
+
+叉乘与六面体体积
+~~~~~~~~~~~~~~~~
+
+叉乘的运算性质
+^^^^^^^^^^^^^^
+
+1. :math:`\boldsymbol{u} \times \boldsymbol{v} =  \begin{vmatrix}  \boldsymbol{i}& \boldsymbol{j} & \boldsymbol{k}\\  u_{1} & u_{2} & u_{3}\\  v_{1} & v_{2} & v_{3} \end{vmatrix}`
+
+2. :math:`(\boldsymbol{u} \cdot \boldsymbol{v})^{2}+(\boldsymbol{u} \times \boldsymbol{v})^{2}=\boldsymbol{u}^{2} \boldsymbol{v}^{2}`
+
+3. :math:`\boldsymbol{u} \times \boldsymbol{v}=-\boldsymbol{v} \times \boldsymbol{u}`
+
+4. :math:`(c \boldsymbol{u}) \times \boldsymbol{v}=\boldsymbol{u} \times(c \boldsymbol{v})=c(\boldsymbol{u} \times \boldsymbol{v})`
+
+5. :math:`\boldsymbol{u} \times(\boldsymbol{v}+\boldsymbol{w})=\boldsymbol{u} \times \boldsymbol{v}+\boldsymbol{u} \times \boldsymbol{w}`
+
+几何应用
+^^^^^^^^
+
+两向量叉乘得到的是与其确定的平面垂直的法向量，且该法向量的模是两个向量形成的平行四边形的面积，即
+
+.. math:: \left \| \boldsymbol{u}\times \boldsymbol{v} \right \| =\left \| \boldsymbol{u} \right \| \left \| \boldsymbol{v} \right \| \sin \theta
+
+通过向法向量投影，可以得到用混合积表示的六面体体积公式：
+
+.. math::
+
+   V=|(\boldsymbol{u}\times \boldsymbol{v})\cdot \boldsymbol{w}|=\operatorname{abs} 
+   \begin{vmatrix}
+    u_{1} & u_{2} & u_{3}\\
+    v_{1} & v_{2} & v_{3}\\
+    w_{1} & w_{2}& w_{3}
+   \end{vmatrix}
+
+而坐标化的一般形式为
+
+.. math::
+
+   V=\begin{vmatrix}
+    x_{0} & y_{0} & z_{0} & 1\\
+    x_{1} & y_{1} & z_{1}& 1\\
+    x_{2} & y_{2} & z_{2} & 1\\
+    x_{3} & y_{3} & z_{3} & 1
+   \end{vmatrix}
+
+通过割补的思想，可以将四面体的体积看做是对应六面体体积的 :math:`\frac{1}{6}`.
+
+由几何关系容易得到混合积的运算性质：
+
+1. :math:`(\boldsymbol{u} \times \boldsymbol{v}) \cdot \boldsymbol{w}=(\boldsymbol{v} \times \boldsymbol{w}) \cdot \boldsymbol{u}=(\boldsymbol{w} \times \boldsymbol{u}) \cdot \boldsymbol{v}`
+
+2. :math:`(\boldsymbol{u} \times \boldsymbol{v}) \cdot(\boldsymbol{w}+c \boldsymbol{u})=(\boldsymbol{u} \times \boldsymbol{v}) \cdot \boldsymbol{w}`
+
+3. 若
+   :math:`(\boldsymbol{u} \times \boldsymbol{v}) \cdot \boldsymbol{w}=0`
+   ，则 :math:`\boldsymbol{u}, \boldsymbol{v}, \boldsymbol{w}` 共面
+
+特征理论
+========
+
+特征值与特征向量
+----------------
+
+给定 :math:`n` 阶方阵 :math:`A` ，如果对 :math:`\lambda\in \mathbb{C}` ，存在非零向量 :math:`\boldsymbol{x}\in \mathbb{C}^{n}` ，使得 :math:`A\boldsymbol{x}=\lambda \boldsymbol{x}` ，则称数 :math:`\lambda` 为方阵 :math:`A` （在 :math:`\mathbb{C}` 上）的一个特征值，而非零向量 :math:`\boldsymbol{x}` 为方阵 :math:`A` （在 :math:`\mathbb{C}` 上）的一个属于特征值 :math:`\lambda` 的一个特征向量.
+
+可以发现，特征向量就只矩阵作用之后方向不变或反向的非零向量。需要注意的是：只有方阵才有特征值和特征向量；零向量不是特征向量，但是有零特征值；如果 :math:`\boldsymbol{x}` 是特征向量，则 :math:`\forall k\ne 0,~k\boldsymbol{x}` 都是特征向量；不同的特征值对应的特征向量一定是线性无关的.
+
+已知矩阵 :math:`A=\begin{pmatrix}3&2&-1\\t&-2&2\\3&s&-1\end{pmatrix}` 的一个特征向量为 :math:`\begin{pmatrix}1&-2&3\end{pmatrix}^{T}`,求 :math:`s,t` 的值.
+解：根据特征向量的定义
+
+  .. math:: \begin{pmatrix}3&2&-1\\t&-2&2\\3&s&-1\end{pmatrix}\begin{pmatrix}1\\-2\\3\end{pmatrix}=\lambda\begin{pmatrix}1\\-2\\3\end{pmatrix}
+
+  解得 :math:`s=6,t=-2`.
+
+矩阵 :math:`A` 的特征多项式为 :math:`p_{A}(\lambda)=|\lambda I_{n}-A|`
+
+解空间 :math:`N(\lambda_{0}I_{n}-A)` 称为 :math:`A` 的属于 :math:`\lambda_{0}` 的特征子空间.
+
+:math:`n` 阶方阵 :math:`A` 的特征多项式有以下性质：
+
+1. :math:`\lambda_{0}` 是 :math:`A` 的特征值当且仅当 :math:`p_{A}(\lambda_{0})=0` ，即 :math:`\lambda_{0}` 是特征多项式的根.特别地， :math:`0` 是 :math:`A` 的特征值当且仅当 :math:`A` 不可逆.
+
+2. 向量 :math:`\boldsymbol{x}_{0}\in \mathbb{C}^{n}` 是 :math:`A` 的属于 :math:`\lambda_{0}` 特征向量当且仅当 :math:`\boldsymbol{x}_{0}\in N(\lambda_{0}I_{0}-A)` 且 :math:`\boldsymbol{x}_{0}\ne \mathbf{0}`
+
+3. 特征多项式满足如下形式： :math:`p_{A}(\lambda)=\lambda^{n}-\operatorname{tr}(A)\lambda^{n-1}+\cdots +(-1)^{n}|A|`.
+
+设 :math:`n` 阶矩阵 :math:`A` 的秩满足
+  :math:`\operatorname{r}(A+I_{n})+\operatorname{r}(A-I_{n})=n` ，且
+  :math:`A\ne I` ,求出 :math:`A` 的一个特征值.
+解：因为 :math:`A\ne I` ，则 :math:`\operatorname{r}(A-I_{n})\ne 0`
+  ,则
+
+  .. math:: r(A+I_{n})<0
+
+   即 :math:`A+I_{n}` 不可逆，从而
+
+  .. math:: |A+I_{n}|=0
+
+  所以一定有特征值 :math:`-1`.
+
+设 :math:`A` 是 :math:`n` 阶矩阵，其特征值为 :math:`\lambda_{1},\lambda_{2},\cdots,\lambda_{n}`,求下列 :math:`2n` 阶矩阵的特征值：
+
+.. math:: \begin{pmatrix}A&A^{2}\\A^{2}&A\end{pmatrix}.
+
+ 解：计算其特征方程得
+
+.. math:: \mqty|\lambda I_{n}-A&-A^{2}\\-A^{2}&\lambda I_{n}-A|=|\lambda I_{n}-A-A^{2}||\lambda I_{n}-A+A^{2}|.
+
+注意到 :math:`A+A^{2}` 的特征值为 :math:`\lambda_{i}+\lambda_{i}^{2}`, :math:`A-A^{2}` 的特征值为 :math:`\lambda_{i}-\lambda_{i}`,因此所求矩阵的特征值为
+
+.. math:: \lambda_{1}+\lambda_{1}^{2},\lambda_{1}-\lambda_{1}^{2},\cdots,\lambda_{n}+\lambda_{n}^{2},\lambda_{n}-\lambda_{n}^{2}.
+
+特征值有以下性质：
+
+1.  非零特征值的个数等于 :math:`A` 的秩.
+
+2.  :math:`\operatorname{tr}(A)=\lambda_{1}+\lambda_{2}+\cdots +\lambda_{n}`
+
+3.  :math:`|A|=\lambda_{1}\lambda_{2}\cdots\lambda_{n}`.因此存在推论：如果方阵没有进行行对换，则主元的乘积等于特征值的乘积.
+
+4.  上（下）三角矩阵的全部特征值就是其所有对角元素.
+
+5.  :math:`A^{n}` 的特征值为 :math:`\lambda^{n}` ，即 :math:`A^{n}\boldsymbol{x}=\lambda^{n}\boldsymbol{x}`.
+
+6.  :math:`(A^{-1})^{n}` 的特征值为 :math:`\lambda^{-n}` ，即 :math:`(A^{-1})^{n}\boldsymbol{x}=\lambda^{-n}\boldsymbol{x}`.且相应的特征向量与 :math:`A` 相同.
+
+7.  :math:`A^{*}` 的特征值为 :math:`\frac{|A|}{\lambda}` ，即 :math:`A^{*}\boldsymbol{x}=\frac{|A|}{\lambda}\boldsymbol{x}`.
+
+8.  对于多项式确定的矩阵 :math:`f(A)` ，有 :math:`f(A)\boldsymbol{x}=f(\lambda)\boldsymbol{x}` ；若 :math:`f(A)=O` ，则可以得到 :math:`A` 对应的特征多项式 :math:`p_{A}(\lambda)=f(\lambda)`.
+
+9.  :math:`A` 的特征值也是 :math:`A^{T}` 的特征值，即 :math:`|\lambda I_{n}-A|=|\lambda I_{n}-A^{T}|`.
+
+10. 对任意的可逆矩阵 :math:`P` ，有 :math:`|\lambda I-PAP^{-1}|=|\lambda I-A|`.
+
+11. :math:`\lambda^{n}|\lambda I_{s}-AB|=\lambda^{s}|\lambda I_{n}-BA|`.
+
+秩为 :math:`1` 的 :math:`n` 阶矩阵 :math:`A` 可以化为 :math:`A=\alpha\beta^{T}` 的形式，从而满足
+:math:`A^{2}=\operatorname{tr}(A)A` ，进而得到其极小多项式是
+:math:`\lambda^{2}-\operatorname{tr}(A)\lambda`.而其特征多项式为
+:math:`\lambda^{n-r}(\lambda-\operatorname{tr}(A))^{r}=0`
+
+投影矩阵的特征值只能是 :math:`1` 或 :math:`0`.因此其特征多项式只能是
+:math:`\lambda^{n-r}(\lambda-1)^{r}`.
+
+设矩阵 :math:`A=\begin{pmatrix}a&-1&c\\5&b&3\\1-c&0&-a\end{pmatrix}` ，又 :math:`|A|=-1`, :math:`A^{*}` 有一个特征值 :math:`\lambda_{0}` ，且属于 :math:`\lambda_{0}` 的一个特征向量为 :math:`\begin{pmatrix}-1&-1&1\end{pmatrix}^{T}` ，求 :math:`a,b,c,\lambda_{0}` 的值.
+解：根据伴随矩阵的求逆公式，有
+
+  .. math:: A^{*}=|A|A^{-1}=-A^{-1}
+
+  又 :math:`A^{-1}` 的特征向量也是 :math:`A` 的特征向量，因此 :math:`A` 有特征值
+  :math:`\lambda=-\frac{1}{\lambda_{0}}`,特征向量
+  :math:`\alpha=\begin{pmatrix}-1&-1&1\end{pmatrix}^{T}` .由特征向量的定义可得方程组
+
+  .. math::
+
+     \begin{pmatrix}a&-1&c\\5&b&3\\1-c&0&-a\end{pmatrix}\begin{pmatrix}-1\\-1\\1\end{pmatrix}=
+         -\frac{1}{\lambda_{0}}\begin{pmatrix}-1\\-1\\1\end{pmatrix}
+
+  再加上 :math:`|A|=-1`,解方程组可得 :math:`\lambda_{0}=1,a=c=2,b=-3`.
+
+设 :math:`A` 是三阶矩阵，已知 :math:`|A+I_{3}|=0,~|A+2I_{3}|=0,~|A+3I_{3}|=0` ，求 :math:`|A+4I_{3}|`.
+解：由 :math:`|A+I_{3}|=0,~|A+2I_{3}|=0,~|A+3I_{3}|=0` 可知，矩阵 :math:`A` 的特征值为 :math:`-1,-2,-3`.
+
+对于矩阵 :math:`A+4I_{3}` ，可看做 :math:`A` 的一个多项式，从而其特征值为 :math:`3,2,1` ，所以其行列式等于特征值之积，即 :math:`|A+4I_{3}|=6`.
+
+设 :math:`P` 是可逆矩阵， :math:`B=PAP^{-1}-P^{-1}AP` ，求证： :math:`B` 的特征值之和为零.
+证：注意到 :math:`P^{-1}AP` 和 :math:`A` 相似，因此
+
+  .. math:: \operatorname{tr}(P^{-1}AP)=\operatorname{tr}(A)
+
+同理可知，
+
+.. math:: \operatorname{tr}(PAP^{-1})=\operatorname{tr}(A)
+
+因此 :math:`\operatorname{tr}(B)=0` ，即 :math:`B` 的特征值之和为零.
+
+设 :math:`\alpha=(a_{1},a_{2},\cdots,a_{n})` 是实 :math:`n` 维行向量且 :math:`\alpha \alpha'=1`.求矩阵 :math:`I_{n}-2\alpha\alpha'` 的特征值.
+解：设 :math:`A=I_{n}-2\alpha\alpha'` ，则
+
+  .. math:: |\lambda I_{n}-A|=|(\lambda-1)I_{n}+2\alpha\alpha'|=(\lambda-1)^{n-1}(\lambda-1+2)=(\lambda-1)^{n-1}(\lambda+1).
+
+  因此 :math:`1` 是矩阵 :math:`A` 的 :math:`n-1` 重特征值， :math:`-1` 是 :math:`A` 的单特征值.
+
+设 :math:`A,B` 为 :math:`n` 阶矩阵，求证： :math:`AB+B,BA+B` 有相同的特征值.
+证：注意到 :math:`AB+B=(A+I_{n})B,~BA+B=B(A+I_{n})` ，由降阶公式可知
+
+  .. math:: \lambda^{n}(\lambda I_{n}-(A+I_{n})B)=\lambda^{n}(\lambda I_{n}-B(A+I_{n}))
+
+  即 :math:`AB+B,BA+B` 有相同的特征值.
+
+（代数重数）给定 :math:`n` 阶方阵 :math:`A` 以及 :math:`A` 的一个特征值 :math:`\lambda_{0}\in \mathbb{C}` ，如果 :math:`\lambda_{0}` 是特征多项式 :math:`p_{A}(\lambda)` 的一个 :math:`n_{0}` 重根，则称 :math:`n_{0}` 为 :math:`\lambda_{0}` 作为 :math:`A` 的特征值代数重数，并称 :math:`\lambda_{0}` 是 :math:`A` 的一个 :math:`n_{0}` 重特征值.
+
+特别地，若 :math:`n` 阶矩阵 :math:`A` 的秩 :math:`r<n` ，则其几何重数
+:math:`\operatorname{dim}N(\lambda I-A)=\operatorname{dim}N(A)=n-r`
+，由于代数重数大于等于几何重数，从而 :math:`A` 的零特征值至少为 :math:`n-r` 重.
+
+对角化与谱分解
+--------------
+
+对方阵 :math:`A` ，如果存在可逆矩阵 :math:`X` 使得 :math:`X^{-1}AX=\Lambda` 是对角矩阵，则称 :math:`A` （在 :math:`\mathbb{C}` 上）可对角化.当 :math:`A` 可对角化时，分解 :math:`A=X\Lambda X^{-1}` 称为 :math:`A` 的谱分解.
+
+:math:`A` 的谱分解中的 :math:`X` 的列向量是 :math:`A` 的 :math:`n` 个线性无关的特征向量.可以得到高次幂矩阵的对角表达： :math:`A^{k}=X\Lambda^{k} X^{-1}` ；逆矩阵的对角化： :math:`A^{-1}=X\Lambda^{-1}X^{-1}` ；实对称矩阵的对角化： :math:`S=Q\Lambda Q^{T}`.
+
+基于这个谱分解表达式，可以由特征值和特征向量反求矩阵.各特征值构成矩阵 :math:`\Lambda` ，对应的特征向量构成矩阵 :math:`X`.
+
+只有含有 :math:`n` 个线性无关的特征向量的方阵可对角化.而方阵的属于不同的特征值的特征向量一定线性无关，于是有判断矩阵可对角化的一个充分条件：
+
+有 :math:`n` 个不同特征值的 :math:`n` 阶方阵，即特征值都是单特征值的方阵，可对角化.
+
+一般来说，判定 :math:`n` 阶矩阵 :math:`A` 是否可对角化，通常有以下6种方法：
+
+1. :math:`A` 可对角化的充要条件是 :math:`A` 有 :math:`n` 个线性无关的特征向量；
+
+2. 若 :math:`A` 有 :math:`n` 个不同的特征值，则 :math:`A` 可对角化；
+
+3. :math:`A` 可对角化的充要条件是 :math:`\mathbb{C}^{n}` 是 :math:`A` 的特征子空间的直和；
+
+4. :math:`A` 可对角化的充要条件是对 :math:`A` 的任一特征值，其几何重数等于其代数重数；
+
+5. :math:`A` 可对角化的充要条件是 :math:`A` 的极小多项式无重根；
+
+6. :math:`A` 可对角化的充要条件是 :math:`A` 的Jordan块都是一阶的
+
+7. 实对称矩阵总是能谱分解，于是能够对角化.
+
+设 :math:`n` 阶矩阵 :math:`A` 可对角化，证明： :math:`\begin{pmatrix}A&A^{2}\\A^{2}&A\end{pmatrix}` 也可对角化.
+证：设 :math:`\alpha_{1},\alpha_{2},\cdots,\alpha_{n}` 是 :math:`A` 的 :math:`n` 个线性无关的特征向量，满足 :math:`A\alpha_{i}=\lambda_{i}\alpha_{i}(i=1,2,\cdots,n)` ，注意到
+
+  .. math::
+
+     \begin{pmatrix}A&A^{2}\\A^{2}&A\end{pmatrix}\begin{pmatrix}\alpha_{i}\\\alpha_{i}\end{pmatrix}=
+         (\lambda_{i}+\lambda_{i}^{2})\begin{pmatrix}\alpha_{i}\\\alpha_{i}\end{pmatrix},~
+         \begin{pmatrix}A&A^{2}\\A^{2}&A\end{pmatrix}\begin{pmatrix}\alpha_{i}\\-\alpha_{i}\end{pmatrix}=
+         (\lambda_{i}-\lambda_{i}^{2})\begin{pmatrix}\alpha_{i}\\-\alpha_{i}\end{pmatrix},
+
+  易证 :math:`\begin{pmatrix}\alpha_{i}\\\alpha_{i}\end{pmatrix}` 与 :math:`\begin{pmatrix}\alpha_{i}\\-\alpha_{i}\end{pmatrix}` 线性无关，因此 :math:`\begin{pmatrix}A&A^{2}\\A^{2}&A\end{pmatrix}` 有 :math:`2n` 个线性无关的特征向量，从而可对角化.
+
+（几何重数） :math:`\lambda_{0}` 的几何重数定义为其对应的特征子空间的维数，即 :math:`\operatorname{dim}(N(\lambda_{0} I-A))`.
+
+可以发现几何重数 :math:`\operatorname{dim}(N(\lambda_{0} I-A))=n-r(\lambda_{0}I-A)` ，且与特征向量构成的基础解系相同.
+
+方阵的特征值的几何重数不大于其代数重数。当所有特征值的几何重数等于代数重数时，方阵 :math:`A` 才可对角化.
+
+若 :math:`2` 是 :math:`A=\left [\begin{array}{ccc}  1 & -1 & 1\\  a & 4 & b\\  -3 & -3 & 5 \end{array}\right ]` 的二重特征值，且A相似于对角矩阵，求a,b和这个对角矩阵.
+解：计算 :math:`2` 对应的特征方程可得
+
+  .. math:: |A-2I|=\mqty|-1&-1&1\\a&2&b\\-3&-3&3|
+
+  因为 :math:`2` 为二重特征值，要使 :math:`A` 相似于对角阵，则几何重数也要等于 :math:`2`,即
+
+  .. math:: \operatorname{rank}\begin{pmatrix}-1&-1&1\\a&2&b\\-3&-3&3\end{pmatrix}=n-2=1
+
+  从而 :math:`a=2,~b=-2`.
+
+因为 :math:`\operatorname{tr}(A)=\lambda_{1}+\lambda_{2}+\lambda_{3}`,所以得到 :math:`\lambda_{3}=10-4=6`,进而得到对角阵为
+
+.. math:: \Lambda=\begin{pmatrix}6&&\\&2&\\&&2\end{pmatrix}
+
+设 :math:`A=\begin{pmatrix}3&2&-2\\-k&-1&k\\4&2&-3\end{pmatrix}` ，当 :math:`k` 为何值时，存在可逆阵 :math:`P` ，使 :math:`P^{-1}AP` 是对角阵？求出 :math:`P` 和对角阵.
+解：计算 :math:`A` 的特征方程可得 :math:`|\lambda I_{3}-A|=(\lambda-1)(\lambda+1)^{2}` ，因此 :math:`A` 的特征值为 :math:`1` （1重）， :math:`-1` （2重），而要使 :math:`A` 可对角化，特征值 :math:`-1` 的几何重数必须等于 :math:`2` ，从而有
+
+  .. math:: \operatorname{r}(A+I_{3})=\operatorname{r}\begin{pmatrix}4&2&-2\\-k&0&k\\4&2&-2\end{pmatrix}=1
+
+  于是 :math:`k=0`,解得特征值为 :math:`1` 的特征向量为 :math:`\begin{pmatrix}1&0&1\end{pmatrix}^{T}`;特征值为 :math:`-1` 的两个线性无关的特征向量为 :math:`\begin{pmatrix}-1&2&0\end{pmatrix}^{T},\begin{pmatrix}1&0&2\end{pmatrix}^{T}`,因此
+
+  .. math:: P=\begin{pmatrix}1&-1&1\\0&2&0\\1&0&2\end{pmatrix},~P^{-1}AP=\begin{pmatrix}1&0&0\\0&-1&0\\0&0&-1\end{pmatrix}.
+
+设 :math:`A` 是 :math:`n` 阶矩阵。若 :math:`A` 可对角化，求证::math:`A` 的伴随矩阵 :math:`A^{*}` 也可对角化且 :math:`A` 和 :math:`A^{*}` 可同时对角化.
+证：设 :math:`P^{-1}AP=\operatorname{diag}(\lambda_{1},\lambda_{2},\cdots,\lambda_{n})` ，则有
+
+  .. math::
+
+     P^{*}A^{*}(P^{-1})^{*}=
+         \operatorname{diag}(\prod_{i\ne1}\lambda_{i},\prod_{i\ne2},\cdots,\prod_{i\ne n}\lambda_{i})
+
+而 :math:`(P^{-1})^{*}=(P^{*})^{-1}` ，因此 :math:`A^{*}` 相似于对角阵.
+
+又 :math:`A^{*}A=AA^{*}` ，故 :math:`A` 和 :math:`A^{*}` 可同时对角化.
+
+设分块对角矩阵 :math:`\begin{bmatrix}\dmat{A_{1},\ddots ,A_{r}}\end{bmatrix}` ，其中 :math:`A_{r}` 都是方阵，则 :math:`A` 可对角化当且仅当所有 :math:`A_{i}` 都可对角化.
+
+设 :math:`m` 阶矩阵 :math:`A` 与 :math:`n` 阶矩阵 :math:`B` 没有公共的特征值，且 :math:`A,B` 均可对角化，
+:math:`C` 为 :math:`m\times n` 矩阵，则 :math:`M=\begin{pmatrix}A&C\\O&B\end{pmatrix}`
+也可对角化.其逆命题也成立.
+
+Fibonacci数列
+~~~~~~~~~~~~~
+
+有两个数列 :math:`\{a_{n}\},\{b_{n}\},a_{1}=1,b_{1}=-1,~a_{n}=a_{n-1}+2b_{n-1},~b_{n}=-a_{n-1}+4b_{n-1}`.求证：
+  :math:`a_{n}=2^{n-1}-3^{n},~b_{n}=2^{n}-3^{n}`.
+证：将数列写成矩阵形式
+
+  .. math::
+
+     \begin{pmatrix}a_{n}\\b_{n}\end{pmatrix}=
+         \begin{pmatrix}1&2\\-1&4\end{pmatrix}\begin{pmatrix}a_{n}\\b_{n-1}\end{pmatrix}=
+         \begin{pmatrix}1&2\\-1&4\end{pmatrix}^{n-1}\begin{pmatrix}1\\-1\end{pmatrix},
+
+  计算出矩阵 :math:`\begin{pmatrix}1&2\\-1&4\end{pmatrix}^{n-1}` 即可得到结论.
+
+矩阵相似
+--------
+
+对方阵 :math:`A,B` ，如果存在可逆矩阵 :math:`P` 使得 :math:`P^{-1}AP=B` ，则称 :math:`A` 和 :math:`B` 相似.
+
+矩阵相似是一种等价关系： :math:`A` 与自身相似；若 :math:`A` 与 :math:`B` 相似，则 :math:`B` 与 :math:`A` 也相似；若 :math:`A,B` 相似，且 :math:`B,C` 相似，则 :math:`A` 与 :math:`C` 也相似.
+
+如果 :math:`A,B` 相似，可以得到 :math:`A^{-1}\sim B^{-1},~f(A)\sim f(B),A^{*}\sim B^{*}`.
+
+可以证明， :math:`A` 与 :math:`A^{T}` 一定相似.
+
+方阵的相似关系有以下不变量：
+
+1. 秩不变，即 :math:`\operatorname{r}(A)=\operatorname{r}(B)`;
+
+2. 迹、行列式不变，即 :math:`\operatorname{tr}(A)=\operatorname{tr}(B)`, :math:`|A|=|B|`;
+
+3. 特征多项式、特征值、特征值的代数重数和几何重数不变.
+
+由此可知，可对角化的矩阵与其对角矩阵相似，它的秩、迹、行列式、特征值都可以从对角矩阵得到.
+
+若 :math:`\left [\begin{array}{cc}  0 & 1 \\  x & 3 \end{array}\right ]\sim \left [\begin{array}{cc}  2 & 5 \\  0 & y \end{array}\right ]` ，求x,y.
+解：因为矩阵相似，所以迹和行列式相等，即有
+
+  .. math:: 3=2+y\quad -x=2y
+
+  解得 :math:`y=1,~x=-2`.
+
+设矩阵
+:math:`A=\left(\begin{array}{lll}0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0\end{array}\right)`,
+已知矩阵 :math:`A` 与矩阵 :math:`B` 相似, 求秩 :math:`r(A B-A)`.
+
+已知矩阵 :math:`A=\begin{pmatrix}1&-1&1\\2&4&-2\\-3&-3&5\end{pmatrix},B=\begin{pmatrix}2&0&0\\0&2&0\\0&0&y\end{pmatrix}` 相似.
+
+（1）求 :math:`y` 的值；
+
+（2）求一个满足 :math:`P^{-1}AP=B` 的可逆矩阵 :math:`P`.
+解：（1）相似矩阵都具有相同的迹，因此 :math:`4+y=10` ，从而 :math:`y=6`.
+
+（2）当 :math:`A` 的特征值为 :math:`2` 时，解线性方程组 :math:`(2I-A)x=0` 得基础解系：
+
+.. math:: \beta_{1}=\begin{pmatrix}1&-1&0\end{pmatrix}^{T},~\beta_{2}=\begin{pmatrix}1&1&2\end{pmatrix}^{T}.
+
+当 :math:`A` 的特征值为 :math:`6` 时，解线性方程组 :math:`(6I-A)x=0` 得基础解系：
+
+.. math:: \beta_{3}=\begin{pmatrix}1&-2&3\end{pmatrix}^{T}
+
+因此 
+
+.. math:: P=\begin{pmatrix}1&1&1\\-1&1&2\\0&2&3\end{pmatrix}.
+
+设 :math:`A` 是 :math:`n` 阶矩阵，交换 :math:`A` 的第一、第二行后再交换第一、第二列，所的矩阵为 :math:`B` ，则 :math:`A` 和 :math:`B` 的特征值的关系？
+解：对 :math:`A` 做置换相当于左右乘以置换阵，即
+
+  .. math:: B=P_{12}AP_{12}
+
+  而置换阵有逆等于其转置的性质，且恰好有 :math:`P_{12}^{T}=P_{12}`,则
+
+  .. math:: B=P_{12}AP_{12}=P_{12}^{-1}AP_{12}
+
+  因此 :math:`A` 与 :math:`B` 相似，故特征值完全相同.
+
+根据不变量可以推出：两个对角矩阵相似当且仅当它们的对角元素除排列顺序外都相同.
+
+如果 :math:`A` 可对角化，则称对角化得到的对角矩阵为 :math:`A` 的相似标准型.相似标准型在对角元素相差一个排列次序的意义下唯一.
+
+判断矩阵是否相似一般按照以下步骤逐步验证：
+
+1. 判定矩阵的迹是否相等；
+
+2. 判定矩阵的行列式是否相等；
+
+3. 判定特征值是否相等；
+
+4. 判定特征子空间的维数（或者 :math:`\lambda I-A` 的秩）是否相等.
+
+判断矩阵 :math:`A=\begin{pmatrix}1&0&0\\0&2&1\\0&0&2\end{pmatrix}` 与矩阵 :math:`B=\begin{pmatrix}1&0&0\\0&2&0\\0&1&2\end{pmatrix}` 是否相似.
+解：首先判断迹，发现 :math:`A,B` 的迹都是 :math:`5` ；
+
+然后判断行列式，发现 :math:`A,B` 的行列式都等于 :math:`2` ；
+
+其次判断特征值，发现 :math:`A,B` 特征值均为 :math:`1,2,2` ；
+
+最后判断重根特征矩阵的秩，发现其秩均为 :math:`2` ，所以 :math:`A,B` 相似.
+
+设 :math:`A,B` 为 :math:`n` 阶方阵，如果存在可逆矩阵 :math:`X` 使得 :math:`X^{-1}A X=\Lambda_{1}` 和 :math:`X^{-1}B X=\Lambda_{2}` 都是对角矩阵，则称 :math:`A,B` 可以同时对角化.
+
+对可对角化的 :math:`n` 阶方阵 :math:`A,B` ，以下叙述等价：
+
+1. :math:`A,B` 可以同时对角化；
+
+2. 存在 :math:`n` 个线性无关的向量，同时是 :math:`A,B` 的特征向量；
+
+3. :math:`A,B` 可交换，即 :math:`AB=BA`.
+
+实对称矩阵
+----------
+
+实对称矩阵的谱分解
+~~~~~~~~~~~~~~~~~~
+
+实对称矩阵的特征多项式都是实根，即实对称矩阵在 :math:`\mathbb{C}^{n}` 上的特征值都是实数.
+
+（实对称矩阵的谱分解）对 :math:`n` 阶实对称矩阵 :math:`S`,存在 :math:`n` 阶正交矩阵Q和实对角矩阵 :math:`\Lambda` ，使得 :math:`S=Q\Lambda Q^{T}`,分解 :math:`S=Q\Lambda Q^{T}` 称为对称矩阵 :math:`S` 的谱分解.
+
+如果令 :math:`\Lambda=\operatorname{(\lambda_{1},\dots,\lambda_{n})}`, :math:`Q=\begin{bmatrix}  \boldsymbol{q}_{1} & \cdots & \boldsymbol{q}_{n} \end{bmatrix}`,则有
+
+.. math:: S=Q\Lambda Q^{T}=\lambda_{1}\boldsymbol{q}_{1}\boldsymbol{q}_{1}^{T}+\cdots+\lambda_{n}\boldsymbol{q}_{n}\boldsymbol{q}_{n}^{T}.
+
+:math:`\Lambda` 的对角元素是 :math:`S` 的特征值， :math:`Q` 的第 :math:`i` 列就是 :math:`S` 的属于该特征值对应的特征向量.属于相同特征值的特征向量，亦即 :math:`Q` 的对应列，构成了属于该特征值的特征子空间的一组基.
+
+实对称矩阵具有以下特殊的性质：
+
+1. 特征值均为实数，特征向量均为实向量；
+
+2. 不同特征值对应的特征向量相互正交；
+
+3. 正主元的数目与正特征值的数目相同；
+
+4. 非零特征值的数量为 :math:`r(S)` ，即有 :math:`n-r(S)` 个零特征值；
+
+5. 代数重数与几何重数总是相等，也就总是能谱分解；若 :math:`S` 有 :math:`k` 重特征值 :math:`\lambda` ，则必有 :math:`k` 个线性无关的特征向量，或者说 :math:`\operatorname{r}(\lambda I-S)=n-k`.
+
+实对称矩阵S满足 :math:`S=S^{T}\in M_{3}(\mathbb{R} ),~~\left | \lambda I-S \right | =(\lambda -1)^{2}(\lambda -10)`,且 :math:`\lambda =10` 对应的特征向量为 :math:`x_{3}=(1,2,-2),` 求S.
+解：对应于1两个线性无关的特征向量可取为
+  :math:`0=x_{3}{ }^{\mathrm{T}} x=\left[\begin{array}{ll}1 & 2-2\end{array}\right] x`
+  的正交的特解:
+
+  .. math:: x_{1}=(2,1,2), x_{2}=(-2,2,1),
+
+   将正交向量组 :math:`x_{1}, x_{2}, x_{3}` 单位化得正交矩阵
+
+  .. math::
+
+     Q=\left(\begin{array}{rrr}
+     2 / 3 & -2 / 3 & 1 / 3 \\
+     1 / 3 & 2 / 3 & 2 / 3 \\
+     2 / 3 & 1 / 3 & -2 / 3
+     \end{array}\right),
+
+  于是
+
+  .. math:: S=Q\Lambda Q^{T}=\begin{pmatrix}2&2&-2\\2&5&-4\\-2&4&5\end{pmatrix}
+
+（正交相似）对实方阵 :math:`A,B` ，如果存在正交矩阵 :math:`Q` 使得 :math:`Q^{T}AQ=B` ，则称 :math:`A` 和 :math:`B` 正交相似.
+
+除了一般相似关系所具有的不变量，正交相似变换还有一个不变量：对称性，即对称矩阵作正交相似变换后得到的仍是对称矩阵，反对称矩阵作正交相似变换后得到的仍是反对称矩阵，非对称矩阵作相似变换后得到的仍是非对称矩阵.
+
+在对实对称矩阵进行正交相似对角化时，首先要计算其特征值：可以通过特征方程来求，而在某些特殊情况下，可以根据迹、行列式以及秩决定的非零特征值的数目来求；而计算正交特征向量：对于单根 :math:`\lambda`,通过 :math:`(A-\lambda I)x=0` 求出基本解组；对于重根 :math:`\lambda` ，第一个用基本解组求，其他的根据与第一个特征向量的正交关系来求.
+
+（Rayleigh商）给定实矩阵 :math:`A` 和非零向量 :math:`\boldsymbol{x}\in \mathbb{R}^{n}` ，实数 :math:`\frac{\boldsymbol{x}^{T}A\boldsymbol{x}}{\boldsymbol{x}^{T}\boldsymbol{x}}` 称为 :math:`\boldsymbol{x}` 关于 :math:`A` 的Rayleigh商.
+
+设实对称矩阵 :math:`S` 的特征值为 :math:`\lambda_{1}\geqslant \cdots \geqslant \lambda_{n}`,相应的特征向量为 :math:`\boldsymbol{q}_{1},\cdots ,\boldsymbol{q}_{n}` ，则有
+
+.. math::
+
+   \lambda_{1}=\max_{x\ne 0}\frac{\boldsymbol{x}^{T}S\boldsymbol{x}}{\boldsymbol{x}^{T}\boldsymbol{x}};\quad
+       \lambda_{n}=\min_{x\ne 0}\frac{\boldsymbol{x}^{T}S\boldsymbol{x}}{\boldsymbol{x}^{T}\boldsymbol{x}}
+
+正定矩阵
+~~~~~~~~
+
+给定 :math:`n` 阶实矩阵 :math:`A` ，如果对任意非零向量 :math:`\boldsymbol{x}\in \mathbb{R}^{n}` ，都有 :math:`\boldsymbol{x}^{T}A\boldsymbol{x}>0` ，则称 :math:`A` 正定.
+
+二次型正交相似对角化
+^^^^^^^^^^^^^^^^^^^^
+
+通过求正、负惯性指数，即判断正、负特征值的个数，可以将二次型化为规范型.
+
+而使用正交替换可以将二次型化为标准型:对于二次型 :math:`\boldsymbol{x}^{T}S\boldsymbol{x}` ，令 :math:`\boldsymbol{x}=Q\boldsymbol{y}` ，则有
+
+.. math::
+
+   \boldsymbol{x}S\boldsymbol{x}=
+       (Q\boldsymbol{y})^{T}S(Q\boldsymbol{y})=
+       \boldsymbol{y}^{T}\Lambda\boldsymbol{y}=
+       \lambda_{1}y_{1}^{2}+\lambda_{2}y_{2}^{2}+\cdots
+
+其中 :math:`Q` 由 :math:`S` 的谱分解决定.
+
+设
+  :math:`A=\left[\begin{array}{lll}0 & 3 & 0 \\ 3 & 0 & 4 \\ 0 & 4 & 0\end{array}\right]`
+  。求一正交替换 :math:`x=Q y` 将二次型 :math:`Q(\alpha)=x^{T} A x` 化
+  为标准形.
+解：
+
+三阶实对称矩阵的二次型
+^^^^^^^^^^^^^^^^^^^^^^
+
+对于一般的三阶实对称矩阵，其二次型的形式满足：
+
+.. math:: \left[\begin{array}{lll}x_{1} & x_{2} & x_{3}\end{array}\right]\left[\begin{array}{lll}a & d & e \\ d & b & f \\ e & f & c\end{array}\right]\left[\begin{array}{l}x_{1} \\ x_{2} \\ x_{3}\end{array}\right]=a x_{1}^{2}+b x_{2}^{2}+c x_{3}^{3}+2 d x_{1} x_{2}+2 e x_{1} x_{3}+2 f x_{2} x_{3}
+
+（合同）对方阵 :math:`A`,如果存在可逆矩阵 :math:`X` 使得 :math:`X^{T}AX=B` ，则称 :math:`A` 和 :math:`B` 合同.
+
+合同变换是一种特殊的初等行列变换，因此相抵关系中的不变量，如秩，也是合同变换下的不变量；实矩阵正定、半正定、负定、半负定、不定和对称性也是合同变换下的不变量.
+
+要证明两个矩阵合同，则要证明两矩阵有相同的正、负惯性指数，即正特征值、负特征值对应个数相等.
+
+对实对称矩阵 :math:`A` ，以下叙述等价：
+
+1. :math:`A` 正定；
+
+2. :math:`A` 的特征值都是正数；
+
+3. 存在可逆矩阵 :math:`C` ，使得 :math:`A=C^{T}C` ；或存在可逆矩阵 :math:`P` 使得 :math:`A=PP^{T}`;
+
+4. :math:`A` 有 :math:`LDL^{T}` 分解，且 :math:`D` 的对角元素都是正数；
+
+5. :math:`A` 的顺序主子式都是正数；
+
+6. :math:`A` 的顺序主子阵都正定.
+
+7. :math:`A` 的主元 :math:`d_{1},d_{2},\cdots,d_{n}>0`;
+
+以上的等价性质，可以作为正定矩阵的判定定理.其中具体矩阵常用特征值与顺序主子式；而所问矩阵为矩阵乘积时，有时候可以用秩来说明矩阵不正定，可以考虑合同变换来说明其特征值情况；而抽象矩阵常用定义式与分解（分解说明与 :math:`I_{n}` 合同或与已知的正定阵合同）.
+
+实对称矩阵S满足 :math:`S^{2}-3S+2I=O`,证明S正定.
+解：其特征多项式为 :math:`\lambda^{2}-3\lambda+2=0`,从而 :math:`\lambda_{1}=1,~\lambda_{2}=2`.其特征值都大于零，于是 :math:`S` 正定.
+
+判断矩阵 :math:`\begin{pmatrix}1&1\\1&2\\1&3\end{pmatrix}\begin{pmatrix}1&1&1\\1&2&3\end{pmatrix}` 是否正定.
+解：记 :math:`A=\begin{pmatrix}1&1\\1&2\\1&3\end{pmatrix}` ，则原矩阵为 :math:`AA^{T}`.
+
+因为 :math:`\operatorname{r}(A)=2`,则 :math:`r(AA^{T})=2` ，而 :math:`AA^{T}` 为三阶方阵，不满秩，所以存在特征值等于零，所以不正定.
+
+判断矩阵 :math:`\left[\begin{array}{ccc} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 3 & 4 & 1 \end{array}\right]\left[\begin{array}{ccc} 5 & 0 & 0 \\ 0 & -6 & 0 \\ 0 & 0 & 7 \end{array}\right]\left[\begin{array}{lll} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{array}\right]` 是否正定.
+解：该矩阵符合形式 :math:`C^{T}\Lambda C` ，因此该矩阵与 :math:`\Lambda`
+  合同，显然 :math:`\Lambda` 不正定,因此原矩阵也不正定.
+
+利用 :math:`A=C^{T}C` 以及 :math:`x^{T}Ax>0` ，可以推出正定矩阵还有一些其他性质：
+
+设 :math:`A,B` 都是 :math:`n` 阶正定实对称矩阵， :math:`c` 是正实数，则有
+
+1. :math:`A^{-1},A^{*},A+B,cA` 都是正定阵；
+
+2. 若 :math:`D` 是非异实矩阵，则 :math:`D^{T}AD` 是正定矩阵；
+
+3. 若 :math:`A-B` 是正定矩阵，则 :math:`B^{-1}-A^{-1}` 也是正定矩阵.
+
+4. :math:`AB` 不一定是正定矩阵，只有在其乘法可交换，即 :math:`AB=BA` 时，才是正定阵.
+
+5. :math:`A^{k}(k>1)` 也是正定矩阵.
+
+对实对称正定矩阵 :math:`A` ，存在下三角矩阵 :math:`L` ，使得
+
+.. math:: A=LDL^{T}=L\sqrt{D}(L\sqrt{D})^{T}
+
+这称为 :math:`A` 的Cholesky分解.
+
+根据正定的定义，类似可以定义出半正定： :math:`\boldsymbol{x}^{T}A\boldsymbol{x}\geqslant0`;负定，半负定.对于半正定矩阵，则相关叙述转变为“特征值都是非负数”，“:math:`D` 的对角元素都是非负数”.需要注意的是， :math:`A` 的顺序主子式都是非负数不能说明 :math:`A` 半正定.
+
+半正定矩阵的判定准则列举如下：
+
+设 :math:`A` 是 :math:`n` 阶实对称矩阵，则 :math:`A` 是半正定阵的充要条件是以下条件之一：
+
+1. :math:`A` 合同于 :math:`\begin{pmatrix}I_{r}&O\\O&O\end{pmatrix}`;
+
+2. 存在实矩阵 :math:`P` ，使得 :math:`A=P^{T}P`;
+
+3. :math:`A` 的所有主子式全大于等于零；
+
+4. :math:`A` 的所有特征值全大于等于零.
+
+对于矩阵任意的实矩阵 :math:`A` ， :math:`A^{T}A` 都是半正定的，只有当 :math:`A` 可逆时， :math:`A^{T}A` 才是正定矩阵.
+
+对 :math:`n` 阶实对称矩阵 :math:`A` ，如果存在 :math:`\boldsymbol{x},\boldsymbol{y}\in \mathbb{R}^{n}` ，使得 :math:`\boldsymbol{x}^{T}A\boldsymbol{x}>0,~\boldsymbol{y}^{T}A\boldsymbol{y}<0` ，则存在非零向量 :math:`\boldsymbol{z}\in \mathbb{R}^{n}` ，使得 :math:`\boldsymbol{z}^{T}A\boldsymbol{z}=0`.
+
+对实对称矩阵 :math:`S` ，存在可逆矩阵 :math:`X` 使得
+
+.. math:: X^{T}SX=J=\begin{bmatrix}\dmat{I_{p},-I_{r-p},0}\end{bmatrix}
+
+其中 :math:`r=\operatorname{r}(S),~0\leqslant p\leqslant r.` 而 :math:`J` 称为实对称矩阵 :math:`S` 的合同标准型.
+
+(Sylvester惯性定律)实对称矩阵的合同标准型唯一，且它的合同标准型中正、负、零对角元的个数分别和它的正、负、零特征值的个数相等.
+
+综合以上内容，可得到正定矩阵 :math:`S` 的以下性质：
+
+1. 若 :math:`S_{n\times n},T_{n\times n}` 正定，则 :math:`S+T` 也正定；
+
+2. :math:`\operatorname{diag}(\lambda_{1},\lambda_{2},\cdots,\lambda_{n})` 正定，也即 :math:`\lambda` 均大于零;
+
+3. 若 :math:`S` 正定， :math:`A` 可逆，则 :math:`A^{T}SA` 也正定，也即合同变换不改变正定性;
+
+4. 若 :math:`S` 正定，则 :math:`|S|>0`,且 :math:`|S|=|A^{T}A|=|A|^{2}`;
+
+5. 设 :math:`A,B` 都是实对称矩阵， :math:`S=\begin{bmatrix}  A & O\\  O & B \end{bmatrix}`,
+   则有::math:`S` 正定 :math:`\Leftrightarrow A,B` 都正定;
+
+6. 存在可逆矩阵 :math:`C` 使得 :math:`C^{T}SC=I`.
+
+奇异值分解
+----------
+
+（奇异值）给定 :math:`m\times n` 矩阵 :math:`A`,如果存在非零向量 :math:`\boldsymbol{x}\in \mathbb{R}^{n},\boldsymbol{y}\in \mathbb{R}^{n},\sigma\geqslant0`,使得
+:math:`A\boldsymbol{x}=\sigma\boldsymbol{y},A^{T}\boldsymbol{y}=\sigma\boldsymbol{x}` ，则称 :math:`\sigma` 为 :math:`A` 的一个奇异值， :math:`\boldsymbol{x}` 为 :math:`A` 的属于 :math:`\sigma` 的一个右奇异向量， :math:`\boldsymbol{y}` 为 :math:`A` 的属于 :math:`\sigma` 的一个左奇异向量.
+
+:math:`A` 的右奇异向量是 :math:`A^{T}A` 的特征向量，左奇异向量是 :math:`AA^{T}` 的特征向量，而 :math:`A` 的奇异值是 :math:`AA^{T}` 或 :math:`A^{T}A` 的特征值的算术平均根.
+
+（奇异值分解）给定 :math:`m\times n` 矩阵 :math:`A` ，存在 :math:`m` 阶正交矩阵 :math:`U` 和 :math:`n` 阶正交矩阵 :math:`V` ，使得 :math:`A=U\Sigma V^{T}` ，其中
+
+.. math::
+
+   \Sigma=\begin{bmatrix}
+    \Sigma_{r} & O\\
+    O & O
+   \end{bmatrix},~~
+   \Sigma_{r}=\smqty[\dmat{\sigma_{1},\ddots,\sigma_{r}}],~~
+   \sigma_{1}\geqslant \cdots \geqslant \sigma_{r}>0.
+
+分解 :math:`A=U\Sigma V^{T}` 称为 :math:`A` 的奇异值分解，简称 :math:`SVD`.
+
+由奇异值分解 :math:`A=U\Sigma V^{T}`,可得 :math:`AV=U\Sigma,~A^{T}U=V\Sigma` ，也即 :math:`\sigma_{i}` 是 :math:`A` 的奇异值， :math:`\boldsymbol{u}_{i}` 是 :math:`A` 的属于 :math:`\sigma_{i}` 的左奇异向量， :math:`\boldsymbol{v}_{i}` 是 :math:`A` 的属于 :math:`\sigma_{i}` 的右奇异向量.
+
+将矩阵展开成秩一矩阵之和则称为简化奇异值分解：
+
+.. math:: A=U_{r}\Sigma_{r}V_{r}^{T}=\sigma_{1}\boldsymbol{u}_{1}\boldsymbol{v}_{1}^{T}+\cdots+\sigma_{r}\boldsymbol{u}_{r}\boldsymbol{v}_{r}^{T}.
+
+根据奇异值分解有
+:math:`A=\sigma_{1} u_{1} v_{1}^{T}+\sigma_{2} u_{2} v_{2}^{T}`, 所以
+:math:`u_{1}, u_{2}` 给出了 :math:`A` 的列空间的一 组标准正交基, 所以
+:math:`v_{1}^{T}, v_{2}^{T}` 给出了 :math:`A` 的行空间的一组标准正交基.
+
+对 :math:`A=\begin{pmatrix}2&2&1\\1&2&2\end{pmatrix}` 进行奇异值分解.
+解：首先考虑转置积，选择阶数比较小的：
+
+  .. math::
+
+     AA^{T}=\begin{pmatrix}2&2&1\\1&2&2\end{pmatrix}\begin{pmatrix}2&1\\2&2\\1&2\end{pmatrix}=
+         \begin{pmatrix}9&8\\8&9\end{pmatrix}
+
+   求其特征方程解出特征值：
+
+  .. math::
+
+     |\lambda I-AA^{T}|=(\lambda-9)^{2}-64=
+         (\lambda-1)(\lambda-17)
+
+  分别代入特征值算其对应的特征向量,并对其方向进行标准化：
+
+  .. math::
+
+     \text{当}\lambda=17\text{时},\lambda I-AA^{T}=
+         \begin{pmatrix}8&-8\\-8&8\end{pmatrix},\quad 
+         u_{1}=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix}
+
+  .. math::
+
+     \text{当}\lambda=1\text{时},\lambda I-AA^{T}=
+         \begin{pmatrix}-8&-8\\-8&-8\end{pmatrix},\quad 
+         u_{2}=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}
+
+  根据 :math:`Av=\sigma u` 或 :math:`A^{T}u=\sigma v` 来求另外的奇异向量：
+
+  .. math::
+
+     v_{1}=\frac{1}{\sigma_{1}}A^{T}u_{1}=
+         \frac{1}{\sqrt{17}}\begin{pmatrix}2&1\\2&2\\1&2\end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix}=
+         \frac{1}{\sqrt{34}}\begin{pmatrix}3\\4\\3\end{pmatrix}
+
+  .. math::
+
+     v_{2}=\frac{1}{\sigma_{2}}A^{T}u_{2}=
+         \frac{1}{1}\begin{pmatrix}2&1\\2&2\\1&2\end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}=
+         \frac{1}{\sqrt{2}}\begin{pmatrix}1\\0\\-1\end{pmatrix}
+
+  最后考虑特征值为零对应的奇异值，此时要根据所要转置积的零空间来求： :math:`v_{3}` 由 :math:`A^{T}A` 来决定，因此只需求 :math:`A` 的零空间即可
+
+  .. math:: \begin{pmatrix}2&2&1\\1&2&2\end{pmatrix}v_{3}=\mathbf{0}
+
+  得到 :math:`v_{3}=\frac{1}{\sqrt{17}}\begin{pmatrix}-2\\3\\-2\end{pmatrix}`
+
+于是
+
+.. math::
+
+   \begin{pmatrix}\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&\frac{-1}{\sqrt{2}}\end{pmatrix}
+       \begin{pmatrix}17&0&0\\0&1&0\end{pmatrix}
+       \begin{pmatrix}\frac{3}{\sqrt{34}}&\frac{1}{\sqrt{2}}&\frac{-2}{\sqrt{17}}\\\frac{4}{\sqrt{34}}&0&\frac{3}{\sqrt{17}}\\\frac{3}{\sqrt{34}}&\frac{-1}{\sqrt{2}}&\frac{-2}{\sqrt{17}}\end{pmatrix}
+
+广义逆
+^^^^^^
+
+矩阵 :math:`A^{+}=V_{r}\Sigma_{r}^{-1}U_{r}^{T}` 称为 :math:`A` 的广义逆.
+
+:math:`AA^{+}=U_{r}U_{r}^{T}` 是 :math:`C(A)` 上的正交投影的表示矩阵； :math:`A^{+}A=V_{r}V_{r}^{T}` 是 :math:`C(A^{T})` 上的正交投影的表示矩阵； :math:`I-AA^{+}` 是 :math:`N(A^{T})` 上的正交投影的表示矩阵； :math:`I-A^{+}A` 是 :math:`N(A)` 上的正交投影的表示矩阵.
+
+在最小二乘问题中， :math:`\boldsymbol{x}^{+}=A^{+}\boldsymbol{b}` 是最小二乘解中长度最小的解.
+
+矩阵的谱范数
+^^^^^^^^^^^^
+
+对任意矩阵 :math:`A` ，非负数 :math:`\max\limits_{\boldsymbol{x}\ne \mathbf{0}}\frac{\left \| A\boldsymbol{x} \right \| }{\left \|\boldsymbol{x} \right \| }` ，称为矩阵 :math:`A` 的谱范数，记为 :math:`\left \| A \right \|`.
+
+矩阵的谱范数满足以下性质：
+
+1. :math:`\left \| A \right \| \geqslant 0` ，且 :math:`\left \| A \right \|=0` ，当且仅当 :math:`A=O`;
+
+2. :math:`\left \| kA \right \|=|k|\left \| A \right \|`;
+
+3. :math:`\left \| A+B \right \|\leqslant \left \| A \right \| +\left \| B \right \|`;
+
+4. :math:`\left \| AB \right \| \leqslant \left \| A \right \| \left \| B \right \|`;
+
+5. 如果 :math:`U,V` 正交，则 :math:`\left \| UAV^{T} \right \|=\left \| A \right \|`.
+
+对任意的矩阵 :math:`A` ，矩阵的谱范数 :math:`\left \| A \right \|` 等于 :math:`A` 的最大奇异值.
+
+设实矩阵 :math:`A` 的奇异值为 :math:`\sigma_{1}\geqslant\cdots\leqslant\sigma_{n}` ，相应的右奇异向量为 :math:`\boldsymbol{v}_{1},\cdots,\boldsymbol{v}_{n}`,则
+
+.. math::
+
+   \sigma_{1}=\max_{\boldsymbol{x}\ne \mathbf{0}}\frac{\left \| A\boldsymbol{x} \right \| }{\boldsymbol{x}},\quad
+       \sigma_{n}=\min_{\boldsymbol{x}\ne\mathbf{0}}\frac{\left \| A\boldsymbol{x} \right \| }{\boldsymbol{x}}.
+
+线性映射
+========
+
+线性变换
+--------
+
+设 :math:`T` 是实数域 :math:`\mathbb{R}` 上的向量空间 :math:`V` 到
+:math:`W` 的 一个映射（变换）, 如果 :math:`T` 保持加法及数乘运 算,
+即对任意 :math:`v, w \in \mathrm{V}`, 对任意常数
+:math:`c \in \mathbb{R}`, 都有
+
+.. math::
+
+   \begin{aligned}
+   T(v+w) &=T(v)+T(w), \\
+   T(c v) &=c T(v),
+   \end{aligned}
+
+ 则称 :math:`T` 是 :math:`V` 到 :math:`W` 的一个线性变换 （算子）, 称
+:math:`T(v)` 为向量 :math:`v` 在线性变换 :math:`T` 下的像.
+
+线性变换基本性质有：
+
+1. :math:`T(0)=0`;
+
+2. :math:`T(-v)=-T(v), \forall v \in \mathrm{V}`;
+
+3. :math:`T\left(c_{1} v_{1}+c_{2} v_{2}+\ldots+c_{n} v_{n}\right)`
+   :math:`=c_{1} T\left(v_{1}\right)+c_{2} T\left(v_{2}\right)+\ldots+c_{n} T\left(v_{n}\right) ;`
+
+4. :math:`T` 将线性相关的向量组映成线性相关的向量组.
+
+设 :math:`S, T \in L(V, W)` 为向量空间 :math:`V` 到 :math:`W` 的两
+个线性变换, 它们的和 :math:`S+T` 定义为
+:math:`(S+T)(v)=S(v)+T(v), \forall v \in \mathrm{V} .`
+
+设 :math:`c \in \mathbb{R}, c` 与 :math:`T` 的数量乘法 :math:`c T`
+定义为 :math:`(c T)(v)=c T(v), \forall v \in \mathrm{V} .`
+
+:math:`S+T, c T \in L(\mathrm{~V}, \mathrm{~W})`, 也是
+:math:`\mathrm{V}` 上的线性变换.
+
+设 :math:`S, T \in L(V)`, 定义它们的乘积 :math:`S T` 为
+:math:`S T(v)=S(T(v)), \quad \forall v \in V`. 直接验证可知
+:math:`S T \in L(V)` 且
+:math:`\forall R, S, T \in L(V), c \in \mathbb{R}`,
+
+1. :math:`R(S T)=(R S) T`;
+
+2. :math:`R(S+T)=R S+R T`;
+
+3. :math:`(S+T) R=S R+T R`;
+
+4. :math:`c S T=c(S T)=(c S) T=S(c T)`;
+
+5. :math:`T I=I T=T`;
+
+6. :math:`T O=O T=O`.
+
+线性变换的矩阵
+--------------
+
+线性变换在一组基下的矩阵
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+设 :math:`T` 是 :math:`n` 维向量空间 :math:`V` 上的一个线性 变换,
+:math:`v_{1}, v_{2}, \ldots, v_{n}` 是 :math:`V` 的一组基, 则 :math:`V`
+中任一 向量 :math:`v` 的像 :math:`T(v)` 由基的像
+:math:`T\left(v_{1}\right), T\left(v_{2}\right), \ldots, T\left(v_{n}\right)`
+所完全确定.
+
+设线性变换 :math:`T` 在基 :math:`v_{1}, v_{2}, \ldots, v_{n}`
+下的像用这组基 线性表示为:
+
+.. math::
+
+   \left\{\begin{array}{c}
+   T\left(v_{1}\right)=a_{11} v_{1}+a_{21} v_{2}+\ldots+a_{n 1} v_{n} \\
+   T\left(v_{2}\right)=a_{12} v_{1}+a_{22} v_{2}+\ldots+a_{n 2} v_{n} \\
+   \ldots \ldots \begin{array}{ll}
+   \ldots & \ldots \\
+   T\left(v_{n}\right) & =a_{1 n} v_{1}+a_{2 n} v_{2}+\ldots+a_{n n} v_{n}
+   \end{array}
+   \end{array}\right.
+
+ 记
+:math:`T\left[v_{1} v_{2} \ldots v_{n}\right]=\left[T\left(v_{1}\right) T\left(v_{2}\right) \ldots T\left(v_{n}\right)\right]`,
+:math:`A=\left[a_{i j}\right]_{n \times n}`, 则上式可以表示为
+
+.. math:: T\left[\begin{array}{llll}v_{1} & v_{2} & \ldots & v_{n}\end{array}\right]=\left[\begin{array}{llll}v_{1} & v_{2} & \ldots & v_{n}\end{array}\right] A
+
+:math:`n` 阶矩阵 :math:`A` 叫做线性变换 :math:`T` 在基
+:math:`v_{1}, v_{2}, \ldots, v_{n}` 下 的矩阵. 其中 :math:`A` 的第
+:math:`j` 列就是基向量 :math:`v_{j}` 的像 :math:`T\left(v_{j}\right)`
+在这组基下的坐标.
+
+设线性变换 :math:`T` 在基 :math:`v_{1}, v_{2}, \ldots, v_{n}` 下的矩阵是
+:math:`A`, 即
+:math:`T\left[v_{1} v_{2} \ldots v_{n}\right]=\left[\begin{array}{lll}v_{1} & v_{2} & \ldots v_{n}\end{array}\right] A`,
+设向量 :math:`v, T(v)` 在这组基下的坐标分别是
+
+.. math::
+
+   \begin{aligned}
+   &x=\left(x_{1}, x_{2}, \ldots, x_{n}\right), \\
+   &y=\left(y_{1}, y_{2}, \ldots, y_{n}\right),
+   \end{aligned}
+
+则 :math:`\boldsymbol{y}=A\boldsymbol{x}`.
+
+已知线性变换 :math:`T` 在基 :math:`v_{1}, v_{2}, v_{3}` 下的矩阵
+  :math:`A`, 求 :math:`T` 在基 :math:`v_{3}, v_{2}, v_{1}` 下的矩阵,
+  其中
+
+  .. math::
+
+     A=\left(\begin{array}{lll}
+     1 & 2 & 3 \\
+     4 & 5 & 6 \\
+     7 & 8 & 9
+     \end{array}\right) \text {. }
+解:由线性变换矩阵的定义知
+
+:math:`T\left[\begin{array}{lll}v_{1} & v_{2} & v_{3}\end{array}\right]=\left[\begin{array}{lll}v_{1} & v_{2} & v_{3}\end{array}\right]\left[\begin{array}{lll}1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9\end{array}\right]`,
+
+得
+:math:`T\left(v_{1}\right)=v_{1}+4 v_{2}+7 v_{3}=7 v_{3}+4 v_{2}+v_{1}`,
+那么 :math:`T\left(v_{1}\right)` 在基 :math:`v_{3}, v_{2}, v_{1}`
+下的坐标是 :math:`(7,4,1)`.
+
+线性变换与矩阵的同构关系
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+设 :math:`v_{1}, v_{2}, \ldots, v_{n}` 是 :math:`n` 维向量空间 :math:`V`
+的一 组基, 对任意给定的 :math:`n` 个向量
+:math:`w_{1}, w_{2}, \ldots, w_{n}`, 都存在线性变换 :math:`T`, 使得
+
+.. math:: T\left(v_{i}\right)=w_{i}(i=1,2, \ldots, n) .
+
+设 :math:`v_{1}, v_{2}, \ldots, v_{n}` 是 :math:`n` 维向量空间 :math:`V`
+的一 组基, :math:`A=\left[a_{i j}\right]` 是任一 :math:`n` 阶矩阵,
+则有唯一的 线性变换 :math:`T` 满足
+
+.. math:: T\left[\begin{array}{llll}v_{1} & v_{2} & \ldots &v_{n}\end{array}\right]=\left[\begin{array}{llll}v_{1} & v_{2} \ldots & v_{n}\end{array}\right] A
+
+.. math::
+
+   \sigma(\beta_{1},\beta_{2},\beta_{3},\beta_{4})=
+       \sigma(\alpha_{1},\alpha_{2},\alpha_{3},\alpha_{4})B
+       =(\alpha_{1},\alpha_{2},\alpha_{3},\alpha_{4})AB
+
+.. math:: (\beta_{1},\beta_{2},\beta_{3},\beta_{4})B^{-1}=(\alpha_{1},\alpha_{2},\alpha_{3},\alpha_{4})
+
+所以
+
+.. math::
+
+   \sigma(\beta_{1},\beta_{2},\beta_{3},\beta_{4})=
+       (\beta_{1},\beta_{2},\beta_{3},\beta_{4})B^{-1}AB
+
+设 :math:`R^{4}` 上的线性变换 :math:`\sigma` 在基
+  :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}` 下的矩阵为
+
+  .. math:: \left(\begin{array}{cccc}1 & 2 & 0 & 1 \\ 3 & 0 & -1 & 2 \\ 2 & 5 & 3 & 1 \\ 1 & 2 & 1 & 3\end{array}\right)
+
+  (1). 求 :math:`\sigma` 在基
+  :math:`\alpha_{1}, \alpha_{1}+\alpha_{2}, \alpha_{1}+\alpha_{2}+\alpha_{3}, \alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{4}`
+  下的矩阵.
+(2). 设向量 :math:`\gamma` 在基
+  :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4}` 下的坐标为
+  :math:`(1,2,3,4)`. 求 :math:`\sigma(\gamma)` 在 基
+  :math:`\alpha_{1}, \alpha_{1}+`
+  :math:`\alpha_{2}, \alpha_{1}+\alpha_{2}+\alpha_{3}, \alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{4}`
+  下的坐标.
+解：（1）这里的 :math:`A` 为
+
+  .. math:: A=\left(\begin{array}{cccc}1 & 2 & 0 & 1 \\ 3 & 0 & -1 & 2 \\ 2 & 5 & 3 & 1 \\ 1 & 2 & 1 & 3\end{array}\right)
+
+  令 :math:`\beta_{1}=\alpha_{1},~\beta_{2}=\alpha_{1}+\alpha_{2},~\beta_{3}=\alpha_{1}+\alpha_{2}+\alpha_{3},~\beta_{4}=\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{4}` ，从而
+
+  .. math:: B=\begin{pmatrix}1&1&1&1\\0&1&1&1\\0&0&1&1\\0&0&0&1\end{pmatrix}
+
+  于是在新基下的表示矩阵为
+
+  .. math::
+
+     B^{-1}AB=\begin{pmatrix}1&-1&&\\&1&-1&\\&&1&-1\\&&&1\end{pmatrix}
+         \begin{pmatrix}1&2&0&1\\3&0&-1&2\\2&5&3&1\\1&2&1&3\end{pmatrix}
+         \begin{pmatrix}1&1&1&1\\0&1&1&1\\0&0&1&1\\0&0&0&1\end{pmatrix}
+
+（2）
+
+.. math:: \gamma=(\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4})\begin{pmatrix}1\\2\\3\\4\end{pmatrix}
+
+.. math::
+
+   \sigma(\gamma)=\sigma(\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4})\begin{pmatrix}1\\2\\3\\4\end{pmatrix}=
+       (\alpha_{1}, \alpha_{2}, \alpha_{3}, \alpha_{4})A\begin{pmatrix}1\\2\\3\\4\end{pmatrix}=
+       (\beta_{1},\beta_{2},\beta_{3},\beta_{4})B^{-1}A\begin{pmatrix}1\\2\\3\\4\end{pmatrix}
+
+设 :math:`\sigma` 为 :math:`n` 维线性空间 :math:`V` 上的线性变换,
+  :math:`\sigma` 的秩为 :math:`r, 0<r<n`, 且满足
+  :math:`\sigma^{2}=\sigma`, 求 :math:`\sigma` 的特征多项式.
+解：矩阵的秩与它的特征值 :math:`\lambda_{i}=0` 的重数 :math:`i` 有关，当矩阵可对角化时， :math:`i=n-r`;当矩阵不可对角化时，
+  :math:`i\geqslant n-r` .
+
+线性变换可以看做矩阵，从而这个矩阵满足 :math:`A^{2}=A` ，于是其特征值分别为 :math:`0,1` ，所以 :math:`A` 可对角化；而 :math:`\operatorname{r}(A)=r<n` ，于是其特征多项式为
+
+.. math:: \lambda^{n-r}(\lambda-1)^{r}=0
+
+设 :math:`\sigma` 为数域 :math:`F` 上线性空间 :math:`V`
+  上的一个线性变换, :math:`\sigma` 在 :math:`V` 的基
+  :math:`\alpha_{1}, \alpha_{2}, \alpha_{3}`, :math:`\alpha_{4}`
+  下的矩阵为
+
+  .. math::
+
+     A=\left[\begin{array}{cccc}
+     1 & -1 & 0 & 1 \\
+     0 & 0 & 1 & 0 \\
+     1 & -1 & -1 & 1 \\
+     1 & -1 & -1 & 1
+     \end{array}\right]
+
+   分别求
+  :math:`\operatorname{Im}(\sigma), \operatorname{ker}(\sigma), \operatorname{ker}(\sigma) \cap \operatorname{Im}(\sigma)`
+  的基.
+解：像空间的坐标向量可由 :math:`A` 的列向量生成.易知 :math:`\operatorname{A}=2` ，且 :math:`A` 的第一列和第三列向量线性无关，故 :math:`\operatorname{Im}(\sigma)` 的基的坐标向量为
+
+  .. math:: \begin{pmatrix}1\\0\\1\\1\end{pmatrix},~\begin{pmatrix}0\\1\\-1\\-1\end{pmatrix}
+
+  即 :math:`\operatorname{Im}(\sigma)` 的基为 :math:`\alpha_{1}+\alpha_{3}+\alpha_{4}` 和 :math:`\alpha_{2}-\alpha_{3}-\alpha_{4}`.
+
+核空间的坐标向量为齐次方程组 :math:`Ax=0` 的解全体，其基即为该方程组的基础解系，可得
+
+.. math:: \begin{pmatrix}1\\1\\0\\0\end{pmatrix},~\begin{pmatrix}-1\\0\\0\\1\end{pmatrix}
+
+所以 :math:`\operatorname{ker}(\sigma)` 的基为 :math:`\alpha_{1}+\alpha_{2}` 和 :math:`-\alpha_{1}+\alpha_{4}`.
+
+构造齐次矩阵方程
+
+.. math:: \begin{pmatrix}1&0&-1&1\\0&1&-1&0\\1&-1&0&0\\1&-1&0&1\end{pmatrix}\begin{pmatrix}k_{1}\\k_{2}\\L_{1}\\L_{2}\end{pmatrix}=\mathbf{0}
+
+从而得到 :math:`\begin{pmatrix}k_{1}&k_{2}&L_{1}&L_{2}\end{pmatrix}^{T}=\begin{pmatrix}1&1&1&0\end{pmatrix}^{T}` ，于是 :math:`\operatorname{ker}(\sigma) \cap \operatorname{Im}(\sigma)` 的基为 :math:`\alpha_{1}+\alpha_{2}`.
+
+在复数域 :math:`C` 上的线性空间 :math:`M_{n}(C)` 内定义一个线性变换
+  :math:`\sigma` 如下:
+
+  .. math::
+
+     \sigma\left(\left[\begin{array}{ccccc}
+     a_{11} & a_{12} & \cdots & a_{1 n-1} & a_{1 n} \\
+     a_{21} & a_{22} & \cdots & a_{2 n-1} & a_{2 n} \\
+     \cdots & \cdots & \cdots & \cdots & \cdots \\
+     a_{n 1} & a_{n 2} & \cdots & a_{n n-1} & a_{n n}
+     \end{array}\right]\right)=\left[\begin{array}{ccccc}
+     a_{12} & a_{13} & \cdots & a_{1 n} & a_{11} \\
+     a_{22} & a_{23} & \cdots & a_{2 n} & a_{21} \\
+     \cdots & \cdots & \cdots & \cdots & \cdots \\
+     a_{n 2} & a_{n 3} & \cdots & a_{n n} & a_{n 1}
+     \end{array}\right],
+
+   (1) 求 :math:`\sigma` 的特征多项式.
+(2) 证明 :math:`\sigma` 的矩阵可以相似对角化.
+
+已知 :math:`R^{3}` 的两个基分别为
+  :math:`\varepsilon_{1}=(1,0,0)^{T}, \varepsilon_{2}=(0,1,1)^{T}, \varepsilon_{3}=(0,1,0)^{T}`
+  和
+  :math:`\eta_{1}=(1,-1,0)^{T}, \eta_{2}=(1,0,0)^{T}, \eta_{3}=(0,0,1)^{T}`,
+(1) 设 :math:`\sigma` 是 :math:`R^{3}` 上的线性变换, 已知
+  :math:`\sigma` 在基 :math:`\eta_{1}, \eta_{2}, \eta_{3}` 下的矩阵为
+  :math:`A=\left(\begin{array}{ccc}1 & 0 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 0\end{array}\right)`,
+  求 :math:`\sigma` 在基
+  :math:`\varepsilon_{1}, \varepsilon_{2}, \varepsilon_{3}` 下的矩阵.
+(2) 设 :math:`\alpha=(1,-1,1)^{T}`, 求 :math:`\sigma(\alpha)` 在基
+  :math:`\varepsilon_{1}, \varepsilon_{2}, \varepsilon_{3}` 下的坐标.
+
+定义 :math:`M_{2}(\mathbb{R})` 上线性变换
+:math:`T: M_{2}(\mathbb{R}) \rightarrow M_{2}(\mathbb{R})` 满足
+
+.. math::
+
+   T(A)=\left[\begin{array}{ll}
+   1 & 1 \\
+   1 & 1
+   \end{array}\right] A\left[\begin{array}{ll}
+   2 & 0 \\
+   0 & 1
+   \end{array}\right]
+
+ 求 :math:`T` 在基
+:math:`\left[\begin{array}{ll}1 & 0 \\ 0 & 0\end{array}\right],\left[\begin{array}{ll}0 & 1 \\ 0 & 0\end{array}\right],\left[\begin{array}{ll}0 & 0 \\ 1 & 0\end{array}\right],\left[\begin{array}{ll}0 & 0 \\ 0 & 1\end{array}\right]`
+下的矩阵。
+
+设 :math:`T` 为 :math:`\mathbb{R}^{2}` 上的线性变换, 且满足
+
+  .. math::
+
+     T\left(\left[\begin{array}{l}
+     1 \\
+     0
+     \end{array}\right]\right)=\left[\begin{array}{r}
+     -4 \\
+     3
+     \end{array}\right], \quad T\left(\left[\begin{array}{l}
+     1 \\
+     1
+     \end{array}\right]\right)=\left[\begin{array}{r}
+     -10 \\
+     8
+     \end{array}\right] .
+
+   (a) 求 :math:`T` 在基
+  :math:`\left[\begin{array}{l}1 \\ 0\end{array}\right],\left[\begin{array}{l}0 \\ 1\end{array}\right]`
+  下的矩阵 :math:`A` 。 (b) 计算
+  :math:`T\left(\left[\begin{array}{l}2 \\ 3\end{array}\right]\right)` .
+解：(1)
+  :math:`T\left(\left[\begin{array}{l}0 \\ 1\end{array}\right]\right)=T\left(\left[\begin{array}{l}1 \\ 1\end{array}\right]\right)-T\left(\left[\begin{array}{l}1 \\ 0\end{array}\right]\right)=\left[\begin{array}{r}-6 \\ 5\end{array}\right]`.
+
+所以 :math:`T` 在基
+  :math:`\left[\begin{array}{l}1 \\ 0\end{array}\right],\left[\begin{array}{l}0 \\ 1\end{array}\right]`
+  下的矩阵为
+  :math:`A=\left[\begin{array}{rr}-4 & -6 \\ 3 & 5\end{array}\right]`.
+(2)
+  :math:`T\left(\left[\begin{array}{l}2 \\ 3\end{array}\right]\right)=A\left[\begin{array}{l}2 \\ 3\end{array}\right]=\left[\begin{array}{r}-26 \\ 21\end{array}\right]`.
+
+或者
+:math:`T\left(\left[\begin{array}{l}2 \\ 3\end{array}\right]\right)=2 T\left(\left[\begin{array}{l}1 \\ 0\end{array}\right]\right)+3 T\left(\left[\begin{array}{l}0 \\ 1\end{array}\right]\right)=\left[\begin{array}{r}-26 \\ 21\end{array}\right]`.
+
+特殊矩阵
+========
+
+幂零矩阵
+--------
+
+:math:`\exists m\in\mathbb{Z}^{+}` 使得 :math:`A^{m}=O` ，则称 :math:`A` 为幂零矩阵.
+
+幂零矩阵 :math:`A\in\mathbb{C}^{n\times n}` 有以下等价命题：
+
+1. :math:`A` 是幂零矩阵；
+
+2. :math:`A` 的特征值全为0；于是 :math:`|A|=0`
+
+3. :math:`A^{r(A)+1}=O` ；
+
+4. :math:`A^{n}=O` ；
+
+5. :math:`\forall\lambda\in\mathbb{C},|\lambda I-A|=\lambda^{n}` ；
+
+6. :math:`\forall k\in\mathbb{Z}^{+},\operatorname{tr}(A^{k})=0`
+
+幂等矩阵
+--------
+
+设 :math:`A,B` 为同阶幂等矩阵，即 :math:`A^{2}=A,~B^{2}=B`.若 :math:`A` 和 :math:`B` 的秩相同，问 :math:`A` 和 :math:`B` 的秩是必定相似？
+解：幂等矩阵必可对角化.
+
+若 :math:`A` 和 :math:`B` 的秩都等于 :math:`r`,则它们都相似于主对角线上有 :math:`r` 个 :math:`1` ， :math:`n-r` 个 :math:`0` 的对角矩阵，因此它们彼此相似.

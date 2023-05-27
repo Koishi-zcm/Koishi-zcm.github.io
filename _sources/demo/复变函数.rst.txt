@@ -1,0 +1,4712 @@
+********
+复变函数
+********
+
+复数与复变函数
+==============
+
+
+复数及其代数运算
+----------------
+
+定义 : 复数的概念
+    对任意二元实数 :math:`x,.y` ，我们称 :math:`z=x+\mathrm{i}y` 或 :math:`z=x+y\mathrm{i}` 为复数，其中 :math:`x,y` 分别称为 :math:`z` 的实部和虚部，记作
+
+    .. math::
+	    \begin{align}
+		x=\operatorname{Re}(z),\qquad y=\operatorname{Im}(z)
+		\end{align}
+
+与实数不同，一般来说，任意两个复数不能比较大小。但复数具有四则运算，且满足交换律、结合律和分配率：对于两个复数 :math:`z_{1}=x_{1}+iy_{1}` ， :math:`z_{2}=x_{2}+iy_{2}` ，满足
+
+.. math::
+	\begin{align*}
+	 & z_{1}\pm z_{2}=(x_{1}+iy_{1})\pm (x_{2}+iy_{2})=(x_{1}\pm x_{2})+i(y_{1}\pm y_{2});\\
+	 & z_{1}\cdot z_{2}=(x_{1}+iy_{1})(x_{2}+iy_{2})=(x_{1}x_{2}-y_{1}y_{2})+i(x_{2}y_{1}+x_{1}y_{2});\\
+	 & \frac{z_{1}}{z_{2}}=\frac{x_{1}x_{2}+y_{1}y_{2}}{x_{2}^{2}+y_{2}^{2}}+i\frac{x_{2}y_{1}-x_{1}y_{2}}{x_{2}^{2}+y_{2}^{2}}
+	\end{align*}
+
+
+定义 : 共轭复数
+    实部相同而虚部绝对值相等、符号相反的两个复数称为共轭复数，与 :math:`z` 共轭的复数记作 :math:`\bar{z}` 。如果 :math:`z=x+\mathrm{i}y` ，那么 :math:`\bar{z}=x-\mathrm{i}y` 。
+
+
+共轭复数具有如下性质：
+
+.. math::
+	\begin{align*}
+	    & \overline{z_{1}\pm z_{2}}=\bar{z}_{1}\pm \bar{z}_{2}, ~~\overline{z_{1}z_{2}}=\bar{z}_{1}\bar{z}_{2}, 
+	    ~~\overline{(\frac{z_{1}}{z_{2}})}=\frac{\bar{z}_{1}}{\bar{z}_{2}};\\
+	    & \bar{\bar{z}}=z;\\
+	    & z\bar{z}=[\operatorname{Re}(z)]^{2}+[\operatorname{Im}(z)]^{2};\\
+	    & z+\bar{z}=2\operatorname{Re}(z),~~z-\bar{z}=2i\operatorname{Im}(z).
+	\end{align*}
+
+
+**例题** 设 :math:`z_{1}=x_{1}+iy$,$z_{2}=x_{2}+iy_{2}` 为两个任意复数，证明 :math:`z_{1}\bar{z}_{2}+\bar{z}_{1}z_{2}=2\operatorname{Re}(z_{1}\bar{z}_{2})` 。
+
+**解** 
+
+.. math::
+    \begin{align*}
+        z_{1}\bar{z}_{2}+\bar{z}_{1}z_{2} 
+        &= (x_{1}+iy_{1})(x_{2}-iy_{2})+(x_{1}-iy_{1})(x_{2}+iy_{2})\\
+        &= (x_{1}x_{2}+y_{1}y_{2})+i(x_{2}y_{1}-x_{1}y_{2})+(x_{1}x_{2}+y_{1}y_{2})+i(x_{1}y_{2}-x_{2}y_{1})\\
+        &=2(x_{1}x_{2}+y_{1}y_{2})=2\operatorname{Re}(z_{1}\bar{z}_{2})
+    \end{align*}
+
+
+.. note:: 
+
+	实际上，利用共轭复数的性质，将式子变成两个共轭相加，可以进行化简：
+
+	.. math::
+		\begin{align}
+		z_{1}\bar{z}_{2}+\bar{z}_{1}z_{2}=z_{1}\bar{z}_{2}+\overline{z_{1}\bar{z}_{2}}=2\operatorname{Re}(z_{1}\bar{z}_{2})
+		\end{align}
+
+	
+
+
+复数的几何表示
+--------------
+
+复平面
+^^^^^^
+
+定义 : 复平面
+    复数 :math:`z=x+\mathrm{i}y` 可以用该平面上坐标 :math:`(x,y)` 的点来表示，x轴称为实轴，y轴称为虚轴，两轴所在平面称为复平面或z平面。复数z也能用向量 :math:`\overrightarrow{OP}` ，向量的长度称为z的模或绝对值，记作
+
+    .. math::
+	    \begin{align}
+		\left | z \right |=r=\sqrt{x^{2}+y^{2}} 
+		\end{align}
+
+复数的模满足以下性质：
+
+.. math::
+	\begin{align}
+	    & \left | z \right | \leqslant \left | x \right | +\left | y \right | ,\\
+	    & z\bar{z}=\left | z \right |^{2}=\left | z^{2} \right |
+	\end{align}
+
+
+定义 : 辐角
+    在 :math:`z\ne 0` 的情况，以正实轴为始边，以表示 :math:`z` 的向量 :math:`\overrightarrow{OP}` 为终边的角的弧度数 :math:`\theta` 称为 :math:`z` 的辐角，记作
+
+.. math::
+	\begin{align}
+	\operatorname{Arg}z=\theta
+	\end{align}
+
+此时有 :math:`\operatorname{tg}(\operatorname{Arg}z)=\frac{y}{x}` 。
+
+
+在z的全部辐角中，我们把满足 :math:`-\pi<\theta_{0}\leqslant\pi` 的 :math:`\theta_{0}` 称为 :math:`\operatorname{Arg}z` 的主值（主辐角），记作 :math:`\theta_{0}=\operatorname{arg}z` 。
+
+因此，根据向量的加减法则，可以知道
+
+.. math::
+	\begin{align}
+	    & \left | z_{1}+z_{2} \right |\leqslant \left | z_{1} \right |+\left | z_{2} \right |   ;\\
+	    & \left | z_{1}-z_{2} \right |\geqslant \left | \left | z_{1} \right | -\left | z_{2} \right |  \right | 
+	\end{align}
+
+根据实轴对称的关系，可以知道 :math:`\left | z \right | =\left | \bar{z}  \right |` 。如果z不在负实轴和原点上，则有 :math:`\operatorname{arg}z=-\operatorname{arg}\bar{z}` 。
+
+定义 : 三角表达式
+    利用直角坐标系与极坐标的关系： :math:`x=r\cos\theta,~~y=r\sin\theta` ，可以把z表示成下面的形式：
+
+    .. math::
+		\begin{align}
+		z=r(\cos\theta+i\sin\theta)
+		\end{align}
+
+定义 : 指数表达式
+    利用欧拉公式的特殊情形： :math:`e^{\mathrm{i}\theta}=\cos\theta+\mathrm{i}\sin\theta` ，可以得到
+
+    .. math::
+		\begin{align}
+		z=re^{\mathrm{i}\theta}
+		\end{align}
+
+
+
+
+复球面
+^^^^^^
+
+定义 : 复球面
+    取一个与复平面相切于原点$z=0$的球面，球面上的点S与原点重合，通过S作垂直于复平面的直线与球面相较于另一点N.对于复平面上的任何一点z，可以通过从N延伸出来的直线使得球面上的点（除了N点）与复平面内的点存在一一对应关系。
+
+    规定：复数中有一个唯一的“无穷大”与复平面上的无穷远点相对应，并把它记作 :math:`\infty` ，因而球面上的北极N就是复数无穷大 :math:`\infty` 的几何表示。
+
+    如此使得球面上的每一个点都有唯一的一个复数与之对应的球面，称为复球面，用 :math:`\mathbb{S}^{2}` 来表示。实际上就是球极投影： :math:`P:\mathbb{S}^{2}\longrightarrow\overline{\mathbb{C}}=\mathbb{C} \cup  \left \{ \infty \right \}` 。
+
+
+.. note:: 对于复数$\infty$来说，实部、虚部与辐角的概念均无意义，但它的模则规定为正无穷大，即 :math:`\left | \infty  \right | =+\infty` 。对于其他每一个复数z则有 :math:`\left | z \right | <\infty` 。
+
+
+
+复数的乘幂与方根
+----------------
+
+
+乘积与商
+^^^^^^^^
+
+设有两个复数 :math:`z_{1}=r_{1}(\cos\theta_{1}+i\sin\theta_{1}),~~z_{2}=r_{2}\cos\theta_{2}+i\sin\theta_{2})` ，可以得到：两个复数乘积的模等于它们的模的乘积，即
+
+.. math::
+	\begin{align}
+	\left | z_{1}z_{2} \right |=\left | z_{1} \right |\left | z_{2} \right |
+	\end{align}
+
+两个复数乘积的辐角等于它们的辐角的和，即
+
+.. math::
+	\begin{align}
+	\operatorname{Arg}(z_{1}z_{2})=\operatorname{Arg}z_{1}+\operatorname{Arg}z_{2}
+	\end{align}
+
+两个复数的商的模等于它们的模的商，即
+
+.. math::
+	\begin{align}
+	\left | \frac{z_{1}}{z_{2}}  \right | =\frac{\left | z_{1} \right | }{\left | z_{2} \right | }
+	\end{align}
+
+
+两个复数的商的辐角等于被除数与除数的辐角之差，即
+
+.. math::
+	\begin{align}
+	\operatorname{Arg}(\frac{z_{1}}{z_{2}})=\operatorname{Arg}z_{2}-\operatorname{Arg}z_{1}
+	\end{align}
+
+
+.. note:: 
+
+	利用指数表示可以简洁地表达出这些定理：
+
+	.. math::
+		\begin{align}
+		& z_{1}z_{2}=r_{1}r_{2}e^{i(\theta_{1}+\theta_{2})}\quad ;\quad \frac{z_{2}}{z_{1}}=\frac{r_{2}}{r_{1}}e^{i(\theta_{2}-\theta_{1})}
+		\end{align}
+
+
+
+幂与根
+^^^^^^
+
+对于整数n和 :math:`z=r(\cos\theta+i\sin\theta)` ，有
+
+.. math::
+	\begin{align}
+	z^{n}=r^{n}(\cos n\theta+i\sin n\theta)=r^{n}e^{in\theta}
+	\end{align}
+
+特别地，当 :math:`r=1` 时，即得到De Moivre公式：
+
+.. math::
+	\begin{align}
+	(cos\theta+i\sin\theta)^{n}=\cos n\theta+i\sin n\theta
+	\end{align}
+
+根据 :math:`w^{n}=z` 反求根 :math:`w` 的思路，可以求出 :math:`\sqrt[n]{z}` ，满足
+
+.. math::
+	\begin{align}
+	\sqrt[n]{z}=\sqrt[n]{r}\left( \cos\frac{\theta+2k\pi}{n}+i\sin\frac{\theta+2k\pi}{n} \right)
+	\end{align}
+
+其中 :math:`k=0,1,2,\cdots,n-1` 。
+
+.. note:: 从几何上理解， :math:`\sqrt[n]{z}` 的n个值就是以原点为中心， :math:`r^{\frac{1}{n}}` 为半径的圆的内接正n边形的n个顶点.
+
+
+
+
+区域
+------
+
+区域的概念
+^^^^^^^^^^
+
+首先要了解复平面上一点的邻域、集合的内点与开集的概念。
+
+平面上以 :math:`z_{0}` 为中心， :math:`\delta` (任意的正数)为半径的圆：
+
+.. math::
+	\begin{align}
+	\left | z-z_{0} \right |<\delta
+	\end{align}
+
+内部的点的集合称为 :math:`z_{0}` 的邻域，而称由不等式 :math:`0<\left | z-z_{0} \right |<\delta` 所确定的点集为 :math:`z_{0}` 的 **去心邻域** 。
+
+.. note:: 包括无穷点自身在内且满足 :math:`|z|>M` 的所有点的集合，其中实数 :math:`M>0` ，称为无穷远点的邻域，或者说，无穷远点的邻域是包括无穷点自身在内的圆 :math:`|z|=M` 的外部.而不包括无穷远点自身在内的集合，称为无穷远点的去心邻域，可表示为 :math:`M<|z|<+\infty` 。
+
+
+设G为一平面点集， :math:`z_{0}` 为G中任意一点.如果存在 :math:`z_{0}` 的一个邻域，该邻域内的所有点都属于G，那么称 :math:`z_{0}` 为G的 **内点** 。如果G内的每个点都是它的内点，则称G为 **开集** 。
+
+平面点集D称为一个区域，如果它满足下列两个条件：
+
+- D是一个开集;
+- D是连通的，就是说D中任何两点都可以用完全属于D的一条折线连接起来。
+  
+设D为复平面内的一个区域，如果点P不属于D，但在P的任意小的邻域内总包含有D中的点，这样的点P称为D的边界点。D的所有边界点组成D的边界。区域的边界可能是由几条曲线和一些孤立的点所组成的。区域D与它的边界一起构成闭区域或闭域，记作 :math:`\overline{D}` 。
+
+如果一个区域D可以被包含在一个以原点为中心的圆里面，即存在正数M，使区域D的每个点z都满足 :math:`|z|<M` ，那么D称为有界的，否则称为无界的。
+
+
+
+单连通域与多连通域
+^^^^^^^^^^^^^^^^^^
+
+设 :math:`x(t)` 和 :math:`y(t)` 是两个连续的实变函数，若令
+
+.. math::
+	\begin{align}
+	z(t)=x(t)+iy(t)
+	\end{align}
+
+那么该平面曲线就可以用一个方程 :math:`z=z(t)\quad (a\leqslant t\leqslant b)` 来代表。如果在区间 :math:`a\leqslant t \leqslant b` 上 :math:`x'(t)` 和 :math:`y'(t)` 都是连续的，且对t的每一个值，都有
+
+.. math::
+	\begin{align}
+	\sqrt{[x'(t)]^{2}+[y'(t)]^{2}}\ne0
+	\end{align}
+ 
+那么该曲线称为光滑的。由几段依次相接的光滑曲线所组成的曲线称为按段光滑曲线。
+
+
+.. note:: 
+
+	导曲线 :math:`z'(t)=x'(t)+iy'(t),~t\in [a,b]` ，得到的是曲线的切向量，表示一种趋势，因此不能是零向量。 从几何角度来看，导曲线得到零的话，说明这个点是不光滑的。比如， :math:`\left\{ \begin{array}{ll}x=t^{3}\\y=t^{2}\end{array}\right.` 。
+
+
+
+复变函数
+--------
+
+定义 : 复变函数
+    设 :math:`G` 是一个复数 :math:`z=x+iy` 的集合， :math:`f:G\to \mathbb{C}` 为从 :math:`G` 到 :math:`\mathbb{C}` 的一个对应法则，在规则下，对 :math:`\forall z=x+iy\in G` ，都有一个或多个 :math:`w=u+iv\in \mathbb{C}` 与之对应，则称 :math:`W` 是关于 :math:`z` 的复变函数，记作 :math:`w=f(z)` 。
+
+
+.. note:: 如果 :math:`z` 的一个值对应着 :math:`w` 的一个值，则称 :math:`f(z)` 是单值的；如果 :math:`z` 的一个值对应着 :math:`w` 的两个或两个以上的值，则称 :math:`f(z)` 是多值的。 :math:`G^{*}=\left \{ w=f(z)|z\in G \right \}` ，称为函数值的集合。 在之后的讨论中所涉及的函数都是单值函数。
+
+
+
+定义 : 复变函数的极限
+    设 :math:`w=f(z)` 在 :math:`0<|z-z_{0}|<\rho` 上有定义，如果 :math:`\exists A\in \mathbb{C}` ，对于任意给定的 :math:`\varepsilon >0` ，都有 :math:`\delta=\delta(\varepsilon)>0` ，使得当 :math:`0<|z-z_{0}|<\delta` 时，有
+
+.. math::
+	\begin{align}
+	|f(z)-A|<\varepsilon
+	\end{align}
+
+则称，当 :math:`z\to z_{0}` 时， :math:`f(z)` 以 :math:`A` 为极限，记作
+
+.. math::
+	\begin{align}
+	\lim_{z\to z_{0}}=f(z)=A
+	\end{align}
+
+
+:math:`\lim\limits_{z\to z_{0}}=A=\alpha+i\beta,(\alpha,\beta\in\mathbb{R})` 的充要条件为
+
+.. math::
+	\begin{align}
+	\left\{\begin{array}{ll}
+	\lim\limits _{x\to x_{0}\atop y\to y_{0}}u(x,y)=\alpha  \\
+	\lim\limits _{x\to x_{0}\atop y\to y_{0}}v(x,y)=\beta
+	\end{array}\right.
+	\end{align}
+
+
+**例题** 证明 :math:`f(z)=\frac{\overline{z}}{z}` ， :math:`z\ne 0` ，当 :math:`z\to 0` 时的极限不存在。
+
+**证明**  :math:`f(z)=\frac{x-iy}{x+iy}` ，当 :math:`y=kx` 的方式趋近，则
+
+.. math::
+	\begin{align}
+	\frac{x-ikx}{x+ikx}=\frac{1-ik}{1+ik}
+	\end{align}
+
+当 :math:`k` 取值不同时结果不同，因此极限不存在。
+
+或者将原式写成指数表达式， :math:`z=re^{i\theta}` ，则
+
+.. math::
+	\begin{align}
+	\frac{\overline{z}}{z}=\frac{re^{-i\theta}}{re^{i\theta}}=re^{-2i\theta}
+	\end{align}
+
+当 :math:`z` 沿着不同射线 :math:`\operatorname{arg}z=\theta` 趋于零时， :math:`f(z)` 趋于不同的值，因此极限不存在。
+
+
+
+**例题** 证明函数 :math:`f(z)=\frac{\operatorname{Re}(z)}{|z|}` 当 :math:`z\to 0` 时的极限不存在。
+
+**证明** 令 :math:`z=r(\cos\theta+i\sin\theta)` ，则
+
+.. math::
+	\begin{align}
+	f(z)=\frac{r\cos\theta}{r}=\cos\theta
+	\end{align}
+
+当 :math:`z` 沿不同射线 :math:`\operatorname{arg}z=\theta` 趋于零时， :math:`f(z)` 趋于不同值，因此极限不存在。 
+
+
+
+
+定义 : 复变函数的连续性
+    若 :math:`\lim\limits_{z\to z_{0}}f(z)=f(z_{0})` 称 :math:`z` 在 :math:`z_{0}` 连续。
+
+定理 : 复变函数在点的连续的充要条件
+    :math:`f(z)` 在 :math:`z_{0}=x_{0}+iy_{0}` 连续的充要条件为 :math:`u(x,y),v(x,y)` 在 :math:`(x_{0},y_{0})` 连续。
+
+多项式 :math:`P_{n}(z)=a_{n}z^{n}+a_{n-1}z^{n-1}+\cdots+a_{1}z+a_{0},~a_{j}\in\mathbb{C}` 对复平面内所有的 :math:`z` 都是连续的；而有理分式函数 :math:`w=\frac{P(z)}{Q(z)}` ，在复平面内使分母不为零的点也是连续的。
+
+:math:`\operatorname{arg}z\in (-\pi ,\pi ]` 的连续的范围是 :math:`\mathbb{C}\backslash (-\infty,0]` 。
+
+
+
+
+
+
+
+解析函数
+========
+
+
+
+复变函数的导数与微分
+--------------------
+
+定义 : 复变函数的导数
+    设 :math:`z_{0}\in D` ，若
+
+.. math::
+	\begin{align}
+	\lim_{\Delta z\to 0}\frac{f(z_{0}+\Delta z)-f(z_{0})}{\Delta z}=A\in \mathbb{C}\quad (\Delta z=\Delta x+i\Delta y)
+	\end{align}	
+
+则称 :math:`f(z)` 在 :math:`z_{0}` 可导， :math:`A` 称 :math:`f(z)` 在 :math:`z_{0}` 的导数，记作
+
+.. math::
+	\begin{align}
+	f'(z_{0})=\frac{\mathrm{d} f}{\mathrm{d} z}|_{z=z_{0}}
+	\end{align}
+
+
+定义 : 复变函数的微分
+    若 :math:`w=f(z)` 在 :math:`z_{0}` 某个邻域内有表达式：
+
+.. math::
+	\begin{align}
+	f(z_{0}+\Delta z)-f(z_{0})=A\Delta z+\rho(\Delta z)\cdot \Delta z
+	\end{align}	
+
+其中 :math:`A\in \mathbb{C},~\lim\limits_{\Delta z\to 0}\rho(\Delta z)=0` ，则称 :math:`f(z)` 在 :math:`z_{0}` 可微， :math:`A\Delta z` 称为 :math:`f(z)` 在 :math:`z_{0}` 处的微分，记作 :math:`\mathrm{d}w=A\cdot \Delta z` 。
+
+
+.. note:: :math:`\mathrm{d}w=\mathrm{d}f=\mathrm{d}z=\Delta z` ，可导等价于可微；复数中只能用 :math:`o(|z|)` 或 :math:`\rho(\Delta z)` 。
+
+
+**例题** 证明： :math:`(z^{n})'=nz^{n-1}` 。
+
+**证明** 根据导数的定义有
+
+.. math::
+	\begin{align}
+	\lim\limits_{\Delta z\to 0}\frac{(z+\Delta z)^{n}-z^{n}}{\Delta z}=\lim\limits_{\Delta z\to 0}z^{n-1}\cdot \frac{(1+\frac{\Delta z}{z})^{n}-1}{\frac{\Delta z}{z}}
+	\end{align}
+
+根据 :math:`\lim\limits_{x\to 0}\frac{(1+x)^{a}-1}{x}=a~(a\in\mathbb{R})` ，得到
+
+.. math::
+	\begin{align}
+	\lim\limits_{\Delta z\to 0}z^{n-1}\cdot \frac{(1+\frac{\Delta z}{z})^{n}-1}{\frac{\Delta z}{z}}=nz^{n-1}
+	\end{align}
+
+所证结论成立。
+
+
+
+**例题** 考察函数 :math:`f(z)=\sqrt{|x||y|^{\beta}}` 在 :math:`z=0` 处的可导性，其中 :math:`\beta\geqslant 1` 为常数。
+
+**解** 在 :math:`z=0` 处，令 :math:`\Delta z=re^{i\theta}` ，则有
+
+.. math::
+	\begin{align}
+	\lim\limits_{\Delta z\to0}\frac{\Delta f}{\Delta z}=\lim\limits_{r\to0}\frac{\sqrt{r^{1+\beta}|\cos\theta||\sin\theta|^{\beta}}}{re^{i\theta}}
+	\end{align}
+
+于是，当 :math:`\beta=1` 时，极限取值与 :math:`\theta` 有关，此时不可导；当 :math:`\beta>1` 时， :math:`f(z)` 可导。
+
+
+
+
+**例题** 设 :math:`n\geqslant 1` 为固定正整数，考察函数 :math:`f(z)=\left \{ \begin{array}{cl}\frac{\overline{z}^{n}}{z} , & z\ne0, \\ 0, & z=0 \end{array}\right.` ，在 :math:`z=0` 处的连续性以及可导性。
+
+**解** 在 :math:`z=0` 处，令 :math:`\Delta z=re^{i\theta}` ，则有
+
+.. math::
+	\begin{align}
+	\lim\limits_{\Delta z\to0}\frac{\Delta f}{\Delta z}=\lim\limits_{r\to0}\frac{r^{n-1}e^{-(n+1)i\theta}}{re^{i\theta }}
+	\end{align}
+
+于是， :math:`n>2` 时， :math:`f(z)` 可导；当 :math:`n=2` 时，函数 :math:`f(z)` 连续但不可导；当 :math:`n=1` 时，函数 :math:`f(z)` 不连续。
+
+
+
+**例题** 讨论函数 :math:`f(z)=\frac{\operatorname{Re}(z)}{1+|z|}` 在原点处的连续性与可导性。
+
+**解** 因为当 :math:`z\to0` 时，
+
+.. math::
+	\begin{align}
+	\big|f(z)-f(0)\big|=\frac{\big|\operatorname{Re}(z)\big|}{1+|z|}\leqslant \big|\operatorname{Re}(z)\big|\to 0 
+	\end{align}
+
+所以 :math:`f(z)` 在原点处连续。又因为
+
+.. math::
+	\begin{align}
+	\frac{f(0+\Delta z)-f(0)}{\Delta z}=\frac{\operatorname{Re}(\Delta z)}{(\Delta z)(1+|\Delta z|)}
+	\end{align}
+
+当 :math:`\Delta z` 沿直线 :math:`y=kx` 趋于零时，上式极限随 :math:`k` 而变，故 :math:`f(z)` 在原点处不可导。
+
+
+
+定理 : 复变函数可导的充要条件
+    设函数 :math:`f(z)=u(x,y)+iv(x,y)` 定义在区域 :math:`D` 内，则 :math:`f(z)` 在 :math:`D` 内一点 :math:`z=x+iy` 可导的充要条件是： :math:`u(x,y)` 与 :math:`v(x,y)` 在点 :math:`(x,y)` 可微，并且在该点满足柯西-黎曼方程
+
+    .. math::
+		\begin{align}
+		\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y} ,\qquad \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}   
+		\end{align}
+
+根据上述定理可以得到函数 :math:`f(z)=u(x,y)+iv(x,y)` 在点 :math:`z=x+iy` 处的导数公式：
+
+.. math::
+	\begin{align}
+	f'(z) & =\frac{\partial u}{\partial x}-i\frac{\partial u}{\partial y}=\frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}\\
+	      & =\frac{\partial v}{\partial y}+i\frac{\partial v}{\partial x}=\frac{\partial v}{y}-i\frac{\partial u}{\partial y}
+	\end{align}
+
+
+
+**例题** 判断函数 :math:`f(z)=2x^{3}+3y^{2}i` 在何处可导。
+
+**解** 考虑柯西-黎曼方程：
+
+.. math::
+	\begin{align}
+	\begin{array}{ll}
+	    \frac{\partial u}{\partial x}=6x^{2}, & \frac{\partial u}{\partial y}=0 \\
+	    \frac{\partial v}{\partial x}=0, & \frac{\partial v}{\partial y}=9y^{2}
+	\end{array}
+	\end{align}
+
+于是有 :math:`6x^{2}=9y^{2}` ，从而可知 :math:`f(z)` 在直线 :math:`y=\pm \frac{\sqrt{6}}{3}x` 上可导。
+
+
+
+**例题** 判断函数 :math:`f(z)=xy^{2}=ix^{2}y` 在何处可导。
+
+**解** 考虑柯西-黎曼方程：
+
+.. math::
+	\begin{align}
+	\begin{array}{ll}
+	    \frac{\partial u}{\partial x}=y^{2}, & \frac{\partial u}{\partial y}=2xy \\
+	    \frac{\partial v}{\partial x}=2xy, & \frac{\partial v}{\partial y}=x^{2}
+	\end{array}
+	\end{align}
+
+于是有 :math:`\left \{ \begin{array}{ll}y^{2}=x^{2} \\ 2xy=-2xy \end{array} \right.` ，从而可知 :math:`f(z)` 在 :math:`(x,y)=(0,0)` 处可导。
+
+
+
+
+**例题** 判断函数 :math:`f(z)=\sin x\operatorname{ch}y+i\cos x\operatorname{sh}y` 在何处可导。
+
+**解** 考虑柯西-黎曼方程：
+
+.. math::
+	\begin{align}
+	\begin{array}{ll}
+	   \frac{\partial u}{\partial x}=\cos x\operatorname{ch}y , & \frac{\partial u}{\partial y}=\sin x\operatorname{sh}y \\
+	   \frac{\partial v}{\partial x}=-\sin x\operatorname{ch}y , & \frac{\partial v}{\partial y}=\cos x\operatorname{ch}y
+	\end{array}
+	\end{align}
+
+从而可知 :math:`f(z)` 在整个复平面上都可导。
+
+
+
+**例题** 判断 :math:`f(z)=\frac{x+2y}{x^{2}+y^{2}}+i\frac{2x-y}{x^{2}+y^{2}}` 在何处可导，何处解析，并在可导或解析处分别求出其导数。
+
+**解** 由于
+
+.. math::
+	\begin{align}
+	f(z)=\frac{(x-iy)+2i(x-iy)}{x^{2}+y^{2}}=\frac{(1+2i)\overline{z}}{\overline{z}z } =\frac{1+2i}{z}
+	\end{align}
+
+所以除 :math:`z=0` 外 :math:`f(z)` 处处可导，处处解析，且
+
+.. math::
+	\begin{align}
+	f'(z)=-\frac{1+2i}{z^{2}}\quad (z\ne0)
+	\end{align}
+
+
+
+**例题** 证明柯西-黎曼方程的极坐标形式是： :math:`\frac{\partial u}{\partial r}=\frac{1}{r}\frac{\partial v}{\partial \theta }, \quad \frac{\partial v}{\partial r}=-\frac{1}{r}\frac{\partial u}{\partial \theta }` 。
+
+**证明** 设 :math:`u=u(x,y),~v=v(x,y)` ，由于 :math:`x=r\cos\theta,~y=r\sin\theta` ，代入 :math:`u,v` 可知 :math:`u,v` 都是 :math:`r` 和 :math:`\theta` 的函数，并且
+
+.. math::
+	\begin{align}
+	r=\sqrt{x^{2}+y^{2}}, \quad \theta=\arctan\frac{y}{x} 
+	\end{align}
+
+由链式法则可得
+
+.. math::
+	\begin{align}
+	&\frac{\partial u}{\partial x}=\frac{\partial u}{\partial r}\cos\theta -\frac{\sin\theta }{r}\frac{\partial u}{\partial \theta },&& \quad \frac{\partial u}{\partial y}=\frac{\partial u}{\partial r}\sin\theta +\frac{\cos\theta }{r}\frac{\partial u}{\partial \theta }\\
+	&\frac{\partial v}{\partial x}=\frac{\partial v}{\partial r}\cos\theta -\frac{\sin\theta }{r}\frac{\partial v}{\partial \theta }, && \quad \frac{\partial v}{\partial y}=\frac{\partial v}{\partial r}\sin\theta +\frac{\cos\theta }{r}\frac{\partial v}{\partial \theta }
+	\end{align}
+
+代入 :math:`C-R` 方程则有
+
+.. math::
+	\begin{align}
+	    & \left (\frac{\partial u}{\partial r}-\frac{1}{r}\frac{\partial v}{\partial \theta } \right ) \cos\theta =\left ( \frac{\partial v}{\partial r}+\frac{1}{r}\frac{\partial u}{\partial \theta }\right ) \sin\theta  \\
+	    & \left (\frac{\partial u}{\partial r}-\frac{1}{r}\frac{\partial v}{\partial \theta }\right ) \sin\theta =-\left (\frac{\partial v}{\partial r}+\frac{1}{r}\frac{\partial u}{\partial \theta } \right ) \cos\theta
+	\end{align}
+
+将1式乘以 :math:`\cos\theta` ，2式乘以 :math:`\sin\theta` 并相加得到 :math:`\frac{\partial u}{\partial r} = \frac{1}{r}\frac{\partial v}{\partial \theta }` ；将1式乘以 :math:`\sin\theta` ，2式乘以 :math:`\cos\theta` 并相减得到 :math:`\frac{\partial v}{\partial r}= -\frac{1}{r}\frac{\partial u}{\partial \theta}` 。
+
+
+
+函数解析
+--------
+
+如果函数 :math:`f(x)` 在 :math:`z_{0}` 以及 :math:`z_{0}` 的邻域内处处可导，则称 :math:`f(z)` 在 :math:`z_{0}` 解析，:math:`z_{0}` 称为 :math:`f(z)` 的解析点。如果 :math:`f(z)` 在 :math:`z_{0}` 不解析，则称 :math:`z_{0}` 为 :math:`f(z)` 的奇点。奇点分类：
+
+- 没有定义；
+- 有定义但不连续；
+- 连续但不可导；
+- 可导但不解析
+  
+
+**例题** 求函数 :math:`\frac{z-2}{(z+1)^{2}(z^{2}+1)}` 的奇点。
+
+**解** 奇点满足
+
+.. math::
+	\begin{align}
+	(z+1)^{2}(z^{2}+1)=0
+	\end{align}
+
+于是得到奇点为 :math:`z=-1` 或 :math:`z=\pm i` 。
+
+
+:math:`|z|^{2}` ， :math:`\bar{z}^{2}` 在零点处可导，但是其他地方不可导，于是不解析。
+
+
+.. note:: 
+
+	- 即使 :math:`f(z)` 在 :math:`z_{0}` 连续， :math:`f'(z_{0})` 也不一定存在。例如 :math:`f(z)=\overline{z},~f(z)=|z|` 等。
+	- 即使 :math:`f'(z_{0})` 存在， :math:`f(z)` 也不一定在 :math:`z_{0}` 解析。例如 :math:`f(z)=|z|^{2},~f(z)=z\operatorname{Re}(z)` 等仅在 :math:`z=0` 处可导，但处处不解析。
+	- 即使 :math:`z_{0}` 是 :math:`f(z)` 的奇点， :math:`f(z)` 在 :math:`z_{0}` 处也不一定不可导。例如 :math:`f(z)=z\overline{z}^{n},~f(z)=x^{3}-y^{3}+2x^{2}y^{2}i` 等。
+	- 即使 :math:`z_{0}` 是 :math:`f(z)` 和 :math:`g(z)` 的一个奇点， :math:`z_{0}` 也不一定是 :math:`f(z)+g(z)` 和 :math:`\frac{f(z)}{g(z)}` 的奇点。例如 :math:`z=0` 是 :math:`f(z)=z+\frac{1}{z}` 与 :math:`g(z)=z-\frac{1}{z}` 的奇点，但不是 :math:`f(z)+g(z)=2z` 的奇点； :math:`z=0` 是 :math:`f(z)=\frac{1}{z}` 与 :math:`g(z)=\frac{1}{z\sin z}` 的奇点，但不是 :math:`\frac{f(z)}{g(z)}=\sin z` 的奇点。
+	- 即使 :math:`u(x,y)` 和 :math:`v(x,y)` 的偏导数均存在， :math:`f(z)=u+iv` 也不一定可导。例如 :math:`f(z)=\overline{z}=x-iy` ，实部 :math:`u=x` ，虚部 :math:`v=-y` 均可导，但 :math:`f(z)=\overline{z}` 处处不可导。
+	  
+
+
+定理 : 解析函数的判定定理
+    函数 :math:`f(z)=u(x,y)+iv(x,y)` 在定义域 :math:`D` 内解析的充要条件是： :math:`u(x,y)` 与 :math:`v(x,y)` 在 :math:`D` 内可微，并且满足柯西-黎曼方程
+
+    .. math::
+		\begin{align}
+		\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},\quad \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}
+		\end{align}
+
+
+**例题** 若 :math:`f(z)=u+iv` 为 :math:`z` 的解析函数，证明：
+
+.. math::
+	\begin{align}
+	\Big(\frac{\partial }{\partial x}\big|f(z)\big|\Big)^{2}+\Big(\frac{\partial }{\partial y}\big|f(z)\big|\Big)^{2}=\big|f'(z)\big|^{2}
+	\end{align}
+
+**证明** 由于 :math:`\big|f(z)\big|=s\sqrt{u^{2}+v^{2}}` ，:math:`\big|f'(z)\big|^{2}=\Big(\frac{\partial u}{\partial x}\Big)^{2}+\Big(\frac{\partial v}{\partial x}\Big)^{2}` ，进而
+
+.. math::
+	\begin{align}
+	    & \frac{\partial }{\partial x}\big|f(z)\big|=\frac{1}{2}(u^{2}+v^{2})^{-\frac{1}{2} }\cdot \Big(2u\frac{\partial u}{\partial x}+2v\frac{\partial v}{\partial x}\Big) \\
+	    & \frac{\partial }{\partial y}|f(z)\big|=\frac{1}{2}(u^{2}+v^{2})^{-\frac{1}{2} }\cdot \Big(2u\frac{\partial u}{\partial y}+2v\frac{\partial v}{\partial y}\Big) 
+	\end{align}
+
+再根据柯西-黎曼方程 :math:`\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},~\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}` 可得
+
+.. math::
+	\begin{align}
+	    & \quad \Big(\frac{\partial }{\partial x}  \big|f(z)\big|\Big)^{2}+\Big(\frac{\partial }{\partial y}  \big|f(z)\big|\Big)^{2}\\
+	    &=\frac{1}{u^{2}+v^{2}}\bigg(u^{2}\Big(\frac{\partial u}{\partial x}\Big)^{2}+2uv\frac{\partial u}{\partial x}\frac{\partial v}{\partial x}+v^{2}\Big(\frac{\partial v}{\partial x}\Big)^{2}
+	    +u^{2}\Big(\frac{\partial u}{\partial y}\Big)^{2}+2uv\frac{\partial u}{\partial y}\frac{\partial v}{\partial y}+v^{2}\Big(\frac{\partial v}{\partial y}\Big)^{2}\bigg) \\
+	    &=\Big(\frac{\partial u}{\partial x}\Big)^{2}+\Big(\frac{\partial v}{\partial x}\Big)^{2}
+	\end{align}
+
+于是所证结论成立。
+
+
+**例题** 若函数 :math:`f(z)=u+iv` 在区域 :math:`D` 内解析，并满足 :math:`\operatorname{arg}f(z)` 在 :math:`D` 内是一个常数，证明： :math:`f(z)` 是常数。
+
+**证明** 因为 :math:`\operatorname{arg}f(z)=\theta\in(-\pi,\pi]` ，所以 :math:`e^{-i \theta}f(z)` 恒取实值。而对于一个恒取实值的解析的复变函数 :math:`g(z)` ，由 :math:`C-R` 方程可知 :math:`g(z)\equiv \text{const}` ，因此 :math:`e^{-i \theta}f(z)\equiv \text{const}` ，进而可知 :math:`f(z)\equiv \text{const}`。
+
+
+
+**例题** 设函数 :math:`f(z)=u(x,y)+iv(x,y)` 在区域 :math:`D` 内解析，且满足下列条件之一，证明 :math:`f(z)` 在 :math:`D` 中是常数：(1) :math:`\overline{f(z)}` 在 :math:`D` 内也解析；(2) :math:`u=e^{v}+1` 。
+
+**解** 由 :math:`f(z)` 与 :math:`\overline{f(z)}` 都在 :math:`D` 内解析，满足 :math:`C-R` 方程可得
+
+.. math::
+	\begin{align}
+	&\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},&& \quad \frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}, \\
+	&\frac{\partial u}{\partial x}=-\frac{\partial v}{\partial y},&& \quad -\frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}
+	\end{align}
+
+将上面两组等式分别相加，可得
+
+.. math::
+	\begin{align}
+	\frac{\partial u}{\partial x}=0, \quad \frac{\partial u}{\partial y}=0
+	\end{align}
+
+再由导数公式及 :math:`C-R` 方程可得
+
+.. math::
+	\begin{align}
+	f'(z)=\frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}=\frac{\partial u}{\partial x}-i\frac{\partial u}{\partial y}=0
+	\end{align}
+
+故 :math:`f(z)` 在 :math:`D` 内是常数。
+
+利用 :math:`C-R` 方程及等式 :math:`u=e^{v}+1` 可得
+
+.. math::
+	\begin{align}
+	\frac{\partial v}{\partial y}=\frac{\partial u}{\partial x}=e^{v}\frac{\partial v}{\partial x}, \quad \frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}=-e^{v}\frac{\partial v}{\partial y}
+	\end{align}
+
+从而有
+
+.. math::
+	\begin{align}
+	(1+e^{2v})\frac{\partial v}{\partial y}=0
+	\end{align}
+
+故 :math:`\frac{\partial v}{\partial y}=0,~\frac{\partial v}{\partial x}=0` ，因此 :math:`v` 与 :math:`u` 在 :math:`D` 内都是常数，说明 :math:`f(z)` 在 :math:`D` 内也是常数。
+
+
+
+
+**例题** 设 :math:`f(z)=u(x,y)+iv(x,y)` 在区域 :math:`D` 内解析，且 :math:`u=v^{2}` ，证明该函数在 :math:`D` 内是常数。
+
+**证明** 因为 :math:`f(z)` 在 :math:`D` 内解析，所以
+
+.. math::
+	\begin{align}
+	\frac{\partial v}{\partial y}=\frac{\partial u}{\partial x}=2v\frac{\partial v}{\partial x}, \quad \frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}=-2v\frac{\partial v}{\partial y}
+	\end{align}
+
+从而有
+
+.. math::
+	\begin{align}
+	(1+4v^{2})\frac{\partial v}{\partial y}=0
+	\end{align}
+
+而 :math:`1+4v^{2}e0` ，故 :math:`\frac{\partial v}{\partial y}=0` ，进而有 :math:`\frac{\partial v}{\partial x}=0` ，所以 :math:`v` 为常数，同时 :math:`u=v^{2}` 也为常数。
+
+
+
+
+**例题** 设 :math:`f(z)` 在区域 :math:`D` 内解析， :math:`D^{*}` 为关于实轴与 :math:`D` 对称的区域，证明 :math:`g(z)=\overline{f(\overline{z} )}` 在 :math:`D^{*}` 内解析。
+
+**证明** 设 :math:`z_{0}` 为 :math:`D^{*}` 内任意一点，则 :math:`\overline{z}_{0}\in D` ，由已知条件可得
+
+.. math::
+	\begin{align}
+	\lim\limits _{z\to z_{0}}\frac{g(z)-g(z_{0})}{z-z_{0}}=\lim\limits _{z\to z_{0}}\frac{\overline{f(\overline{z} )}-\overline{f(\overline{z}_{0} )}}{z-z_{0}}=\overline{\left ( \lim\limits _{z\to z_{0}}\frac{f(\overline{z})-f(\overline{z}_{0} )}{\overline{z}-\overline{z}_{0}  }  \right ) }=\overline{f'(\overline{z}_{0} )}
+	\end{align}
+
+根据 :math:`z_{0}` 的任意性可知 :math:`g(z)` 在 :math:`D^{*}` 内处处可导，因而在 :math:`D^{*}` 内解析，且 :math:`g'(z)=\overline{f'(\overline{z}_{0})}` 。
+
+
+
+**例题** 设 :math:`w=u+iv` 是 :math:`z=r(\cos\theta+i\sin\theta)` 的解析函数，证明：:math:`z\frac{\mathrm{d} w}{\mathrm{d} z} =\frac{\partial v}{\partial theta }-i\frac{\partial u}{\partial \theta }` 。
+
+**证明** 已知 :math:`w=u+iv` 解析，故 :math:`\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},~\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}` ，从而有
+
+.. math::
+	\begin{align}
+	    & \frac{\partial u}{\partial theta }=\frac{\partial u}{\partial x}\frac{\partial x}{\partial theta }+\frac{\partial u}{\partial y}\frac{\partial y}{\partial theta }=-r\frac{\partial u}{\partial x}\sin\theta +r\frac{\partial u}{\partial y}\cos\theta=-r\left ( \frac{\partial u}{\partial x}\cos\theta +\frac{\partial v}{\partial x}\sin\theta  \right ) \\
+	    & \frac{\partial v}{\partial theta}=\frac{\partial v}{\partial x}\frac{\partial x}{\partial theta }+\frac{\partial v}{\partial y}\frac{\partial y}{\partial theta }=-r\frac{\partial v}{\partial x}\sin\theta +r\frac{\partial v}{\partial y}\cos\theta=r\left ( \frac{\partial u}{\partial x}\cos\theta -\frac{\partial v}{\partial x}\sin\theta \right ) 
+	\end{align}
+
+所以
+
+.. math::
+	\begin{align}
+	    z\frac{\mathrm{d}w}{\mathrm{d}z}&=r(\cos\theta +i\sin\theta )\left ( \frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}\right ) \\
+	    &=r\frac{\partial u}{\partial x}\cos\theta -r\frac{\partial v}{\partial x}\sin\theta +ir\left ( \frac{\partial v}{\partial x}\cos\theta +\frac{\partial u}{\partial x}\sin\theta \right ) \\
+	    &=\frac{\partial v}{\partial theta }-i\frac{\partial u}{\partial theta}
+	\end{align}
+
+
+定义 : 整函数
+    在整个 :math:`\mathbb{C}` 上解析的函数称作整函数。整函数包括的类型有：
+
+    - 多项式 :math:`P_{n}(z)` ；
+    - 指数函数 :math:`e^{x}(\cos y+i\sin y)` ；
+    - 上述两类进行四则运算得到的；
+    - 用级数来表达的。
+      
+
+定理 : 形式导数
+    :math:`f_{\overline{z}}=0 \Leftrightarrow` 满足 :math:`C-R` 方程。
+
+**证明** 
+
+.. math::
+	\begin{align}
+	\left \{ \begin{array}{ll}
+	z=x+iy\\
+	\overline{z}=x-iy 
+	\end{array} \right .\quad \Rightarrow 
+	\left \{ \begin{array}{ll}
+	x=\frac{z+\overline{z} }{2} \\
+	y=\frac{z-\overline{z} }{2i} 
+	\end{array} \right .
+	\end{align}
+
+.. math::
+	\begin{align}
+	\left \{ \begin{array}{ll}
+	x_{z}=x_{\overline{z}}=\frac{1}{2}\\
+	y_{z}=-y_{\overline{z}}=\frac{1}{2i}  
+	\end{array} \right. 
+	\end{align}
+
+
+.. math::
+	\begin{align}
+	& \frac{\partial u}{\partial z}=u_{z}=u_{x}x_{z}+u_{y}y_{z}=\frac{u_{x}}{2}+\frac{u_{y}}{2i}=\frac{1}{2}(u_{x}-iu_{y})\\
+	& \frac{\partial u}{\partial \overline{z} }=u_{\overline{z}}=u_{x}x_{\overline{z}}+u_{y}y_{\overline{z}}=\frac{u_{x}}{2}-\frac{u_{y}}{2i}=\frac{1}{2}(u_{x}+iu_{y})=\overline{u_{z}} 
+	\end{align}
+
+.. math::
+	\begin{align}
+	& \frac{\partial f}{\partial z}=f_{z}=u_{z}+iv_{z}=\frac{1}{2}(u_{x}-iv_{y})+i(u_{x}-iv_{y})
+	=\frac{1}{2}(u_{x}+v_{y})+\frac{i}{2}(v_{x}-u_{y}) \\
+	& \frac{\partial f}{\partial \overline{z}}=f_{\overline{z} }=u_{\overline{z}}+iv_{\overline{z} }
+	=\frac{1}{2}(u_{x}+iu_{y})+\frac{i}{2}(v_{x}+iv_{y})
+	=\frac{1}{2}(u_{x}-v_{y}) +\frac{i}{2}(v_{x}+u_{y})
+	\end{align}
+
+
+
+**例题** 判断 :math:`f(z)=\overline{z}z^{n}` ( :math:`n` 为大于 :math:`1` 的正整数)在何处可导，何处解析，并在可导或解析处分别求出其导数。
+
+**解** 因为 :math:`\frac{\partial f(z)}{\partial \overline{z} }=z^{n}` ，所以 :math:`f(z)` 仅在 :math:`z=0` 处可导，于是在复平面内不解析，且
+
+.. math::
+	\begin{align}
+	f'(0)=\lim\limits_{z\to 0}\frac{\overline{z}z^{n}-0}{z}=\lim\limits_{z\to 0}\overline{z}z^{n-1}=0
+	\end{align}
+
+
+
+
+
+
+初等函数
+--------
+
+指数函数
+^^^^^^^^
+
+定义复变数:math:`z` 的指数函数为
+
+.. math::
+	\begin{align}
+	\operatorname{exp}z=e^{x}\cos y+ie^{x}\sin y
+	\end{align}
+
+等价于关系式： :math:`\left \{ \begin{array}{ll}|e^{z}|=e^{x} \\ \operatorname{Arg}e^{z}=y+2k\pi \end{array} \right.` 。
+
+复变数的指数函数的性质：
+
+- :math:`\operatorname{exp}z_{1}\cdot \operatorname{exp}z_{2}=\operatorname{exp}(z_{1}+z_{2})` ；
+- :math:`\exp (-z)=\frac{1}{\exp z}` ；
+- :math:`\exp (z+T)=\exp z ,\quad T=2k\pi i,~k\in \mathbb{Z}` 。特别地有 :math:`\exp (2k\pi i)=1` ；
+- :math:`\exp z \ne 0 ,~\forall z\in \mathbb{C}` 。
+  
+
+**例题** 找出满足方程 :math:`1+e^{z}=0` 的所有解。
+
+**解** 方程等价于
+
+.. math::
+	\begin{align}
+	e^{x}\cos y+ie^{x}\sin y=-1
+	\end{align}
+
+于是解得 :math:`x=0,~y=\pi +2k\pi `，也即 :math:`z=(2k+1)\pi i` 。
+
+
+
+对数函数
+^^^^^^^^
+
+将满足方程 :math:`e^{w}=z\quad (z \ne 0)` 的函数 :math:`w=f(z)` 称为对数函数，记作
+
+.. math::
+	\begin{align}
+	\operatorname{Ln}z=\ln |z|+i\operatorname{Arg}z=\ln\sqrt{x^{2}+y^{2}}+i(\operatorname{arg}z+2k\pi)
+	\end{align}
+
+当 :math:`k=0` 时，定义 :math:`\operatorname{Ln}z` 的主值分支为
+
+.. math::
+	\begin{align}
+	\ln z=\ln |z|+i\operatorname{arg}z
+	\end{align}
+
+可以发现， :math:`\operatorname{Ln}z` 是一个多值函数，对于每个固定的 :math:`k` 所确定的单值函数为 :math:`\operatorname{Ln}z` 的一个分支。该对数函数保留了“积变和、商变差”的性质，即
+
+.. math::
+	\begin{align}
+	    & \operatorname{Ln}(z_{1}\cdot z_{2})=\operatorname{Ln}z_{1}+\operatorname{Ln}z_{2}   \\
+	    & \operatorname{Ln}\frac{z_{1}}{z_{2}}=\operatorname{Ln}z_{1}-\operatorname{Ln}z_{2}   
+	\end{align}
+
+
+.. note:: “指数变系数”的性质则不再成立，即 :math:`\ln z^{n}` 和 :math:`\operatorname{Ln}z^{n}` 不能将指数变成系数，但是 :math:`\operatorname{Ln}z^{n}=\operatorname{Ln}z+\cdots +\operatorname{Ln}z` (n个相加)是成立的,而且 :math:`\operatorname{Ln}\sqrt[n]{z}=\frac{1}{n}\operatorname{Ln}z` 是成立的。同时，上述性质也不能应用于主值分支 :math:`\ln z`，即 :math:`\ln (z_{1}z_{2})` 无法拆分成加法。
+
+
+**例题** 计算 :math:`\ln(-1)` 。
+
+**解** 先考虑多值对数
+
+.. math::
+	\begin{align}
+	\operatorname{Ln}(-1)=\ln |-1|+i(\pi +2k\pi )=(2k\pi +1)\pi i
+	\end{align}
+
+令 :math:`k=0` 得到 :math:`\ln (-1)=\pi i` 。
+
+.. note:: 这个结果可以进一步推出 :math:`e^{\pi i}+1=0` 。
+
+该对数函数在 :math:`\mathbb{C}\backslash (-\infty,0]` 上解析，且满足
+
+.. math::
+	\begin{align}
+	\frac{\mathrm{d} \ln z}{\mathrm{d}z }=\frac{1}{z}
+	\end{align}
+
+.. note:: 实际上，:math:`\frac{\mathrm{d} \operatorname{Ln}_{k}z}{\mathrm{d} z}=\frac{1}{\frac{\mathrm{d} e^{w}}{\mathrm{d} w}}=\frac{1}{e^{w}}=\frac{1}{z}` 。
+
+
+
+**例题** 对任意给定的 :math:`z\in \mathbb{C}` ，求证：
+
+.. math::
+	\begin{align}
+	\lim_{n\to \infty}n\ln (1+\frac{z}{n} )=z
+	\end{align}
+
+**证明** 对于 :math:`z=x+iy` ，则 :math:`\left | 1+\frac{z}{n} \right | =\sqrt{(1+\frac{x}{n})^{2}+(\frac{y}{n})^{2} }` ， :math:`\operatorname{arg}z=\arctan\frac{\frac{y}{n}}{1+\frac{x}{n}}` ，从而
+
+.. math::
+	\begin{align}
+	\lim_{n\to \infty}n\ln (1+\frac{z}{n} )=\lim_{n\to \infty}n\ln\sqrt{(1+\frac{x}{n})^{2}+(\frac{y}{n})^{2} }+in\arctan\frac{\frac{y}{n}}{1+\frac{x}{n}}=x+iy=z
+	\end{align}
+
+
+
+乘幂与幂函数
+^^^^^^^^^^^^
+
+定义乘幂：
+
+.. math::
+	\begin{align}
+	z^{b}=e^{b\operatorname{Ln}z}=e^{b\ln z+i2bk\pi }
+	\end{align}
+
+由于 :math:`\operatorname{Ln}z=\ln |z|+i(\operatorname{arg}z+2k\pi )` 是多值的，因而 :math:`z^{b}` 也是多值的。
+
+幂函数有以下特殊取值情况：
+
+- 当 :math:`b` 为整数时，:math:`z^{b}` 具有单一的值；
+- 当 :math:`b=\frac{p}{q}` (:math:`p`和:math:`q`为互质的整数， :math:`q>0` ) 时，:math:`z^{b}` 具有 :math:`q` 个值，即当 :math:`k=0,1,\cdots ,(q-1)` 时相对应的各个值；
+- 在其他情况下(当 :math:`b\in \mathbb{R}\backslash \mathbb{Q}` ， :math:`b\in \mathbb{C}\backslash \mathbb{R}`时)， :math:`z^{b}` 具有无穷多的值。
+
+幂函数有以下性质：
+
+- :math:`z^{b}` 的任一分支在 :math:`\mathbb{C}\backslash (-\infty,0]` 上解析；
+- 下列各分支均取同一个:math:`k`，则有 :math:`(z^{a})'=az^{a-1}` ； :math:`z^{-a}=\frac{1}{z^{a}}` ； :math:`z^{a+b}=z^{a}\cdot z^{b}` 。
+
+
+特别的情形： :math:`z^{\frac{1}{n}}=\sqrt[n]{z}` 具有 :math:`n` 个分支。同对数函数 :math:`\operatorname{Ln}z` 一样，它在除去原点和负实轴的复平面内是解析的，且
+
+.. math::
+	\begin{align}
+	(z^{\frac{1}{n} })'=(\sqrt[n]{z} )'=(e^{\frac{1}{n}\operatorname{Ln}z  })'=\frac{1}{n}z^{\frac{1}{n}-1 } 
+	\end{align}
+
+
+
+**例题** 计算 :math:`i^{i}` 。
+
+**解** 
+
+.. math::
+	\begin{align}
+	i^{i}=e^{i\operatorname{Ln}i}=e^{i(2k+\frac{1}{2})\pi i}=e^{-(2k+\frac{1}{2})\pi }
+	\end{align}
+
+其中 :math:`k\in \mathbb{Z}` 。可以发现 :math:`i^{i}` 得到的结果是实数。
+
+
+
+
+三角函数
+^^^^^^^^
+
+定义余弦函数和正弦函数：
+
+.. math::
+	\begin{align}
+	\cos z=\frac{e^{iz}+e^{-iz}}{2},\quad  \sin z=\frac{e^{iz}-e^{-iz}}{2i}
+	\end{align}
+
+三角函数具有以下性质：
+
+- :math:`\sin z,\cos z` 是整函数，且 :math:`(\sin z)'=\cos z` ， :math:`(\cos z)'=-\sin z` ；
+- :math:`\sin(-z)=-\sin z` ， :math:`\cos(-z)=\cos z` ；
+- :math:`\sin(z+2k\pi )=\sin z` ， :math:`\cos(z+2k\pi )=\cos z` ，其中 :math:`k\in \mathbb{Z}` ；
+- :math:`\sin z,\cos z` 无界，例如当 :math:`y \to\infty` 时，:math:`|\sin(x+iy)|` 和 :math:`|\cos(x+iy)|` 趋于无穷大；
+- :math:`\cos(z_{1}+z_{2})=\cos z_{1}\cos z_{2}-\sin z_{1}\sin z_{2}` ， :math:`\sin (z_{1}+z_{2})=\sin z_{1}\cos z_{2}+\cos z_{1}\sin z_{2}` ；
+- (欧拉公式) :math:`e^{iz}=\cos z+i\sin z` 。
+  
+
+
+
+**例题** 找出满足方程 :math:`\sin z+\cos z=0` 的所有解。
+
+**解** 方程等价于
+
+.. math::
+	\begin{align}
+	    \frac{e^{iz}-e^{-iz}}{2i}+\frac{e^{iz}+e^{-iz}}{2}=0  
+	    \quad\Rightarrow\quad
+	    e^{2iz}=-i
+	\end{align}
+
+从而
+
+.. math::
+	\begin{align}
+	2iz=\operatorname{Ln}(-i)=\ln|-i|+i(-\frac{\pi}{2}+2k\pi)=i(-\frac{\pi}{2}+2k\pi)
+	\end{align}
+
+所以解得 :math:`z=-\frac{\pi}{4}+k\pi` 。
+
+
+
+双曲函数
+^^^^^^^^
+
+定义双曲余弦、正弦和正切函数：
+
+.. math::
+	\begin{align}
+	\operatorname{ch}z=\frac{e^{z}+e^{-z}}{2},~\operatorname{sh}z=\frac{e^{z}-e^{-z}}{2},~\operatorname{th} z=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}  
+	\end{align}
+
+它们都是复平面内的解析函数，具有以下性质：
+
+- :math:`\operatorname{sh}z,\operatorname{ch}z` 是整函数，且 :math:`(\operatorname{sh}z)'=\operatorname{ch}z,(\operatorname{ch}z)'=\operatorname{sh}z` ；
+- :math:`\operatorname{sh}(-z)=-\operatorname{sh}z,\operatorname{ch}(-z)=\operatorname{ch}z` ；
+- :math:`\operatorname{ch}(z+2k\pi i)=\operatorname{ch}z,\operatorname{sh}(z+2k\pi i)=\operatorname{sh}z` ，其中 :math:`k\in \mathbb{Z}` ；
+- :math:`\operatorname{sh}z,\operatorname{ch}z` 无界；
+- :math:`\operatorname{ch}z=\frac{e^{z}+e^{-z}}{2},~\operatorname{sh}z=\frac{e^{z}-e^{-z}}{2},~\operatorname{th} z=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}` ；
+- :math:`e^{z}=\operatorname{ch}z+\operatorname{sh}z` 。
+  
+
+当 :math:`z` 为纯虚数 :math:`iy` 时，有
+
+.. math::
+	\begin{align}
+	& \cos iy=\frac{e^{iy}+e^{y}}{2}=\operatorname{ch}y\\
+	& \sin iy=\frac{e^{-y}-e^{y}}{2i}=i\operatorname{sh}y   
+	\end{align}
+
+配合三角公式可以得到：
+
+.. math::
+	\begin{align}
+	& \cos (x+iy)=\cos x\operatorname{ch}y-i\sin x\operatorname{sh}y\\
+	& \sin (x+iy)=\sin x\operatorname{ch}y+i\cos x\operatorname{sh}y    
+	\end{align}
+
+
+
+
+
+
+复变函数的积分
+==============
+
+积分的概念
+----------
+
+积分的定义
+^^^^^^^^^^
+
+
+有向曲线是规定了走向或方向的曲线，曲线C有两个端点A和B，把从A到B的方向作为C的正方向。
+
+设 :math:`w=f(z)` 定义于 :math:`D,c\subseteq D` 为一条起点为A终点为B的有向光滑曲线。将C分成n个弧段，分点为 :math:`z_{0}=A,z_{1},\cdots,z_{n-1},z_{n}=B`。在每个弧段上取点 :math:`\zeta_{k}` ，作和
+
+.. math::
+	\begin{align}
+	      I_{n}=\sum_{k=1}^{n}f(\zeta_{n})\cdot \Delta z_{k} \quad(\Delta z_{k}=z_{k}-z_{k-1}) ,(\zeta_{k}=\xi_{k}+i\eta_{k})
+	\end{align}
+
+
+记 :math:`\Delta S_{k}=\stackrel\frown{z_{k-1}z_{k}}` 弧长， :math:`\delta=\max\limits_{1\leqslant k\leqslant n}\left\{ \Delta S_{k} \right\}` 。当 :math:`n \to +\infty ` 且 :math:`\delta \to 0` 时，若不论对C的分法及 :math:`\zeta_{k}` 的取法如何， :math:`I_{n}`有唯一极限 :math:`I\in \mathbb{C}` ，则称 :math:`f(z)` 沿C是可积的，I称为 :math:`f(z)` 沿C的积分记作
+
+.. math::
+	\begin{align}
+	I=\int_{C}f(z)~\mathrm{d}z 
+	\end{align}
+
+特别地，若C是封闭曲线，记作 :math:`I=\oint_{C}f(z)~\mathrm{d}z` 。
+
+
+积分的存在条件及算法
+^^^^^^^^^^^^^^^^^^^^
+
+当 :math:`f(z)` 是连续函数而 :math:`C` 是光滑曲线时，积分 :math:`\int_{C}f(z)~\mathrm{d}z` 一定存在。若设 :math:`f(z)` 沿C连续，则有
+
+.. math::
+	\begin{align}
+	\int_{C}f(z)~\mathrm{d}z=\int_{C}u~\mathrm{d}x-v~\mathrm{d}y+i\int_{C}v~\mathrm{d}x +u~\mathrm{d}y 
+	\end{align}
+
+形式上可以认为，:math:`f(z)=u+iv` ， :math:`~\mathrm{d}z=~\mathrm{d}x+i~\mathrm{d}y` ，因此
+
+.. math::
+	\begin{align}
+	    \int_{C}f(z)~\mathrm{d}z=\int_{C}(u+iv)(~\mathrm{d}x+i~\mathrm{d}y)=\int_{C}u~\mathrm{d}x-v~\mathrm{d}y+i\int_{C}v~\mathrm{d}x+u~\mathrm{d}y 
+	\end{align}
+
+
+:math:`\int_{C}f(z)~\mathrm{d}z` 可以通过两个二元实变函数的线积分来计算，设光滑曲线为 :math:`C:z=z(t)=x(t)+iy(t),t\in [a,b]` ，则有
+
+.. math::
+	\begin{align}
+	\int_{C}f(z)~\mathrm{d}z=\int_{a}^{b}f\big(z(t)\big)z'(t)~\mathrm{d}t
+	\end{align}
+
+
+**证明** 根据线积分的计算方法，有
+
+.. math::
+	\begin{align}
+	    \int_{C}f(z)~\mathrm{d}z
+	    =&\int_{a}^{b}\Big(u\big(x(t),y(t)\big)x'(t)-v\big(x(t),y(t)\big)y'(t)\Big)~\mathrm{d}t \\
+	    &+i\int_{a}^{b}\Big(v\big(x(t),y(t)\big)x'(t)+u\big(x(t),y(t)\big)y'(t)\Big)~\mathrm{d}t
+	\end{align}
+
+上式右端可写成
+
+.. math::
+	\begin{align}
+	\int_{a}^{b}\Big(u\big(x(t),y(t)\big)+iv\big(x(t),y(t)\big)\Big)\Big(x'(t)+iy'(t)\Big)~\mathrm{d}t
+	    =\int_{a}^{b}f\big(z(t)\big)z'(t)~\mathrm{d}t
+	\end{align}
+
+因此得到 :math:`\int_{C}f(z)~\mathrm{d}z=\int_{a}^{b}f\big(z(t)\big)z'(t)~\mathrm{d}t` 。
+
+**例题** 计算 :math:`\int_{C}z~\mathrm{d}z` ，其中 :math:`C` 为从原点到点 :math:`3+4i` 的直线段。
+
+**解** 直线的方程可以写作
+
+.. math::
+	\begin{align}
+	    \left \{ \begin{array}{ll}
+	    x=3t, \\
+	    y=4t,
+	    \end{array} \right.
+	    \quad (0\leqslant t\leqslant 1)
+	    \quad \text{或}\quad  
+	    z=3t+i4t,\quad (0\leqslant t\leqslant 1)
+	\end{align}
+
+于是在 :math:`C` 上， :math:`z=(3+4i)t` ， :math:`~\mathrm{d}z=(3+4i)~\mathrm{d}t` ，进而得到
+
+.. math::
+	\begin{align}
+	    \int_{C}z~\mathrm{d}z=\int_{0}^{1}(3+4i)^{2}t~\mathrm{d}t=(3+4i)^{2}\int_{0}^{1}t~\mathrm{d}t=\frac{1}{2}(3+4i)^{2} 
+	\end{align}
+
+
+.. note:: 
+
+	事实上，因为
+
+	.. math::
+		\begin{align}
+		    \int_{C}z~\mathrm{d}z=\int_{C}(x+iy)(~\mathrm{d}x+i~\mathrm{d}y)=\int_{C}x~\mathrm{d}x-y~\mathrm{d}y+i\int_{C}y~\mathrm{d}x+x~\mathrm{d}y
+		\end{align}
+
+	右边两个线积分都与路线 :math:`C` 无关，所以不论 :math:`C` 是怎样连接原点到 :math:`3+4i` 的曲线， :math:`\int_{C}z~\mathrm{d}z` 的值都等于 :math:`\frac{1}{2}(3+4i)^{2}` 。
+
+
+
+
+**例题** 沿 :math:`y=x^{2}` 计算 :math:`\int_{0}^{1+i}(x^{2}+iy)~\mathrm{d}z` 的值。
+
+**解** 路径的参数表示为
+
+.. math::
+	\begin{align}
+	    \left \{ \begin{array}{ll}
+	    x=t, \\
+	    y=t^{2},
+	    \end{array} \right.
+	    \quad (0\leqslant t\leqslant 1)
+	\end{align}
+
+于是 :math:`\mathrm{d}z=~\mathrm{d}x+i~\mathrm{d}y=(1+2ti)~\mathrm{d}t` ，进而可得
+
+.. math::
+	\begin{align}
+	    \int_{0}^{1+i}(x^{2}+iy)~\mathrm{d}z
+	    =\int_{0}^{1}(t^{2}+it^{2})(1+2ti)~\mathrm{d}t
+	    =-\frac{1}{6}+\frac{5}{6}i
+	\end{align}
+
+
+
+
+**例题** 计算 :math:`\int_{C}e^{|z|^{2}}\operatorname{Re}(z)~\mathrm{d}z ` ，其中 :math:`C` 为从 :math:`z_{1}=0` 到 :math:`z_{2}=1+i` 的直线段 :math:`\overline{z_{1}z_{2}}` 。
+
+**解** 由于 :math:`e^{|z|^{2}}\operatorname{Re}(z)=xe^{x^{2}+y^{2}}` ， :math:`C` 的方程为 :math:`y=x` ，所以
+
+.. math::
+	\begin{align}
+	        \int_{C}e^{|z|^{2}}\operatorname{Re}(z)~\mathrm{d}z
+	        &=\int_{C}xe^{x^{2}+y^{2}}~\mathrm{d}x+i\int_{C}xe^{x^{2}+y^{2}}~\mathrm{d}y
+	        =\int_{0}^{1}xe^{2x^{2}}~\mathrm{d}x+i\int_{0}^{1}xe^{2x^{2}}~\mathrm{d}x \\
+	        &=(1+i)\cdot\frac{1}{4}e^{2x^{2}}\bigg|_{0}^{1}
+	        =\frac{1}{4}(e^{2}-1)(1+i)
+	\end{align}
+
+还有另外一种解法。由于 :math:`C` 的参数方程为 :math:`z=(1+i)t~(0\leqslant t\leqslant 1)` ，所以
+
+.. math::
+	\begin{align}
+	        \int_{C}e^{|z|^{2}}\operatorname{Re}(z)~\mathrm{d}z=\int_{0}^{1}e^{2t^{2}}\cdot t(1+i)~\mathrm{d}t=(1+i)\cdot\frac{1}{4}e^{2x^{2}}\bigg|_{0}^{1}=\frac{1}{4}(e^{2}-1)(1+i)
+	\end{align}
+
+
+
+
+**例题** 计算 :math:`\oint\limits _{|z|=1}\operatorname{Im}(z)~\mathrm{d}z` ，其中积分沿 :math:`|z|=1` 的正向。
+
+**解** :math:`C` 的参数方程为 :math:`z=e^{i\theta}` ，于是 :math:`~\mathrm{d}z=ie^{i\theta}~\mathrm{d}\theta` ，:math:`\operatorname{Im}(z)=\sin\theta` ，所以
+
+.. math::
+	\begin{align}
+	    \oint\limits _{|z|=1}\operatorname{Im}(z)~\mathrm{d}z=\int_{0}^{2\pi}\sin\theta \cdot ie^{i\theta }~\mathrm{d}\theta =\int_{0}^{2\pi}(i\sin\theta \cos\theta -\sin^{2}\theta )~\mathrm{d}\theta =-\pi
+	\end{align}
+
+
+
+**例题** 设区域 :math:`D` 为右半平面， :math:`z` 为 :math:`D` 内圆周 :math:`|z|=1` 上的任意一点，用在 :math:`D` 内的任意一条曲线 :math:`C` 连接原点与 :math:`z` ，证明 :math:`\operatorname{Re} \left [ \int_{0}^{z}\frac{1}{1+\zeta^{2}}~\mathrm{d}\zeta \right ] =\frac{\pi}{4}` 。
+
+**证明** 取从原点沿实轴到 :math:`1` ，再从 :math:`1` 沿圆周 :math:`|z|=1` 到 :math:`z` 的曲线作为 :math:`C` ，则
+
+.. math::
+	\begin{align}
+	    \int_{0}^{z}\frac{1}{1+\zeta^{2}}~\mathrm{d}\zeta=\int_{0}^{1}\frac{~\mathrm{d}x}{1+x^{2}}  +\int_{0}^{\varphi}\frac{ie^{i\theta }}{1+e^{2i\theta }}~\mathrm{d}\theta =\arctan1+i\int_{0}^{\varphi}\frac{~\mathrm{d}\theta }{2\cos\theta } =\frac{\pi}{4}+ i\int_{0}^{\varphi}\frac{~\mathrm{d}\theta }{2\cos\theta }
+	\end{align}
+
+其中 :math:`\varphi` 为 :math:`z` 的主辐角，故 :math:`\operatorname{Re} \left [ \int_{0}^{z}\frac{1}{1+\zeta^{2}}~\mathrm{d}\zeta \right ] =\frac{\pi}{4}` 。
+
+
+
+**例题** 设Jordan闭曲线 :math:`C` 围成的区域面积为 :math:`S` ，求积分 :math:`\oint_{C}\overline{z}~\mathrm{d}z` 。
+
+**解** :math:`\overline{z}=x-iy` ，:math:`\mathrm{d}z=\mathrm{d}x+i~\mathrm{d}y` ，于是
+
+.. math::
+	\begin{align}
+	    \oint_{C}\overline{z}~\mathrm{d}z=\oint_{C}(x-iy)(~\mathrm{d}x+i~\mathrm{d}y)=\oint_{C}x~\mathrm{d}x+y~\mathrm{d}y-i(y~\mathrm{d}x-x~\mathrm{d}y)=0-i\oint_{C}y~\mathrm{d}x-x~\mathrm{d}y=-i\cdot(-2)S=2iS
+	\end{align}
+
+
+
+
+
+
+定理 : 
+    设 :math:`C` 为以 :math:`z_{0}` 为中心，:math:`r` 为半径的正向圆周，:math:`n` 为整数，则
+
+.. math::
+	\begin{align}
+	\oint\limits _{|z-z_{0}|=r}\frac{~\mathrm{d}z}{(z-z_{0})^{n+1}}
+	=\left \{ \begin{array}{ll}
+	2\pi i, & n=0 ,\\
+	0, & n\ne 0. 
+	\end{array} \right.
+	\end{align}	
+
+也即积分结果与积分路线圆周的中心和半径无关。特别地，根据闭路变形原理，对于包含 :math:`z_{0}` 的任何一条正向简单闭曲线 :math:`\Gamma` 都有
+
+.. math::
+	\begin{align}
+	\oint\limits_{\Gamma}\frac{~\mathrm{d}z}{z-z_{0}}=2\pi i
+	\end{align}
+
+
+**证明** 圆周 :math:`C` 的方程可写为
+
+.. math::
+	\begin{align}
+	z=z_{0}+re^{i\theta },\quad (0\leqslant \theta \leqslant 2\pi)
+	\end{align}
+
+于是可以得到
+
+.. math::
+	\begin{align}
+	    \oint_{C}\frac{~\mathrm{d}z}{(z-z_{0})^{n+1}}
+	    =\int_{0}^{2\pi}\frac{ire^{i\theta }}{r^{n+1}e^{i(n+1)\theta }}  ~\mathrm{d}\theta 
+	    =\int_{0}^{2\pi}\frac{i}{r^{n}e^{in\theta }} ~\mathrm{d}\theta 
+	    =\frac{i}{r^{n}} \int_{0}^{2\pi}e^{-in\theta }~\mathrm{d}\theta 
+	\end{align}
+
+当 :math:`n=0` 时，结果为
+
+.. math::
+	\begin{align}
+	i\int_{0}^{2\pi}~\mathrm{d}	heta =2\pi i
+	\end{align}
+
+当 :math:`n \ne 0` 时，结果为
+
+.. math::
+	\begin{align}
+	    \frac{i}{r^{n}} \int_{0}^{2\pi}(\cos n\theta -i\sin n\theta )~\mathrm{d}\theta =0
+	\end{align}
+
+
+
+
+积分的性质
+^^^^^^^^^^
+
+以 :math:`C^{-}` 表示 :math:`C` 的反向曲线
+
+- :math:`\int_{C^{-}}f(z)~\mathrm{d}z=-\int_{C}f(z)~\mathrm{d}z` ；
+- :math:`\int_{C}kf(z)~\mathrm{d}z=k\int_{C}f(z)~\mathrm{d}z` , :math:`\int_{C}[f(z)\pm g(z)]~\mathrm{d}z=\int_{C}f(z)~\mathrm{d}z\pm \int_{C}g(z)~\mathrm{d}z`
+- 设 :math:`|f(z)|\leqslant M<+\infty` ，曲线C的弧长为 :math:`L` ，则 :math:`|\int_{C}f(z)~\mathrm{d}z|\leqslant \int_{C}|f(z)|~\mathrm{d}s \leqslant ML` ；
+- :math:`\overline{\int_{C}f(z)~\mathrm{d}z}=\int_{C}\overline{f(z)}\overline{~\mathrm{d}z}` 。
+  
+
+**证明** 设 :math:`|\Delta z_{k}|` 为 :math:`z_{k}` 与 :math:`z_{k-1}` 两点之间的距离，:math:`\Delta s_{k}` 为这两点之间的弧段的长度，则由绝对值不等式可知
+
+.. math::
+	\begin{align}
+	    \bigg|\sum\limits _{k=1}^{n}f(\xi_{k})\Delta z_{k}\bigg|\leqslant \sum\limits _{k=1}^{n}|f(\xi_{k})\Delta z_{k}|\leqslant \sum\limits _{k=1}^{n}|f(\xi_{k})|\Delta s_{k}
+	\end{align}
+
+两端取极限得到
+
+.. math::
+	\begin{align}
+	    \bigg|\int_{C}f(z)~\mathrm{d}z\bigg|\leqslant \int_{C}|f(z)|~\mathrm{d}s
+	\end{align}
+
+这里的 :math:`\int_{C}|f(z)|~\mathrm{d}s` 表示连续函数 :math:`|f(z)|` 沿 :math:`C` 的曲线积分，又由函数的有界性可知
+
+.. math::
+	\begin{align}
+	    \sum\limits _{k=1}^{n}|f(\xi_{k})|\Delta s_{k}\leqslant M\sum\limits _{k=1}^{n}\Delta s_{k}=ML
+	\end{align}
+
+于是得到 :math:`\int_{C}|f(z)|~\mathrm{d}s\leqslant ML` 。
+
+
+
+
+**例题** 设C为从原点到点 :math:`3+4i` 的直线段，试求积分 :math:`\int_{C}\frac{1}{z-i}~\mathrm{d}z` 绝对值的一个上界。
+
+**解** C的方程为 :math:`z=(3+4i)t,\quad 0\leqslant t\leqslant 1`, 由估值不等式可知
+
+.. math::
+	\begin{align}
+	    \left | \int_{C}\frac{1}{z-i}~\mathrm{d}z  \right | \leqslant \int_{C}\left | \frac{1}{z-i}  \right | ~\mathrm{d}s
+	\end{align}
+
+在C上，有
+
+.. math::
+	\begin{align}
+	    \left | \frac{1}{z-i}  \right | =\frac{1}{|3t+(4t-1)i|} =\frac{1}{\sqrt{25(t-\frac{4}{25} )^{2}+\frac{9}{25} } } \leqslant \frac{5}{3}
+	\end{align}
+
+从而有 :math:`\left | \int_{C}\frac{1}{z-i}~\mathrm{d}z \right |\leqslant \frac{5}{3}\int_{C}~\mathrm{d}s` ，而 :math:`\int_{C}~\mathrm{d}s=5` ，所以
+
+.. math::
+	\begin{align}
+	    \left | \int_{C}\frac{1}{z-i}~\mathrm{d}z  \right |\leqslant \frac{25}{3}
+	\end{align}
+
+
+
+
+
+**例题** 设 :math:`f(z)` 在简单闭曲线 :math:`C` 内及 :math:`C` 上解析，且不恒为常数， :math:`n` 为正整数。设 :math:`M` 为 :math:`f(\zeta)` 在 :math:`C` 上的最大值，:math:`L` 为 :math:`C` 的长， :math:`d` 为 :math:`z` 到 :math:`C` 的最短距离，证明 :math:`|f(z)|\leqslant M\left ( \frac{L}{2\pi d}\right ) ^{\frac{1}{n}}` 。
+
+**证明** 已知 :math:`f(z)` 在 :math:`C` 内及 :math:`C` 上解析且不恒为常数，故 :math:`\big(f(z)\big)^{n}` 也是如此，从而由柯西积分公式可得
+
+.. math::
+	\begin{align}
+	    \big(f(z)\big)^{n}=\frac{1}{2\pi i}\oint_{C}\frac{\big(f(\zeta)\big)^{n}}{\zeta-z}~\mathrm{d}\zeta
+	\end{align}
+
+由积分的不等式性质可得
+
+.. math::
+	\begin{align}
+	    \big|f(z)\big|^{n}\leqslant \frac{1}{2\pi}\oint_{C}\frac{|f(\zeta)|^{n}}{|\zeta-z|}|~\mathrm{d}\zeta|\leqslant \frac{M^{n}}{2\pi d}\oint_{C}~\mathrm{d}s=\frac{M^{n}L}{2\pi d} 
+	\end{align}
+
+故有 :math:`|f(z)|\leqslant M\left ( \frac{L}{2\pi d} \right ) ^{\frac{1}{n} }` 。
+
+
+.. note:: 
+
+	对上式两端取极限可以得到
+
+	.. math::
+		\begin{align}
+		    |f(z)|\leqslant \lim\limits _{n\to\infty}M\left ( \frac{L}{2\pi d}  \right ) ^{\frac{1}{n} }=M
+		\end{align}
+
+	这表明：在闭区域内不恒为常数的解析函数的模的最大值只能在区域的边界取到，这称为 **最大模原理** 。
+
+
+
+Cauchy-Goursat基本定理
+----------------------
+
+Green公式：设 :math:`P,Q\in C^{1}(D)` ， :math:`D`单连通，:math:`C\subseteq D` 为一条Jordan闭曲线，则
+
+.. math::
+	\begin{align}
+	    \oint_{C}P(x,y)~\mathrm{d}x+Q(x,y)~\mathrm{d}y=\iint _{B}\left ( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y} \right ) ~\mathrm{d}x~\mathrm{d}y
+	\end{align}
+
+
+定理 : Cauchy-Goursat定理
+    设 :math:`w=f(z)=u+iv` 在单连通域 :math:`D` 上解析，:math:`C \subseteq D` 为任意一条封闭曲线，则
+
+    .. math::
+		\begin{align}
+		\oint_{C}f(z)~\mathrm{d}z=0
+		\end{align}
+
+推广到区域边界上则有：设 :math:`w=f(z)` 在有界单连通区域 :math:`D` 上解析，在 :math:`\bar{D}=D\cup \partial D` 上连续，则
+
+.. math::
+	\begin{align}
+	\int_{\partial D}f(z)~\mathrm{d}z=0
+	\end{align}
+
+
+
+**例题** 求 :math:`\oint_{C}\frac{~\mathrm{d}z}{z^{2}+2z+4} ` ，其中 :math:`C` 是正向的圆周 :math:`|z|=1` 。
+
+**解** 考虑被积式子的奇点：
+
+.. math::
+	\begin{align}
+	z^{2}+2z+4=(z+1)^{2}+3=0 \quad  \Rightarrow \quad z=-1\pm\sqrt{3}i 
+	\end{align}
+
+发现奇点位于 :math:`C` 所围区域之外，因此由柯西-古萨定理可知
+
+.. math::
+	\begin{align}
+	\oint_{C}\frac{~\mathrm{d}z}{z^{2}+2z+4}=0
+	\end{align}
+
+
+
+
+**例题** 求 :math:`\oint_{C}\frac{~\mathrm{d}z}{\cos z}` ，其中 :math:`C` 是正向的圆周 :math:`|z|=1` 。
+
+**解** 考虑被积式子的奇点：
+
+.. math::
+	\begin{align}
+	    \cos z
+	    =\frac{e^{iz}+e^{-iz}}{2}
+	    =0 
+	    \quad\Rightarrow\quad
+	    e^{2iz}=-1
+	    \quad\Rightarrow\quad
+	    2iz=i(\pi+2k\pi)
+	\end{align}
+
+解得奇点为 :math:`z=\frac{\pi}{2}+k\pi~(k\in \mathbb{Z} )` ，位于 :math:`C` 所围区域之外，因此由柯西-古萨定理可知
+
+.. math::
+	\begin{align}
+	\oint_{C}\frac{\mathrm{d}z}{\cos z}=0
+	\end{align}
+
+
+
+**例题** 计算积分 :math:`\oint\limits _{|z|=r<1}\frac{~\mathrm{d}z}{(z^{2}-1)(z^{3}-1)}` 。
+
+**解** 被积式子的奇点为 :math:`z=1` ，在闭曲线所围区域范围外，因此由柯西-古萨定理可知
+
+.. math::
+	\begin{align}
+	\oint\limits _{|z|=r<1}\frac{~\mathrm{d}z}{(z^{2}-1)(z^{3}-1)}=0
+	\end{align}
+
+
+
+由于线积分沿闭曲线的积分为零，跟曲线积分与路径无关是两个等价概念，因此可以推广得到
+
+定理 : 积分路径无关性
+    如果函数 :math:`f(z)` 在单连通域 :math:`D` 内处处解析，则积分 :math:`\int_{C}f(z)~\mathrm{d}z` 与连结起点与终点的路径 :math:`C` 无关。
+
+
+
+**例题** 计算 :math:`\int_{0}^{3+i}z^{2}~\mathrm{d}z` 。
+
+**解** 由于 :math:`z^{2}` 在复数域内处处解析，因此对下列三种路径积分结果都是相同的：
+
+- 自原点至 :math:`3+i` 的直线段；
+- 自原点沿实轴至 :math:`3` ，再由 :math:`3` 沿竖直方向向上至 :math:`3+i` ;
+- 自原点沿虚轴至 :math:`i` ，再由 :math:`i` 沿水平方向向右至 :math:`3+i` 。
+  
+选取路径 :math:`z=(3+i)t,~(0 \leqslant t \leqslant 1)` ，则
+
+.. math::
+	\begin{align}
+	    \int_{0}^{3+i}z^{2}~\mathrm{d}z=\int_{0}^{1}(3+i)^{3}t^{2}~\mathrm{d}t=\frac{(3+i)^{3}}{3} 
+	\end{align}
+
+
+
+
+
+复合闭路定理
+------------
+
+定理 : 闭路变形原理
+    一个解析函数沿闭曲线的积分，不因闭曲线在区域内作连续变形而改变它的值，只要在变形过程中曲线不经过函数 :math:`f(z)` 不解析的点。
+
+
+根据这个定理可以得到：如果 :math:`f(z)` 在单连通域B内处处解析，那么积分 :math:`\int_{C}f(z)~\mathrm{d}z` 与连结起点及终点的路线C无关。
+
+
+定义 : Jordan闭曲线族
+    :math:`\gamma=\gamma_{0}+\gamma_{1}^{-}+\cdots+\gamma_{n}^{-}` (正表示逆时针进行，负表示顺时针进行)构成一个复合闭路，它围成一个 :math:`n+1` 连通区域。
+
+
+定理 : 复合闭路定理
+    设C为多连通域D内的一条简单闭曲线，:math:`C_{1},C_{2},\cdots,C_{n}` 是在C内部的简单闭曲线，它们互不包含也互不相交，并且以 :math:`C,C_{1},C_{2},\cdots,C_{n}` 为边界的区域全含于D.如果 :math:`f(z)` 在 :math:`D` 内解析，则
+
+    - :math:`\oint_{C}f(z)~\mathrm{d}z=\sum\limits_{k=1}^{n}\oint_{C_{k}}f(z)~\mathrm{d}z`,其中:math:`C`及 :math:`C_{k}` 均取正方向；
+    - :math:`\oint_{\gamma}f(z)~\mathrm{d}z=0` 。
+      
+
+
+**例题** 计算 :math:`\oint_{\Gamma }\frac{2z-1}{z^{2}-z} ~\mathrm{d}z` 的值，:math:`\Gamma` 为包含圆周 :math:`|z|=1` 在内的任何正向简单闭曲线。
+
+**解** 函数 :math:`\frac{2z-1}{z^{2}-z}` 在复平面内除了 :math:`z=0` 和 :math:`z=1` 两个奇点外势处处解析的。
+
+由于 :math:`\Gamma` 包含了这两个奇点，所以在 :math:`\Gamma` 内作两个互不包含也互不相交的正向圆周 :math:`C_{1}` 和 :math:`C_{2}` ，其中 :math:`C_{1}` 只包含奇点 :math:`z=0` ，:math:`C_{2}` 只包含奇点 :math:`z=1` ，于是根据复合闭路定理可得：
+
+.. math::
+	\begin{align}
+	    \oint\limits _{\Gamma }\frac{2z-1}{z^{2}-z} ~\mathrm{d}z
+	    &=\oint\limits _{C_{1}}\frac{2z-1}{z^{2}-z} ~\mathrm{d}z+\oint\limits _{C_{2}}\frac{2z-1}{z^{2}-z} ~\mathrm{d}z \\
+	    &=\oint\limits _{C_{1}}\frac{1}{z-1}~\mathrm{d}z+\oint\limits _{C_{1}}\frac{1}{z}~\mathrm{d}z+\oint\limits _{C_{2}}\frac{1}{z-1} ~\mathrm{d}z+\oint\limits _{C_{2}}\frac{1}{z}~\mathrm{d}z  \\
+	    &=0+2\pi i+2\pi i+0
+	    =4\pi i
+	\end{align}
+
+
+
+
+
+**例题** 设 :math:`a \ne b` ,:math:`\gamma \subseteq \mathbb{C}` 为一条不经过:math:`a,b`的Jordan闭曲线，求 :math:`I=\oint_{\gamma}\frac{~\mathrm{d}z}{(z-a)(z-b)}` 。
+
+**解** 将被积函数 :math:`f(z)=\frac{1}{(z-a)(z-b)}` 进行留数展开
+
+.. math::
+	\begin{align}
+	\frac{1}{(z-a)(z-b)}=\frac{1}{a-b}(\frac{1}{z-a}-\frac{1}{z-b})
+	\end{align}
+
+
+(1) 如果 a,b 在 :math:`\gamma` 内部，作两个互不包含也互不相交的正向圆周 :math:`\gamma_{1},\gamma_{2}` ，于是
+    
+.. math::
+	\begin{align}
+	        I &=\frac{1}{a-b}\oint_{\gamma_{1}+\gamma_{2}}\left [ \frac{1}{z-a}-\frac{1}{z-b} \right ] ~\mathrm{d}z \\
+	        &=\frac{1}{a-b}\left [ 2\pi i+0-0-2\pi i \right ]=0 
+	\end{align}
+
+(2) 如果a在 :math:`\gamma` 内部，b在 :math:`\gamma` 外部，则只需要取 :math:`\gamma_{1}` ，于是
+    
+.. math::
+	\begin{align}
+	I=\frac{2\pi i}{a-b}
+	\end{align}
+
+(3) 如果b在 :math:`\gamma` 内部，a在 :math:`\gamma` 外部，根据对称性可以知道 :math:`I=\frac{2\pi i}{b-a}` 。
+    
+
+
+
+**例题** 设 :math:`f(z)` 在 :math:`|z|>1` 上解析且有界，给定 :math:`z_{0}` 满足 :math:`|z_{0}|<1` 以及正整数 :math:`n` ，求证 :math:`\oint\limits _{|z|=2}\frac{f(z)~\mathrm{d}z}{(z-z_{0})^{n+1}}=0` 。
+
+**证明** 在 :math:`|z| > 1` 上，有 :math:`|f(z)|\leqslant M` ，则根据复合闭路定理，对所有充分大的 :math:`r` ，有
+
+.. math::
+	\begin{align}
+	    \left | \oint\limits _{|z|=2}\frac{f(z)~\mathrm{d}z}{(z-z_{0})^{n+1}}  \right |=\left | \oint\limits _{|z-z_{0}|=r}\frac{f(z)~\mathrm{d}z}{(z-z_{0})^{n+1}}  \right | \leqslant \oint\limits _{|z-z_{0}|=r}\frac{|f(z)||~\mathrm{d}z|}{|z-z_{0}|^{n+1}}\leqslant \oint\limits _{|z-z_{0}|=r}\frac{M}{r^{n+1}}~\mathrm{d}s=\frac{2\pi M}{r^{n}}
+	\end{align}
+
+令 :math:`r	\to\infty` 则得到所要结论。
+
+
+
+
+原函数与不定积分
+----------------
+
+定理 : 解析函数的原函数
+    如果 :math:`f(z)` 在单连通域D内处处解析，设
+
+.. math::
+	\begin{align}
+	F(z)=\int_{z_{0}}^{z}f(\zeta)~\mathrm{d}\zeta
+	\end{align}
+
+则 :math:`F(z)` 必为B内的一个解析函数，并且 :math:`F'(z)=f(z)` 。
+
+.. note:: 在单连通域内， :math:`f(z)` 总是有原函数。
+
+
+定理 : Newton-Leibnitz公式
+    设 :math:`G(z)` 为 :math:`f(z)` 在D上的一个原函数，则 :math:`\forall z_{0},z_{1}\in D` ，有
+
+.. math::
+	\begin{align}
+	\left. \int_{z_{0}}^{z_{1}}f(z)~\mathrm{d}z= G(z) \right | _{z_{0}}^{z_{1}}
+	\end{align}
+
+
+定理 : 分部积分公式
+    设 :math:`f(z),g(z)` 在单连通区域D上解析，则 :math:`\forall z_{0},z_{1} \in D` 有
+
+.. math::
+	\begin{align}
+	\left.\int_{z_{0}}^{z_{1}}f(z)g'(z)~\mathrm{d}z=f(z)g(z) \right | _{z_{0}}^{z_{1}}-\int_{z_{0}}^{z_{1}}f'(z)g(z)~\mathrm{d}z
+	\end{align}
+
+.. note:: 这两个定理都要求在单连通区域，对于多连通区域一般不成立。
+
+
+定理 : 原函数存在的条件
+    设 :math:`w=f(z)` 在D上解析，则下列三条等价：
+
+    - :math:`\forall \text{闭路}C\subseteq D` 均有 :math:`\oint_{C}f(z)~\mathrm{d}z=0` ；
+    - :math:`f(z)` 在D上具有积分路径无关性；
+    - :math:`f(z)` 在D上存在原函数。
+      
+    若上述任意一条成立，则牛顿莱布尼兹公式可用。
+
+
+
+
+**例题** 求积分 :math:`\int_{0}^{i}z\cos z~\mathrm{d}z` 的值。
+
+**解** 函数 :math:`z\cos z` 在复平面内解析，可以求得它有一个原函数为 :math:`z\sin z+\cos z` ，所以
+
+.. math::
+	\begin{align}
+	    \int_{0}^{i}z\cos z~\mathrm{d}z
+	    =(z\sin z+\cos z)\bigg|_{0}^{i}
+	    =i\sin i+\cos i-1
+	    =i\frac{e^{-1}-e}{2i}+\frac{e^{-1}+e}{2}
+	    =e^{-1}-1  
+	\end{align}
+
+
+
+**例题** 沿区域 :math:`\operatorname{Im}(z)\geqslant 0` ， :math:`\operatorname{Re}(z)\geqslant 0` 的圆弧 :math:`|z|=1` ，计算积分 :math:`\int_{1}^{i}\frac{\ln(z+1)}{z+1}~\mathrm{d}z` 的值。
+
+**解** 函数 :math:`\frac{\ln(z+1)}{z+1}` 在所设区域内解析，它的一个原函数为 :math:`\frac{1}{2}\ln^{2}(z+1)` ，所以
+
+.. math::
+	\begin{align}
+	    \int_{1}^{i}\frac{\ln(z+1)}{z+1}~\mathrm{d}z
+	    =\frac{1}{2}\ln^{2}(z+1)\bigg|_{1}^{i} 
+	    =\frac{1}{2}\Big(\ln^{2}(1+i)-\ln^{2}2\Big) 
+	    =-\frac{\pi^{2}}{32}-\frac{3}{8}\ln^{2}2+\frac{\pi \ln 2}{8}i
+	\end{align}
+
+
+
+**例题** 计算 :math:`\int_{\frac{\pi}{6}i }^{0}\operatorname{ch}3z~\mathrm{d}z` 。
+
+**解** 函数 :math:`\operatorname{ch}3z` 在复平面内解析，于是
+
+.. math::
+	\begin{align}
+	    \int_{\frac{\pi}{6}i }^{0}\operatorname{ch}3z~\mathrm{d}z
+	    =(\frac{1}{3} \operatorname{sh}3z )\bigg|_{\frac{\pi}{6}i }^{0}
+	    =\frac{1}{3}\times \Big(\frac{e^{3z}-e^{-3z}}{2}\Big)\bigg|_{\frac{\pi}{6}i }^{0}
+	    =-\frac{1}{3}i  
+	\end{align} 
+
+
+
+
+**例题** 计算 :math:`\int_{1}^{i}\frac{1+\tan z}{\cos^{2}z} ~\mathrm{d}z` (沿 :math:`1` 到 :math:`i` 的直线段)。
+
+**解** 由于 :math:`\frac{1+	an z}{\cos^{2}z}` 在 :math:`|z|=\frac{3}{2}` 内处处解析，令 :math:`w=\tan z` ，则 :math:`\mathrm{d}w=\frac{~\mathrm{d}z}{\cos^{2}z}` ，于是
+
+.. math::
+	\begin{align}
+	    \int_{1}^{i}\frac{1+\tan z}{\cos^{2}z} ~\mathrm{d}z
+	    & =\int_{\tan 1}^{\tan i}(1+w)~\mathrm{d}w
+	    =(w+\frac{1}{2}w^{2} )\bigg|_{\tan 1}^{\tan i} \\
+	    &=\tan i+\frac{1}{2}\tan^{2}i-\tan 1-\frac{1}{2}\tan^{2}1
+	\end{align}
+
+
+
+**例题** 计算：:math:`\int_{1}^{i}\ln z~\mathrm{d}z` 。
+
+**解** 在 :math:`z=1` 到 :math:`z=i` 所在区域单连通，于是
+
+.. math::
+	\begin{align}
+	    \int_{1}^{i}\ln z~\mathrm{d}z 
+	    =z\ln z \left.\right|_{1}^{i}-\int_{1}^{i}z\cdot \frac{1}{z}~\mathrm{d}z
+	    = i\ln i-(i-1)
+	\end{align}
+
+
+
+
+
+柯西积分公式
+------------
+
+定理 : 柯西积分公式
+    设 :math:`w=f(z)` 在有界单连通区域D上解析，在 :math:`\bar{D}=D\cup \partial D ` 上连续，则对 :math:`\forall z_{0}\in D` 有
+
+    .. math::
+		\begin{align}
+		    f(z_{0})=\frac{1}{2\pi i}\oint_{\partial D}\frac{f(z)}{z-z_{0}}~\mathrm{d}z=\frac{1}{2\pi i}\oint_{C}\frac{f(z)}{z-z_{0}}~\mathrm{d}z
+		\end{align}
+
+
+更常见的形式为：
+
+.. math::
+	\begin{align}
+	    \oint\limits _{C}\frac{f(z)}{z-z_{0}} ~\mathrm{d}z=2\pi i\cdot f(z_{0})
+	\end{align}
+
+
+
+定理 : 线平均值公式
+    如果将C取为圆周 :math:`z=z_{0}+Re^{i\theta}` ，则
+
+.. math::
+	\begin{align}
+		f(z_{0})=\frac{1}{2\pi}\int_{0}^{2\pi}f(z_{0}+Re^{i\theta})~\mathrm{d}\theta
+	\end{align}
+
+也即一个解析函数在圆心处的值等于它在圆周上的平均值。
+
+
+除此之外还有面平均值公式：
+
+.. math::
+	\begin{align}
+	f(z_{0})=\frac{1}{\pi r^{2}}\iint\limits_{|z-z_{0}|\leqslant r}f(z)~\mathrm{d}x~\mathrm{d}y
+	\end{align}
+    
+
+
+
+**例题** 计算 :math:`\oint\limits _{C}\frac{\overline{z}}{|z|}~\mathrm{d}z ` 的值，其中 :math:`C` 为正向圆周 :math:`|z|=2` 。
+
+**解** 由于 :math:`|z|^{2}=z\cdot \overline{z}` ，因此
+
+.. math::
+	\begin{align}
+	    \oint\limits _{C}\frac{\overline{z}}{|z|}~\mathrm{d}z
+	    =\oint\limits _{C}|z|\cdot \frac{\overline{z} }{|z|^{2}}
+	    =2\oint\limits _{C} \frac{\overline{z} }{z\cdot \overline{z} } ~\mathrm{d}z
+	    =2\oint\limits _{C}\frac{1}{z}~\mathrm{d}z
+	    =2\cdot 2\pi i\cdot 1
+	    =4\pi i 
+	\end{align}
+
+
+
+**例题** 求 :math:`\oint\limits _{C}\frac{~\mathrm{d}z}{(z-\frac{i}{2} )(z+2)} ` ，其中 :math:`C` 为正向的圆周 :math:`|z|=1` 。
+
+**解** 被积式子的奇点有 :math:`z=\frac{i}{2}` 与 :math:`z=-2` ，而在 :math:`C` 所围区域内的奇点为 :math:`z=\frac{i}{2}` ，因此考虑柯西积分公式：
+
+.. math::
+	\begin{align}
+	    \oint\limits _{C}\frac{~\mathrm{d}z}{(z-\frac{i}{2} )(z+2)} 
+	    =\oint\limits _{C}\frac{\frac{1}{z+2} }{z-\frac{i}{2} } ~\mathrm{d}z
+	    =2\pi i\cdot \frac{1}{\frac{i}{2}+2 }
+	    =\frac{4\pi i}{4+i}  
+	\end{align}
+
+
+**例题** 计算积分 :math:`\oint_{C}z^{3}\cos z~\mathrm{d}z` ，其中 :math:`C` 为包围 :math:`z=0` 的闭曲线。
+
+**解** 根据柯西积分公式可得
+
+.. math::
+	\begin{align}
+	    \oint\limits _{C}z^{3}\cos z~\mathrm{d}z=\oint\limits _{C}\frac{z^{4}\cos z}{z}~\mathrm{d}z=2\pi i\cdot (z^{4}\cos z)\bigg|_{z=0} =0
+	\end{align}
+
+
+
+
+**例题** 计算积分 :math:`\oint\limits _{|z|=\frac{3}{2} }\frac{~\mathrm{d}z}{(z^{2}+1)(z^{2}+4)}` 。
+
+**解** 被积式子的奇点为 :math:`z=\pm i` ， :math:`z=\pm 2i` ，其中在闭曲线范围内的奇点有 :math:`z=i` 和 :math:`z=-i` 两个。
+
+作两个分别包含上述两个奇点的小圆周 :math:`C_{1},~C_{2}` ，于是由复合闭路原理和柯西积分公式可知
+
+.. math::
+	\begin{align}
+	    \oint\limits _{|z|=\frac{3}{2} }\frac{~\mathrm{d}z}{(z^{2}+1)(z^{2}+4)}
+	    &=\oint\limits _{C_{1}}\frac{1}{z-i}\cdot \frac{1}{(z+i)(z^{2}+4)}~\mathrm{d}z+\oint\limits _{C_{2}}\frac{1}{z+i}\cdot \frac{1}{(z-i)(z^{2}+4)}~\mathrm{d}z \\
+	    &=2\pi i\cdot \frac{1}{2i\cdot (-1+4)}+2\pi i\cdot \frac{1}{-2i\cdot (-1+4)}  
+	    =0
+	\end{align}
+
+
+
+**例题**
+
+.. math::
+	\begin{align*}
+	    \oint_{|z|=2}\left( \frac{1}{z}+\bar{z} \right)\cos^{2}z~\mathrm{d}z=2\pi i+\oint_{|z|=2}\bar{z}\cos^{2}z~\mathrm{d}z=2\pi i+\oint_{|z|=2}\frac{4\cos^{2}z}{z}~\mathrm{d}z
+	\end{align*}
+
+
+
+**例题** 设 :math:`f(z)` 与 :math:`g(z)` 在区域 :math:`D` 内处处解析， :math:`C` 为 :math:`D` 内的任何一条简单闭曲线，它的内部全含于 :math:`D`。若 :math:`f(z)=g(z)` 在 :math:`C` 上所有的点处成立，证明在 :math:`C` 内所有的点处 :math:`f(z)=g(z)` 也成立。
+
+**证明** 设 :math:`z` 为 :math:`C` 内任意一点，由柯西积分公式及已知 :math:`f(\zeta)=g(\zeta)~(\zeta\in C)` 可得
+
+.. math::
+	\begin{align}
+	    f(z)=\frac{1}{2\pi i}\oint_{C}\frac{f(\zeta)}{\zeta-z}~\mathrm{d}\zeta=\frac{1}{2\pi i}\oint_{C}\frac{g(\zeta)}{\zeta-z}~\mathrm{d}z=g(z)   
+	\end{align}
+
+
+
+**例题** 设 :math:`G` 为单连通区域，其边界为简单闭曲线 :math:`C` 。若函数 :math:`f(z)` 在 :math:`\overline{G}=G\cup C` 上解析，且在 :math:`C` 上有 :math:`f(z)=0` ，证明：在区域 :math:`G` 内恒有 :math:`f(z)=0` 。
+
+**证明** 由柯西积分公式，对任意 :math:`z\in G` 都有
+
+.. math::
+	\begin{align*}
+	    f(z)=\frac{1}{2\pi i}\oint_{C}\frac{f(\zeta)}{\zeta-z}~\mathrm{d}\zeta
+	\end{align*}
+
+又因为在 :math:`C` 上，:math:`f(z)=0` ，由上式可得对任意 :math:`z\in G` 都有 :math:`f(z)=0` ，故在区域 :math:`D` 内恒有 :math:`f(z)=0` 。
+
+
+
+
+**例题** 设 :math:`\rho>0,~a\in\mathbb{C},~|a|\ne\rho` ，求证：
+
+.. math::
+	\begin{align*}
+	    I=\oint\limits_{|z|=\rho}\frac{|~\mathrm{d}z|}{|z-a|^{2}}=\left \{ \begin{array}{cl}
+	    \frac{2\pi\rho}{\rho^{2}-|a|^{2}}, & |a|<\rho,\\
+	    \frac{2\pi\rho}{|a|^{2}-\rho^{2}}, & |a|>\rho . 
+	    \end{array} \right.
+	\end{align*}
+
+**证明** 令 :math:`z=re^{i\theta}` ，在 :math:`|z|=\rho` 上有 :math:`|z|^{2}=z\overline{z}=\rho^{2}`，:math:`|~\mathrm{d}z|=~\mathrm{d}s=\rho~\mathrm{d}\theta=-\rho\frac{~\mathrm{d}z}{z}` ，于是
+
+.. math::
+	\begin{align*}
+	    I=\oint\limits_{|z|=\rho}\frac{|~\mathrm{d}z|}{|z-a|^{2}}=\oint\limits_{|z|=\rho}\frac{-i\rho~\mathrm{d}z}{(z-a)(\overline{z}-\overline{a})z}=-i\rho\oint\limits_{|z|=\rho}\frac{~\mathrm{d}z}{(z-a)(\rho^{2}-\overline{a}z )}
+	\end{align*}
+
+当 :math:`|a|<\rho` 时，
+
+.. math::
+	\begin{align*}
+	    I=-\rho\oint\limits_{|z|=\rho}\frac{\frac{1}{\rho^{2}-\overline{a}z}}{z-a}~\mathrm{d}z=-i\rho\cdot 2\pi i \cdot \frac{1}{\rho^{2}-\overline{a}z}\bigg|_{z=a}=\frac{2\pi\rho}{\rho^{2}-|a|^{2}}
+	\end{align*}
+
+当 :math:`|a|>\rho` 时，
+
+.. math::
+	\begin{align*}
+	    I=-i\rho\oint\limits_{|z|=\rho}\frac{\frac{1}{-\overline{a}(z-a)}}{z-\frac{\rho^{2}}{\overline{a}}}=-i\rho\cdot 2\pi i \cdot \frac{1}{-\overline{a}(z-a)}\bigg|_{z=\frac{\rho^{2}}{\overline{a}}}=\frac{2\pi \rho}{|a|^{2}-\rho^{2}}
+	\end{align*}
+
+
+
+**例题** 设 :math:`f(z)` 为整函数，且已知 :math:`f(0)=A`，:math:`f'(0)=B` ，对给定的 :math:`r>0` 以及正整数 :math:`n` ，求：(1) :math:`I_{1}=\int_{0}^{2\pi}f^{n}(re^{i\theta})\cos^{2}\frac{\theta }{2}~\mathrm{d}\theta` ；(2) :math:`I_{2}=\int_{0}^{2\pi}f^{n}(re^{i\theta})\sin^{2}\frac{\theta }{2}~\mathrm{d}\theta` 。
+
+**解** 设 :math:`z=re^{i\theta}` ，则 :math:`~\mathrm{d}\theta=\frac{~\mathrm{d}z}{iz}` ，:math:`z\overline{z}=r^{2}` ，且有
+
+.. math::
+	\begin{align*}
+	    & \cos^{2}\frac{\theta }{2}=\frac{1+\cos\theta }{2}=\frac{1}{2}\left ( 1+\frac{z+\overline{z}}{2r}  \right )=\frac{2rz+z^{2}+r^{2}}{4rz} \\
+	    & \sin^{2}\frac{\theta }{2}=\frac{1-\cos\theta }{2}=\frac{1}{2}\left ( 1-\frac{z+\overline{z}}{2r}  \right )=\frac{2rz-z^{2}-r^{2}}{4rz} 
+	\end{align*}
+
+于是
+
+.. math::
+	\begin{align*}
+	    I_{1}&=\oint\limits_{|z|=r}f^{n}(z)\frac{2rz+z^{2}+r^{2}}{4rz}\cdot\frac{~\mathrm{d}z}{iz}
+	    =\oint\limits _{|z|=r}\left ( \frac{f^{n}(z)}{2iz} +\frac{f^{n}(z)}{4ir}+\frac{rf^{n}(z)}{4iz^{2}} \right )~\mathrm{d}z \\
+	    &=2\pi i\left ( \frac{f^{n}(0)}{2i}+0+\frac{r}{4i}\big(f^{n}(z)\big)'\bigg|_{0}\right )
+	    =2\pi i\left ( \frac{A^{n}}{2i}+\frac{rnA^{n-1}B}{4i} \right ) \\
+	    &=\pi\left ( A^{n}+\frac{rnA^{n-1}B}{2}  \right ) 
+	\end{align*}
+
+同理可以得到
+
+.. math::
+	\begin{align*}
+	    I_{2}=\pi\left ( A^{n}-\frac{rnA^{n-1}B}{2}\right ) 
+	\end{align*}
+
+
+
+
+解析函数的高阶导数
+------------------
+
+定理 : 高阶导数公式
+    设 :math:`\omega=f(z)` 在D上解析，则 :math:`f(z)` 在D上具有任意阶导数，且对 :math:`\forall z_{0}\in D` 有
+
+.. math::
+	\begin{align*}
+		f^{(n)}(z_{0})=\frac{n!}{2\pi i}\oint_{C}\frac{f(z)}{(z-z_{0})^{n+1}}~\mathrm{d}z\quad (n=1,2,\cdots)
+	\end{align*}
+
+其中 :math:`C\subseteq D` 为一条环绕 :math:`z_{0}` 的Jordan闭曲线，且其内部完全含于D。
+
+更常见的形式是：
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{C}\frac{f(z)}{(z-z_{0})^{n}}~\mathrm{d}z=\frac{2\pi i}{(n-1)!}f^{(n-1)}(z_{0})  
+	\end{align*}
+
+特别地，当 :math:`z_{0}=0` 时，令 :math:`z=re^{i\theta}` ，则有
+
+.. math::
+	\begin{align*}
+	    \frac{1}{r^{n}} \int_{0}^{2\pi}\frac{f(re^{i\theta })}{e^{in\theta }} ~\mathrm{d}\theta =\frac{2\pi i}{n!}f^{(n)}(0) 
+	\end{align*}
+
+
+
+**例题** 计算 :math:`\oint\limits _{C}\frac{e^{z}}{(z^{2}+1)^{2}}~\mathrm{d}z` ，其中 :math:`C` 为正向圆周 :math:`|z|=r>1` 。
+
+**解** 函数 :math:`\frac{e^{z}}{(z^{2}+1)^{2}}` 在 :math:`C` 内的 :math:`z=\pm i` 处不解析，于是在 :math:`C` 内以 :math:`i` 为中心作一个正向圆周 :math:`C_{1}` ，以 :math:`-i` 为中心作一个正向圆周 :math:`C_{2}` ，则函数 :math:`\frac{e^{z}}{(z^{2}+1)^{2}}` 在由 :math:`C,~C_{1},~C_{2}` 围成的区域内是解析的，则根据复合闭路定理可得
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{C}\frac{e^{z}}{(z^{2}+1)^{2}}~\mathrm{d}z
+	    =\oint\limits _{C_{1}}\frac{e^{z}}{(z^{2}+1)^{2}}~\mathrm{d}z+\oint\limits _{C_{2}}\frac{e^{z}}{(z^{2}+1)^{2}}~\mathrm{d}z
+	\end{align*}
+
+由高阶导数公式可知
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{C_{1}}\frac{e^{z}}{(z^{2}+1)^{2}}~\mathrm{d}z
+	    =\oint\limits _{C_{1}}\frac{\frac{e^{z}}{(z+i)^{2}} }{(z-i)^{2}} ~\mathrm{d}z
+	    =\frac{2\pi i}{(2-1)!}\Big(\frac{e^{z}}{(z+i)^{2}}  \Big)'_{z=i}
+	    =\frac{(1-i)e^{i}}{2}\pi 
+	\end{align*}
+
+同理可得 :math:`\oint\limits _{C_{2}}\frac{e^{z}}{(z^{2}+1)^{2}} ~\mathrm{d}z=\frac{-(1+i)e^{-i}}{2}\pi` ，所以得到
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{C}\frac{e^{z}}{(z^{2}+1)^{2}} ~\mathrm{d}z
+	    =\frac{\pi}{2}(1-i)(e^{i}-ie^{e^{-i}})
+	    =\frac{\pi}{2}(1-i)^{2}(\cos 1-\sin 1) 
+	    =i\pi \sqrt{2}\sin (1-\frac{\pi}{4} ) 
+	\end{align*}
+
+
+**例题**
+
+.. math::
+	\begin{align*}
+	    I=\oint_{|z|=1}\frac{z-\sin z}{z^{6}}~\mathrm{d}z
+	    =\frac{2\pi i}{5!}(z-\sin z)^{(5)}\bigg|_{z=0}
+	    =\frac{-2\pi i}{5!}
+	\end{align*}
+
+
+
+**例题**
+
+.. math::
+	\begin{align*}
+	    I &=\oint_{|z|=4}\frac{\sin z}{(z^{2}-1)^{2}}~\mathrm{d}z
+	    =\oint_{C_{1}+C_{2}}\frac{\sin z}{(z^{2}-1)^{2}}~\mathrm{d}z
+	    =\oint_{C_{1}}\frac{\frac{\sin z}{(z+1)^{2}}~\mathrm{d}z}{(z-1)^{2}}
+	    +\oint_{C_{2}}\frac{\frac{\sin z}{(z-1)^{2}}~\mathrm{d}z}{(z+1)^{2}} \\
+	    &=2\pi i\left[ \left(\frac{\sin z}{(z+1)^{2}}\right)'\bigg|_{z=1}+\left(\frac{\sin z}{(z-1)^{2}}\right)'\bigg|_{z=-1} \right]
+	    =\pi(\cos 1-\sin 1)
+	\end{align*}
+
+
+
+**例题** 设函数 :math:`f(z)` 在 :math:`0<|z|<1` 内解析，且沿任何圆周 :math:`C:|z|=r,~0<r<1` 的积分等于零，问 :math:`f(z)` 是否一定在 :math:`z=0` 处解析？
+
+**解** 不一定，例如 :math:`\oint_{C}\frac{1}{z^{n}}~\mathrm{d}z,~(n\geqslant 2)` ，根据高阶导数公式可知
+
+.. math::
+	\begin{align*}
+	    \oint_{C}\frac{1}{z^{n}}~\mathrm{d}z=\frac{2\pi i}{(n-1)!}f^{(n-1)}(0)
+	\end{align*}
+
+其中 :math:`f(z)=1` ，因此 :math:`\oint_{C}\frac{1}{z^{n}}~\mathrm{d}z=0` ，而 :math:`\frac{1}{z^{n}}` 在 :math:`z=0` 处不解析。
+
+
+
+**例题** 设 :math:`C` 为复平面内一条绕原点的简单闭曲线，证明： :math:`\oint_{C}\frac{z^{n}e^{z\zeta}}{n!\zeta^{n+1}}~\mathrm{d}\zeta=2\pi i\left ( \frac{z^{n}}{n!} \right )^{2}` 。
+
+**证明** :math:`f(\zeta)=\frac{z^{n}}{n!}e^{z\zeta}` 在 :math:`\zeta` 平面上解析，由高阶导数公式可知
+
+.. math::
+	\begin{align*}
+	    f^{(n)}(0)=\frac{n!}{2\pi i}\oint_{C} \frac{z^{n}e^{z\zeta}}{n!\zeta^{n+1}}~\mathrm{d}\zeta
+	\end{align*}
+
+又因为
+
+.. math::
+	\begin{align*}
+	    f^{(n)}(0)=\left ( \frac{z^{n}}{n!}e^{z\zeta}  \right )^{(n)}\bigg|_{\zeta=0}=\frac{(z^{n})^{2}}{n!} 
+	\end{align*}
+
+故所证结论成立。
+
+
+
+**例题** 设 :math:`f(z)` 在 :math:`|z|\leqslant 2` 内解析，已知 :math:`f(0)=A,~f'(0)=B,~f''(0)=C` ，求 :math:`I=\frac{1}{2\pi i}\oint\limits _{|z|=1}(2-z)f(\overline{z})~\mathrm{d}z` 。
+
+**解** 令 :math:`z=e^{i\theta}` ，则 :math:`~\mathrm{d}z=ie^{i\theta}~\mathrm{d}\theta` ，于是
+
+.. math::
+	\begin{align*}
+	    I=\frac{1}{2\pi i}\int_{0}^{2\pi}(2-e^{i\theta })f(e^{-i\theta })\cdot ie^{i\theta }~\mathrm{d}\theta 
+	    =\frac{1}{2\pi i}\int_{0}^{2\pi}\frac{1-2e^{-i\theta }}{e^{-3i\theta }}f(e^{-i\theta })\cdot ie^{-i\theta }~\mathrm{d}(-\theta )
+	\end{align*}
+
+令 :math:`\varphi=-\theta` ，则
+
+.. math::
+	\begin{align*}
+	    I&=\frac{1}{2\pi i}\int_{-2\pi}^{0}\frac{1-2e^{i\varphi}}{e^{3i\varphi}}f(e^{i\varphi})\cdot ie^{i\varphi}~\mathrm{d}\varphi 
+	    =\frac{-1}{2\pi i}\int_{0}^{2\pi}\frac{1-2z}{z^{3}}f(z)~\mathrm{d}z \\
+	    &=\frac{-1}{2\pi i}\cdot 2\pi i\cdot\frac{1}{2!} \Big((1-2z)f(z)\Big)''\bigg|_{z=0}
+	    =2B-\frac{1}{2}C
+	\end{align*}
+
+
+
+**例题** 计算 :math:`\oint\limits _{|z|=2}\frac{z^{2n}}{z^{n}+1}~\mathrm{d}z` ，其中 :math:`n` 为正整数。
+
+**解**
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{|z|=2}\frac{z^{2n}}{z^{n}+1}~\mathrm{d}z=\oint\limits _{|z|=2}\frac{z^{2n}-1+1}{z^{n}+1}~\mathrm{d}z=\oint\limits _{|z|=2}(z^{n}-1)~\mathrm{d}z+\oint\limits _{|z|=2}\frac{1}{z^{n}+1}~\mathrm{d}z=\left \{ \begin{array}{cl}
+	    2\pi i, & n=1,\\
+	    0, & n\geqslant 2
+	    \end{array} \right.
+	\end{align*}
+
+
+定理 : Morera定理
+    设 :math:`\omega=f(z)` 在D上连续，且在D上沿着任意一条简单闭曲线积分为零，则 :math:`f(z)` 在D上解析。
+
+**证明** 在 :math:`D` 内任取两点 :math:`z_{0}` 和 :math:`z` ，因为 :math:`f(z)` 在区域 :math:`D` 内连续且在D上沿着任意一条简单闭曲线积分为零，所以下述积分与积分路径无关：
+
+.. math::
+	\begin{align*}
+	    F(z)=\int_{z_{0}}^{z}f(\zeta)~\mathrm{d}\zeta
+	\end{align*}
+
+于是可知函数 :math:`F(z)` 单值地取决于变量 :math:`z` 。同时，易知
+
+.. math::
+	\begin{align*}
+	    F'(z)=f(z)
+	\end{align*}
+
+所以 :math:`F(z)` 是 :math:`D` 内的一个解析函数。由于解析函数的导数仍为解析函数，所以 :math:`f(z)` 也是解析函数。
+
+
+
+定理 : 代数基本定理
+    
+    .. math::
+        \begin{align*}
+        P_{n}(z)=a_{n}z^{n}+\cdots+a_{1}z+a_{0} \quad (a_{n}\ne 0,~n\geqslant 1)
+        \end{align*}
+
+    在 :math:`\mathbb{C}` 上恰好有 :math:`n` 个零点。
+
+
+
+定理 : Cauchy不等式
+    设 :math:`\omega=f(z)` 在 :math:`|z-z_{0}|<R~(0<R<+\infty)` 上解析，且 :math:`|f(z)|\leqslant M~,(\forall z\in B_{n}(z_{0}))`，则
+
+    .. math::
+		\begin{align*}
+		    \left| f^{(n)}(z_{0}) \right|\leqslant \frac{n!M}{R^{n}} \quad (n\geqslant 1)
+		\end{align*}
+
+**证明** 由高阶导数公式可知
+
+.. math::
+	\begin{align*}
+	    f^{(n)}(z_{0})=\frac{n!}{2\pi i}\oint_{C}\frac{f(z)}{(z-z_{0})^{n+1}}~\mathrm{d}z
+	    \quad (n=1,2,\cdots)
+	\end{align*}
+
+所以有
+
+.. math::
+	\begin{align*}
+	    |f^{(n)}(z_{0})|\leqslant \frac{n!}{2\pi}\oint_{C}\frac{|f(z)|}{|z-z_{0}|^{n+1}}|~\mathrm{d}z|\leqslant \frac{n!}{2\pi}\frac{M}{R^{n+1}}\cdot 2\pi R=\frac{n!M}{R^{n}} 
+	    \quad
+	    (n=1,2,\cdots)
+	\end{align*}
+
+
+
+
+
+定理 : Liouviue定理
+    若整函数 :math:`f(z)` 在整个平面上有界，即对所有 :math:`z` 满足不等式 :math:`|f(z)|\leqslant M` ，则 :math:`f(z)` 必定为常数。
+
+
+**证明** 设 :math:`z` 是平面上任一点，对以 :math:`z` 为中心，任意正数 :math:`R` 为半径的圆周，利用Cauchy不等式可得
+
+.. math::
+	\begin{align*}
+	    |f'(z)|\leqslant \frac{M}{R}
+	\end{align*}
+
+由于 :math:`R` 可以任意大，所以必有 :math:`|f'(z)|=0` ，即 :math:`f'(z)=0` ，由于点 :math:`z` 是任意的，故 :math:`f(z)` 必为常函数。
+
+
+
+解析函数与调和函数的关系
+------------------------
+
+定义 : 调和函数
+    如果二元变函数 :math:`\varphi (x,y)` 在区域 :math:`D` 内具有二阶连续偏导数，并且满足Laplace方程
+
+.. math::
+    \begin{align*}
+    \Delta \varphi =\frac{\partial ^{2}\varphi}{\partial x^{2}}+\frac{\partial ^{2}\varphi}{\partial y^{2}}=0
+    \end{align*}
+
+则称 :math:`\varphi (x,y)` 为区域 :math:`D` 上的调和函数。
+
+
+.. note:: 
+
+	在高维情况下，Laplace方程为
+
+.. math::
+	\begin{align*}
+	\Delta_{n}=\sum_{j=1}^{n}\frac{\partial ^{2}}{\partial x_{j}^{2}}\quad (x_{1},\cdots, x_{n})\in \mathbb{R}^{n}
+	\end{align*}
+
+
+
+定理 : 解析函数与调和函数的关系
+    设 :math:`w=f(z)=u(x,y)+iv(x,y)` 在 :math:`D` 上解析，则 :math:`u,v` 均为 :math:`D` 上的调和函数。
+
+
+
+定义 : 共轭调和函数
+    若两个调和函数 :math:`u(x,y)` 和 :math:`v(x,y)` 构成 :math:`u+iv` 在 :math:`D` 内解析，则称 :math:`v(x,y)` 为 :math:`u(x,y)` 的共轭调和函数。
+
+    或者在 :math:`D` 内满足柯西-黎曼方程
+
+.. math::
+	\begin{align*}
+	\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},\quad \frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}
+	\end{align*}
+
+的两个调和函数中，称 :math:`v` 为 :math:`u` 的共轭调和函数。也即区域 :math:`D` 的解析函数的虚部为实部的共轭调和函数。
+
+
+.. note:: 由于 :math:`if(z)=(u+iv)i=-v+iu` 可知， :math:`u` 是 :math:`-v` 的调和函数。
+
+
+定理 : 由调和函数构造解析函数
+    设 :math:`u` 为单连通区域 :math:`D` 上的调和函数，则存在 :math:`f(z)` 在 :math:`D` 上解析，使得 :math:`u=\operatorname{Re}f(z)` 。
+
+
+
+**例题** 证明 :math:`u(x,y)=y^{3}-3x^{2}y` 为调和函数，并求其共轭调和函数 :math:`v(x,y)` 和由它们构成的解析函数。
+
+**解** 因为
+
+.. math::
+	\begin{align*}
+	\begin{array}{ll}
+	\frac{\partial u}{\partial x}=-6xy, & \frac{\partial ^{2}u}{\partial x^{2}} =-6y \\
+	\frac{\partial u}{\partial y}=3y^{2}-3x^{2}, & \frac{\partial ^{2}u}{\partial y^{2}} =6y 
+	\end{array}
+	\end{align*}
+
+所以 :math:`\frac{\partial ^{2}u}{\partial x^{2}}+\frac{\partial ^{2}u}{\partial y^{2}} =0` ，于是 :math:`u(x,y)` 为调和函数。由 :math:`\frac{\partial v}{\partial y}=\frac{\partial u}{\partial x}=-6xy` 得到
+
+.. math::
+	\begin{align*}
+	    & v=\int-6xy~\mathrm{d}y=-3xy^{2}+g(x) \\
+	    & \frac{\partial v}{\partial x}=-3y^{2}+g'(x)
+	\end{align*}
+
+又由 :math:`\frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}` 得到
+
+.. math::
+	\begin{align*}
+	    -3y^{2}+g'(x)=-3y^{2}+3x^{2}
+	\end{align*}
+
+从而可知
+
+.. math::
+	\begin{align*}
+	    g(x)=\int 3x^{2}~\mathrm{d}x=x^{3}+C
+	\end{align*}
+
+因此得到 :math:`v(x,y)=x^{3}-3xy^{2}+C` ，进而得到解析函数为
+
+.. math::
+	\begin{align*}
+	    w=y^{3}-3x^{2}y+i(x^{3}-3xy^{2}+C)=i(z^{3}+C)
+	\end{align*}
+
+
+
+
+**例题** 已知调和函数 :math:`v=e^{x}(y\cos y+x\sin y)+x+y` ，求解析函数 :math:`f(z)=u+iv` 使 :math:`f(0)=0` 。
+
+**解** 因为
+
+.. math::
+	\begin{align*}
+	    & \frac{\partial v}{\partial x}=e^{x}(y\cos y+x\sin y+\sin y)+1 \\
+	    & \frac{\partial v}{\partial y}=e^{x}(\cos y-y\sin y+x\cos y)+1
+	\end{align*}
+
+于是由柯西-古萨定理可知
+
+.. math::
+	\begin{align*}
+	    \frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}=e^{x}(\cos y-y\sin y+x\cos y)+1
+	\end{align*}
+
+从而得到
+
+.. math::
+	\begin{align*}
+	    u=\int\Big(e^{x}(\cos y-y\sin y+x\cos y)+1\Big)~\mathrm{d}x
+	    =e^{x}(x\cos y-y\sin y)+x+g(y)
+	\end{align*}
+
+再由柯西-古萨定理 :math:`\frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}` 可得
+
+.. math::
+	\begin{align*}
+	    e^{x}(y\cos y+x\sin y+\sin y)+1=e^{x}(x\sin y+y\cos y+\sin y)-g'(y)
+	\end{align*}
+
+于是可知 :math:`g(y)=-y+C` ，因此 :math:`u=e^{x}(x\cos y-y\sin y)+x-y+C` ，进而可得
+
+.. math::
+	\begin{align*}
+	    f(z)
+	    &=e^{x}(x\cos y-y\sin y)+x-y+C+i\Big(e^{x}(y\cos y+x\sin y)+x+y\Big) \\
+	    &=xe^{x}e^{iy}+iye^{x}e^{iy}+x(1+i)+iy(1+i)+C \\
+	    &=ze^{z}+(1+i)z+C
+	\end{align*}
+
+由 :math:`f(z)=0` 可得 :math:`C=0` ，所以所求解析函数为 :math:`f(z)=ze^{z}+(1+i)z` 。
+
+
+
+**例题** 设 :math:`v=e^{px}\sin y` ，求 :math:`p` 的值使 :math:`v` 为调和函数，并求出解析函数 :math:`f(z)=u+iv` 。
+
+**解** 由题设可知
+
+.. math::
+	\begin{align}
+	\frac{\partial ^{2}v}{\partial x^{2}}=p^{2}e^{px}\sin y,\quad \frac{\partial ^{2}v}{\partial y^{2}}=-e^{px}\sin y
+	\end{align}
+
+从而由调和函数Laplace方程 :math:`\frac{\partial ^{2}v}{\partial x^{2}}+\frac{\partial ^{2}v}{\partial y^{2}} =0` 可知 :math:`p=1` 或 :math:`p=-1` 。
+
+(1) 当 :math:`p=1` 时，由柯西古萨方程可得
+    
+.. math::
+    \begin{align*}
+        \frac{\partial u}{\partial x}=e^{x}\cos y,\quad \frac{\partial u}{\partial y}=-e^{x}\sin y
+    \end{align*}
+
+对 :math:`\frac{\partial u}{\partial x}` 积分得到 :math:`u=e^{x}\cos y+g(y)` ，再对其对 :math:`y` 求偏导得到 :math:`\frac{\partial u}{\partial y}=-e^{x}\sin y+g'(y)` ，进而对比可知 :math:`g'(y)=0` ，所以 :math:`g(y)=C` ，于是
+
+.. math::
+    \begin{align*}
+        f(z)=e^{x}\cos y+ie^{x}\sin y+C=e^{z}+C
+    \end{align*}
+
+(2) 当 :math:`p=-1` 时，由柯西古萨方程可得
+    
+.. math::
+    \begin{align*}
+        \frac{\partial u}{\partial x}=e^{-x}\cos y,\quad \frac{\partial u}{\partial y}=e^{-x}\sin y
+    \end{align*}
+
+对 :math:`\frac{\partial u}{\partial y}` 积分得到 :math:`u=-e^{-x}\cos y+g(x)` ，再对其对 :math:`x` 求偏导得到 :math:`\frac{\partial u}{\partial x}=e^{-x}\cos y+g'(x)` ，进而对比可知 :math:`g'(x)=0` ，所以 :math:`g(x)=C` ，于是
+
+.. math::
+    \begin{align*}
+        f(z)=-e^{-x}\cos y+ie^{-x}\sin y+C=-e^{-z}+C
+    \end{align*}
+
+
+
+定理 : 不定积分法
+    若已知调和函数 :math:`u(x,y)` 或 :math:`v(x,y)` ，记
+
+.. math::
+	\begin{align*}
+		U(z)=\frac{\partial u}{\partial x}-i\frac{\partial u}{\partial y}
+		\quad \text{或} \quad
+		V(z)=\frac{\partial v}{\partial y}+i\frac{\partial v}{\partial x}
+	\end{align*}
+
+则由上述两个调和函数构成的解析函数 :math:`f(z)=u+iv` 满足
+
+.. math::
+	\begin{align*}
+		f(z)=\int U(z)~\mathrm{d}z+C
+		\quad \text{或} \quad
+		f(z)=\int V(z)~\mathrm{d}z+C
+	\end{align*}
+
+其中 :math:`C` 根据已知调和函数是否确定了实部或虚部来确定是实数还是虚数。
+
+
+.. note:: 
+
+	常常需要将关于 :math:`x,y` 的式子转化为关于 :math:`z,\overline{z}` 的式子，常用如下变换：
+
+	.. math::
+		\begin{align*}
+		    z\cdot \overline{z}=x^{2}+y^{2} , 
+		    \quad
+		    \frac{z^{2}+\overline{z}^{2} }{2}=x^{2}-y^{2} ,
+		    \quad
+		    \frac{z^{2}-\overline{z}^{2}}{4i}=xy 
+		\end{align*}
+
+
+
+**例题** 已知调和函数 :math:`v=e^{x}(y\cos y+x\sin y)+x+y` ，求解析函数 :math:`f(z)=u+iv` 。
+
+**解** 由于
+
+.. math::
+	\begin{align*}
+	    & \frac{\partial v}{\partial x}=e^{x}(y\cos y+x\sin y+\sin y)+1 \\
+	    & \frac{\partial v}{\partial y}=e^{x}(\cos y-y\sin y+x\cos y)+1
+	\end{align*}
+
+所以可知
+
+.. math::
+	\begin{align*}
+	    f'(z)
+	    &=e^{x}(\cos y-y\sin y+x\cos y)+1+i\Big(e^{x}(y\cos y+x\sin y+\sin y)+1\Big) \\
+	    &=e^{x}(\cos y+i\sin y)+i(x+iy)e^{x}\sin y+(x+iy)e^{x}\cos y+1+i \\
+	    &=e^{x+iy}+(x+iy)e^{x+iy}+1+i \\
+	    &=e^{z}+ze^{z}+1+i
+	\end{align*}
+
+于是可得
+
+.. math::
+	\begin{align*}
+	    f(z)=\int(e^{z}+ze^{z}+1+i)~\mathrm{d}z=ze^{z}+(1+i)z+C
+	\end{align*}
+
+
+
+
+**例题** 由调和函数 :math:`u=(x-y)(x^{2}+4xy+y^{2})` 求解析函数 :math:`f(z)=u+iv` 。
+
+**解** 由题设可知
+
+.. math::
+	\begin{align*}
+	    U(z)=3(x^{2}+2xy-y^{2})-3i(x^{2}-2xy-y^{2})
+	\end{align*}
+
+根据
+
+.. math::
+	\begin{align*}
+	    z\cdot \overline{z}=x^{2}+y^{2} , 
+	    \quad
+	    \frac{z^{2}+\overline{z}^{2} }{2}=x^{2}-y^{2} ,
+	    \quad
+	    \frac{z^{2}-\overline{z}^{2}}{4i}=xy 
+	\end{align*}
+
+可以得到
+
+.. math::
+	\begin{align*}
+	    U(z)=3\left ( \frac{z^{2}+\overline{z}^{2} }{2}+\frac{z^{2}-\overline{z}^{2}}{2i}   \right ) -3i\left ( \frac{z^{2}+\overline{z}^{2} }{2}-\frac{z^{2}-\overline{z}^{2}}{2i} \right ) =3(1-i)z^{2}
+	\end{align*}
+
+从而
+
+.. math::
+	\begin{align*}
+	    f(z)=\int U(z)~\mathrm{d}z+C=(1-i)z^{3}+C
+	\end{align*}
+
+其中由于实部 :math:`u` 是确定的，所以 :math:`C` 为虚数，因此可以改写为 :math:`f(z)=(1-i)z^{3}+ic` 。
+
+
+
+
+**例题** 已知调和函数 :math:`v=\frac{y}{x^{2}+y^{2}} ` ，求满足 :math:`f(2)=0` 的解析函数 :math:`f(z)=u+iv` 。
+
+**解** 由题设可知
+
+.. math::
+	\begin{align*}
+	    \frac{\partial v}{\partial x}=\frac{-2xy}{(x^{2}+y^{2})^{2}} ,
+	    \quad
+	    \frac{\partial v}{\partial y}=\frac{x^{2}-y^{2}}{(x^{2}+y^{2})^{2}} 
+	\end{align*}
+
+从而可得
+
+.. math::
+	\begin{align*}
+	    U(z)=\frac{x^{2}-y^{2}}{(x^{2}+y^{2})^{2}} +i\frac{-2xy}{(x^{2}+y^{2})^{2}}
+	    =\frac{z^{2}+\overline{z}^{2}}{2}\cdot\frac{1}{z^{2}\overline{z}^{2}}  -i\frac{1}{z^{2}\overline{z}^{2}}\cdot\frac{z^{2}-\overline{z}^{2}}{2i} 
+	    =\frac{1}{z^{2}}
+	\end{align*}
+
+进而得到
+
+.. math::
+	\begin{align*}
+	    f(z)=\int \frac{1}{z^{2}}~\mathrm{d}z=-\frac{1}{z}+C
+	\end{align*}
+
+由 :math:`f(2)=0` 可得 :math:`C=\frac{1}{2}` ，因此 :math:`f(z)=-\frac{1}{z}+\frac{1}{2}` 。
+
+
+
+
+**例题** 已知调和函数 :math:`u=2(x-1)y` ，求满足 :math:`f(2)=-i` 的解析函数 :math:`f(z)=u+iv` 。
+
+**解** 由题设可知
+
+.. math::
+	\begin{align*}
+	    \frac{\partial u}{\partial x}=2y,\quad \frac{\partial u}{\partial y}=2x-2
+	\end{align*}
+
+从而可知 :math:`U(z)=2y-i(2x-2)` ，而根据
+
+.. math::
+	\begin{align*}
+	    \frac{z+\overline{z}}{2}=x,\quad \frac{z-\overline{z}}{2i} =y 
+	\end{align*}
+
+可以得到
+
+.. math::
+	\begin{align*}
+	    U(z)=\frac{z-\overline{z}}{i}-i(z+\overline{z}-2) =-2zi+2i
+	\end{align*}
+
+进而可知
+
+.. math::
+	\begin{align*}
+	    f(z)=\int U(z)~\mathrm{d}z=-iz^{2}+2iz+C
+	\end{align*}
+
+根据 :math:`f(2)=-i` 可知 :math:`C=-i` ，于是 :math:`f(z)=-iz^{2}+2iz-i=-i(z-1)^{2}` 。
+
+
+
+
+**例题** :math:`u(x,y)=\ln\sqrt{x^{2}+y^{2}}` ，在 :math:`D=\mathbb{C}^{*}=\mathbb{C}\backslash \{0\}` 上调和。
+
+**解** :math:`U(z)=u_{x}-iu_{y}=\frac{1}{z}` ，发现 :math:`\frac{1}{z}` 没有原函数，于是不定积分有问题。
+
+改造成 :math:`\tilde{D} =\mathbb{C}\backslash (-\infty ,0]` ，则 :math:`f(z)=\int \frac{1}{z}~\mathrm{d}z=\ln z+C` ，于是得到 :math:`v=\operatorname{arg}z+\text{const}` 。
+
+
+
+**例题** 设 :math:`u=x^{3}-2xy^{2}` ，求整函数 :math:`f(z)` 以及 :math:`u=\operatorname{Re}f` 。
+
+**解** 容易验证在 :math:`\mathbb{C}` 上 :math:`\Delta u=0` 。
+
+(1) 使用不定积分法，则
+    
+.. math::
+    \begin{align*}
+        U(z)=u_{x}-u_{y}=3x^{2}-3y^{2}+i6xy=3(x^{2}-y^{2}+2xyi)=3(x+iy)^{2}=3z^{2}
+    \end{align*}
+
+从而
+
+.. math::
+    \begin{align*}
+        f(z)=\int 3z^{2}~\mathrm{d}z=z^{3}+C=x^{3}-3xy^{2}+i(-y^{3}+3x^{2}y)+C
+    \end{align*}
+
+由于实部 :math:`u` 是给定的，于是 :math:`C\in iC'~(C'\in \mathbb{R})` 。
+
+(2) 使用偏积分法，则
+    
+.. math::
+    \begin{align*}
+        v_{y}=u_{x}=3(x^{2}-y^{2}),
+        \quad v_{x}=-u_{y}=6xy
+    \end{align*}
+
+从而
+
+.. math::
+    \begin{align*}
+        v=\int v_{x}~\mathrm{d}x=\int 6xy~\mathrm{d}x=3x^{2}y+g(y)
+    \end{align*}
+
+于是 :math:`3x^{2}+g'(y)=3(x^{2}-y^{2})` ，得到 :math:`g'(y)=-3y^{2}` ，因此 :math:`g(y)=-y^{3}+C,~C\in \mathbb{R}` ，也即
+
+.. math::
+    \begin{align*}
+        v=-y^{3}+3x^{2}y+C
+    \end{align*}
+
+进而可得
+
+.. math::
+    \begin{align*}
+        f(z)=u+iv=z^{3}+iC,~C\in\mathbb{R}
+    \end{align*}
+
+
+
+
+**例题** 设 :math:`w=f(z)=u(x^{2}-y^{2})+iv(x,y)` 在 :math:`\mathbb{C}` 上解析，试求 :math:`f(z)` 。
+
+**解** 令 :math:`t=x^{2}-y^{2}` ，由于 :math:`f(z)` 解析，于是 :math:`u(x^{2}-y^{2})` 调和，于是满足Laplace方程，因此需要求出 :math:`u` 的二阶偏导：
+
+.. math::
+	\begin{align*}
+	    & \frac{\partial u}{\partial x}=\frac{\partial u}{\partial t}\frac{\partial t}{\partial x}=2x\frac{\partial u}{\partial t} \\
+	    & \frac{\partial ^{2}u}{\partial x^{2}}=2\frac{\partial u}{\partial t}+2x\cdot \frac{\partial \big(\frac{\partial u}{\partial t}\left(x^{2}-y^{2}\right) \big)}{x}=2\frac{\partial u}{\partial t}+(2x)^{2}\frac{\partial ^{2}u}{\partial t^{2}} \\
+	    & \frac{\partial u}{\partial y}=\frac{\partial u}{\partial t}\frac{\partial t}{\partial y}=-2y\frac{\partial u}{\partial t} \\
+	    & \frac{\partial ^{2}u}{\partial y^{2}}=-2\frac{\partial u}{\partial t}-2y\cdot \frac{\partial \big(\frac{\partial u}{\partial t}\left(x^{2}-y^{2}\right) \big)}{y}=-2\frac{\partial u}{\partial t}+(-2y)^{2}\frac{\partial ^{2}u}{\partial t^{2}}
+	\end{align*}
+
+于是根据Laplace方程得到
+
+.. math::
+	\begin{align*}
+	    \Delta u=4(x^{2}+y^{2})\frac{\partial ^{2}u}{\partial t^{2}}=0
+	\end{align*}
+
+可得 :math:`\frac{\partial ^{2}u}{\partial t^{2}}=0` ，进而得到
+
+.. math::
+	\begin{align*}
+	    u=C_{1}t+C_{2}=C_{1}(x^{2}-y^{2})+C_{2}, \quad C_{1},C_{2}\in \mathbb{R}
+	\end{align*}
+
+因此 :math:`f(z)=C_{1}z^{2}+C` ， :math:`C_{1}\in\mathbb{R},C\in\mathbb{C}` 。
+
+
+
+
+
+级数
+=======
+
+
+复数项级数
+----------
+
+定理 : 复数列收敛
+	复数列  :math:`\{z_{n}\}(n=1,2,\cdots)` ，其中  :math:`z_{n}=x_{n}+iy_{n}` ，收敛于  :math:`\alpha=a+ib`  的充要条件为
+
+.. math::
+	\begin{align*}
+	    \lim_{n\to\infty}x_{n}=a, \quad \lim_{n\to\infty}y_{n}=b
+	\end{align*}
+
+
+定义 : 级数
+    对于复数列 :math:`\{z_{n}\}=\{x_{n}+iy_{n}\}(n=0,1,2,\cdots)` ，无穷级数为
+
+.. math::
+	\begin{align*}
+	    I=\sum_{n=0}^{\infty}z_{n}
+	\end{align*}
+
+部分和为
+
+.. math::
+	\begin{align*}
+	    S_{n}=\sum_{k=0}^{\infty}z_{k}
+	\end{align*}
+
+- 若 :math:`\lim\limits_{n	o\infty}S_{n}=S\in\mathbb{C}` 则称  :math:`I`  是收敛的(CV)，否则称  :math:`I`  是发散的(DV)；
+- 若  :math:`\sum\limits_{n=0}^{\infty}|z_{n}|`  是收敛的，则称  :math:`I`  是绝对收敛的(AC);
+- 若  :math:`I`  收敛，但不是绝对收敛，则称  :math:`I`  是条件收敛的(CC)。
+  
+
+
+
+定理 : 级数收敛充要条件
+    :math:`I=\sum\limits_{n=0}^{\infty}z_{n}`  收敛的充要条件为  :math:`\sum\limits_{n=0}^{\infty}x_{n},\sum\limits_{n=0}^{\infty}y_{n}`  均收敛。
+
+    :math:`I=\sum\limits_{n=0}^{\infty}z_{n}`  绝对收敛的充要条件为  :math:`\sum\limits_{n=0}^{\infty}x_{n},\sum\limits_{n=0}^{\infty}y_{n}`  均绝对收敛。
+
+
+定理 : 绝对收敛的绝对值不等式
+    若  :math:`I=\sum\limits_{n=0}^{\infty}z_{n}`  绝对收敛，则  :math:`I`  收敛，且有
+
+.. math::
+	\begin{align*}
+	      \left|\sum\limits_{n=0}^{\infty}z_{n}\right|\leqslant \sum_{n=0}^{\infty}\left|z_{n}\right|
+	\end{align*}
+
+
+
+
+敛散判别法
+^^^^^^^^^^
+
+1. Cauchy根式判别法：
+   
+- 若  :math:`\sqrt[n]{|z_{n}|}\leqslant q<1`  , :math:`n>N_{0}`  ，则  :math:`I`  绝对收敛；若  :math:`\sqrt[n]{|z_{n}|}\geqslant q\geqslant 1`  对无穷个  :math:`N`  成立，则  :math:`I`  发散。
+- :math:`\lim\limits_{n\to \infty }\sqrt[n]{|z_{n}|}=q \left \{\begin{array}{cc}<1&AC\\>1&DV \\=1 & \text{不定}\end{array}\right.` 
+    
+2. D'Alembert判别法
+   
+- 若  :math:`\left | \frac{z_{n+1}}{z_{n}} \right | \leqslant q<1,n>N_{0} \Rightarrow AC` ；若  :math:`\left | \frac{z_{n+1}}{z_{n}}\right | \geqslant q\geqslant 1,n>N_{0} \Rightarrow DV` 
+- :math:`\lim\limits_{n\to \infty }\left | \frac{z_{n+1}}{z_{n}}  \right | =q\left \{   \begin{array}{ccc}<1& \Rightarrow AC \\>1& \Rightarrow DV \\=1& \Rightarrow \text{不定}\end{array}\right.` 
+    
+3. 设  :math:`\left \{ a_{n}\right \} ,\left \{ b_{n}\right \} \subseteq \mathbb{R}` ：
+   
+- Dirichlet判别法：设  :math:`\left \{ a_{n}\right \}`  单调趋于0， :math:`J=\sum\limits_{n=0}^{\infty}b_{n}`  的部分和有界，则  :math:`\sum\limits_{n=0}^{\infty}a_{n}b_{n}`  CV.
+- Abel判别法：设  :math:`\left \{ a_{n}\right \}`  单调有界， :math:`J=\sum\limits_{n=0}^{\infty}b_{n}`  收敛，则  :math:`\sum\limits_{n=0}^{\infty}a_{n}b_{n}`  收敛。
+    
+
+
+
+
+**例题** 判断级数  :math:`\sum\limits _{n=1}^{\infty }\frac{1}{n}e^{\frac{\pi i}{n} }`  的收敛性。
+
+**解** 记  :math:`\alpha_{n}=\frac{1}{n}e^{\frac{\pi i}{n} }`  ，则
+
+.. math::
+	\begin{align*}
+	    \alpha_{n}=\frac{\cos\frac{\pi}{n}}{n}+i\frac{\sin\frac{\pi}{n}}{n}
+	\end{align*}
+
+当  :math:`n\to\infty`  时，  :math:`\frac{\cos\frac{\pi}{n}}{n}\sim\frac{1}{n}`  ， :math:`\frac{\sin\frac{\pi}{n}}{n}\sim\frac{\pi}{n^{2}}`  ，于是  :math:`\sum\limits_{n=1}^{\infty}\frac{\cos\frac{\pi}{n}}{n}`  发散，  :math:`\sum\limits_{n=1}^{\infty}\frac{\sin\frac{\pi}{n}}{n}`  收敛，从而  :math:`\sum\limits _{n=1}^{\infty }\frac{1}{n}e^{\frac{\pi i}{n} }`  发散。
+
+
+
+
+**例题** 考察  :math:`\sum\limits_{n=1}^{\infty }\left ( 1-\frac{1}{n^{2}}\right )e^{i\frac{\pi}{n} }`  是否收敛？是否绝对收敛？
+
+**解** 由于
+
+.. math::
+	\begin{align*}
+	    \alpha_{n}=\left ( 1-\frac{1}{n^{2}}\right ) e^{i\frac{\pi}{n} }
+	    =\left ( 1-\frac{1}{n^{2}}\right )\left ( \cos\frac{\pi}{n}+i\sin\frac{\pi}{n}   \right ) 
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    a_{n}=\left ( 1-\frac{1}{n^{2}}\right )\cos\frac{\pi}{n} ,\quad 
+	    b_{n}=\left ( 1-\frac{1}{n^{2}}\right )\sin\frac{\pi}{n}
+	\end{align*}
+
+从而有  :math:`\lim\limits_{n\to\infty}a_{n}=1,~\lim\limits_{n\to\infty}b_{n}=0`  ，故  :math:`\lim\limits_{n\to\infty}\alpha_{n}=1\ne 0`  ，该级数发散。
+
+
+
+**例题** 考察  :math:`\sum\limits_{n=1}^{\infty }\frac{n^{2}}{5^{n}}(1+2i)^{n}`   是否收敛？是否绝对收敛？
+
+**解** 由于很难分离出  :math:`\alpha_{n}=\frac{n^{2}}{5^{n}}(1+2i)^{n}`  的实部和虚部，故采用绝对收敛准则。容易得到  :math:`|\alpha_{n}|=n^{2}\left ( \frac{1}{\sqrt{5} } \right ) ^{n}`  ，且
+
+.. math::
+	\begin{align*}
+	    \lim\limits _{n \to \infty} \sqrt[n]{|\alpha _{n}|} =\lim\limits _{n \to \infty}\sqrt[n]{n^{2}}\cdot \frac{1}{\sqrt{5} } =\frac{1}{\sqrt{5} }<1 
+	\end{align*}
+
+根据正项级数的根值法，可知原级数收敛且为绝对收敛。
+
+
+
+**例题** 考察  :math:`\sum\limits_{n=1}^{\infty }\frac{(1+i)^{n}}{2^{n/2}\cos in}`   是否收敛？是否绝对收敛？
+
+**解** 由于
+
+.. math::
+	\begin{align*}
+	    |\alpha_{n}|=\left | \frac{(1+i)^{n}}{2^{\frac{n}{2}}\cos in} \right | =\frac{2^{\frac{n}{2} }}{2^{\frac{n}{2}}\operatorname{ch}n }=\frac{2}{e^{n}+e^{-n}} <\frac{2}{e^{n}} 
+	\end{align*}
+
+而级数  :math:`\sum\limits_{n=1}^{\infty}\frac{2}{e^{n}}`  是一收敛的等比级数，根据正项级数的比较法则可知原级数绝对收敛。
+
+
+
+
+
+幂级数
+------
+
+定义 : 复函数项级数
+    设  :math:`\left \{ f_{n}(z) \right \}~(n=1,2,\cdots) `  为一复变函数序列，其在区域  :math:`D`  内有定义，则表达式
+
+.. math::
+	\begin{align*}
+	    \sum\limits_{n=1}^{\infty}f_{n}(z)=f_{1}(z)+f_{2}(z)+\cdots+f_{n}(z)+\cdots
+	\end{align*}
+
+称为复变函数项级数。
+
+
+定义 : 部分和
+    复变函数项级数  :math:`\sum\limits_{n=1}^{\infty}f_{n}(z)`  的最前面  :math:`n`  项的和
+
+.. math::
+	\begin{align*}
+	    s_{n}(z)=f_{1}(z)+f_{2}(z)+\cdots+f_{n}(z)
+	\end{align*}
+
+称为该级数的部分和。
+
+
+
+
+定义 : 收敛与和
+    若对于  :math:`D`  内的某一点  :math:`z_{0}`  ，极限
+
+.. math::
+	\begin{align*}
+	    \lim\limits_{n\to \infty}s_{n}(z)=s(z_{0})
+	\end{align*}
+
+存在，则称复变函数项级数在  :math:`z_{0}`  收敛，而  :math:`s(z_{0})`  称为它的和。
+
+
+定义 : 和函数
+    若级数在  :math:`D`  内处处收敛，则它的和一定是  :math:`z`  的一个函数  :math:`s(z)`  ：
+
+.. math::
+	\begin{align*}
+	    s(z)=f_{1}(z)+f_{2}(z)+\cdots+f_{n}(z)+\cdots
+	\end{align*}
+
+:math:`s(z)`  称为级数  :math:`\sum\limits_{n=1}^{\infty}f_{n}(z)`  的和函数。
+
+
+定义 : 幂级数
+    形如下述形式的级数称为幂级数：
+
+.. math::
+    \begin{align*}
+        \sum\limits_{n=0}^{\infty}c_{n}(z-a)^{n}=c_{0}+c_{1}(z-a)+c_{2}(z-a)^{2}+\cdots+c_{n}(z-a)^{n}+\cdots
+    \end{align*}
+
+
+定理 : Abel定理
+    若级数  :math:`\sum\limits_{n=0}^{\infty}c_{n}z^{n}`  在  :math:`z=z_{0}\ne 0`  处收敛，则对满足  :math:`|z|<|z_{0}|`  的  :math:`z` ，级数必定绝对收敛；若在  :math:`z=z_{0}`  处级数发散，则对满足  :math:`|z|>|z_{0}|`  的  :math:`z` ，级数必定发散。
+
+
+
+
+**例题** 已知级数  :math:`\sum\limits_{n=0}^{\infty }c_{n}`  收敛，而  :math:`\sum\limits_{n=0}^{\infty }|c_{n}|`  发散，求幂级数  :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  的收敛半径。
+
+**解** 由于级数  :math:`\sum\limits_{n=0}^{\infty }c_{n}`  收敛，所以幂级数  :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  在  :math:`z=1`  处收敛；又因为级数  :math:`\sum\limits_{n=0}^{\infty }|c_{n}|`  发散，所以级数  :math:`\sum\limits_{n=0}^{\infty }|c_{n}z^{n}|`  在  :math:`z=1`  处发散，从而可知幂级数  :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  在  :math:`z=1`  处条件收敛。
+
+根据Abel定理，对满足  :math:`|z|<1`  的一切点  :math:`z`  ， :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  是绝对收敛的，而任何满足  :math:`|z|>1`  的点都使  :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  发散，所以  :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  的收敛半径为  :math:`1` 。
+
+
+
+
+收敛圆
+^^^^^^
+
+收敛圆与收敛半径定义为
+
+.. math::
+	\begin{align*}
+	    R=\operatorname{sup}\left \{ |z|:I~\text{在}~ z~ C.V.  \right \} 
+	\end{align*}
+    
+对于  :math:`I=\sum\limits_{n=0}^{\infty}c_{n}z^{n}`  的收敛半径为  :math:`R` ，令  :math:`z=R\zeta` ，则  :math:`I=\sum\limits_{n=0}^{\infty}c_{n}R^{n}\zeta^{n}` ，此时收敛半径变为  :math:`1` 。
+
+:math:`\sum\limits_{n=1}^{\infty}\frac{1}{n^{2}}z^{n}`  的收敛圆周上的点都是绝对收敛的；
+
+:math:`\sum\limits_{n=1}^{\infty}\frac{1}{n}z^{n}`  在  :math:`z=-1`  是条件收敛的，在圆周上的其他点是发散的；
+
+:math:`\sum\limits_{n=1}^{\infty}z^{n}`  在圆周上的点都是发散的；
+
+:math:`\sum\limits_{n=1}^{\infty}\frac{(-1)^{\left [ \sqrt{n} \right ] }}{n}z^{n}`  在圆周上的点都是条件收敛的。
+
+
+
+
+收敛半径的求法
+^^^^^^^^^^^^^^
+
+定理 : 比值法
+    如果  :math:`\lim\limits_{n	o \infty}\bigg|\frac{c_{n+1}}{c_{n}}\bigg|=\lambda` ，则收敛半径为 :math:`R=\left \{  \begin{array}{ccc}+\infty & \lambda =0\\0 & \lambda =+\infty\\\frac{1}{\lambda} & \lambda \ne 0,+\infty\end{array} \right.` 。
+
+
+定理 : 根值法
+    如果  :math:`\lim\limits_{n	o \infty}\sqrt[n]{|c_{n}|}=\lambda` ，则收敛半径为 :math:`R=\left \{  \begin{array}{ccc}+\infty & \lambda =0\\0 & \lambda =+\infty\\\frac{1}{\lambda} & \lambda \ne 0,+\infty\end{array} \right.` 。
+
+
+**证明** :math:`\lim\limits_{n\to \infty}\sqrt[n]{|c_{n}z^{n}|}=\lim\limits_{n\to\infty}\sqrt[n]{c_{n}}\cdot |z|=|z|\cdot \lambda=q \left\{\begin{array}{cc}<1 & |z|<\frac{1}{\lambda} \\>1 & |z|>\frac{1}{\lambda} \end{array}\right.` 
+
+
+.. note:: 如果极限不存在，则考虑上极限，采用上极限时上述两个定理仍成立。
+
+
+
+
+**例题** :math:`\sum\limits_{n=1}^{\infty}\frac{n^{n}}{n!}z^{n}` 。
+
+**解** :math:`c_{n}=\frac{n^{n}}{n!}`  考虑比值法
+
+.. math::
+	\begin{align*}
+	    \frac{c_{n+1}}{c_{n}}=\frac{(n+1)^{n+1}}{(n+1)!}\frac{n!}{n^{n}}=(1+\frac{1}{n})^{n}\to e
+	\end{align*}
+
+于是收敛半径为  :math:`R=\frac{1}{e}` 。
+
+
+
+**例题** 求  :math:`\sum\limits _{n=1}^{\infty }\operatorname{ch}\left ( \frac{i}{n}\right )  (z-1)^{n}`  的收敛半径。
+
+**解** 因为  :math:`c_{n}=\operatorname{ch}\frac{i}{n}=\frac{e^{i\frac{1}{n} }+e^{-i\frac{1}{n} } }{2}   =\cos\frac{1}{n}`  ，所以
+
+.. math::
+	\begin{align*}
+	    R=\lim\limits_{n\to\infty}\left | \frac{c_{n}}{c_{n+1}}  \right |=\lim\limits_{n\to\infty}\left | \frac{\cos\frac{1}{n} }{\cos\frac{1}{n+1} }  \right | =1
+	\end{align*}
+
+
+**例题** 求  :math:`\sum\limits_{n=0}^{\infty }(\cos in)z^{n}`  的收敛半径。
+
+**解** 由于  :math:`c_{n}=\cos in=\operatorname{ch}n=\frac{1}{2}(e^{n}+e^{-n})`  ，所以
+
+.. math::
+	\begin{align*}
+	    R=\lim\limits _{n\to\infty }\left | \frac{c_{n}}{c_{n+1}}  \right | =\lim\limits _{n\to\infty }\frac{\frac{1}{2}(e^{n}+e^{-n}) }{\frac{1}{2}(e^{n+1}+e^{-(n+1)}) } =\frac{1}{e} 
+	\end{align*}
+
+
+**例题** 已知幂级数  :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  的收敛半径为  :math:`R`  ，求级数  :math:`\sum\limits_{n=0}^{\infty }\frac{c_{n}}{b^{n}}z^{n}`  的收敛半径。
+
+**解** 令  :math:`\zeta=\frac{z}{b}`  ，则  :math:`\sum\limits_{n=0}^{\infty }\frac{c_{n}}{b^{n}}z^{n}=\sum\limits_{n=0}^{\infty }c_{n}\zeta^{n}`  .因为  :math:`\sum\limits_{n=0}^{\infty }c_{n}z^{n}`  的收敛半径为  :math:`R`  ，所以  :math:`\sum\limits_{n=0}^{\infty }c_{n}\zeta^{n}`  的收敛半径也是  :math:`R`  ，故当  :math:`|\zeta|<R`  ，即  :math:`|z|<|b|R`  时，级数  :math:`\sum\limits_{n=0}^{\infty }\frac{c_{n}}{b^{n}}z^{n}`  绝对收敛；当  :math:`|\zeta|>R`  ，即  :math:`|z|>|b|R`  时，  :math:`\sum\limits_{n=0}^{\infty }\frac{c_{n}}{b^{n}}z^{n}`  发散。根据收敛半径的定义，可知  :math:`\sum\limits_{n=0}^{\infty }\frac{c_{n}}{b^{n}}z^{n}`  的收敛半径为  :math:`|b|R` .
+
+
+
+**例题** 若  :math:`\sum\limits _{n=0}^{\infty }c_{n}z^{n}`  的收敛半径为  :math:`R`  ，证明  :math:`\sum\limits _{n=0}^{\infty }(\operatorname{Re}c_{n} )z^{n}`  的收敛半径  :math:`	ilde{R}\geqslant R` 。
+
+**证明** 在级数  :math:`\sum\limits _{n=0}^{\infty }c_{n}z^{n}`  的收敛圆  :math:`|z|=R`  内任取一点  :math:`z_{0}`  ，由于
+
+.. math::
+	\begin{align*}
+	    |(\operatorname{Res}c_{n} )z_{0}^{n}|\leqslant |c_{n}||z_{0}|^{n}=|c_{n}z_{0}^{n}|
+	\end{align*}
+
+级数  :math:`\sum\limits _{n=0}^{\infty }c_{n}z_{0}^{n}`  绝对收敛，所以级数  :math:`\sum\limits _{n=0}^{\infty }(\operatorname{Re}c_{n} )z_{0}^{n}`  也绝对收敛。由  :math:`z_{0}`  的任意性可知，级数  :math:`\sum\limits _{n=0}^{\infty }(\operatorname{Re}c_{n} )z^{n}`  的收敛半径  :math:`\tilde{R}\geqslant R` 。
+
+
+
+**例题** 若级数  :math:`\sum\limits_{n=0}^{\infty}c_{n}z^{n}`  在它的收敛圆的圆周上一点  :math:`z_{0}`  处绝对收敛，证明它在收敛圆所围的闭区域上绝对收敛。
+
+**解** 只要证明级数  :math:`\sum\limits_{n=0}^{\infty}c_{n}z^{n}`  在收敛圆周  :math:`K`  上任一点都绝对收敛即可。设该级数收敛半径为  :math:`R`  ，任取  :math:`z\in K`  ，则
+
+.. math::
+	\begin{align*}
+	    \lim\limits _{n\to\infty }\frac{|c_{n}z^{n}|}{|c_{n}z_{0}^{n}|} =\lim\limits _{n\to\infty }\frac{|c_{n}|R^{n}}{|c_{n}|R^{n}} =1
+	\end{align*}
+
+根据正项级数的比较准则可知，对于  :math:`K`  上的任意一点  :math:`z`  ，正项级数  :math:`\sum\limits_{n=0}^{\infty}|c_{n}z^{n}|`  均收敛，故原级数绝对收敛。 
+
+
+
+
+**例题** 设  :math:`\sum\limits_{n=0}^{\infty }\alpha _{n}z^{n}`  与  :math:`\sum\limits_{n=0}^{\infty }\beta_{n}z^{n}`  的收敛半径分别为  :math:`R_{1},~R_{2}`  （均为正数），求证  :math:`\sum\limits _{n=0}^{\infty}\alpha _{n}\beta_{n}z^{n}`  的收敛半径  :math:`R\geqslant R_{1}R_{2}` 。
+
+**证明** 对任意的  :math:`z`  满足  :math:`|z|<R_{1}R_{2}`  时，总可以将其分解为  :math:`z=z_{1}z_{2}`  ，使得  :math:`|z_{1}|<R_{1},~|z_{2}|<R_{2}` 。
+
+因为  :math:`\lim\limits_{n	o\infty}|\alpha_{n}z_{1}^{n}|=0`  ，所以  :math:`|\alpha_{n}z_{1}^{n}|<M`  ，其中  :math:`M`  为一合适的大于零的常数；同时  :math:`z_{2}`  在  :math:`\sum\limits_{n=0}^{\infty }\beta_{n}z^{n}`  收敛圆盘内，于是  :math:`\sum\limits_{n=0}^{\infty}\beta_{n}z_{2}^{n}`  等于某一大于零的常数，所以
+
+.. math::
+	\begin{align*}
+	    \sum\limits_{n=0}^{\infty}|\alpha _{n}\beta_{n}z^{n}|=\sum\limits_{n=0}^{\infty}|\alpha _{n}z_{1}^{n}||\beta_{n}z_{2}^{n}|<M\sum\limits_{n=0}^{\infty}|\beta_{n}z_{2}^{n}|
+	\end{align*}
+
+所以  :math:`\sum\limits_{n=0}^{\infty}|\alpha _{n}\beta_{n}z^{n}|`  绝对收敛，因此  :math:`R\geqslant R_{1}R_{2}` 。
+
+
+.. note::
+
+	一个简单的使得  :math:`R>R_{1}R_{2}`  的例子如下：
+
+	.. math::
+		\begin{align*}
+		    \alpha_{n}=\frac{1+(-1)^{n}}{2},~ \beta_{n}=\frac{1+(-1)^{n+1}}{2},
+		    \quad
+		    R=+\infty,~R_{1}=R_{2}=1
+		\end{align*}
+
+
+
+幂级数的运算和性质
+^^^^^^^^^^^^^^^^^^
+
+设两个幂级数  :math:`f(z)=\sum\limits_{n=0}^{\infty}a_{n}z^{n},~R=r_{1}`  和  :math:`g(z)=\sum\limits_{n=0}^{\infty}b_{n}z^{n},~R=r_{2}`  ，则
+
+.. math::
+	\begin{align*}
+	    f(z)\pm g(z) =\sum\limits_{n=0}^{\infty}a_{n}z^{n}\pm \sum\limits_{n=0}^{\infty}b_{n}z^{n}=\sum\limits_{n=0}^{\infty}(a_{n}\pm b_{n})z^{n}, \quad |z|<R=\min\{r_{1},r_{2}\}
+	\end{align*}
+
+
+.. math::
+	\begin{align*}
+	    f(z)g(z)=
+	    \bigg(\sum\limits_{n=0}^{\infty }a_{n}z^{n}\bigg)\bigg(\sum\limits_{n=0}^{\infty }b_{n}z^{n}\bigg)
+	    =\sum\limits_{n=0}^{\infty }(a_{n}b_{0}+a_{n-1}b_{1}+a_{n-2}b_{2}+\cdots+a_{0}b_{n})z^{n},\quad |z|<R=\min\{r_{1},r_{2}\}
+	\end{align*}
+
+设  :math:`f(z)=\sum\limits_{n=0}^{\infty}c_{n}z^{n}`  ，  :math:`h(z)`  定义于  :math:`D`  且  :math:`|h(z)|<R`  ，则
+
+.. math::
+	\begin{align*}
+	    & f\big(h(z)\big)=\sum\limits_{n=0}^{\infty}c_{n}\big(h(z)\big)^{n},
+	    & h(z)=\sum\limits_{n=0}^{\infty}h_{n}z^{n},\quad |z|<R
+	\end{align*}
+
+
+
+
+幂级数的和函数
+^^^^^^^^^^^^^^
+
+设幂级数  :math:`\sum\limits_{n=0}^{\infty}c_{n}(z-z_{0})^{n}`  的收敛半径为  :math:`R`  ，则在收敛圆内  :math:`|z-a|<R`  有：
+
+1. 它的和函数  :math:`f(z)=\sum\limits_{n=0}^{\infty}c_{n}(z-a)^{n}`  解析；
+2. :math:`f'(z)`  可通过其幂级数逐项求导得到，即
+
+.. math::
+    \begin{align*}
+       f'(z)=\sum\limits_{n=0}^{\infty}nc_{n}(z-a)^{n-1}
+    \end{align*}
+
+3. :math:`f(z)`  在收敛圆内可以逐项积分，即
+
+.. math::
+    \begin{align*}
+       \int\limits_{C}f(z)\mathrm{d}z=\sum\limits_{n=0}^{\infty}c_{n}\int\limits_{C}(z-a)^{n}\mathrm{d}z,\quad C\in |z-a|<R
+    \end{align*}
+
+特别地，
+
+.. math::
+    \begin{align*}
+       \int_{a}^{z}f(\zeta)\mathrm{d}\zeta=\sum\limits_{n=0}^{\infty}\frac{c_{n}}{n+1}(z-a)^{n+1}
+    \end{align*}
+
+
+
+**例题** :math:`f(z)=\sum\limits_{n=0}^{\infty}(n+1)z^{n}` 。
+
+**解** 收敛半径为  :math:`R=1`  ，则
+
+.. math::
+	\begin{align*}
+	    f(z)=\bigg(\sum\limits_{n=0}^{\infty}z^{n+1}\bigg)'=\bigg(\frac{z}{1-z}\bigg)'=\frac{1}{(1-z)^{2}}
+	\end{align*}
+
+
+
+**例题** :math:`g(z)=\sum\limits_{n=1}^{\infty}\frac{z^{n}}{n}` 。
+
+**解** 其收敛半径为  :math:`R=1`  ，于是
+
+.. math::
+	\begin{align*}
+	    g'(z)=\sum\limits_{n=1}^{\infty}z^{n-1}-\sum\limits_{n=0}^{\infty}z^{n}=\frac{1}{1-z}
+	\end{align*}
+
+于是
+
+.. math::
+	\begin{align*}
+	    g(z)=\int_{0}^{a}\frac{\mathrm{d}\zeta}{1-\zeta}+C=-\ln(1-z)+c
+	\end{align*}
+
+而  :math:`z=0`  时  :math:`g(0)=0`  ，于是  :math:`c=0`  ，因此  :math:`g(z)=-\ln(1-z)` 。
+
+
+
+
+
+泰勒公式
+--------
+
+定理 : 泰勒公式定理
+    设  :math:`f(z)`  在区域  :math:`D`  内解析， :math:`z_{0}`  为  :math:`D`  内的一点， :math:`d`  为  :math:`z_{0}`  到  :math:`D`  的边界上各点的最短距离，则当  :math:`|z-z_{0}|<d`  时，有下式成立：
+
+.. math::
+	\begin{align*}
+	    f(z)=\sum\limits _{n=0}^{\infty}c_{n}(z-z_{0})^{n}
+	\end{align*}
+
+其中  :math:`c_{n}=\frac{f^{(n)}(z_{0})}{n!} ,~~n=0,1,2\cdots` 。
+
+如果  :math:`f(z)`  在  :math:`z_{0}`  处解析，则使  :math:`f(z)`  在  :math:`z_{0}`  的泰勒展开式成立的圆域的半径  :math:`R`  就等于从  :math:`z_{0}`  到  :math:`f(z)`  的距  :math:`z_{0}`  最近一个奇点  :math:`\alpha`  之间的距离，即  :math:`R=|\alpha-z_{0}|` 。
+
+
+.. note:: 
+
+	任何解析函数展开成幂级数的结果就是泰勒级数，因为是唯一的。幂级数  :math:`\sum\limits _{n=0}^{\infty }c_{n}(z-z_{0})^{n}`  在收敛圆  :math:`|z-z_{0}|<R`  内的和函数是解析函数；反过来，在圆域  :math:`|z-z_{0}|<R`  内解析的函数  :math:`f(z)`  一定能在  :math:`z_{0}`  展开成幂级数  :math:`\sum\limits _{n=0}^{\infty }c_{n}(z-z_{0})^{n}`  ，因此  :math:`f(z)`  在  :math:`z_{0}`  解析跟  :math:`f(z)`  在  :math:`z_{0}`  的邻域内可以展开成幂级数  :math:`\sum\limits _{n=0}^{\infty }c_{n}(z-z_{0})^{n}`  是等价的说法。
+
+
+
+
+**例题** 求  :math:`e^{z}`  在  :math:`z=0`  的泰勒展开式。
+
+**解** 由于
+
+.. math::
+	\begin{align*}
+	    (e^{z})^{(n)}=e^{z},\quad (e^{z})^{(n)}\bigg|_{z=0}=1
+	\end{align*}
+
+因此
+
+.. math::
+	\begin{align*}
+	    e^{z}=1+z+\frac{z^{2}}{2!}+\frac{z^{3}}{3!}  +\cdots+\frac{z^{n}}{n!} +\cdots 
+	\end{align*}
+
+因为  :math:`e^{z}`  在复平面内处处解析，所以该等式在麸皮共面内处处成立，且右端幂级数的收敛半径为  :math:`\infty` 。
+
+
+
+
+**例题** 把函数  :math:`\frac{1}{(1+z)^{2}}`  展开成  :math:`z`  的幂级数。
+
+**解** 由于函数  :math:`\frac{1}{(1+z)^{2}}`  在单位圆周  :math:`|z|<1`  内可展开成  :math:`Z`  的幂级数，而在  :math:`|z|<1`  内处处解析，所以它在  :math:`|z|<1`  内可展开成  :math:`z`  的幂级数，于是由于
+
+.. math::
+	\begin{align*}
+	    \frac{1}{1+z} =1-z+z^{2}-\cdots+(-1)^{n}z^{n}+\cdots ,\quad |z|<1
+	\end{align*}
+
+对等式两边求导得到
+
+.. math::
+	\begin{align*}
+	    \frac{1}{(1+z)^{2}} =1-2z+3z^{2}-4z^{3}+\cdots+(-1)^{n-1}nz^{n-1}+\cdots ,\quad  |z|<1
+	\end{align*}
+
+
+**例题** 求对数函数的主值  :math:`\ln(1+z)`  在  :math:`z=0`  处的泰勒展开式。
+
+**解** 因为  :math:`\ln(1+z)`  在从  :math:`-1`  向左沿负实轴剪开的平面内是解析的，而  :math:`-1`  是它的一个奇点，所以它在  :math:`|z|<1`  内可以展开成  :math:`z`  的幂级数。
+
+因为  :math:`\big(\ln(1+z)\big)'=\frac{1}{1+z} `  ，而  :math:`\frac{1}{1+z}`  有展开式
+
+.. math::
+	\begin{align*}
+	    \frac{1}{1+z} =1-z+z^{2}-\cdots+(-1)^{n}z^{n}+\cdots ,\quad |z|<1
+	\end{align*}
+
+在此式的收敛圆  :math:`|z|<1`  内，任取一条从  :math:`0`  到  :math:`z`  的积分路线  :math:`C`  对上式两端沿  :math:`C`  积分，得到
+
+.. math::
+	\begin{align*}
+	    \int_{0}^{z}\frac{1}{1+z}\mathrm{d}z=\int_{0}^{z}\mathrm{d}z-\int_{0}^{z}z\mathrm{d}z+\cdots+\int_{0}^{z}(-1)^{n}z^{n}\mathrm{d}z+\cdots 
+	\end{align*}
+
+也即
+
+.. math::
+	\begin{align*}
+	    \ln (1+z)=z-\frac{z^{2}}{2}+\frac{z^{3}}{3}-\frac{z^{4}}{4}+\cdots+(-1)^{n}\frac{z^{n+1}}{n+1} +\cdots ,\quad |z|<1
+	\end{align*}
+
+
+
+**例题** 求幂函数  :math:`(1+z)^{\alpha}`  ( :math:`\alpha`  为复数)的主值支：
+
+.. math::
+	\begin{align*}
+	    f(z)=e^{\alpha \ln(1+z)} ,\quad f(0)=1
+	\end{align*}
+
+在  :math:`z=0`  处的泰勒展开式。
+
+**解** 设  :math:`\varphi(z)=\ln (1+z)`  ， :math:`1+z=e^{\varphi(z)}`  ，所以  :math:`f(z)=e^{\alpha \varphi(z)}`  ，对其求导得到
+
+.. math::
+	\begin{align*}
+	    f'(z)=e^{\alpha \varphi(z)}\alpha \varphi'(z)=\alpha \frac{1}{1+z}e^{\alpha \varphi(z)} =\frac{\alpha }{e^{\varphi(z)}} e^{\alpha \varphi(z)}=\alpha e^{(\alpha -1)\varphi(z)}
+	\end{align*}
+
+继续求导得到
+
+.. math::
+	\begin{align*}
+	    & f''(z)=\alpha (\alpha -1)e^{(\alpha -2)\varphi(z)} \\
+	    & \cdots\cdots \\
+	    & f^{(n)}(z)=\alpha (\alpha -1)\cdots(\alpha -n+1)e^{(\alpha -n)\varphi(z)} \\
+	    & \cdots\cdots
+	\end{align*}
+
+令  :math:`z=0`  得到
+
+.. math::
+	\begin{align*}
+	    f(0)=1,\quad f'(0)=\alpha ,\quad f''(0)=\alpha (\alpha -1),~\cdots~, f^{n}(0)=\alpha (\alpha -1)\cdots(\alpha -n+1),\cdots 
+	\end{align*}
+
+因此所求展开式为
+
+.. math::
+	\begin{align*}
+	    (1+z)^{\alpha }=1+\alpha z+\frac{\alpha (\alpha -1)}{2!}z^{2}+\cdots+\frac{\alpha (\alpha -1)\cdots(\alpha -n+1)}{n!}z^{n}  +\cdots ,\quad |z|<1
+	\end{align*}
+
+
+
+**例题** 求  :math:`f(z)=\ln(2+z-z^{2})`  在  :math:`z_{0}=0`  处的泰勒展开式，并指出收敛半径。
+
+**解** 因为  :math:`f(z)=\ln(2+z-z^{2})=\ln(2-z)(1+z)=\ln(2-z)+\ln(1+z)`  ，而
+
+.. math::
+	\begin{align*}
+	    & \ln(2-z)=\ln2+\ln(1-\frac{z}{2})
+	    =\ln2-\left ( \frac{z}{2}+\frac{z^{2}}{2^{3}}+\frac{z^{3}}{3\cdot 2^{3}}+\cdots+\frac{z^{n+1}}{(n+1)\cdot 2^{n+1}}+\cdots\right )
+	    ,\quad |z|<2 \\
+	    & \ln(1+z)=z-\frac{z^{2}}{2}+\frac{z^{3}}{3}-\frac{z^{4}}{4}+\cdots+(-1)^{n}\frac{z^{n+1}}{n+1}+\cdots
+	    ,\quad |z|<1
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    f(z)=\ln2+\frac{z}{2}-\frac{5}{8}z^{2}+\frac{7}{24}z^{3}-\frac{17}{64}z^{4}+\cdots+\left ( (-1)^{n}-\frac{1}{2^{n+1}}  \right )\frac{z^{n+1}}{n+1} +\cdots
+	    ,\quad |z|<1
+	\end{align*}
+
+收敛半径  :math:`R=1` 。
+
+
+
+
+**例题** 试将  :math:`e^{z}\cos z`  与  :math:`e^{z}\sin z`  展开为  :math:`z`  的幂级数。
+
+**解** 由于  :math:`e^{z}\cos z+ie^{z}\sin z=e^{(1+i)z}`  ，令  :math:`u=(1+i)z`  ，则
+
+.. math::
+	\begin{align*}
+	    e^{z}(\cos z+i\sin z)=e^{u}=\sum\limits _{n=0}^{\infty }\frac{u^{n}}{n!}=1+(1+i)z+\frac{(1+i)^{2}z^{2}}{2!}+\cdots +\frac{(1+i)^{n}z^{n}}{n!}  +\cdots =1+\sqrt{2}e^{\frac{\pi}{4}i }z+\sum\limits _{n=2}^{\infty }\frac{(\sqrt{2})^{n}e^{\frac{n\pi}{4}i } }{n!}z^{n}
+	\end{align*}
+
+同理可以得到
+
+.. math::
+	\begin{align*}
+	    e^{z}(\cos z-i\sin z)=e^{(1-i)z}=\sum\limits_{n=0}^{\infty }\frac{(1-i)^{2}}{n!}z^{n} =1+\sqrt{2}e^{-\frac{\pi}{4}i }z+\sum\limits _{n=2}^{\infty }\frac{(\sqrt{2})^{n}e^{-\frac{n\pi}{4}i } }{n!}z^{n}
+	\end{align*}
+
+两式相加并除以  :math:`2`  ，得到
+
+.. math::
+	\begin{align*}
+	    e^{z}\cos z=1+\sqrt{2}\cos\frac{\pi}{4}z+\sum\limits _{n=2}^{\infty }\frac{(\sqrt{2} )^{n}\cos\frac{n\pi}{4} }{n!}z^{n},\quad |z|<+\infty
+	\end{align*}
+
+两式相减并除以  :math:`2i`  ，得到
+
+.. math::
+	\begin{align*}
+	    e^{z}\sin z=1+\sqrt{2}\sin\frac{\pi}{4}z+\sum\limits _{n=2}^{\infty }\frac{(\sqrt{2} )^{n}\sin\frac{n\pi}{4} }{n!}z^{n},\quad |z|<+\infty
+	\end{align*}
+
+
+
+
+**例题** 将  :math:`\sin\frac{1}{1-z}`  展开成  :math:`z`  的幂级数，并指出它们的收敛半径。
+
+**解** 对  :math:`\sin\frac{1}{1-z}`  进行如下分解：
+
+.. math::
+	\begin{align*}
+	    \sin\frac{1}{1-z}=\sin\left ( 1+\frac{z}{1-z}  \right ) =\sin1\cos\frac{z}{1-z}+\cos1\sin\frac{z}{1-z}  
+	\end{align*}
+
+而其中
+
+.. math::
+	\begin{align*}
+	    \cos\frac{z}{1-z}
+	    &=1-\frac{1}{2!}\left ( \frac{z}{1-z}  \right )^{2}+\frac{1}{4!}\left ( \frac{z}{1-z}  \right )^{4}-\cdots \\
+	    &=1-\frac{1}{2!}(z+z^{2}+z^{3}+\cdots)^{2}+\frac{1}{4!}(z+z^{2}+z^{3}+\cdots)^{4}-\cdots   \\
+	    & 1-\frac{1}{2}z^{2}-z^{3}+\cdots ,\quad |z|<1
+	\end{align*}
+
+.. math::
+	\begin{align*}
+	    \sin\frac{z}{1-z}
+	    &=\frac{z}{1-z}-\frac{1}{3!}\left ( \frac{z}{1-z}  \right )^{3}+\cdots \\
+	    &=(z+z^{2}+z^{3}+\cdots)-\frac{1}{3!}(z+z^{2}+z^{3}+\cdots) ^{3}+\cdots \\
+	    &=z+z^{2}+\frac{5}{6}z^{3}+\cdots ,\quad |z|<1
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    \sin\frac{1}{1-z}=\sin1+(\cos1)z+\left ( \cos1-\frac{1}{2}\sin1\right )z^{2}+\left ( \frac{5}{6}\cos1-\sin1  \right )z^{3}+\cdots ,\quad R=1
+	\end{align*}
+
+
+
+
+**例题** 设整函数  :math:`f(z)`  在复平面  :math:`\mathbb{C}`  上处处满足  :math:`|f(z)|\leqslant |z|^{s}`  ，此处  :math:`s`  为大于零的常数但  :math:`s\notin\mathbb{Z}`  ，求证  :math:`f(z)\equiv0` 。
+
+**证明** 在  :math:`\mathbb{C}`  上有泰勒展开：
+
+.. math::
+	\begin{align*}
+	    f(z)=\sum\limits _{n=0}^{\infty }c_{n}z^{n},\quad \text{其中} ~c_{n}=\frac{f^{(n)}(0)}{n!}  
+	\end{align*}
+
+在  :math:`C_{R}:|z|=R~(R>0)`  上，有
+
+.. math::
+	\begin{align*}
+	    |c_{n}|=\left | \frac{f^{(n)}(0)}{n!}  \right | =\left | \frac{1}{2\pi i}\oint_{C_{R}}\frac{f(z)\mathrm{d}z}{z^{n+1}}   \right | \leqslant \frac{1}{2\pi}\oint_{C_{R}}\frac{|z|^{s}\mathrm{d}s}{|z|^{n+1}}=\frac{1}{R^{n-s}}=\left \{  \begin{array}{cl}
+	    \to 0, & R\to+\infty ~\text{若}~ n>s;\\
+	    \to 0, & R\to0^{+} ~\text{若}~ n<s.  
+	    \end{array} \right.
+	\end{align*}
+
+于是  :math:`\forall n\in\mathbb{N}`  有  :math:`c_{n}\equiv 0`  ，从而  :math:`f(z)\equiv 0` .
+
+
+
+
+
+解析函数的零点
+--------------
+
+设  :math:`w=f(z)`  在  :math:`D`  上解析， :math:`z_{0}\in D`  ，若  :math:`f(z_{0})=0`  ，则称  :math:`z_{0}`  为  :math:`f(z_{0})`  零点。
+
+若  :math:`f(z_{0})=f'(z_{0})=\cdots=f^{(m-1)}(z_{0})=0`  ，但  :math:`f^{(m)}(z_{0})\ne 0`  ，则称  :math:`z_{0}`  为  :math:`f(z)`  的  :math:`m`  级零点  :math:`(m\geqslant 1)` 。
+
+
+:math:`z_{0}`  为  :math:`f(z)`  的  :math:`m`  级零点，等价于在某个  :math:`B_{\delta}(z_{0})`  内， :math:`f(z)`  有表达式
+
+.. math::
+	\begin{align*}
+	    f(z)=(z-z_{0})^{m}\cdot \varphi(z)
+	\end{align*}
+
+其中  :math:`\varphi(z)`  在  :math:`z_{0}`  解析，且  :math:`\forall z\in B_{\delta}(z_{0})`  均有  :math:`\varphi(z)\ne 0` 。
+
+
+设  :math:`w=f(z)`  在  :math:`D`  上解析且不恒为零，则  :math:`f(z)`  在  :math:`D`  上的零点  :math:`z_{0}`  均是孤立的，即  :math:`f(z_{0})=0`  ，但  :math:`f(z)`  在  :math:`\overset{\circ}{B}_{\delta }(z_{0})`  上不取零。
+
+
+定理 : 解析函数唯一性定理
+    设  :math:`f(z)`  ,~  :math:`g(z)`  在  :math:`D`  上解析，  :math:`a\in D`  ，若  :math:`\exists \left \{ z_{n} \right \} \subseteq D\backslash \left \{ a \right \} `  使得：(1) :math:`\lim\limits _{n	o \infty}z_{n}=a` ; (2) :math:`f(z_{n})\equiv g(z_{n}),~~n\in \mathbb{N} `  ，则  :math:`\forall z\in D`  有 :math:`f(z)\equiv g(z)` 。
+
+
+
+
+洛朗级数
+--------
+
+定义 : 一般幂级数
+    一般形式的幂级数满足形式：
+
+.. math::
+	\begin{align*}
+	    \sum\limits _{n=-\infty }^{\infty }c_{n}(z-z_{0})^{n}=&\cdots+c_{-n}(z-z_{0})^{-n}+\cdots+c_{-1}(z-z_{0})^{-1}\\ &+c_{0}+c_{1}(z-z_{0})+\cdots+c_{n}(z-z_{0})^{n}+\cdots
+	\end{align*}
+
+其中  :math:`z_{0}`  及  :math:`c_{n}~(n=0,\pm 1,\pm 2,\cdots)`  都是常数。该级数分成正幂项与负幂项两部分：
+
+.. math::
+	\begin{align*}
+	    & \sum\limits _{n=0}^{\infty }c_{n}(z-z_{0})^{n}=c_{0}+c_{1}(z-z_{0})+\cdots+c_{n}(z-z_{0})^{n}+\cdots \\
+	    & \sum\limits _{n=1}^{\infty }c_{-n}(z-z_{0})^{-n}=c_{-1}(z-z_{0})^{-1}+\cdots+c_{-n}(z-z_{0})^{-n}+\cdots
+	\end{align*}
+
+正幂项级数的收敛范围是一个圆域，设其收敛半径为  :math:`R_{2}`  ，当  :math:`|z-z_{0}|<R_{2}`  时级数收敛，当  :math:`|z-z_{0}|>R_{2}`  时级数发散；负幂项级数的收敛范围是外圆域，设其收敛半径为  :math:`R_{1}`  ，当  :math:`|z-z_{0}|>R_{1}`  时级数收敛，当  :math:`|z-z_{0}|<R_{1}`  时级数发散。
+
+因此，一般幂级数的收敛域是一个圆环域：  :math:`R_{1}<|z-z_{0}|<R_{2}`  .在特殊情况下，内半径  :math:`R_{1}`  可能等于零，外半径  :math:`R_{2}`  可能是无穷大。
+
+在收敛圆环域内，一般幂级数的和函数是解析的，并且可以逐项求积分和逐项求导。
+
+
+定理 : Laurent展开式
+    设  :math:`f(z)`  在圆环域  :math:`R_{1}<|z-z_{0}|<R_{2}`  内处处解析，那么
+
+.. math::
+	\begin{align*}
+	    f(z)=\sum\limits _{n=-\infty }^{\infty }c_{n}(z-z_{0})^{n}
+	\end{align*}
+
+其中
+
+.. math::
+	\begin{align*}
+	    c_{n}=\frac{1}{2\pi i}\oint\limits _{C} \frac{f(\zeta)}{(\zeta-z_{0})^{n+1}} \mathrm{d}\zeta,\quad (n=0,\pm1,\pm2,\cdots)
+	\end{align*}
+
+洛朗级数中正整次幂部分和负整次幂部分分别称为解析部分和主要部分。
+
+.. note:: 
+
+	函数  :math:`f(z)`  在圆环域内能否展开为洛朗级数，关键在于验证  :math:`f(z)`  在此圆环域内是否解析。例如，对于  :math:`f(z)=	an\frac{1}{z}`  ， :math:`z=0`  为它的一个奇点，而  :math:`z_{n}=\frac{1}{(n+\frac{1}{2})\pi}~(n=0,\pm1,\pm2,\cdots)`  也都是它的奇点，且  :math:`\lim\limits_{n	o\infty}z_{n}=0`  ，因此，对任何  :math:`R>0`  ，去心邻域  :math:`0<|z|<R`  内都含有该函数的奇点  :math:`z_{n}`  ，也即在  :math:`z=0`  的任何去心邻域内  :math:`f(z)=	an\frac{1}{z}`  都不解析。
+
+	实际上，只有当  :math:`z_{0}`  是  :math:`f(z)`  的孤立奇点时才能展开成洛朗级数。
+
+
+
+定理 : Laurent展开的唯一性
+    一个在某一圆环域内解析的函数展开为含有正、负幂项的级数是唯一的，这个级数就是  :math:`f(z)`  的洛朗级数。
+
+
+
+
+**例题** 求  :math:`f(z)=\frac{1}{z(1-z)} `  分别在(1)  :math:`0<|z|<1`  ；(2)  :math:`1<|z|<+\infty`  ；(3)  :math:`0<|z-1|<1`  区域内的洛朗级数。
+
+**解** (1) 在圆环域  :math:`0<|z|<1`  时，有
+
+.. math::
+	\begin{align*}
+	    f(z)=\frac{1}{z(1-z)}=\frac{1}{z}-\frac{1}{1-z}   
+	\end{align*}
+
+当  :math:`|z|<1`  时，有泰勒展开  :math:`\frac{1}{1-z}=1+z+z^{2}+\cdots+z^{n}+\cdots`  ，从而
+
+.. math::
+	\begin{align*}
+	    f(z)=\frac{1}{z(1-z)}=z^{-1}+1+z+z^{2}+\cdots+z^{n}+\cdots ,\quad 0<|z|<1
+	\end{align*}
+
+(2) 在区域  :math:`1<|z|<+\infty`  时，有
+
+.. math::
+	\begin{align*}
+	    f(z)=\frac{1}{z(1-z)}=\frac{1}{z}-\frac{1}{1-z}=\frac{1}{z}-\frac{1}{z}\frac{1}{1-\frac{1}{z} } 
+	\end{align*}
+
+因为  :math:`\frac{1}{|z|}<1`  ，所以
+
+.. math::
+	\begin{align*}
+	    f(z)=\frac{1}{z}-\frac{1}{z}\frac{1}{1-\frac{1}{z} }=\frac{1}{z}-\frac{1}{z}\sum\limits _{n=0} ^{\infty } \frac{1}{z^{n}} ,\quad 1<|z|<+\infty
+	\end{align*}
+
+(3) 在圆环域  :math:`0<|z-1|<1`  时，有
+    
+.. math::
+	\begin{align*}
+	    f(z)
+	    &=\frac{1}{z(1-z)} =\frac{1}{1-z}\left ( \frac{1}{1-(1-z)}  \right )  \\
+	    &=\frac{1}{1-z}\Big(1+(1-z)+(1-z)^{2}+\cdots+(1-z)^{n}+\cdots \Big) \\
+	    &=(1-z)^{-1}+1+(1-z)+(1-z)^{2}+\cdots+(1-z)^{n-1}+\cdots
+	\end{align*}
+
+
+
+**例题** 函数  :math:`f(z)=\frac{1}{(z-1)(z-2)}`  在圆环域 (1)  :math:`0<|z|<1`  ；(2)  :math:`1<|z|<2`  ；(3)  :math:`2<|z|<+\infty`  内是处处解析，将  :math:`f(z)`  分别在这些区域内展开成洛朗级数。
+
+**解** 先把  :math:`f(z)`  用部分分式来表示：
+
+.. math::
+	\begin{align*}
+	    f(z)=\frac{1}{1-z}-\frac{1}{2-z}  
+	\end{align*}
+
+(1) 在 :math:`0<|z|<1` 内，由于  :math:`|z|<1`  ，从而  :math:`\left | \frac{z}{2}\right | <1`  ，所以
+
+.. math::
+	\begin{align*}
+	    f(z)&=\frac{1}{1-z}-\frac{1}{2-z}=\frac{1}{1-z}-\frac{1}{2}\frac{1}{1-\frac{z}{2} }  \\
+	    &=(1+z+z^{2}+\cdots)-\frac{1}{2}(1+\frac{z}{2}+\frac{z^{2}}{4}+\cdots  ) \\
+	    &=\frac{1}{2}+\frac{3}{4}z+\frac{7}{8}z^{2}+\cdots ,\quad 0<|z|<1
+	\end{align*}
+
+(2) 在  :math:`1<|z|<2`  内，从而  :math:`\left | \frac{1}{z} \right | <1`  ，且  :math:`\left | \frac{z}{2} \right | <1`  ，所以
+    
+.. math::
+	\begin{align*}
+	    f(z)&=\frac{1}{1-z}-\frac{1}{2-z}  =-\frac{1}{z}\frac{1}{1-\frac{1}{z} }  -\frac{1}{2}\frac{1}{1-\frac{z}{2} } \\
+	    &=-\frac{1}{z}(1+\frac{1}{z}+\frac{1}{z^{2}}+\cdots  ) -\frac{1}{2}(1+\frac{z}{2}+\frac{z^{2}}{4}+\cdots  ) \\
+	    &=\cdots-\frac{1}{z^{n}}-\frac{1}{z^{n-1}} -\cdots-\frac{1}{z}-\frac{1}{2}-\frac{z}{4}-\frac{z^{2}}{8}-\cdots   ,\quad 1<|z|<2 
+	\end{align*}
+
+(3) 在  :math:`2<|z|<+\infty`  内，由于  :math:`|z|>2`  ，所以  :math:`\left | \frac{2}{z}\right | <1`  ，同时  :math:`\left | \frac{1}{z}\right | <\left | \frac{2}{z} \right | <1`  ，从而
+    
+.. math::
+	\begin{align*}
+	    f(z)&=\frac{1}{1-z}-\frac{1}{2-z}=-\frac{1}{z}\frac{1}{1-\frac{1}{z} } -\frac{1}{z}\frac{1}{1-\frac{2}{z} } \\
+	    &=-\frac{1}{z}(1+\frac{1}{z}+\frac{1}{z^{2}}+\cdots )+\frac{1}{z}(1+\frac{2}{z}+\frac{4}{z^{2}}+\cdots  ) \\
+	    &=\frac{1}{z^{2}}+\frac{3}{z^{3}}+\frac{7}{z^{4}}+\cdots   ,\quad 2<|z|<+\infty
+	\end{align*}
+
+
+
+**例题** 把函数  :math:`f(z)=z^{3}e^{\frac{1}{z}}`  在  :math:`0<|z|<+\infty`  内展开成洛朗级数。
+
+**解** 函数  :math:`f(z)=z^{3}e^{\frac{1}{z}}`  在  :math:`0<|z|<+\infty`  内是处处解析的，已知  :math:`e^{z}`  在复平面内的展开式是
+
+.. math::
+	\begin{align*}
+	    e^{z}=1+z+\frac{z^{2}}{2!}+\frac{z^{3}}{3!}+\cdots+\frac{z^{n}}{n!}+\cdots  
+	\end{align*}
+
+而  :math:`\frac{1}{z}`  在  :math:`0<|z|<+\infty`  解析，所以所求的洛朗展开式为
+
+.. math::
+	\begin{align*}
+	    z^{3}e^{\frac{1}{z}}
+	    &=z^{3}\left ( 1+\frac{1}{z}+\frac{1}{2!z^{2}} +\frac{1}{3!z^{3}} +\cdots  \right ) \\
+	    &=z^{3}+z^{2}+\frac{z}{2!}+\frac{1}{3!}+\frac{1}{4!z}+\cdots   
+	\end{align*}
+
+
+
+**例题** 证明在  :math:`f(z)=\cos\left ( z+\frac{1}{z}\right )`  以  :math:`z`  的各幂表出的洛朗展开式中的各系数为
+
+.. math::
+	\begin{align*}
+	    c_{n}=\frac{1}{2\pi}\int_{0}^{2\pi}\cos(2\cos\theta )\cos n\theta \mathrm{d}\theta \quad (n=0,\pm1,\pm2,\cdots)
+	\end{align*}
+
+**证明** 在洛朗系数公式中取  :math:`C`  为单位圆周  :math:`|z|=1`  ，则
+
+.. math::
+	\begin{align*}
+	    c_{n}=\frac{1}{2\pi i}\oint\limits_{|\zeta|=1} \frac{\cos(\zeta+\frac{1}{\zeta} )}{\zeta^{n+1}}\mathrm{d}\zeta \quad (n=0,\pm1,\pm2,\cdots)
+	\end{align*}
+
+在此圆周上设积分变量  :math:`\zeta=e^{i\theta}`  得
+
+.. math::
+	\begin{align*}
+	    c_{n}=\frac{1}{2\pi i}\int_{0}^{2\pi}\frac{\cos(e^{i\theta }+e^{-i\theta })}{e^{i(n+1)\theta }}ie^{i\theta }\mathrm{d}z\theta=\frac{1}{2\pi}\int_{0}^{2\pi}\frac{\cos(2\cos\theta )}{e^{in\theta }}\mathrm{d}\theta=\frac{1}{2\pi}\int_{0}^{2\pi}\cos(2\cos\theta )(\cos n\theta-i\sin n\theta ) \mathrm{d}\theta
+	\end{align*}
+
+利用被积函数是周期函数和奇函数的性质可得
+
+.. math::
+	\begin{align*}
+	    \operatorname{Im}(c_{n})= \frac{1}{2\pi}\int_{0}^{2\pi}\cos(2\cos\theta )\sin n\theta \mathrm{d}\theta=\frac{1}{2\pi}\int_{-\pi}^{\pi}\cos(2\cos\theta )\sin n\theta \mathrm{d}\theta=0 
+	\end{align*}
+
+从而  :math:`c_{n}=\frac{1}{2\pi}\int_{0}^{2\pi}\cos(2\cos\theta )\cos n\theta \mathrm{d}\theta` .
+
+
+
+Laurent展开公式一般不用于求系数  :math:`c_{n}`  。令  :math:`n=-1`  ，可以得到一个圆环域内闭曲线积分公式：
+
+对于圆环域  :math:`R_{1}<|z-z_{0}|<R_{2}`  内的任意一条简单闭曲线，  :math:`f(z)`  在此圆环域内解析，则有
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{C}f(z)\mathrm{d}z=2\pi i\cdot c_{-1}
+	\end{align*}
+
+其中  :math:`c_{-1}`  由Laurent级数决定。
+
+
+**例题** 求积分  :math:`\oint\limits _{|z|=3}\frac{1}{z(z+1)(z+4)}\mathrm{d}z`  的值。
+
+**解** 函数  :math:`f(z)=\frac{1}{z(z+1)(z+4)}`  在圆环域  :math:`1<|z|<4`  内处处解析，且  :math:`|z|=3`  在此圆环域内。考虑  :math:`f(z)`  在此圆环域内的洛朗展开式：
+
+.. math::
+	\begin{align*}
+	    f(z)&=\frac{1}{4z}-\frac{1}{3(z+1)}+\frac{1}{12(z+4)} \\
+	    &=\frac{1}{4z}-\frac{1}{3z}\frac{1}{1+\frac{1}{z} }+\frac{1}{48}\frac{1}{1+\frac{z}{4} } \\
+	    &=\frac{1}{4z}-\frac{1}{3z}+\frac{1}{3z^{2}}   -\cdots+\frac{1}{48}\left ( 1-\frac{z}{4}+\frac{z^{2}}{16}-\cdots   \right )  
+	\end{align*}
+
+由此可知  :math:`c_{-1}=\frac{1}{4}-\frac{1}{3}=-\frac{1}{12}`  ，从而
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{|z|=3}\frac{1}{z(z+1)(z+4)}\mathrm{d}z=2\pi i(-\frac{1}{12} )=-\frac{\pi i}{6} 
+	\end{align*}
+
+
+
+
+**例题** 求积分  :math:`\oint\limits _{|z|=2}\frac{ze^{\frac{1}{z} }}{1-z}\mathrm{d}z`  的值。
+
+**解** 函数  :math:`f(z)=\frac{ze^{\frac{1}{z} }}{1-z}`  在  :math:`1<|z|<+\infty`  内解析， :math:`|z|=2`  在此圆环域内，考虑其洛朗展开得到
+
+.. math::
+	\begin{align*}
+	    f(z)&=\frac{e^{\frac{1}{z} }}{-\left ( 1-\dfrac{1}{z}  \right ) } 
+	    =-\left ( 1+\frac{1}{z}+\frac{1}{z^{2}}+\cdots   \right ) \left ( 1+\frac{1}{z}+\frac{1}{2!z^{2}}  +\cdots\right ) \\
+	    &=-\left ( 1+\frac{2}{z}+\frac{5}{2z^{2}}+\cdots   \right ) 
+	\end{align*}
+
+故  :math:`c_{-1}=-2`  ，从而
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{|z|=2}\frac{ze^{\frac{1}{z} }}{1-z}\mathrm{d}z=2\pi i\cdot c_{-1}=-4\pi i
+	\end{align*}
+
+
+
+**例题** 求积分  :math:`\oint\limits_{|z|=3}z\cos\frac{z}{z-1}`  的值 。
+
+**解** 函数  :math:`f(z)=z\cos\frac{z}{z-1}`  在圆环域  :math:`1<|z-1|<+\infty`  内解析，且  :math:`|z|=3`  在此区域内，考虑其洛朗展开：
+
+.. math::
+	\begin{align*}
+	    f(z)=z\cos\frac{z}{z-1}=\Big((z-1)+1\Big) \cos\Big( 1+\frac{1}{z-1}  \Big) 
+	\end{align*}
+
+令  :math:`\zeta=z-1`  则有
+
+.. math::
+	\begin{align*}
+	    f(z)&=(\zeta+1)\cos(1+\frac{1}{\zeta} )
+	    =(\zeta+1)\left ( \cos1\cos\frac{1}{\zeta} -\sin1\sin\frac{1}{\zeta}  \right ) \\
+	    &=(\zeta+1)\Bigg ( \cos1 \cdot \left ( 1-\frac{1}{2!\zeta^{2}} +\frac{1}{4!\zeta^{4}} -\cdots \right )-\sin1\cdot \left ( \frac{1}{\zeta}-\frac{1}{3!\zeta^{3}} +\cdots  \right )   \Bigg ) 
+	\end{align*}
+
+从而可得  :math:`c_{-1}=-\frac{\cos1}{2!}-\sin1`  ，进而可得
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=3}z\cos\frac{z}{z-1}=-2\pi i \left ( \sin1+\frac{\cos1}{2}  \right ) 
+	\end{align*}
+
+
+
+留数
+=======
+
+
+孤立奇点
+--------
+
+
+定义 : 孤立奇点
+    若函数  :math:`f(z)`  在  :math:`z_{0}`  不解析，但在  :math:`z_{0}`  的某个去心邻域  :math:`0<|z-z_{0}|<\delta `  内处处解析，则称  :math:`z_{0}`  为  :math:`f(z)`  的孤立奇点。
+
+
+
+**例题** 判断  :math:`\frac{1}{\cos\frac{1}{z}}`  的奇点  :math:`z=0`  的类型。
+
+**解** 由  :math:`\cos\frac{1}{z}=0`  可以取到一个复数列
+
+.. math::
+	\begin{align*}
+	    z_{k}=\frac{1}{(k+\frac{1}{2})\pi}=\frac{2}{(2k+1)\pi} \quad (k=0,\pm1,\pm2,\cdots )
+	\end{align*}
+
+它们都是函数的奇点。又因为当  :math:`k\to\infty`  时，  :math:`z_{k}\to 0`  ，所以  :math:`z=0`  的任何去心邻域内都包含有该函数的这种奇点，故  :math:`z=0`  不是孤立奇点。
+
+
+
+**例题** 求  :math:`f(z)=\frac{z^{2}}{\sin\frac{1}{z+1}}`  的所有孤立奇点，并判断它们的类型。
+
+**解** 由于  :math:`z=-1`  与  :math:`z_{k}=\frac{1}{k\pi}-1~(k=\pm1,\pm2,\cdots)`  都是  :math:`f(z)`  的有限奇点，并且  :math:`z_{k}\to -1~(k\to\infty)`  ，故  :math:`z=-1`  不是孤立奇点。因此  :math:`f(z)`  的有限孤立奇点为  :math:`z_{k}=\frac{1}{k\pi}-1~(k=\pm1,\pm2,\cdots)`  ，并且它们都是一级极点。
+
+
+
+
+定义 : 可去奇点
+    若  :math:`f(z)`  在  :math:`0<|z-z_{0}|<\delta`  内展开的洛朗级数中不含  :math:`z-z_{0}`  的负幂项，即
+
+.. math::
+	\begin{align*}
+	    f(z)=c_{0}+c_{1}(z-z_{0})+c_{2}(z-z_{0})^{2}+\cdots+c_{n}(z-z_{0})^{2}+\cdots
+	\end{align*}
+
+则孤立奇点  :math:`z_{0}`  称为  :math:`f(z)`  的可去奇点，此时有  :math:`\lim\limits_{z	o z_{0}}f(z)=c_{0}`  ，令  :math:`f(z_{0})=c_{0}`  则  :math:`f(z)`  在  :math:`z_{0}`  解析。
+
+
+
+
+设  :math:`z_{0}`  为  :math:`f(z)`  的可去奇点，则下列叙述等价：
+
+- :math:`z_{0}`  为  :math:`f(z)`  的可去奇点；
+- :math:`\lim\limits _{z\to z_{0}}f(z)=A\in\mathbb{C}` ;
+- :math:`f(z)`  在 :math:`z_{0}` 的去心邻域  :math:`B^{*}_{\delta }(z_{0})`  内有界。
+  
+
+
+**证明** :math:`f(z)`  的洛朗级数的系数满足  :math:`c_{n}=\frac{1}{2\pi i}\oint_{C}\frac{f(z)\mathrm{d}z}{(z-z_{0})^{n+1}}`  ，令  :math:`C_{r}:|z-z_{0}|=r`  ，且  :math:`\delta >r>0`  ，又由有界可知  :math:`|f(z)|\leqslant M`  ，于是
+
+.. math::
+	\begin{align*}
+	    |c_{n}|=\frac{1}{2\pi}\oint_{C_{r}}\frac{|f(z)|}{|z-z_{0}|^{n+1}}|\mathrm{d}z|\leqslant \frac{1}{2\pi}\oint_{Cr}\frac{M\mathrm{d}s}{r^{n+1}}  =\frac{M}{r^{n}}=Mr^{-n}
+	\end{align*}
+
+令  :math:`r\to 0^{+}`  得到  :math:`\forall n\leqslant 1`  均有  :math:`c_{n}\equiv 0` 。
+
+
+
+**例题** 求  :math:`f(z)=\frac{\sin3z-3\sin z}{\sin z(z-\sin z)}`  的所有有限孤立奇点，并判断它们的类型。
+
+**解** 容易判断  :math:`z=0`  是  :math:`z-\sin z`  的三级零点，因而是分母的四级零点。又因为  :math:`z=0`  是分子的三级零点，从而可知  :math:`z=0`  是  :math:`f(z)`  的一级极点。
+
+根据
+
+.. math::
+	\begin{align*}
+	    \lim\limits _{z\to k\pi}\frac{\sin3z-3\sin z}{\sin z(z-\sin z)}=\frac{1}{k\pi}\lim\limits _{z\to k\pi}\frac{\sin3z-3\sin z}{\sin z} =\frac{1}{k\pi}\lim\limits _{z\to k\pi}\frac{3\cos 3z-3\cos z}{\cos z} =0
+	\end{align*}
+
+可知  :math:`z=k\pi~(k=\pm1,\pm2,\cdots)`  是  :math:`f(z)`  的可去奇点。
+
+
+
+定义 : 极点
+    若  :math:`f(z)`  在  :math:`0<|z-z_{0}|<\delta`  内展开的洛朗级数中只有有限多个  :math:`z-z_{0}`  的负幂项，且其中关于  :math:`(z-z_{0})^{-1}`  的最高幂为  :math:`(z-z_{0})^{-m}`  ，则称孤立奇点  :math:`z_{0}`  为函数  :math:`f(z)`  的  :math:`m`  级极点，即
+
+.. math::
+	\begin{align*}
+	     f(z)=c_{-m}(z-z_{0})^{-m}+\cdots+c_{-1}(z-z_{0})^{-1}+c_{0}+c_{1}(z-z_{0})+\cdots=\frac{1}{(z-z_{0})^{m}}g(z)
+	\end{align*}
+
+其中
+
+.. math::
+	\begin{align*}
+	    g(z)=c_{-m}+c_{-m+1}(z-z_{0})+c_{-m+2}(z-z_{0})^{2}+\cdots
+	\end{align*}
+
+在  :math:`|z-z_{0}|<\delta `  内解析，且  :math:`g(z_{0})\ne 0` .
+
+
+
+
+设  :math:`z_{0}`  为  :math:`f(z)`  的孤立奇点，则下列叙述等价：
+
+- :math:`z_{0}`  为  :math:`f(z)`  的  :math:`m`  级极点( :math:`m\geqslant 1` )；
+- :math:`f(z)=\frac{g(z)}{(z-z_{0})^{m}}`  ， :math:`g(z)`  在  :math:`B^{*}_{\delta }(z_{0})`  解析且  :math:`g(z_{0})\ne 0` ;
+- :math:`\lim\limits _{z	o z_{0}}(z-z_{0})^{m}f(z)=A\in\mathbb{C}\backslash \left \{ 0 \right \}` ;
+- :math:`z_{0}`  为  :math:`\frac{1}{f(z)}`  的  :math:`m`  级零点（在可去奇点意义下）。
+  
+
+**证明** 设  :math:`\lim\limits _{z	o z_{0}}(z-z_{0})^{m}f(z)=A\ne 0`  ，令  :math:`g(z)=(z-z_{0})^{m}f(z)`  ，则  :math:`z_{0}`  为  :math:`g(z)`  的可去奇点，不妨设  :math:`g(z)`  在  :math:`z_{0}`  解析， :math:`g(z_{0})=A\ne 0`  ，于是由  :math:`(z-z_{0})^{m}f(z)=g(z)`  得到
+
+.. math::
+	\begin{align*}
+	    \frac{1}{f(z)}=(z-z_{0})^{m}\frac{1}{g(z)}=(z-z_{0})^{m}\varphi(z)  
+	\end{align*}
+
+:math:`\varphi(z)`  在  :math:`B^{*}_{\delta }(z_{0})`  内解析，且  :math:`\varphi(z_{0})=\frac{1}{g(z_{0})}\ne 0`  ，从而  :math:`z_{0}`  为  :math:`\frac{1}{f(z)}`  的  :math:`m`  级零点.
+
+
+.. note:: 从操作意义上来讲，若分母至少要求  :math:`m`  次导才不等于零，而分子至少要求  :math:`n`  次导才不等于零，则为  :math:`m-n`  级极点。
+
+.. note::  :math:`\frac{g(z)}{(z-z_{0})^{m}}`  描述 :math:`m` 级极点， :math:`(z-z_{0})^{m}g(z)`  描述 :math:`m` 级零点。
+
+
+
+
+**例题** 函数  :math:`\frac{1}{\sin z}`  有哪些奇点？如果是极点，指出它的级。
+
+**解** 由  :math:`\sin z=0`  可得  :math:`e^{iz}=e^{-iz}` ，进而有  :math:`2iz=2k\pi i`  ，从而可知奇点是  :math:`z=k\pi~~(k=0,\pm1,\pm2,\cdots)`  .显然它们都是孤立奇点.又因为
+
+.. math::
+	\begin{align*}
+	    (\sin z)'\bigg|_{z=k\pi}=\cos z\bigg|_{z=k\pi}=(-1)^{k}\ne 0
+	\end{align*}
+
+所以  :math:`z=k\pi`  都是  :math:`\sin z`  的一级零点，也就是  :math:`\frac{1}{\sin z}`  的一级极点.
+
+
+
+
+定义 : 本性奇点
+    若  :math:`f(z)`  在  :math:`0<|z-z_{0}|<\delta`  内展开的洛朗级数中含有无穷多个  :math:`z-z_{0}`  的负幂项，即
+
+.. math::
+	\begin{align*}
+	    f(z)=\cdots +c_{-n}(z-z_{0})^{-n}+\cdots+c_{-1}(z-z_{0}^{})^{-1}+c_{0}+c_{1}(z-z_{0})+\cdots
+	\end{align*}
+
+则孤立奇点  :math:`z_{0}`  称为  :math:`f(z)`  的本性奇点。
+
+
+
+设  :math:`z_{0}\in\bar{\mathbb{C} }`  为  :math:`f(z)`  的孤立奇点，则有：
+
+- :math:`z_{0}`  为可去奇点  :math:`\Leftrightarrow`   :math:`\lim\limits _{z\to z_{0}}f(z)=A\in\mathbb{C}` ;
+- :math:`z_{0}`  为极点  :math:`\Leftrightarrow`   :math:`\lim\limits _{z\to z_{0}}f(z)=\infty` ;
+- :math:`z_{0}`  为本性奇点  :math:`\Leftrightarrow`   :math:`\lim\limits _{z\to z_{0}}f(z)`  不存在且不为  :math:`\infty` 。
+
+
+
+**例题** 判断函数  :math:`f(z)=\frac{z}{(1+z^{2})e^{\frac{1}{z}}}`  的孤立奇点  :math:`z=0`  的类型。
+
+**解** 若取  :math:`z_{n}=\frac{1}{2n\pi i}`  ，则当  :math:`n\to+\infty`  时，有  :math:`e^{\frac{1}{z_{n}}}\to 1`  ；
+
+若取  :math:`z_{n}=\frac{1}{(2n\pi+\frac{\pi}{2})i}`  ，则当  :math:`n\to+\infty`  时，由于
+
+.. math::
+	\begin{align*}
+	    e^{\frac{1}{z_{n}}}=e^{(2n\pi+\frac{\pi}{2})i}=e^{\frac{\pi}{2}i}=i
+	\end{align*}
+
+所以  :math:`e^{\frac{1}{z_{n}}}\to i` 。
+
+因此，当  :math:`z`  沿不同数列  :math:`\left \{ z_{n} \right \}`  趋于零时，  :math:`e^{\frac{1}{z}}`  趋于不同的数，所以当  :math:`z\to 0`  时，  :math:`f(z)`  的极限既不存在，也不是  :math:`\infty`  ，故  :math:`z=0`  是  :math:`f(z)`  的本性奇点。
+
+
+
+
+
+定理 : Weierstrass定理
+    设  :math:`z_{0}\in\mathbb{C}`  为  :math:`f(z)`  的本性奇点，则对任意给定的  :math:`A\in\bar{\mathbb{C}}  `  ，都存在  :math:`\left \{ z_{n} \right \}_{n=1}^{\infty } \subseteq B^{*}_{\delta }(z_{0})`  使得
+
+.. math::
+	\begin{align*}
+	    (1)\lim\limits _{n\to \infty }z_{n}=z_{0},\quad (2)\lim\limits _{n\to\infty }f(z_{n})=A
+	\end{align*}
+
+
+
+定理 : Picard大定理
+    设  :math:`z_{0}\in\mathbb{C} `  为  :math:`f(z)`  的本性奇点，则对任意给定的  :math:`A\in\mathbb{C} `  (至多可能有一个例外值  :math:`A_{0}` ) ，都存在  :math:`\left \{ z_{n} \right \}_{n=1}^{\infty } \subseteq B^{*}_{\delta }(z_{0})`  使得
+
+.. math::
+	\begin{align*}
+	    (1)\lim\limits _{n\to \infty }z_{n}=z_{0},\quad (2)f(z_{n})\equiv A,~~n\geqslant 1
+	\end{align*}
+
+
+
+定义 : 无穷远点处的性态
+    若函数  :math:`f(z)`  在无穷远点  :math:`z=\infty`  的去心邻域  :math:`R<|z|<+\infty`  内解析，则称点  :math:`\infty`  为  :math:`f(z)`  的孤立奇点.
+
+	作变换
+
+.. math::
+	\begin{align*}
+	    f(z)=f(\frac{1}{t} )=\varphi(t),\qquad 0<|t|<\frac{1}{R} 
+	\end{align*}
+
+则  :math:`\varphi(t)`  在去心邻域  :math:`0<|t|<\frac{1}{R}`  内是解析的，所以  :math:`t=0`  是  :math:`\varphi(t)`  的孤立奇点.
+
+规定：若  :math:`t=0`  是  :math:`\varphi(t)`  的可去奇点、 :math:`m` 级极点或本性奇点，则称点  :math:`z=\infty`  是  :math:`f(z)`  的可去奇点、 :math:`m` 级极点或本性奇点。
+
+根据规定可知：对于  :math:`f(z)`  的洛朗级数， :math:`z=\infty`  的类型可以如下判断：
+
+- 不含正幂项  :math:`\quad \Rightarrow \quad`  可去奇点；
+- 含有有限多的正幂项，且  :math:`z^{m}`  为最高正幂  :math:`\quad \Rightarrow \quad`   :math:`m`  级极点；
+- 含有无穷多的正幂项  :math:`\quad \Rightarrow \quad`  本性奇点。
+  
+
+
+**例题** 函数  :math:`f(z)=\frac{(z^{2}-1)(z-2)^{3}}{(\sin \pi z)^{3}}`  在扩充平面内有些什么类型的奇点？如果是极点，指出它的级。
+
+**解** 由  :math:`\sin \pi z=0`  可知奇点为  :math:`z=0,\pm1,\pm2,\cdots`  .
+
+由于  :math:`(\sin\pi z)'=\pi\cos\pi z`  在  :math:`z=0,\pm1,\pm2,\cdots`  处均不为零，因此这些点都是  :math:`\sin\pi z`  的一级零点，从而使  :math:`(\sin\pi z)^{3}`  的三级零点，于是这些点除去  :math:`1,-1,2`  外都是  :math:`f(z)`  的三级极点.
+
+因为  :math:`z^{2}-1=(z-1)(z+1)`  以  :math:`1`  与  :math:`-1`  为一级零点，所以  :math:`1`  与  :math:`-1`  是  :math:`f(z)`  的二级极点.
+
+至于  :math:`z=2`  ，因为
+
+.. math::
+	\begin{align*}
+	    \lim\limits_{ z\to2}f(z)=\lim\limits _{z\to 2}\frac{(z^{2}-1)(z-2)^{3}}{(\sin\pi z)^{3}} =3\left ( \lim\limits_{z\to 2}\frac{z-2}{\sin\pi z} \right ) ^{3}=\frac{3}{\pi^{3}} 
+	\end{align*}
+
+所以  :math:`z=2`  是  :math:`f(z)`  的可去奇点.
+
+至于  :math:`z=\infty`  ，因为
+
+.. math::
+	\begin{align*}
+	    f(\frac{1}{\zeta} )=\frac{(1-\zeta^{2})(1-2\zeta)^{3}}{\zeta^{5}\sin^{3}(\pi/\zeta)} 
+	\end{align*}
+
+可知  :math:`\zeta=0,~\zeta_{n}=\frac{1}{n}`  使分母为零.当  :math:`n=1`  时， :math:`\zeta_{1}=1`  ，即  :math:`z=1` ；当  :math:`n=2`  时， :math:`\zeta_{2}=\frac{1}{2}`  ，即  :math:`z=2` .这两点在上面已经讨论过.当  :math:`n>2`  时， :math:`\zeta_{n}=\frac{1}{n}`  为  :math:`f(\frac{1}{\zeta})`  的极点.显然当  :math:`n	o\infty`  时， :math:`\zeta_{n}\to 0`  ，所以  :math:`\zeta=0`  不是  :math:`f(\frac{1}{\zeta})`  的孤立奇点，也即  :math:`z=\infty`  不是  :math:`f(z)`  的孤立奇点。
+
+
+
+留数
+------
+
+定义 : 留数
+    :math:`f(z)`  在  :math:`z_{0}`  的留数定义为  :math:`f(z)`  在以  :math:`z_{0}`  为中心的圆环域内的洛朗级数中负幂项  :math:`c_{-1}(z-z_{0})^{-1}`  的系数，记作  :math:`\operatorname{Res}\left [ f(z),z_{0} \right ]`  ，即
+
+.. math::
+    \begin{align*}
+        \operatorname{Res}\left [ f(z),z_{0} \right ]  =\frac{1}{2\pi i}\oint\limits _{C}f(z)\mathrm{d}z=c_{-1} 
+    \end{align*}
+
+
+
+**例题** 求  :math:`\operatorname{Res}\left [ \frac{z}{(1+z^{2})e^{\frac{1}{z}}},0  \right ]` 。
+
+**解** :math:`z=0` 为函数的本性奇点，考虑在  :math:`z=0`  的去心邻域  :math:`0<|z|<1`  内，该函数的洛朗展开式为
+
+.. math::
+	\begin{align*}
+	    \frac{z}{(1+z^{2})e^{\frac{1}{z}}}=z(1-z^{2}+z^{4}-\cdots )(1-\frac{1}{z}+\frac{1}{2!}\frac{1}{z^{2}}-\frac{1}{3!}\frac{1}{z^{3}}+\cdots) \quad 0<|z|<1
+	\end{align*}
+
+从而可得  :math:`z^{-1}`  的系数
+
+.. math::
+	\begin{align*}
+	    c_{-1}=\frac{1}{2!}-\frac{1}{4!}+\frac{1}{6!}-\cdots=1-\cos 1
+	\end{align*}
+
+所以  :math:`\operatorname{Res}\left [ \frac{z}{(1+z^{2})e^{\frac{1}{z}}},0 \right ]=1-\cos 1` 。
+
+
+
+**例题** 求  :math:`\operatorname{Res}\left [ \frac{1}{\sin^{4}z},0 \right ]` 。
+
+**解** 由于
+
+.. math::
+	\begin{align*}
+	    \frac{1}{\sin^{4}z}=\frac{1}{\left ( z-\frac{1}{3!}z^{3}+\frac{1}{5!}z^{5}-\cdots \right )^{4} } =\frac{1}{z^{4}}\cdot\frac{1}{(1-\frac{1}{3!}z^{2}+\frac{1}{5!}z^{4}-\cdots)^{4}} ,\quad 0<|z|<+\infty
+	\end{align*}
+
+注意到右端式子的分母为复平面内的收敛幂级数，和函数是解析的，并且在  :math:`z=0`  处不等于零，所以右端式子在  :math:`z=0`  处解析，可以展开为  :math:`z=0`  处的泰勒级数，又因为它是偶函数，泰勒级数中必不含  :math:`z`  的奇次幂项，所以可以写成  :math:`1+c_{2}z^{2}+c_{4}z^{4}+\cdots`  ，从而
+
+.. math::
+	\begin{align*}
+	    \frac{1}{\sin^{4}z}=\frac{1}{z^{4}}+\frac{c_{2}}{z^{2}}+c_{4}+c_{6}z^{2}+\cdots ,\quad 0<|z|<+\infty
+	\end{align*}
+
+于是可知  :math:`\operatorname{Res}\left [ \frac{1}{\sin^{4}z},0 \right ]=0` 。
+
+
+
+**例题** 计算  :math:`\operatorname{Res}\left [ e^{z}\sin\frac{1}{z-1},1 \right ]` 。
+
+**解** 利用指数函数与三角正弦函数的泰勒展开式可得
+
+.. math::
+	\begin{align*}
+	    e^{z}\sin\frac{1}{z-1}=e\cdot e^{z-1}\sin\frac{1}{z-1}=e\left ( 1+(z-1)+\frac{(z-1)^{2}}{2!}+\cdots   \right ) \cdot\left ( \frac{1}{z-1}-\frac{1}{3!(z-1)^{3}} +\frac{1}{5!(z-1)^{5}}-\cdots \right ) 
+	\end{align*}
+
+于是可得
+
+.. math::
+	\begin{align*}
+	    c_{-1}=e\left ( 1-\frac{1}{2!3!}+\frac{1}{4!5!}-\frac{1}{6!7!}+\cdots\right ) 
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ e^{z}\sin\frac{1}{z-1},1  \right ]=\sum\limits_{n=0}^{\infty}(-1)^{n}\frac{e}{(2n)!(2n+1)!}
+	\end{align*}
+
+
+**例题** 设  :math:`f(z)`  为解析的偶函数，即  :math:`f(-z)=f(z)` ， :math:`z=0`  是它的一个孤立奇点，证明：  :math:`\operatorname{Res}[f(z),0]` 。
+
+**证明** 设  :math:`f(z)`  在  :math:`z=0`  的去心邻域  :math:`0<|z|<R`  内的洛朗展开式为
+
+.. math::
+	\begin{align*}
+	    f(z)=\cdots +\frac{c_{-2}}{z^{2}}+\frac{c_{-1}}{z}+c_{0}+c_{1}z+c_{2}z^{2}+\cdots
+	\end{align*}
+
+则
+
+.. math::
+	\begin{align*}
+	    f(-z)=\cdots +\frac{c_{-2}}{z^{2}}-\frac{c_{-1}}{z}+c_{0}-c_{1}z+c_{2}z^{2}+\cdots
+	\end{align*}
+
+由于  :math:`f(z)=f(-1)`  ，于是
+
+.. math::
+	\begin{align*}
+	    \cdots +\frac{c_{-2}}{z^{2}}+\frac{c_{-1}}{z}+c_{0}+c_{1}z+c_{2}z^{2}+\cdots=\cdots +\frac{c_{-2}}{z^{2}}-\frac{c_{-1}}{z}+c_{0}-c_{1}z+c_{2}z^{2}+\cdots
+	\end{align*}
+
+比较  :math:`z`  的同次幂的系数可得
+
+.. math::
+	\begin{align*}
+	    c_{2n+1}=0 \quad (n=0,\pm1,\pm2,\cdots)
+	\end{align*}
+
+这表明偶函数在  :math:`z=0`  的去心邻域内洛朗展开式中不含  :math:`z`  的奇次幂项，故  :math:`\operatorname{Res}[f(z),0]=c_{-1}=0` 。
+
+
+
+
+定理 : 留数定理
+    设函数  :math:`f(z)`  在区域  :math:`D`  内除有限个孤立奇点  :math:`z_{1},z_{2},\cdots,z_{n}`  外处处解析， :math:`C` 是 :math:`D` 内包围各奇点的一条正向简单闭曲线，则
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{C}f(z)\mathrm{d}z=2\pi i\sum\limits_{k=1}^{n}\operatorname{Res}\left[f(z),z_{k}\right]
+	\end{align*}
+
+
+- 若  :math:`z_{0}`  是可去奇点，因为此时  :math:`f(z)`  在  :math:`z_{0}`  的展开式是泰勒展开式，所以  :math:`\operatorname{Res}\left[f(z),z_{0}\right]=0` ；
+- 若  :math:`z_{0}`  是本性奇点，则只能用洛朗级数来求  :math:`c_{1}` ；
+- 若  :math:`z_{0}`  是极点，则具有如下规则：
+  
+(1) 如果  :math:`z_{0}`  为  :math:`f(z)`  的一级极点，则
+    
+.. math::
+    \begin{align*}
+        \operatorname{Res}[f(z),z_{0}]=\lim\limits_{z\to z_{0}}(z-z_{0})f(z)
+    \end{align*}
+
+(2) 如果  :math:`z_{0}`  为  :math:`f(z)`  的  :math:`m`  级极点，则
+
+.. math::
+    \begin{align*}
+        \operatorname{Res}[f(z),z_{0}]=\frac{1}{(m-1)!}\lim\limits_{z\to z_{0}}\frac{\mathrm{d}^{m-1}}{\mathrm{d}z^{m-1}}\Big((z-z_{0})^{m}f(z)\Big)
+    \end{align*}
+  
+事实上，当  :math:`m`  大于实际级数时，上式仍然成立。
+
+(3) 设  :math:`f(z)=\frac{P(z)}{Q(z)}`  ，其中  :math:`P(z),Q(z)`  在  :math:`z_{0}`  都解析，如果  :math:`P(z_{0})\ne 0`  ， :math:`Q(z_{0})=0` ， :math:`Q'(z_{0})\ne 0`  ，则  :math:`z_{0}`  为  :math:`f(z)`  的一级极点，且
+
+.. math::
+    \begin{align*}
+        \operatorname{Res}[f(z),z_{0}]=\frac{P(z_{0})}{Q'(z_{0})}
+    \end{align*}
+
+
+
+**例题** 计算  :math:`\oint\limits_{|z|=3}\tan z\mathrm{d}z`  。
+
+**解** 取  :math:`f(z)=\cos z`  ，则  :math:`f(z)`  在  :math:`|z|=3`  内有两个一级零点  :math:`z=\pm\frac{\pi}{2}`  且无极点，故
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=3}\tan z\mathrm{d}z=-\oint\limits_{|z|=3}\frac{f'(z)}{f(z)}\mathrm{d}z=-2\pi i\times 2=-4\pi i
+	\end{align*}
+
+
+**例题** 计算积分  :math:`\oint\limits_{|z|=2}\frac{ze^{z}}{z^{2}-1}\mathrm{d}z` 。
+
+**解** 由于  :math:`f(z)=\frac{ze^{z}}{z^{2}-1}`  有两个一级极点  :math:`+1,-1`  ，而这两个极点都在圆周  :math:`|z|=2`  内，所以
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=2}\frac{ze^{z}}{z^{2}-1}\mathrm{d}z
+	    =2\pi i\Big(\operatorname{Res}[f(z),1]+\operatorname{Res}[f(z),-1]\Big)  
+	\end{align*}
+
+从而有
+
+.. math::
+	\begin{align*}
+	    & \operatorname{Res}[f(z),1]=\lim\limits _{z\to 1} \frac{ze^{z}}{z^{2}-1}=\lim\limits_{z\to 1}\frac{ze^{z}}{z+1}=\frac{e}{2} \\
+	    & \operatorname{Res}[f(z),-1]=\lim\limits_{z\to -1}\frac{ze^{z}}{z^{2}-1}=\lim\limits_{z\to -1}\frac{ze^{z}}{z-1}=\frac{e^{-1}}{2}
+	\end{align*}
+
+或者用另外一种方法得到上面的结果：
+
+.. math::
+    \begin{align*}
+        & \operatorname{Res}[f(z),1]=\frac{ze^{z}}{2z}\bigg|_{z=1}=\frac{e}{2} \\
+        & \operatorname{Res}[f(z),-1]=\frac{ze^{z}}{2z}\bigg|_{z=-1}=\frac{e^{-1}}{2}
+    \end{align*}
+
+因此
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=2}\frac{ze^{z}}{z^{2}-1}\mathrm{d}z=2\pi i(\frac{e}{2}+\frac{e^{-1}}{2})=2\pi i\operatorname{ch}1
+	\end{align*}
+
+
+
+**例题** 求积分  :math:`I=\oint\limits _{|z|=r}\frac{e^{\frac{1}{z}}}{z^{2}+1}\mathrm{d}z`  的值，其中圆周半径  :math:`r\ne 1`  ，方向为正向。
+
+**解** 因为  :math:`f(z)=\frac{e^{\frac{1}{z}}}{z^{2}+1}`  的孤立奇点为  :math:`z=0`  与  :math:`z\pm i`  ，其中  :math:`z=\pm i`  为一级极点，所以
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ f(z),\pm i \right ]  =\lim\limits _{z\to\pm i}(z\pm i)\frac{e^{\frac{1}{z}}}{z^{2}+1}=\pm\frac{1}{2i}e^{\mp i} 
+	\end{align*}
+
+又在  :math:`0<|z|<1`  内，有
+
+.. math::
+	\begin{align*}
+	    f(z)=\Big(1+\frac{1}{z}+\frac{1}{2!z^{2}}+\cdots\Big)\Big(1-z^{2}+z^{4}-z^{6}+\cdots \Big)  
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ f(z),0 \right ]=c_{-1}=1-\frac{1}{3!}+\frac{1}{5!}-\cdots=\sin1  
+	\end{align*}
+
+从而可知，当  :math:`r<1`  时，
+
+.. math::
+	\begin{align*}
+	    I=2\pi i\operatorname{Res}[f(z),0]=2\pi i\sin1 
+	\end{align*}
+
+当  :math:`r>1`  时，
+
+.. math::
+	\begin{align*}
+	    I=2\pi i\Big(\operatorname{Res}[f(z),0]+\operatorname{Res}[f(z),i]+\operatorname{Res}[f(z),-i] \Big)=2\pi i\big(\sin1+\frac{1}{2i}e^{-i}-\frac{1}{2i}e^{i}\big)=0
+	\end{align*}
+
+
+
+**例题** 计算积分  :math:`\oint\limits_{|z|=2}\frac{e^{z}}{z(z-1)^{2}}\mathrm{d}z`  。
+
+**解** :math:`z=0`  为被积函数的一级极点， :math:`z=1`  为二级极点，有
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=2}\frac{e^{z}}{z(z-1)^{2}}\mathrm{d}z
+	    =2\pi i\Big(\operatorname{Res}[f(z),0]+\operatorname{Res}[f(z),1]\Big)
+	\end{align*}
+
+其中
+
+.. math::
+	\begin{align*}
+	    & \operatorname{Res}[f(z),0]=\lim\limits_{z\to 0}z\cdot\frac{e^{z}}{z(z-1)^{2}}=1 \\
+	    & \operatorname{Res}[f(z),1]=\frac{1}{(2-1)!}\lim\limits_{z\to 1}\mathrm{d}z\left[(z-1)^{2}\frac{e^{z}}{z(z-1)^{2}}\right]=\lim\limits_{z\to 1}\frac{e^{z}(z-1)}{z^{2}}=0
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=2}\frac{e^{z}}{z(z-1)^{2}}\mathrm{d}z=2\pi i(1+0)==2\pi i
+	\end{align*}
+
+
+
+**例题** 求  :math:`\operatorname{Res}\left[\frac{z-\sin z}{z^{6}},0 \right]` 。
+
+**解**  :math:`z=0`  是  :math:`f(z)`  的三级极点。于是
+
+.. math::
+    \begin{align*}
+        \operatorname{Res}\left[\frac{z-\sin z}{z^{6}},0\right]
+        =\frac{1}{(6-1)!}\lim\limits_{z\to 0}\frac{\mathrm{d}^{5} }{\mathrm{d}z^{5}}\left(z^{6}\cdot\frac{z-\sin z}{z^{6}}\right)
+        =\frac{1}{5!}\lim\limits_{z\to 0}(-\cos z)=-\frac{1}{5!}
+    \end{align*}
+
+或者从这个角度来得到：由洛朗展开式可知
+
+.. math::
+    \begin{align*}
+        \frac{z-\sin z}{z^{6}}=\frac{1}{z^{6}}\left(z-\big(z-\frac{1}{3!}z^{3}+\frac{1}{5!}z^{5}-\cdots\big)\right)=\frac{1}{3!z^{3}}-\frac{1}{5!z}+\cdots
+    \end{align*}
+
+于是有
+
+.. math::
+    \begin{align*}
+        \operatorname{Res}\left[\frac{z-\sin z}{z^{6}},0\right]=c_{-1}=-\frac{1}{5!}
+    \end{align*}
+
+
+
+**例题** 求  :math:`\oint\limits_{|z|=\frac{3}{2}}\frac{1-\cos z}{z^{m}}\mathrm{d}z`  ，其中  :math:`m`  为整数。
+
+**解** 显然奇点为  :math:`z=0`  ，且为  :math:`m-2`  级极点，当  :math:`m\geqslant 2`  时为可去奇点或零点，而
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ \frac{1-\cos z}{z^{m}},0 \right ]
+	    =\frac{1}{(m-1)!}\lim\limits _{z\to 0}\frac{\mathrm{d}^{m-1}}{\mathrm{d}z^{m-1}}z^{m}\cdot\frac{1-\cos z}{z^{m}}
+	    =\frac{-1}{(m-1)!}\lim\limits _{z\to 0}\cos\big(z+\frac{\pi}{2}(m-1)\big)
+	\end{align*}
+
+注意到当  :math:`m`  为偶数时，  :math:`\lim\limits _{z	o 0}\cos\big(z+\frac{\pi}{2}(m-1)\big)=0`  ；当  :math:`m`  为奇数时，则
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ \frac{1-\cos z}{z^{m}},0 \right ]
+	    =\frac{-1}{(m-1)!}\cdot (-1)^{\frac{m-1}{2}}
+	    =(-1)^{\frac{m-3}{2}}\frac{1}{(m-1)!}
+	\end{align*}
+
+因此
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=\frac{3}{2}}\frac{1-\cos z}{z^{m}}\mathrm{d}z
+	    =\left \{ \begin{array}{cl}
+	    0, & m\leqslant 2 ~\text{或}~ m ~\text{为偶数},\\
+	    (-1)^{\frac{m-3}{2}}\frac{2\pi i}{(m-1)!}, & m\geqslant 3 ~\text{且}~ m ~\text{为奇数}  
+	    \end{array} \right.
+	\end{align*}
+
+
+
+**例题** 计算  :math:`\oint\limits_{|z|=1}\frac{1}{(z-a)^{n}(z-b)^{n}}\mathrm{d}z`  ，其中  :math:`n`  为正整数，且  :math:`|a|,|b|\ne 1,~|a|<|b|` 。
+
+**解** 当  :math:`1<|a|<|b|`  时，  :math:`f(z)=\frac{1}{(z-a)^{n}(z-b)^{n}}`  在  :math:`|z|=1`  内解析，故积分值为零。
+
+当  :math:`|a|<|b|<1`  时，  :math:`z=a`  与  :math:`z=b`  都是  :math:`f(z)`  在  :math:`|z|=1`  内的  :math:`n`  级极点，所以
+
+.. math::
+	\begin{align*}
+	    & \operatorname{Res}[f(z),a]
+	    =\frac{1}{(n-1)!}\lim\limits _{z\to a}\frac{\mathrm{d}^{n-1} }{\mathrm{d}z^{n-1}}\Big((z-a)^{n}f(z)  \Big)
+	    =\frac{1}{(n-1)!}\lim\limits _{z\to a}\frac{\mathrm{d}^{n-1} }{\mathrm{d}z^{n-1}}\frac{1}{(z-b)^{n}} 
+	    =\frac{(-1)^{n-1}(2n-2)!}{[(n-1)!]^{2}(a-b)^{2n-1}} \\
+	    & \operatorname{Res}[f(z),b]
+	    =\frac{1}{(n-1)!}\lim\limits _{z\to b}\frac{\mathrm{d}^{n-1} }{\mathrm{d}z^{n-1}}\Big((z-b)^{n}f(z)  \Big)
+	    =\frac{1}{(n-1)!}\lim\limits _{z\to b}\frac{\mathrm{d}^{n-1} }{\mathrm{d}z^{n-1}}\frac{1}{(z-a)^{n}} 
+	    =\frac{(-1)^{n}(2n-2)!}{[(n-1)!]^{2}(a-b)^{2n-1}}
+	\end{align*}
+
+从而得到
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=1}\frac{1}{(z-a)^{n}(z-b)^{n}}\mathrm{d}z=2\pi i\Big(\operatorname{Res}[f(z),a]+\operatorname{Res}[f(z),b]\Big)=0
+	\end{align*}
+
+当  :math:`|a|<1<|b|`  时，  :math:`f(z)`  在  :math:`|z|=1`  内只有一个  :math:`n`  级极点  :math:`z=a`  ，故
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=1}\frac{1}{(z-a)^{n}(z-b)^{n}}\mathrm{d}z=2\pi i\operatorname{Res}[f(z),a]=(-1)^{n-1}\frac{2\pi i(2n-2)!}{[(n-1)!]^{2}(a-b)^{2n-1}}
+	\end{align*}
+
+
+**例题**  求  :math:`f(z)=\frac{1}{z^{2}}\left (1+\frac{1}{z+1}+\frac{1}{(z+1)^{2}}+\cdots +\frac{1}{(z+1)^{n}}\right )`  在它所有有限奇点处的留数。
+
+**解** 显然  :math:`z=0`  是  :math:`f(z)`  的二级极点，  :math:`z=-1`  是  :math:`f(z)`  的  :math:`n`  级极点，所以
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}[f(z),0]
+	    &=\lim\limits _{z\to 0}\frac{\mathrm{d}}{\mathrm{d}z}\left ( 1+\frac{1}{z+1}+\frac{1}{(z+1)^{2}}+\cdots +\frac{1}{(z+1)^{n}}\right ) \\
+	    &=\lim\limits _{z\to 0}\left ( -\frac{1}{(z+1)^{2}}-\frac{2}{(z+1)^{3}}-\cdots -\frac{n}{(z+1)^{n+1}}    \right ) \\
+	    &=-(1+2+\cdots +n)=-\frac{n(n+1)}{2} 
+	\end{align*}
+
+又因为
+
+.. math::
+	\begin{align*}
+	    \frac{1}{z}=\frac{-1}{1-(1+z)}=-\Big(1+(z+1)+(z+1)^{2}+\cdots +(z+1)^{n}+\cdots \Big)
+	\end{align*}
+
+.. math::
+	\begin{align*}
+	    \frac{1}{z^{2}}=-\left ( \frac{1}{z}  \right )  '=1+2(z+1)+3(z+1)^{2}+\cdots +n(z+1)^{n-1}+\cdots
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    f(z)=\Big(1+2(z+1)+3(z+1)^{2}+\cdots +n(z+1)^{n-1}+\cdots\Big)\Big(1+\frac{1}{z+1}+\frac{1}{(z+1)^{2}}+\cdots +\frac{1}{(z+1)^{n}}\Big)
+	\end{align*}
+
+从而得到
+
+.. math::
+	\begin{align*}
+	    c_{1}=1+2+3+\cdots+n=\frac{1}{2}n(n+1)
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}[f(z),-1]=\frac{1}{2}n(n+1) 
+	\end{align*}
+
+
+**例题** 设  :math:`\varphi(z)`  在  :math:`z_{0}`  处解析，  :math:`\varphi(z_{0})\ne 0`  ，若  :math:`f(z)`  在  :math:`z_{0}`  的邻域内解析，且以  :math:`z_{0}`  为  :math:`n`  级零点，计算  :math:`\operatorname{Res}\left [ \varphi(z)\frac{f'(z)}{f(z)},z_{0}\right ]` 。
+
+**解** 由于  :math:`z_{0}`  是  :math:`f(z)`  的  :math:`n`  级零点，于是可设  :math:`f(z)=(z-z_{0})^{n}g(z)`  ，其中  :math:`g(z)`  在  :math:`z_{0}`  解析，且  :math:`g(z_{0})\ne 0`  ，从而可得
+
+.. math::
+	\begin{align*}
+	    f'(z)=n(z-z_{0})^{n-1}g(z)+(z-z_{0})^{n}g'(z)=(z-z_{0})^{n-1}\Big(ng(z)+(z-z_{0})g'(z)\Big)
+	\end{align*}
+
+.. math::
+	\begin{align*}
+	    \varphi(z)\frac{f'(z)}{f(z)}=\varphi(z)\left ( \frac{n}{z-z_{0}}+\frac{g'(z)}{g(z)}\right ) 
+	\end{align*}
+
+因此  :math:`z_{0}`  为  :math:`\varphi(z)\frac{f'(z)}{f(z)}`  的一级极点，并且
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ \varphi(z)\frac{f'(z)}{f(z)},z_{0}\right ]=\lim\limits _{z\to z_{0}}\left ( (z-z_{0})\varphi(z)\frac{f'(z)}{f(z)}  \right )=\lim\limits _{z\to z_{0}}\varphi(z)(z-z_{0})\left ( \frac{n}{z-z_{0}}+\frac{g'(z)}{g(z)}\right )=n\varphi(z_{0})
+	\end{align*}
+
+
+
+**例题** 计算  :math:`\oint\limits _{|z|=R}\frac{z^{2}}{1-e^{2\pi iz^{3}}}\mathrm{d}z`  ，其中  :math:`n<R^{3}<n+1`  ， :math:`n`  为正整数。
+
+**解** 被积函数在  :math:`|z|=R`  内有孤立奇点  :math:`z=0`  ，以及方程  :math:`z^{3}=k~(k=\pm1,\pm2,\cdots,\pm n)`  的根  :math:`z_{k}`  共  :math:`6n`  个，这  :math:`6n+1`  个孤立奇点均为一级极点，于是
+
+.. math::
+	\begin{align*}
+	    & \operatorname{Res}\left [ \frac{z^{2}}{1-e^{2\pi iz^{3}}},0 \right ]=\lim\limits _{z\to 0}z\cdot\frac{z^{2}}{1-e^{2\pi iz^{3}}}=\frac{1}{-2\pi i} \\
+	    & \operatorname{Res}\left [ \frac{z^{2}}{1-e^{2\pi iz^{3}}},z_{k} \right ]=\lim\limits _{z\to z_{k}}(z-z_{k})\cdot\frac{z^{2}}{1-e^{2\pi iz^{3}}}=\lim\limits _{z\to z_{k}}\frac{z_{k}^{2}}{-2\pi i\cdot 3z^{2}e^{2\pi iz^{3}}}=\frac{1}{-6\pi i} 
+	\end{align*}
+
+于是
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{|z|=R}\frac{z^{2}}{1-e^{2\pi iz^{3}}}\mathrm{d}z=2\pi i\left ( \frac{1}{-2\pi i}+\frac{6n}{-6\pi i}   \right ) =-(2n+1)
+	\end{align*}
+
+
+定义 : 无穷远点的留数
+    设函数  :math:`f(z)`  在圆环域  :math:`R<|z|<+\infty`  内解析， :math:`C`  为这圆环域内绕原点的任何一条正向简单闭曲线，则定义  :math:`f(z)`  在  :math:`\infty`  点的留数为
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}[f(z),\infty]=\frac{1}{2\pi i}\oint\limits_{C^{-}}f(z)\mathrm{d}z=-c_{-1}
+	\end{align*}
+
+其中  :math:`c_{-1}`  为洛朗级数中  :math:`z^{-1}`  的系数。
+
+
+定理 : 留数和定理
+    如果函数  :math:`f(z)`  在扩充复平面内只有有限个孤立奇点，则  :math:`f(z)`  在各奇点（包括 :math:`\infty` 点）的留数的总和一定等于零，即
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}[f(z),\infty]+\sum\limits_{k=1}^{n}\operatorname{Res}[f(z),z_{k}]=0
+	\end{align*}
+
+在无穷远点的留数计算，满足规则：
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}[f(z),\infty]=-\operatorname{Res}\left[\frac{1}{z^{2}}f(\frac{1}{z}),0\right]
+	\end{align*}
+
+
+**例题** 计算  :math:`\oint\limits_{|z|=2}\frac{z}{z^{4}-1}\mathrm{d}z`  。
+
+**解** 被积函数  :math:`f(z)=\frac{z}{z^{4}-1}`  有四个一级极点  :math:`\pm1,\pm i`  都在圆周  :math:`|z|=2`  内，所以
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=2}\frac{z}{z^{4}-1}\mathrm{d}z
+	    =2\pi i\Big(\operatorname{Res}[f(z),1]+\operatorname{Res}[f(z),-1]+\operatorname{Res}[f(z),i]+\operatorname{Res}[f(z),-i] \Big)
+	\end{align*}
+
+可知  :math:`\frac{P(z)}{Q'(z)}=\frac{z}{4z^{3}}=\frac{1}{4z^{2}}`  ，于是
+
+.. math::
+    \begin{align*}
+        \oint\limits_{|z|=2}\frac{z}{z^{4}-1}\mathrm{d}z
+        =2\pi i\left(\frac{1}{4}+\frac{1}{4}-\frac{1}{4}-\frac{1}{4}\right)=0
+    \end{align*}
+
+或者从另外一个角度： :math:`f(z)`  在  :math:`|z|=2`  的外部只有  :math:`\infty`  一个奇点，由留数和定理可得
+
+.. math::
+    \begin{align*}
+        \oint\limits_{|z|=2}\frac{z}{z^{4}-1}\mathrm{d}z
+        =-2\pi i\operatorname{Res}[f(z),\infty]
+        =2\pi i\operatorname{Res}\left[f(\frac{1}{z})\frac{1}{z^{2}},0\right]
+        =2\pi i\operatorname{Res}\left[\frac{z}{1-z^{4}},0\right]=0
+    \end{align*}
+
+
+**例题** 计算积分  :math:`\oint\limits_{|z|=2}\frac{\mathrm{d}z}{(z+i)^{10}(z-1)(z-3)}` 。
+
+**解** 除  :math:`\infty`  外，被积函数的奇点有  :math:`-i,1,3`  ，其中  :math:`-i,1`  在闭曲线内部，从而
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=2}\frac{\mathrm{d}z}{(z+i)^{10}(z-1)(z-3)}
+	    =2\pi i\Big(\operatorname{Res}[f(z),-i]+\operatorname{Res}[f(z),1]\Big)
+	\end{align*}
+
+由留数和定理可知
+
+.. math::
+	\begin{align*}
+	    \oint\limits_{|z|=2}\frac{\mathrm{d}z}{(z+i)^{10}(z-1)(z-3)}
+	    =-2\pi i \Big(\operatorname{Res}[f(z),3]+\operatorname{Res}[f(z),\infty]\Big)
+	    =-2\pi i\Big(\frac{1}{2(3+i)^{10}}+0\Big)
+	    =-\frac{\pi i}{(3+i)^{10}}
+	\end{align*}
+
+
+**例题** 计算积分  :math:`\oint_{C}\frac{z}{(1+z^{2})e^{z}}\mathrm{d}z`  ，其中  :math:`C`  为正向圆周  :math:`|z|=r~(r>1)` 。
+
+**解** 由留数和定理可知
+
+.. math::
+	\begin{align*}
+	    \oint_{C}\frac{z}{(1+z^{2})e^{z}}\mathrm{d}z=-2\pi i\operatorname{Res}\left [ \frac{z}{(1+z^{2})e^{z}},\infty \right ]  
+	\end{align*}
+
+同时有
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ \frac{z}{(1+z^{2})e^{z}},\infty \right ]=-\operatorname{Res}\left [ \frac{1}{z(1+z^{2})e^{z}},0  \right ]
+	\end{align*}
+
+而  :math:`z=0`  是函数  :math:`\frac{1}{z(1+z^{2})e^{z}}`  的一级极点，所以
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}\left [ \frac{1}{z(1+z^{2})e^{z}},0  \right ]=\lim\limits_{z\to 0}z\cdot\frac{1}{z(1+z^{2})e^{z}}=1
+	\end{align*}
+
+从而得到  :math:`\oint_{C}\frac{z}{(1+z^{2})e^{z}}\mathrm{d}z=2\pi i` 。
+
+
+
+**例题** 计算  :math:`\oint_{C}\frac{z^{2n}}{1+z^{n}}\mathrm{d}z`  ，其中  :math:`n`  为一正整数，  :math:`C:|z|=r>1` 。
+
+**解** 当  :math:`n=1`  时，  :math:`f(z)=\frac{z^{2}}{1+z}`  在  :math:`|z|=r>1`  内仅有一个一级极点  :math:`z=-1`  ，故
+
+.. math::
+	\begin{align*}
+	    \oint_{C}\frac{z^{2n}}{1+z^{n}}\mathrm{d}z
+	    =2\pi i\operatorname{Res}[f(z),-1]=2\pi i\lim\limits _{z\to-1}z^{2}=2\pi i 
+	\end{align*}
+
+当  :math:`n>1`  时，  :math:`f(z)=\frac{z^{2n}}{1+z^{n}}`  在  :math:`|z|=r>1`  内有  :math:`n`  个一级极点  :math:`z=\sqrt[n]{-1}`  ，在  :math:`|z|=r>1`  外仅有一个奇点  :math:`z=\infty`  ，由于
+
+.. math::
+	\begin{align*}
+	    f(z)=\frac{z^{n}}{1+(\frac{1}{z} )^{n}}=z^{n}\left ( 1-\frac{1}{z^{n}}+\frac{1}{z^{2n}}-\cdots    \right ) =\cdots +\frac{1}{z^{n}}-1+z^{n},
+	    \quad |z|>1
+	\end{align*}
+
+所以  :math:`\operatorname{Res}[f(z),\infty]=-c_{-1}=0`  ，进而可得
+
+.. math::
+	\begin{align*}
+	    \oint_{C}\frac{z^{2n}}{1+z^{n}}\mathrm{d}z
+	    =-2\pi i\operatorname{Res}[f(z),\infty]=0
+	\end{align*}
+
+
+**例题** 计算积分  :math:`I=\oint_{C}\frac{1}{(z-1)^{2}}\sin\frac{2}{z^{2}}\mathrm{d}z`  ，其中  :math:`C`  为正向圆周  :math:`|z|=2` 。
+
+**解** 由于  :math:`f(z)\frac{1}{(z-1)^{2}}\sin\frac{2}{z^{2}}`  的有限孤立奇点  :math:`z=0`  与  :math:`z=1`  都在  :math:`C`  内，在  :math:`C`  外只有一个孤立奇点  :math:`z=\infty`  ，且
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}[f(z),\infty ]=-\operatorname{Res}\left [ \frac{1}{z^{2}}f\Big(\frac{1}{z}\Big) ,0 \right ]=-\operatorname{Res}\left [ \frac{\sin2z^{2}}{(1-z)^{2}} ,0 \right ]=0
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    I=-2\pi i\operatorname{Res}[f(z),\infty]=0
+	\end{align*}
+
+
+
+
+留数在定积分上的应用
+--------------------
+
+定理 : 围道积分
+    对于  :math:`\int_{a}^{b}f(x)\mathrm{d}x`  ，作一辅助复变函数  :math:`F(z)`  ，使得当  :math:`z`  在实轴上的区间  :math:`(a,b)`  内变化时有  :math:`F(x)=f(x)`  。作按段光滑的辅助曲线  :math:`\Gamma`  ，使它与区间  :math:`(a,b)`  组成一条封闭曲线并围成一个区域  :math:`D`  ， :math:`F(z)`  在  :math:`D`  内除有限个孤立奇点  :math:`z_{k}`  外处处解析，根据留数定理，有
+
+.. math::
+	\begin{align*}
+	    \int_{a}^{b}F(x)\mathrm{d}x+\int_{\Gamma}F(z)\mathrm{d}z=2\pi i\sum\limits_{k=1}^{n}\operatorname{Res}[F(z),z_{k}]
+	\end{align*}
+
+如果积分  :math:`\int_{\Gamma}F(z)\mathrm{d}z`  能够算出，那么实积分  :math:`\int_{a}^{b}F(x)\mathrm{d}x`  就能求得。
+
+
+定理 : 形如  :math:`\int_{0}^{2\pi}R(\cos\theta,\sin\theta)\mathrm{d}\theta`  的积分
+    令  :math:`z=e^{i\theta}`  ，那么  :math:`\mathrm{d}z=ie^{i\theta}\mathrm{d}\theta`  ，且
+
+.. math::
+	\begin{align*}
+	    & \sin\theta=\frac{1}{2i}(e^{i\theta}-e^{-i\theta})=\frac{z^{2}-1}{2iz} \\
+	    & \cos\theta=\frac{1}{2}(e^{i\theta}+e^{-i\theta})=\frac{z^{2}+1}{2z}
+	\end{align*}
+
+从而所求积分化为沿正向单位圆周的积分：
+
+.. math::
+	\begin{align*}
+	    \oint\limits _{|z|=1}R\left ( \frac{z^{2}+1}{2z},\frac{z^{2}-1}{2iz}   \right ) \frac{\mathrm{d}z}{iz} =\oint\limits _{|z|=1}f(z)\mathrm{d}z
+	\end{align*}
+
+其中  :math:`f(z)`  为  :math:`z`  的有理函数，且在单位圆周  :math:`|z|=1`  上分母不为零。根据留数定理，所求积分值为
+
+.. math::
+	\begin{align*}
+	    2\pi i\sum\limits _{k=1}^{n}\operatorname{Res}\left [ f(z),z_{k} \right ]  
+	\end{align*}
+
+其中  :math:`z_{k}~(k=1,2,\cdots,n)`  为包含在单位圆周  :math:`|z|=1`  内的  :math:`f(z)`  的孤立奇点。
+
+
+**例题** 计算  :math:`I=\int_{0}^{2\pi}\frac{\mathrm{d}\theta}{a-\cos\theta}`  ，其中  :math:`a>1` 。
+
+**解** 令  :math:`z=e^{i\theta}` ，则
+
+.. math::
+	\begin{align*}
+	    I=\oint\limits _{|z|=1}\frac{\mathrm{d}z}{\left ( a-\frac{z^{2}+1}{2z}  \right )iz } =\frac{-2}{i}\oint\limits _{|z|=1} \frac{\mathrm{d}z}{z^{2}-2az+1} 
+	\end{align*}
+
+考虑  :math:`f(z)=\frac{1}{z^{2}-2az+1}`  ，奇点有  :math:`z_{1}=a-\sqrt{a^{2}-1}`  ， :math:`z_{2}=a+\sqrt{a^{2}-1}`  ，而在圆周  :math:`|z|=1`  内的只有  :math:`z_{1}=a-\sqrt{a^{2}-1}`  ，从而
+
+.. math::
+	\begin{align*}
+	    I=2\pi i\cdot \frac{-2}{i}\operatorname{Res}\left [ \frac{1}{z^{2}-2az+1},z_{1}  \right ] =-4\pi\cdot\frac{1}{(z^{2}-2az+1)'} \bigg|_{z=z_{1}}=\frac{2\pi}{\sqrt{a^{2}-1}}
+	\end{align*}
+
+
+
+**例题** 计算  :math:`I=\int_{0}^{2\pi}\frac{\cos m\theta }{1-2p\cos\theta +p^{2}}\mathrm{d}\theta ~(0<p<1)`  的值。
+
+**解** 同时考虑
+
+.. math::
+	\begin{align*}
+	    \tilde{I} =\int_{0}^{2\pi}\frac{\sin m\theta }{1-2p\cos\theta +p^{2}}\mathrm{d}\theta 
+	\end{align*}
+
+则有
+
+.. math::
+	\begin{align*}
+	    I+i\tilde{I}&=\int_{0}^{2\pi}\frac{e^{im\theta}}{1-2p\cos\theta+p^{2}}
+	    =\oint\limits _{|z|=1}\frac{z^{m}}{1-2p\cdot\frac{z^{2}+1}{2z}+p{2} } \cdot\frac{\mathrm{d}z}{iz} \\
+	    &=-\frac{1}{i}\oint\limits_{|z|=1}\frac{z^{m}}{(pz-1)(z-p)}\mathrm{d}z
+	    =2\pi i\cdot(-\frac{1}{i})\operatorname{Res}\left [ \frac{z^{m}}{(pz-1)(z-p)},p  \right ] 
+	    =\frac{2\pi p^{m}}{1-p^{2}}
+	\end{align*}
+
+由此可知
+
+.. math::
+	\begin{align*}
+	    I=\operatorname{Re}[I+\tilde{I}]=\frac{2\pi p^{m}}{1-p},\quad \tilde{I}=\operatorname{Im}[I+\tilde{I}]= 0
+	\end{align*}
+
+
+
+**例题** 设  :math:`n`  为整数，证明：(1)  :math:`\int_{0}^{2\pi}e^{\cos\varphi}\cos(n\varphi-\sin\varphi)~\mathrm{d}\varphi =\left \{ \begin{array}{cl}\frac{2\pi}{n!}, & n\geqslant 0,\\0, & n<0 ;\end{array} \right.` ；(2) :math:`\int_{0}^{2\pi}e^{\cos\varphi}\sin(n\varphi-\sin\varphi)\mathrm{d}\varphi=0` 。
+
+**解** 设  :math:`I_{1}=\int_{0}^{2\pi}e^{\cos\varphi}\cos(n\varphi-\sin\varphi)~\mathrm{d}\varphi` ， :math:`I_{2}=\int_{0}^{2\pi}e^{\cos\varphi}\sin(n\varphi-\sin\varphi)~\mathrm{d}\varphi`  ，则
+
+.. math::
+	\begin{align*}
+	    I=I_{1}+iI_{2}=\int_{0}^{2\pi}e^{e^{-i\varphi}}e^{in\varphi}~\mathrm{d}\varphi
+	\end{align*}
+
+令  :math:`e^{i\varphi}=z`  ，则  :math:`\mathrm{d}\varphi=\frac{1}{iz}\mathrm{d}z`  ，从而
+
+.. math::
+	\begin{align*}
+	    I=\frac{1}{i}\oint\limits_{|z|=1}z^{n-1}e^{\frac{1}{z}}\mathrm{d}z=2\pi \operatorname{Res}[z^{n-1}e^{\frac{1}{z}},0]
+	\end{align*}
+
+由于
+
+.. math::
+	\begin{align*}
+	    z^{n-1}e^{\frac{1}{z}}=z^{n-1}\left ( 1+\frac{1}{z}+\frac{1}{2!z^{2}}+\cdots +\frac{1}{n!z^{n}}+\cdots  \right ) 
+	\end{align*}
+
+故
+
+.. math::
+	\begin{align*}
+	    \operatorname{Res}[z^{n-1}e^{\frac{1}{z}},0]=c_{-1}=\left \{  \begin{array}{cl}
+	    \frac{1}{n!}, & n\geqslant 0,\\
+	    0, & n<0. 
+	    \end{array} \right.
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    I=\left \{ \begin{array}{cl}
+	    \frac{2\pi}{n!}, & n\geqslant 0,\\
+	    0, & n<0. 
+	    \end{array} \right.
+	\end{align*}
+
+比较等式两边的实部和虚部即可证明所要结论。
+
+
+**例题** 求  :math:`I(b)=\int_{-\pi}^{\pi}\frac{\mathrm{d}\theta}{b+\sin\frac{\theta}{2}}`  ，其中  :math:`b>1` 。
+
+**解** 经过换元可得
+
+.. math::
+	\begin{align*}
+	    I(b)=\int_{-\pi}^{\pi}\frac{\mathrm{d}\theta}{b+\sin\frac{\theta}{2}}=2\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{\mathrm{d}t}{b+\sin t}=\int_{-\pi}^{\pi}\frac{\mathrm{d}t}{b+\sin t}=\int_{0}^{2\pi}\frac{\mathrm{d}\varphi}{b-s\in\varphi}
+	\end{align*}
+
+令  :math:`z=e^{i\varphi}`  ，则  :math:`\mathrm{d}\varphi=\frac{\mathrm{d}z}{iz}`  ，于是
+
+.. math::
+	\begin{align*}
+	    I(b)=\oint\limits_{|z|=1}\frac{1}{b-\frac{z^{2}-1}{2iz}}\cdot\frac{1}{iz}\mathrm{d}z=\oint\limits_{|z|=1}\frac{-2}{z^{2}-2biz-1}\mathrm{d}z
+	\end{align*}
+
+:math:`f(z)=\frac{-2}{z^{2}-2biz-1}`  的奇点有  :math:`z=(b+\sqrt{b^{2}-1})i`  和  :math:`z=(b-\sqrt{b^{2}-1})i`  ，而在  :math:`|z|=1`  内的奇点只有  :math:`z=(b-\sqrt{b^{2}-1})i`  ，所以
+
+.. math::
+	\begin{align*}
+	    I(b)=2\pi i\cdot\frac{-2}{-2\sqrt{1-b^{2}}}=\frac{2\pi}{\sqrt{b^{2}-1}}
+	\end{align*}
+
+
+
+
+定理 : 形如  :math:`\int_{-\infty}^{+\infty}R(x)\mathrm{d}x` 的积分
+    要求  :math:`R(x)`  的分母次数至少比分子的次数高二次，且  :math:`R(z)`  在实轴上没有孤立奇点，则
+
+.. math::
+	\begin{align*}
+	    \int_{-\infty }^{+\infty }R(x)\mathrm{d}x=2\pi i\sum\operatorname{Res}\left [ R(z),z_{k} \right ]  
+	\end{align*}
+
+其中  :math:`z_{k}`  为上半平面的奇点。
+
+特别地，若  :math:`R(x)`  为偶函数，那么
+
+.. math::
+	\begin{align*}
+	    \int_{0}^{+\infty}R(x)\mathrm{d}x=\pi i\sum \operatorname{Res}\left [ R(z),z_{k} \right ]  
+	\end{align*}
+
+
+
+
+**例题** 求  :math:`I=\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{4}}` 。
+
+**解** 考虑  :math:`R(z)=\frac{1}{1+z^{4}}`  ，则奇点有  :math:`z_{k}=e^{\frac{1}{4}i(\pi+2k\pi) },~k=0,1,2,3`  ，其中在上半平面的有  :math:`z_{0}=e^{i\frac{\pi}{4} }`  ， :math:`z_{1}=e^{i\frac{3}{4}\pi }`  ，同时  :math:`\frac{1}{1+x^{4}}`  为偶函数，从而
+
+.. math::
+	\begin{align*}
+	    I&=\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{4}}
+	    =\frac{1}{2}\int_{-\infty}^{+\infty}\frac{\mathrm{d}x}{1+x^{4}}
+	    =\frac{1}{2}\cdot 2\pi i\Big( \operatorname{Res}[R(z),z_{0}]+\operatorname{Res}[R(z),z_{1}]   \Big) \\
+	    &=\pi i\left ( \frac{1}{(1+z^{4})'}\bigg|_{z=z_{0}}+\frac{1}{(1+z^{4})'} \bigg|_{z=z_{1}}  \right ) 
+	    =\frac{\pi i}{4}\left ( \frac{1}{e^{i\frac{3}{4}\pi }}+\frac{1}{e^{i\frac{9}{4}\pi }}   \right ) 
+	    =\frac{\sqrt{2}}{4}\pi
+	\end{align*}
+
+
+**例题** 计算  :math:`I=\int_{-\infty}^{+\infty}\frac{x^{2}\mathrm{d}x}{(x^{2}+a^{2})(x^{2}+b^{2})}~(a>0,b>0)`  的值。
+
+**解** 这里  :math:`m=4,~n=2,~m-n`  ，并且实轴上  :math:`R(z)`  没有孤立奇点，函数
+
+.. math::
+	\begin{align*}
+	    \frac{z^{2}}{(z^{2}+a^{2})(z^{2}+b^{2})}
+	\end{align*}
+
+的一级极点为  :math:`\pm ai,~\pm bi`  ，其中  :math:`ai`  与  :math:`bi`  在上半平面内，于是
+
+.. math::
+	\begin{align*}
+	    & \operatorname{Res}[R(z),ai]
+	    =\lim\limits_{z\to ai}\left [ (z-ai)\frac{z^{2}}{(z^{2}+a^{2})(z^{2}+b^{2})}  \right ] 
+	    =\frac{a}{2i(a^{2}-b^{2})} \\
+	    & \operatorname{Res}[R(z),bi]
+	    =\lim\limits_{z\to bi}\left [ (z-bi)\frac{z^{2}}{(z^{2}+a^{2})(z^{2}+b^{2})}  \right ] 
+	    =\frac{b}{2i(b^{2}-a^{2})}
+	\end{align*}
+
+所以
+
+.. math::
+	\begin{align*}
+	    I=2\pi i\left ( \frac{a}{2i(a^{2}-b^{2})}+\frac{b}{2i(b^{2}-a^{2})} \right ) =\frac{\pi}{a+b} 
+	\end{align*}
+
+
+
+定理 : 形如  :math:`\int_{-\infty}^{+\infty}R(x)e^{aix}\mathrm{d}x`  的积分
+    要求  :math:`a>0`  ，且  :math:`R(x)`  的分母次数至少比分子的次数高一次，且  :math:`R(z)`  在实轴上没有孤立奇点，则
+
+.. math::
+	\begin{align*}
+	    \int_{-\infty }^{+\infty }R(x)e^{aix}\mathrm{d}x=2\pi i\sum\operatorname{Res}[R(z)e^{aiz},z_{k}] 
+	\end{align*}
+
+也即
+
+.. math::
+	\begin{align*}
+	    \int_{-\infty }^{+\infty }R(x)\cos ax\mathrm{d}x+i\int_{-\infty }^{\infty }R(x)\sin ax\mathrm{d}x=2\pi i\sum\operatorname{Res}[R(z)e^{aiz},z_{k}] 
+	\end{align*}
+
+其中  :math:`z_{k}`  为上半平面的奇点。
+
+
+
+**例题** 计算  :math:`I=\int_{0}^{+\infty}\frac{x\sin x}{x^{2}+a^{2}}\mathrm{d}x~(a>0)`  的值。
+
+**解** 考虑  :math:`R(z)=\frac{z}{z^{2}+a^{2}}`  ，实轴上无孤立奇点，且上半平面内有一级极点  :math:`ai`  ，故有
+
+.. math::
+	\begin{align*}
+	    \int_{-\infty}^{+\infty}\frac{x}{x^{2}+a^{2}}e^{ix}\mathrm{d}x=2\pi i\operatorname{Res}[R(z)e^{iz},ai]=2\pi i\cdot\frac{e^{-a}}{2}=\pi ie^{-a}
+	\end{align*}
+
+从而
+
+.. math::
+	\begin{align*}
+	    \int_{0}^{+\infty}\frac{x\sin x}{x^{2}+a^{2}}\mathrm{d}x=\frac{1}{2}\pi e^{-a}
+	\end{align*}
+
+
+.. note:: 
+
+	基于此结果可以进一步得到
+
+	.. math::
+		\begin{align*}
+		    \lim\limits_{a\to 0^{+}}\int_{0}^{+\infty}\frac{x\sin x}{x^{2}+a^{2}}\mathrm{d}x
+		    =\int_{0}^{+\infty}\lim\limits_{a\to 0^{+}}\frac{x\sin x}{x^{2}+a^{2}}\mathrm{d}x
+		    =\int_{0}^{+\infty}\frac{\sin x}{x}\mathrm{d}x
+		    =\frac{\pi}{2}
+		\end{align*}
+

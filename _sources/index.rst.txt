@@ -1,0 +1,44 @@
+.. Knowledge Summary documentation master file, created by
+   sphinx-quickstart on Fri Oct  7 10:16:08 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Koishi's documentation!
+=============================================
+
+.. figure:: ./_images/KOISATO.png
+  :align: center
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   demo/微积分.rst
+   demo/线性代数.rst
+   demo/复变函数.rst
+   demo/电路原理.rst
+   demo/数字电路.rst
+   demo/模拟电路.rst
+   demo/数值分析与算法.rst
+   demo/数理方程.rst
+   demo/流体力学.rst
+   demo/稀薄气体动力学.rst
+   demo/计算流体力学有限体积法.rst
+   demo/AutoCAD.rst
+   demo/C++.rst
+   demo/Latex.rst
+   demo/Linux.rst
+   demo/OpenFOAM.rst
+   demo/OpenFOAM算例运行案例.rst
+   demo/Python.rst
+   demo/Salome.rst
+   demo/Solidworks.rst
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

@@ -1,0 +1,913 @@
+**************
+数值分析与算法
+**************
+
+
+误差
+=====
+
+误差的概念
+----------
+
+误差的来源一般分为四种：
+
+- 观测误差（测量误差）。任何一个测量仪器一定有误差精度，只是这个精度对最后结果的影响有多大，最后需要做分析。
+- 模型误差。可以理解为是数学建模过程中抽象、简化过程带来的误差。
+- 方法误差（截断误差）。任何方法都有误差，尤其是迭代不能是无穷而产生的截断误差。
+- 舍入误差（计算误差，存储误差）。计算机在存储数字时舍入掉一些位数带来的误差。
+  
+上面的四种误差根据影响情况又可以大致分为两类：对于观测误差和舍入误差，它们对最后结果的影响相似，都是初值或中间值的误差通过计算公式累积变化；而模型误差与方法误差都是对最终结果的影响，前者是将对象进行数学化带来的误差，后者是进一步写成计算公式带来的误差。
+
+
+**案例** 用内接n多边形近似圆（ :math:`r=1` ）周长。
+
+- 观测误差——无。因为已经明确给出来了半径等于1；
+- 模型误差——无。因为可以证明收敛到圆周长；
+- 方法误差——迭代停止后的理想值与 :math:`2\pi` 的差；
+- 舍入误差——每一步都有计算中间结果的存储，需要累积。
+  
+**案例** 已知 :math:`\sin0.32=0.314567` ， :math:`\sin0.34=0.333487` ，用线性插值 :math:`L_{1}(x)=\frac{x-x_{1}}{x_{0}-x_{1}}y_{0}+\frac{x-x_{0}}{x_{1}-x_{0}}y_{1}` 的方法，求 :math:`\sin0.3367` 的近似值和误差界。给出的 :math:`\sin0.32=0.314567` ， :math:`\sin0.34=0.333487` 就是观测误差，因为这是给出的初值就存在误差。
+
+**案例** 对于 :math:`e^{-1}=1+(-1)+\frac{(-1)^{2}}{2!}+\frac{(-1)^{3}}{3!}+\cdots+\frac{(-1)^{k}}{k!}+\cdots` ，选取 :math:`k=7` 来近似得到一个无穷位小数 :math:`e^{-1}=0.3678571\cdots` 。在这里截断的过程中， :math:`R_{7}\leqslant \frac{1}{8!}<\frac{1}{4}\times 10^{-4}` 就是方法误差（截断误差），这一过程产生的误差的上限是可以分析出来的；而如果最终取的结果保留4位小数为 :math:`e^{-1}=0.3679` 就产生了舍入误差。
+
+**案例** 记初始值为 :math:`I_{0}` ，误差为 :math:`\Delta I_{0}` ，计算公式为 :math:`I_{n}=1-nI_{n-1}` 。随着迭代的进行，可以发现 :math:`|\Delta I_{1}|=|\Delta I_{0}|,|\Delta I_{2}|=2|\Delta I_{1}|,\cdots,|\Delta I_{n}|=n!|\Delta I_{0}|` ，误差非常不稳定，该计算公式会将开始的误差不断放大，所以该计算公式是有问题的，称之为不稳定公式。
+
+
+误差的衡量
+----------
+
+记准确值为 :math:`x` ，近似值为 :math:`x^{*}` ，那么绝对误差为 :math:`|\Delta x|=|x-x^{*}|` ，相对误差为 :math:`\left | \frac{\Delta x}{x}  \right | =\left | \frac{\Delta x}{x^{*}}  \right |` 。
+
+如果有一个数是 :math:`x=1.2345678` ，它的三位有效数字是 :math:`x^{*}=1.23` ，此时取三位有效数字的舍入误差为 :math:`|\Delta x|\leqslant 0.5\times 10^{-2}` ；它的五位有效数字是 :math:`x^{*}=1.2346` ，此时取五位有效数字的舍入误差为 :math:`|\Delta x|\leqslant 0.5\times 10^{-4}` 。
+
+
+
+多元函数的误差估计
+------------------
+
+这个估计进所要解决的问题是：有一个数有误差，它代入到公式当中对最后的结果产生什么影响。可以用来分析观测误差和舍入误差对下一步结果的影响。
+
+有 :math:`n` 个数参与到计算方法 :math:`f` 来计算得到目标结果 :math:`A` ，即 :math:`A=f(x_{1},x_{2},\cdots,x_{n})` ，而这 :math:`n` 个数都存在误差，即 :math:`A^{*}=f(x_{1}^{*},x_{2}^{*},\cdots,x_{n}^{*})` ，那么结果误差为
+
+.. math::
+	\begin{align}
+	\Delta A=A-A^{*}\approx(\frac{\partial f}{\partial x_{1}})^{*}(x_{1}-x_{1}^{*})+(\frac{\partial f}{\partial x_{2}})^{*}(x_{2}-x_{2}^{*})+\cdots+(\frac{\partial f}{\partial x_{n}} )^{*}(x_{n}-x_{n}^{*})
+	\end{align}
+
+其中的 :math:`(\frac{\partial f}{\partial x_{n}})^{*}` 指的是在求出的 :math:`\frac{\partial f}{\partial x_{n}}` 表达式中代入 :math:`x_{n}^{*}` ，其他以此类推。
+
+.. note:: 如果严格地进行泰勒展开的话，上面的式子应该是一个无穷级数。但是，由于 :math:`x_{n}-x_{n}^{*}` 的值是非常小的，后续的二阶项、三阶项等的值会更加小，所以近似地舍去这些项是合理的。
+
+根据上式，就可以近似得到
+
+.. math::
+	\begin{align}
+	|\Delta A|\leqslant \left | (\frac{\partial f}{\partial x_{1}})^{*}\right | \cdot |\Delta x_{1}|+\left | (\frac{\partial f}{\partial x_{2}})^{*}\right | \cdot |\Delta x_{2}|+\cdots+\left | (\frac{\partial f}{\partial x_{n}})^{*}\right | \cdot |\Delta x_{n}|
+	\end{align}
+
+但是这样的近似式子在工程应用上是没有价值的，因为它不能明确给出真正的误差上限。所以真正使用的是下面的不等式：
+
+
+.. math::
+	\begin{align}
+	|\Delta A|\leqslant \max\left | \frac{\partial f}{\partial x_{1}}  \right | \cdot |\Delta x_{1}|+\max\left | \frac{\partial f}{\partial x_{2}}  \right | \cdot |\Delta x_{2}|+\cdots+\max\left | \frac{\partial f}{\partial x_{n}}  \right | \cdot |\Delta x_{n}|
+	\end{align}
+
+上式是通过多元函数的拉格朗日中值定理来推导得到的。对于一元函数的情况，有 :math:`f(x)-f(x^{*})=f'(\xi)(x-x^{*})` ，取绝对值放大后就得到 :math:`|f(x)-f(x^{*})|\leqslant \max|f'(x)|\cdot|x-x^{*}|` 。
+
+.. note:: 在综合了前序误差之后， :math:`x_{n}` 的可能值将会是一个包含了 :math:`x_{n}^{*}` 范围，根据这个范围就可以计算出 :math:`\max\left | \frac{\partial f}{\partial x_{n}}  \right |` 。
+
+
+**例题** 比较 :math:`\sqrt{2}-1` 和 :math:`1/(\sqrt{2}+1)` 的误差，其中 :math:`\sqrt{2}` 取 :math:`1.414` 。
+
+**解** 在这个问题中， :math:`x=\sqrt{2}` ， :math:`x^{*}=1.414` ， :math:`f_{1}(x)=x-1` ， :math:`f_{2}(x)=\frac{1}{x+1}` 。
+
+对于 :math:`f_{1}(x)` ，其误差为
+
+.. math::
+	\begin{align}
+	|f_{1}(x)-f_{1}(x^{*})|\leqslant \max|f'_{1}(x)|\cdot\Delta x=1\cdot \Delta x
+	\end{align}
+
+对于 :math:`f_{2}(x)` ，首先计算 :math:`|f_{2}'(x)|=\frac{1}{(x+1)^{2}}` ，而根据舍入误差可知，当 :math:`x=\sqrt{2}` 取为 :math:`x^{*}=1.414` 时，意味着 :math:`x\in [1.4135,1.4145)` ，于是可以得到 :math:`\max|f_{2}'(x)|=\frac{1}{(1.4135+1)^{2}}< \frac{1}{5}` ，也就得到
+
+.. math::
+	\begin{align}
+	|f_{2}(x)-f_{2}(x^{*})|\leqslant \max|f_{2}'(x)|\cdot\Delta x \leqslant \frac{1}{5}\Delta x 
+	\end{align}
+
+可以发现，两个理论上相等的式子，在数值计算结果上的误差存在明显不同。更进一步地，根据有效位数的保留情况可知 :math:`\Delta x\leqslant 0.5\times 10^{-3}` ，代入上面的不等式就可以分别求出 :math:`f_{1}(x)` 和 :math:`f_{2}(x)` 的误差界限。
+
+
+**例题** 分析 :math:`y_{n+1}=\frac{1}{2}y_{n}+\frac{1}{n}` 中观测误差和存储误差的累计结果，假设每次迭代都会产生最大 :math:`0.5\times 10^{-5}` 的存储误差。
+
+**解** 即初始观测误差为 :math:`\Delta y_{0}` ，则
+
+.. math::
+	\begin{align}
+	|\Delta y_{n+1}|
+	\leqslant \frac{1}{2}|\Delta y_{n}|+0.5\times 10^{-5}
+	\end{align}
+
+为了将迭代过程中关于 :math:`n` 的误差结果求出来，考虑将上面的式子写成等比数列，得到
+
+.. math::
+	\begin{align}
+	|\Delta y_{n+1}|-10^{-5}\leqslant \frac{1}{2}(|\Delta y_{n}|-10^{-5})
+	\quad \Rightarrow \quad 
+	|\Delta y_{n+1}|\leqslant(\frac{1}{2})^{n+1}(|\Delta y_{0}|-10^{-5})+10^{-5}
+	\end{align}
+
+
+
+数值计算的基本原则
+------------------
+
+#. 选择数值稳定性好的计算公式。例如 :math:`I_{n}=1-nI_{n-1}` 就是稳定性极差的计算公式，而 :math:`I_{n}=\frac{1-nI_{n-1}}{n}` 的数值稳定性较好。
+#. 防止被除数远大于除数。例如要解 :math:`0.00001x_{1}+x_{2}=1,\quad 2x_{1}+x_{2}=2` 时，如果先求取 :math:`x_{2}` 再代入第一个式子来求取 :math:`x_{1}` ，就会导致 :math:`x_{2}\approx 1` 而 :math:`x_{1}\approx 0` ，显然是不合理的。 
+#. 防止相近的数相减。例如 :math:`1-\cos1^{\circ}=1-0.9998=0.0002` ，而 :math:`2\sin^{2}0.5^{\circ}=1.523\times 10^{-4}` ，显然后面的式子精度更高。
+#. 防止大数吃掉小数。例如在计算 :math:`12345 + (0.1+0.2+0.3+\cdots)` 时，应该先计算括号内的小数。
+#. 简化计算步骤。
+
+
+插值
+=====
+
+
+定义 : 插值函数
+    设函数 :math:`y=f(x)` 在 :math:`[a,b]` 上有定义，且在相异点 :math:`a\leqslant x_{0}<x_{1}<\cdots<x_{n}\leqslant b` 上的值分别为 :math:`y_{0},y_{1},\cdots,y_{n}` 。若存在一个 :math:`P(x)` 使得 :math:`P(x_{i})=f(x_{i})=y_{i}\quad i=0,1,\cdots,n` ，则称 :math:`P(x)` 为 :math:`f(x)` 在 :math:`[a,b]` 上的插值函数。其中 :math:`x_{0},x_{1},\cdots,x_{n}` 称为插值节点， :math:`[a,b]` 称为插值区间。
+
+
+Lagrange插值
+------------
+
+插值多项式的存在唯一性
+^^^^^^^^^^^^^^^^^^^^^^
+
+定理 : 插值多项式的存在唯一性
+    在 :math:`[a,b]` 上满足 :math:`P(x_{i})=f(x_{i})=y_{i}\quad i=0,1,\cdots,n` 的插值多项式 :math:`P_{n}(x)=a_{0}+a_{1}x+\cdots+a_{n}x^{n}` 是存在且唯一的。
+
+
+这个定理说明了，如果给定了 :math:`n+1` 个插值节点，那么插值多项式的次数应该选择为小于等于 :math:`n` 次。
+
+**证明** 如果有 :math:`n+1` 个插值节点分别为 :math:`x_{0},x_{1},\cdots,x_{n}` ，那么代入到插值多项式可以得到包含 :math:`n+1` 个未知量 :math:`a_{0},a_{1},\cdots,a_{n}` 的线性方程组
+
+.. math::
+	\begin{align}
+	\left \{ \begin{array}{c}
+	a_{0}+a_{1}x_{0}+\cdots+a_{n}x_{0}^{n}=y_{0}, \\
+	a_{0}+a_{1}x_{1}+\cdots+a_{n}x_{1}^{n}=y_{1}, \\
+	\vdots \\
+	a_{0}+a_{1}x_{n}+\cdots+a_{n}x_{n}^{n}=y_{n}
+	\end{array} \right.
+	\end{align}
+
+考虑该方程组的系数行列式（事实上是一个Vandermonde行列式）可以得到
+
+.. math::
+	\begin{align}
+	V_{n}(x_{0},x_{1},\cdots,x_{n})=
+	\begin{vmatrix}
+	1 & x_{0} & x_{0}^{2} & \cdots & x_{0}^{n} \\
+	1 & x_{1} & x_{1}^{2} & \cdots & x_{1}^{n} \\
+	\vdots & \vdots & \vdots & & \vdots \\
+	1 & x_{n} & x_{n}^{2} & \cdots & x_{n}^{n}
+	\end{vmatrix}
+	=\prod_{i=1}^{n}\prod_{j=0}^{i-1}(x_{i}-x_{j})
+	\end{align}
+
+由于 :math:`i\ne j` 时 :math:`x_{i}\ne x_{j}` ，上式所有因子 :math:`x_{i}-x_{j}\ne 0` ，于是 :math:`V_{n}(x_{0},x_{1},\cdots,x_{n})\ne 0` ，所以方程组存在唯一的一组解 :math:`a_{0},a_{1},\cdots,a_{n}` 。 
+
+
+拉格朗日插值多项式
+^^^^^^^^^^^^^^^^^^
+
+拉格朗日插值多项式满足这样的形式：
+
+.. math::
+	\begin{align}
+	L_{n}(x)=l_{0}(x)y_{0}+l_{1}(x)y_{1}+\cdots+l_{n}(x)y_{n}
+	\end{align}
+
+其中 :math:`l_{i}(x)` 均为小于等于 :math:`n` 次的多项式。
+
+拉格朗日插值多项式能够满足 :math:`L_{n}(x_{i})=y_{i} \quad i=0,1,\cdots,n` ，要实现这一点，就需要 **n次插值基函数** 满足
+
+.. math::
+	\begin{align}
+	l_{i}(x_{k})=
+	\left\{\begin{array}{ll}
+	1, & k=i, \\
+	0, & k\ne i
+	\end{array}\right.
+	\quad (i,k=0,1,\cdots,n)
+	\end{align}
+
+根据多项式根据根能进行因式分解性质，容易得到n次插值基函数的具体形式为
+
+.. math::
+	\begin{align}
+	l_{i}(x)=\frac{(x-x_{0})\cdots(x-x_{i-1})(x-x_{i+1})\cdots(x-x_{n})}{(x_{i}-x_{0})\cdots(x_{i}-x_{i-1})(x_{i}-x_{i+1})\cdots(x_{i}-x_{n})} \quad (i=0,1,\cdots,n)
+	\end{align}
+
+如果记 :math:`\omega_{n+1}(x)=\prod_{i=0}^{n}(x-x_{i})` ，则拉格朗日插值多项式可以用下面的形式来表述：
+
+.. math::
+	\begin{align}
+	L_{n}(x)=\sum_{i=0}^{n}l_{i}(x)y_{i}=\sum_{i=0}^{n}\frac{\omega_{n+1}(x)}{(x-x_{i})\omega'_{n+1}(x_{i})}y_{i}
+	\end{align}
+
+
+如果取 :math:`n=1` ，有两个插值节点 :math:`x_{0},x_{1}` ，那么拉格朗日插值多项式为
+
+.. math::
+	\begin{align}
+	L_{1}(x)=l_{0}(x)y_{0}+l_{1}(x)y_{1}=\frac{x-x_{1}}{x_{0}-x_{1}}y_{0}+\frac{x-x_{0}}{x_{1}-x_{0}}y_{1}
+	\end{align}
+
+这就是 **线性插值** 。
+
+如果取 :math:`n=2` ，有三个插值节点，那么拉个朗日插值多项式为
+
+这就是 **抛物线插值** 。
+
+
+插值余项（方法误差）
+^^^^^^^^^^^^^^^^^^^^^
+
+现在考虑插值余项 :math:`R_{n}(x)=f(x)-L_{n}(x)` ，可以知道其已经满足 :math:`R_{n}(x_{i})=0, \quad i=0,1,\cdots,n` 。为了进一步分析，我们假设 :math:`f^{(n+1)}(x)` 存在且连续，则可以将插值余项分解
+
+.. math::
+	\begin{align}
+	R_{n}(x)=K(x)(x-x_{0})(x-x_{1})\cdots(x-x_{n})=K(x)\omega _{n+1}(x)
+	\end{align}
+
+其中 :math:`K(x)` 也是连续的。接下来，我们构造一个函数 :math:`\varphi(t)=f(t)-L_{n}(t)-K(x)\omega _{n+1}(t)` ，这里 :math:`x` 为常数， :math:`t` 为变量。可以发现所构造的函数在 :math:`t=x,x_{0},x_{1},\cdots,x_{n}` 共 :math:`n+2` 个点处都满足 :math:`\varphi(t)=0` ，也即 :math:`\varphi(t)` 在 :math:`[a,b]` 区间上至少有 :math:`n+2` 个零点，进而可以根据中值定理递推出 :math:`\varphi^{(n+1)}(t)` 在 :math:`[a,b]` 区间上至少有 :math:`1` 个零点，将该零点记为 :math:`\xi` ，则
+
+.. math::
+	\begin{align}
+	\varphi^{(n+1)}(\xi)=f^{(n+1)}(\xi)-0-K(x)(n+1)! =0
+	\quad \Rightarrow \quad 
+	K(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!} 
+	\end{align}
+
+其中 :math:`\xi \in (a,b)` 并且依赖于 :math:`x` 。需要注意，余项表达式只有在 :math:`f(x)` 的高阶导数存在时才能应用，且 :math:`\xi` 在 :math:`(a,b)` 内的具体位置通常不可能给出。但是，如果可以求出 :math:`\max_{a\leqslant x\leqslant b}|f^{(n+1)}(x)|=M_{n+1}` ，那么插值多项式 :math:`L_{n}(x)` 逼近 :math:`f(x)` 的截断误差限为
+
+.. math::
+	\begin{align}
+	|R_{n}(x)|\leqslant \frac{M_{n+1}}{(n+1)!}|\omega _{n+1}(x)| 
+	\end{align}
+
+当 :math:`n=1` 时，线性插值的余项为
+
+.. math::
+	\begin{align}
+	R_{1}(x)=\frac{1}{2}f''(\xi)\omega _{2}(x)=\frac{1}{2}f''(\xi)(x-x_{0})(x-x_{1}), \quad \xi\in[x_{0},x_{1}]  
+	\end{align}
+
+当 :math:`n=2` 时，抛物插值的余项为
+
+.. math::
+	\begin{align}
+	R_{2}(x)=\frac{1}{6}f'''(\xi)(x-x_{0})(x-x_{1})(x-x_{2}), \quad \xi\in[x_{0},x_{2}] 
+	\end{align}
+
+
+
+均差与Newton插值
+------------------
+
+拉格朗日插值有个缺点，就是当后续增加节点后，之前的计算结果不能再使用，使得计算代价很高。为了让在增加一个插值节点时只增加一项，考虑牛顿多项式形式：
+
+.. math::
+	\begin{align}
+	N_{n}(x)=a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})(x-x_{1})+\cdots + a_{n}(x-x_{0})(x-x_{1})\cdots(x-x_{n-1})
+	\end{align}
+
+其满足 :math:`N_{n}(x_{i})=f(x_{i}), \quad i=0,1,\cdots,n` 。其系数也满足下面的迭代关系
+
+.. math::
+	\begin{align}
+	N_{n}(x_{0}) &= f(x_{0}) = a_{0} &&  a_{0}=f(x_{0}) \\
+	N_{n}(x_{1}) &= f(x_{1}) = a_{0}+a_{1}(x_{1}-x_{0}) &&  a_{1}=\frac{f(x_{1})-f(x_{0})}{x_{1}-x_{0}}=f[x_{0},x_{1}] \\
+	N_{n}(x_{2}) &= f(x_{2}) = a_{0}+a_{1}(x_{2}-x_{0})+a_{2}(x_{2}-x_{1})(x_{2}-x_{0}) && a_{2}=\frac{f[x_{0},x_{2}]-f[x_{0},x_{1}]}{x_{2}-x_{1}}=f[x_{0},x_{1},x_{2}] \\
+	&~~\vdots  && ~~\vdots
+	\end{align}
+
+
+
+均差/差商
+^^^^^^^^^^^^
+
+定义 : 均差
+    记 :math:`f[x_{0},x_{k}]=\frac{f(x_{k})-f(x_{0})}{x_{k}-x_{0}}` 为 :math:`f(x)` 关于点 :math:`x_{0},x_{k}` 的一阶均差。
+
+    记 :math:`f[x_{0},x_{1},x_{k}]=\frac{f[x_{0},x_{k}]-f[x_{0},x_{1}]}{x_{k}-x_{1}}` 为 :math:`f(x)` 的二阶均差。
+
+    更一般地，记 :math:`f[x_{0},x_{1},\cdots,x_{m}]=\frac{f[x_{0},\cdots,x_{m-2},x_{m}]-f[x_{0},\cdots,x_{m-2},x_{m-1}]}{x_{m}-x_{m-1}}` 为 :math:`f(x)` 的 :math:`m` 阶均差。
+
+
+可以通过列差商表来逐列计算差商，如下所示，其中差商表的对角线就是牛顿插值多项式的系数。
+
++----------------+------------------+------------------------+------------------------------+------------------------------------+------------------------------------------+
+| :math:`x_{k}`  | :math:`f(x_{k})` | 一阶差商               | 二阶差商                     | 三阶差商                           | 四阶差商                                 |
++================+==================+========================+==============================+====================================+==========================================+
+| :math:`x_{0}`  | :math:`f(x_{0})` |                        |                              |                                    |                                          |
++----------------+------------------+------------------------+------------------------------+------------------------------------+------------------------------------------+
+| :math:`x_{1}`  | :math:`f(x_{1})` | :math:`f[x_{0},x_{1}]` |                              |                                    |                                          |
++----------------+------------------+------------------------+------------------------------+------------------------------------+------------------------------------------+
+| :math:`x_{2}`  | :math:`f(x_{2})` | :math:`f[x_{0},x_{2}]` | :math:`f[x_{0},x_{1},x_{2}]` |                                    |                                          |
++----------------+------------------+------------------------+------------------------------+------------------------------------+------------------------------------------+
+| :math:`x_{3}`  | :math:`f(x_{3})` | :math:`f[x_{0},x_{3}]` | :math:`f[x_{0},x_{1},x_{3}]` | :math:`f[x_{0},x_{1},x_{2},x_{3}]` |                                          |
++----------------+------------------+------------------------+------------------------------+------------------------------------+------------------------------------------+
+| :math:`x_{4}`  | :math:`f(x_{4})` | :math:`f[x_{0},x_{4}]` | :math:`f[x_{0},x_{1},x_{4}]` | :math:`f[x_{0},x_{1},x_{2},x_{4}]` | :math:`f[x_{0},x_{1},x_{2},x_{3},x_{4}]` |
++----------------+------------------+------------------------+------------------------------+------------------------------------+------------------------------------------+
+| :math:`\vdots` | :math:`\vdots`   | :math:`\vdots`         | :math:`\vdots`               | :math:`\vdots`                     | :math:`\vdots`                           |
++----------------+------------------+------------------------+------------------------------+------------------------------------+------------------------------------------+
+
+
+差商具有如下的基本性质：
+
+(1) :math:`k` 阶差商可以表示为函数值 :math:`f(x_{0}),f(x_{1}),\cdots,f(x_{k})` 的线性组合，即
+    
+    .. math::
+	    \begin{align}
+		f[x_{0},x_{1},\cdots,x_{k}]=\sum_{j=0}^{k}\frac{f(x_{j})}{(x_{j}-x_{0})\cdots(x_{j}-x_{j-1})(x_{j}-x_{j+1})\cdots(x_{j}-x_{k})} 
+		\end{align}
+
+	这个性质可以用归纳法证明。该性质也表明了差商与节点的排列次序无关，称为差商的对称性。
+
+(2) 差商具有如下的递推关系
+    
+    .. math::
+	    \begin{align}
+		f[x_{0},x_{1},\cdots,x_{k}]=\frac{f[x_{1},x_{2},\cdots,x_{k}]-f[x_{0},x_{1},\cdots,x_{k-1}]}{x_{k}-x_{0}} 
+		\end{align}
+
+(3) 若 :math:`f(x)` 在 :math:`[a,b]` 上存在 :math:`n` 阶导数，且节点 :math:`x_{0},x_{1},\cdots,x_{n}\in [a,b]` ，则可以根据Rolle定理证明 :math:`n` 阶差商与导数的关系为
+    
+    .. math::
+	    \begin{align}
+		f[x_{0},x_{1},\cdots,x_{n}]=\frac{f^{(n)}(\xi)}{n!}, \quad \xi\in[a,b] 
+		\end{align}
+
+
+
+.. note:: 
+
+	因为牛顿插值与插值节点顺序的选取是有关的，所以如何选择插值节点是一个需要考虑的问题。一般的经验是：
+
+	- 当 :math:`x` 在 :math:`x_{0}` 附近时，先选用 :math:`x_{0}` 附近的插值节点，即牛顿向前插值公式。如前面所述的相同。
+	- 当 :math:`x` 在 :math:`x_{n}` 附近时，先选用 :math:`x_{n}` 附近的插值节点，即牛顿向后插值公式。例如
+	  
+	  .. math::
+	  	\begin{align}
+		f(x)\approx f(x_{n}) + f[x_{n},x_{n-1}](x-x_{n}) + f[x_{n},x_{n-1},x_{n-2}](x-x_{n})(x-x_{n-1})+\cdots
+		\end{align}
+
+	- 当 :math:`x` 在 :math:`[x_{k},x_{k+1}]` 中间时，先选用 :math:`x_{k}` 附近的插值节点。这是需要逐个比较的，如果比较出顺序为 :math:`x_{k},x_{k+1},x_{k-1},x_{k+2},x_{k-2},\cdots` ，则
+	  
+	  .. math::
+		\begin{align}
+		f(x)\approx f(x_{k}) + f[x_{k},x_{k+1}](x-x_{k}) + f[x_{k},x_{k+1},x_{k-1}](x-x_{k})(x-x_{k+1})+\cdots
+		\end{align}
+
+
+
+.. attention:: 当插值节点分布非常不均匀时，多形式系数容易有不稳定性。
+
+
+
+差分及其性质
+^^^^^^^^^^^^^^
+
+定义 : 差分
+    设函数 :math:`y=f(x)` 在等距节点 :math:`x_{k}=x_{0}+kh ~~(k=0,1,\cdots,n)` 上的值 :math:`f_{k}=f(x_{k})` 已知，这里的 :math:`h` 为常数，称为 **步长** 。下面的三种偏差
+
+    .. math::
+		\begin{align}
+		\Delta f_{k}&=f_{k+1}-f_{k} \\
+		\nabla f_{k}&=f_{k}-f_{k-1} \\
+		\delta f_{k}&=f(x_{k}+h/2)-f(x_{k}-h/2)=f_{k+\frac{1}{2}}-f_{k-\frac{1}{2}}
+		\end{align}
+
+	分别称为 :math:`f(x)` 在 :math:`x_{k}` 处以 :math:`h` 为步长的 **向前差分** 、 **向后差分** 以及 **中心差分** ，符号 :math:`\Delta ,\nabla,\delta` 分别称为 **向前差分算子** 、 **向后差分算子** 以及 **中心差分算子** 。
+
+
+向前差分算子和向后差分算子有下面的性质：
+
+.. math::
+	\begin{align}
+	& \Delta f_{k} = \nabla f_{k+1} , \qquad \nabla f_{k}=\Delta f_{k-1} \\
+	& \Delta ^{2}f_{k}=\Delta (\Delta f_{k})=\Delta (f_{k+1}-f_{k})=\Delta f_{k+1}-\Delta f_{k} = f_{k+2}-2f_{k+1} + f_{k} \\
+	& \nabla ^{2}f_{k}=\nabla (\nabla f_{k})=\nabla (f_{k}-f_{k-1})=\nabla f_{k}-\nabla f_{k-1}=f_{k}-2f_{k-1}+f_{k-2} \\
+	& \Delta ^{2}f_{k} = \nabla ^{2}f_{k+2}
+	\end{align}
+
+
+为了更好地推导高阶差分，这里引入两个新的算子：不变算子 :math:`I` 和位移算子 :math:`E` 
+
+.. math::
+	\begin{align}
+	&If_{k}=f_{k}, \qquad I^{n}f_{k}=f_{k} \\
+	&E^{n}f_{k}=f_{k+n}, \qquad E^{-n}f_{k}=f_{k-n}
+	\end{align}
+
+于是向前差分算子和向后差分算子就可以用不变算子和位移算子来表示：
+
+.. math::
+	\begin{align}
+	&\Delta f_{k}=f_{k+1} - f_{k} = (E-I)f_{k} \quad\Rightarrow\quad \Delta =E-I \\
+	&\nabla f_{k}=f_{k}-f_{k-1} = (I-E^{-1})f_{k} \quad\Rightarrow\quad \nabla =I-E^{-1}
+	\end{align}
+
+于是高阶差分可以如下表示
+
+.. math::
+	\begin{align}
+	&\Delta ^{n}f_{k}=(E-I)^{n}f_{k} = \sum_{j=0}^{n}(-1)^{j}C_{n}^{j}E^{n-j}I^{j}f_{k}=\sum_{j=0}^{n}(-1)^{j}C_{n}^{j}f_{k+n-j}  \\
+	&\nabla ^{n}f_{k}=(I-E^{-1})^{n}f_{k}=\sum_{j=0}^{n}(-1)^{j}C_{n}^{j}E^{-j}f_{k}=\sum_{j=0}^{n}(-1)^{j}C_{n}^{j}f_{k-j}
+	\end{align}
+
+其中 :math:`C_{n}^{j}=\frac{n!}{(n-j)!j!}` 。不难发现， :math:`\Delta ^{n}f_{k-n}=\nabla ^{n}f_{k}` 。
+
+
+差分和均差的关系为
+
+.. math::
+	\begin{align}
+	f[x_{k},x_{k+1},\cdots,x_{k+n}]=\frac{1}{m!h^{m}}\Delta ^{m}f_{k}=\frac{1}{m!h^{m}}\nabla ^{m}f_{k+m}  
+	\end{align}
+
+
+差分和导数的关系为
+
+.. math::
+	\begin{align}
+	f[x_{k},\cdots,x_{k+n}]=\frac{1}{n!h^{n}}\Delta ^{n}f_{k}=\frac{f^{(n)}(\xi)}{n!} 
+	\quad \Rightarrow \quad 
+	\Delta ^{n}f_{k}=h^{n}f^{(n)}(\xi) \quad \xi\in[x_{k},x_{k+n}]
+	\end{align}
+
+
+
+等距节点的牛顿插值公式
+^^^^^^^^^^^^^^^^^^^^^^
+
+对于牛顿向前插值公式，如果令 :math:`x=x_{0}+th` ， :math:`x_{k}=x_{0}+kh` ，则有 :math:`x-x_{k}=(t-k)h` ，于是牛顿向前插值公式可以改写为
+
+.. math::
+	\begin{align}
+	f(x)\approx f(x_{0})+\Delta f_{0}\cdot t+\frac{\Delta ^{2}f_{0}}{2}\cdot t(t-1)+\frac{\Delta ^{3}f_{0}}{3!}\cdot t(t-1)(t-2)+\cdots
+	\end{align}
+
+可以得到其余项为
+
+.. math::
+	\begin{align}
+	R_{n}(x)=f(x)-N_{n}(x_{0}+th)=\frac{t(t-1)\cdots(t-n)}{(n+1)!}h^{n+1}f^{(n+1)}(\xi) , \quad \xi\in(x_{0},x_{n})
+	\end{align}
+
+
+对于牛顿向后插值公式，如果令 :math:`x=x_{n}+th` ， :math:`x_{n-i}=x_{n}-ih` ，则有 :math:`x-x_{n-i}=(t+i)h` ，于是牛顿向后插值公式可以改写为
+
+.. math::
+	\begin{align}
+	f(x)\approx f(x_{n})+\nabla f_{n}\cdot t+\frac{\nabla ^{2}f_{n}}{2!}\cdot t(t+1)+\frac{\nabla ^{3}f_{n}}{3!}\cdot t(t+1)(t+2)+\cdots
+	\end{align}
+
+可以得到其插值余项为
+
+.. math::
+	\begin{align}
+	R_{n}(x)=f(x)-N_{n}(x_{n}+th)=\frac{t(t+1)\cdots(t+n)h^{n+1}f^{(n+1)}(\xi)}{(n+1)!} , \quad \xi\in(x_{0},x_{n})
+	\end{align}
+
+
+
+Hermite插值
+-----------
+
+接下来我们讨论更进一步的插值条件：不但要求在节点上函数值相等，还要求它的导数值相等，即插值条件
+
+.. math::
+	\begin{align}
+	& H(x_{i})=f(x_{i})=y_{i} \\
+	&H'(x_{i})=f'(x_{i})=y_{i}
+	\end{align}
+
+其中 :math:`i=0,1,\cdots,n` ，以上的 :math:`2n+2` 个方程可以确定 :math:`2n+2` 个未知数，可以唯一确定一个次数不超过 :math:`2n+1` 的多项式。
+
+.. note:: 这个唯一性可以通过反证法来证明。假设存在 :math:`P(x)` 及 :math:`Q(x)` 均满足条件，于是可以构造 :math:`\varphi(x)=P(x)+Q(x)` ，其在每个节点 :math:`x_{k}` 上均有二重根，即 :math:`\varphi(x)` 有 :math:`2n+2` 重根，但是 :math:`\varphi(x)` 是不高于 :math:`2n+1` 次的多项式，因此 :math:`\varphi(x)\equiv 0` ，唯一性得证。
+
+
+采用求Lagrange插值多项式的基函数方法，先求插值基函数 :math:`\alpha _{j}(x)` 以及 :math:`\beta_{j}(x)` ，其中 :math:`j=0,1,\cdots,n` ，共有 :math:`2n+2` 个，每一个基函数都是 :math:`2n+1` 次多项式，于是埃尔米特插值多项式可以表示为
+
+.. math::
+	\begin{align}
+	H_{2n+1}(x)=\sum_{i=0}^{n}y_{i}\alpha _{i}(x)+\sum_{i=0}^{n}y'_{i}\beta_{i}(x)
+	\end{align}
+
+
+插值基函数满足条件
+
+.. math::
+	\begin{align}
+	& \alpha _{i}(x_{j})=\left \{\begin{array}{l}1 & i=j \\ 0 & i\ne j\end{array}\right.  && \beta_{i}(x_{j})=0  \\
+	& \alpha _{i}'(x_{j})=0  && \beta' _{i}(x_{j})=\left \{\begin{array}{l}1 & i=j \\ 0 & i\ne j\end{array}\right.
+	\end{align}
+
+在上述条件下，可以使得 :math:`H_{2n+1}(x_{i})=y_{i},~~H_{2n+1}'(x_{i})=y'_{i}\quad(i=0,1,\cdots,n)` 。
+
+因为 :math:`\beta_{i}(x)` 在 :math:`x_{j}(i\ne j)` 处为二阶零点（两重根），在 :math:`x_{i}` 处为一阶零点，于是可以分解为 :math:`\beta_{i}(x)=A(x-x_{i})l_{i}^{2}(x)` ，根据 :math:`\beta_{i}'(x_{i})=1` 可以得到 :math:`A=1` 。
+
+因为 :math:`\alpha_{i}(x)` 在 :math:`x_{j}(i\ne j)` 处为二阶零点，所以可以分解为 :math:`\alpha_{i}(x)=(ax+b)l_{i}^{2}(x)` 。根据 :math:`\alpha_{i}(x_{i})=1` 可以得到 :math:`ax_{i}+b=1` ；根据 :math:`\alpha_{i}'(x_{i})=0` 可以得到 :math:`al_{i}^{2}(x_{i})+2l_{i}(x_{i})l_{i}'(x_{i})(ax_{i}+b)=a+2l_{i}'(x_{i})=0` ，从而可以得到
+
+.. math::
+	\begin{align}
+	a = -2l'_{i}(x_{i})=-2\sum_{\substack{j=0 \\ j\ne i}}^{n}\frac{1}{x_{i}-x_{j}} 
+	\end{align}
+
+进而根据 :math:`b=1-ax_{i}` 得到
+
+.. math::
+	\begin{align}
+	ax+b=ax + 1 - ax_{i}=1+a(x-x_{i})=1-2(x-x_{i})\sum_{\substack{j=0 \\ j\ne i}}^{n}\frac{1}{x_{i}-x_{j}} 
+	\end{align}
+
+
+综上可知插值基函数的表达形式为
+
+.. math::
+	\begin{align}
+	& \alpha _{i}(x)=\Big ( 1-2(x-x_{i})\sum_{\substack{j=0 \\ j\ne i}}^{n}\frac{1}{x_{i}-x_{j}} \Big )l_{i}^{2}(x)  \\
+	& \beta_{i}(x)=(x-x_{i})l_{i}^{2}(x_{i})
+	\end{align}
+
+
+仿照拉格朗日插值余项的证明方法，如果 :math:`f(x)` 在 :math:`(a,b)` 内的 :math:`2n+2` 阶导数存在，则其插值余项为
+
+.. math::
+	\begin{align}
+	R(x)=f(x)-H_{2n+1}(x)=\frac{f^{(2n+2)}(\xi)}{(2n+2)!}\omega _{n+1}^{2}(x) 
+	\end{align}
+
+其中 :math:`\xi\in(a,b)` 且与 :math:`x` 有关。
+
+
+
+
+
+函数逼近与计算
+================
+
+函数逼近与计算要解决的问题是：对于函数类A中给定的函数 :math:`f(x)` ，要求在另一类较简单的便于计算的函数类B中，求函数 :math:`P(x)\in B\subseteq A` ，使 :math:`P(x)` 与 :math:`f(x)` 之差在某种度量意义下最小。函数A通常是区间 :math:`[a,b]` 上的连续函数，记作 :math:`C[a,b]` ；函数类B通常是代数多项式、分式有理函数或三角多项式。
+
+度量标准最常用的有两种，一种是一致逼近或均匀逼近：
+
+.. math::
+	\begin{align}
+	\left \| f(x)-P(x) \right \| _{\infty} = \max_{a\leqslant x\leqslant b}\left | f(x)-P(x) \right | 
+	\end{align}
+
+另一种度量标准是均方逼近或平方逼近：
+
+.. math::
+	\begin{align}
+	\left \| f(x)-P(x) \right \| _{2}=\sqrt{\int_{a}^{b}[f(x)-P(x)]^{2}\mathrm{d}x}
+	\end{align}
+
+
+
+
+
+
+
+
+常微分方程的数值解法
+====================
+
+需要解决的一阶方程初值问题：
+
+.. math::
+	\begin{align}
+	& y' = f(x,y) \\
+	& y(x_{0}) = y_{0}
+	\end{align}
+
+只要函数 :math:`f(x,y)` 适当光滑，比如关于 :math:`y` 满足Lipschitz条件 :math:`|f(x,y)-f(x,\overline{y})|\leqslant L|y-\overline{y}|` ，理论上就可以保证初值问题的解 :math:`y=y(x)` 存在并且唯一。
+
+
+
+Euler方法
+---------------
+
+改进的Euler格式
+^^^^^^^^^^^^^^^
+
+先用Euler格式求得一个初步的近似值 :math:`\overline{y}_{n+1}` ，称之为预测值，然后再使用梯形公式将它校正一次得到校正值 :math:`y_{n+1}` ：
+
+.. math::
+	\begin{align}
+	& \overline{y}_{n+1}=y_{n}+hf(x_{n},y_{n}) \\
+	& y_{n+1}=y_{n}+\frac{h}{2}[f(x_{n},y_{n})+f(x_{n+1},\overline{y}_{n+1})]  
+	\end{align}
+
+这一计算格式也可以表示为
+
+.. math::
+	\begin{align}
+	y_{n+1}=y_{n}+\frac{h}{2}[f(x_{n},y_{n})+f(x_{n}+h,y_{n}+hf(x_{n},y_{n}))] 
+	\end{align}
+
+
+或者表示为下列的平均化格式：
+
+.. math::
+	\begin{align}
+	& y_{p}=y_{n}+hf(x_{n},y_{n}) \\
+	& y_{c}=y_{n}+hf(x_{n+1},y_{p}) \\
+	& y_{n+1}=\frac{1}{2}(y_{p}+y_{c}) 
+	\end{align}
+
+
+
+
+Runge-Kutta方法
+---------------
+
+
+四阶Runge-Kutta方法
+^^^^^^^^^^^^^^^^^^^^
+
+四阶龙格库塔格式是非常常用的一个方法，其截断误差为 :math:`O(h^{5})` ：
+
+.. math::
+	\begin{align}
+	& y_{n+1} = y_{n}+\frac{h}{6}(K_{1}+2K_{2}+2K_{3}+K_{4}) \\
+	& K_{1} = f(x_{n},y_{n}) \\
+	& K_{2} = f(x_{n}+\frac{h}{2}, y_{n}+\frac{h}{2}K_{1} ) \\
+	& K_{3} = f(x_{n}+\frac{h}{2}, y_{n}+\frac{h}{2}K_{2} ) \\
+	& K_{4} = f(x_{n}+h,y_{n}+hK_{3}) 
+	\end{align}	
+
+
+
+.. attention:: 
+
+	  四阶Runge-Kutta方法也有不足之处，它要求函数 :math:`f` 具有较高的光滑性，如果 :math:`f` 的光滑性差，那么它的精度可能还不如改进的Euler格式。其另一个缺点是计算量较大，相比之下，Hamming方法可以节省计算量。
+
+
+
+
+方程组与高阶方程的情形
+----------------------
+
+只要把原本的 :math:`y` 和 :math:`f` 理解为向量，那么之前提供的各种计算格式即可应用到一阶方程组的情形，此时方程组的初值问题可以表示为
+
+.. math::
+	\begin{align}
+	\left \{\begin{array}{l}
+	\boldsymbol{y}'=\boldsymbol{f}(x,\boldsymbol{y}) \\
+	\boldsymbol{y}(x_{0})=\boldsymbol{y}_{0}
+	\end{array}\right .
+	\end{align}
+
+求解这一初值问题的四阶Runge-Kutta格式为
+
+.. math::
+	\begin{align}
+	& \boldsymbol{y}_{n+1} = \boldsymbol{y}_{n}+\frac{h}{6}(\boldsymbol{k}_{1}+2\boldsymbol{k}_{2}+2\boldsymbol{k}_{3}+\boldsymbol{k}_{4}) \\
+	& \boldsymbol{k}_{1} = f(x_{n},\boldsymbol{y}_{n}) \\
+	& \boldsymbol{k}_{2} = f(x_{n}+\frac{h}{2}, \boldsymbol{y}_{n}+\frac{h}{2}\boldsymbol{k}_{1} ) \\
+	& \boldsymbol{k}_{3} = f(x_{n}+\frac{h}{2}, \boldsymbol{y}_{n}+\frac{h}{2}\boldsymbol{k}_{2} ) \\
+	& \boldsymbol{k}_{4} = f(x_{n}+h,\boldsymbol{y}_{n}+h\boldsymbol{k}_{3}) 
+	\end{align}
+
+
+
+
+关于高阶微分方程（组）的初值问题，原则上都可以通过引入新变量来归结为一阶方程组来求解。例如考虑 :math:`m` 阶微分方程：
+
+.. math::
+	\begin{align}
+	y^{(m)}=f(x,y,y',\cdots,y^{(m-1)})
+	\end{align}
+
+初始条件为 :math:`y(x_{0})=y_{0},~y'(x_{0})=y_{0}',~\cdots,~y^{(m-1)}(x_{0})=y_{0}^{(m-1)}` 。只要引进新变量 :math:`y_{1}=y,~y_{2}=y',~\cdots,~y_{m}=y^{(m-1)}` 即可将 :math:`m` 阶方程化为如下的一阶方程组：
+
+.. math::
+	\begin{align}
+	& y_{1}'=y_{2} \\
+	& y_{2}'=y_{3} \\
+	& ~~~\cdots \\
+	& y_{m-1}'=y_{m} \\
+	& y_{m}' = f(x,y_{1},y_{2},\cdots,y_{m}) 
+	\end{align}
+
+
+初始条件也相应地变为 :math:`y_{1}(x_{0})=y_{0},~y_{2}(x_{0})=y_{0}',~\cdots,~y_{m}(x_{0})=y_{0}^{(m-1)}` 。
+
+
+
+边值问题的数值解法
+------------------
+
+给出积分曲线首末两端的性态的条件称为边界条件，相应的定解问题称为边值问题。以二阶方程
+
+.. math::
+	\begin{align}
+	y''=f(x,y,y')
+	\end{align}
+
+为例，设在区间 :math:`a<x<b` 上求解上述方程，则边界条件可以给为
+
+.. math::
+	\begin{align}
+	y(a)=\alpha , \qquad y(b)=\beta
+	\end{align}
+
+
+一阶导数的逼近可以使用向前差商、向后差商或中心差商。为了逼近二阶导数 :math:`y''(x)` ，一般使用二阶差分（向前差商的向后差商/向后差商的向前差商）：
+
+.. math::
+	\begin{align}
+	y''(x)\approx \frac{\frac{y(x+h)-y(x)}{h}-\frac{y(x)-y(x-h)}{h} }{h} =\frac{y(x+h)-2y(x)+y(x-h)}{h^{2}} 
+	\end{align}
+
+用差商代替相应的导数，可以将边值问题离散化得到下列计算公式：
+
+.. math::
+	\begin{align}
+	& \frac{y_{n+1}-2y_{n}+y_{n-1}}{h^{2}}=f(x_{n},y_{n},\frac{y_{n+1}-y_{n-1}}{2h} ) \\
+	& y_{0}=\alpha ,\quad y_{N}=\beta
+	\end{align}
+
+如果函数 :math:`f` 是非线性的，那么归结出来的差分方程也是非线性的，这时求解比较困难。但是如果所给的方程的形式是如下的线性方程：
+
+.. math::
+	\begin{align}
+	y''+p(x)y'+q(x)y=r(x)
+	\end{align}
+
+那么差分方程相应的形式就变为
+
+.. math::
+	\begin{align}
+	\frac{y_{n+1}-2y_{n}+y_{n-1}}{h^{2}}+p_{n}\frac{y_{n+1}-y_{n-1}}{2h}+q_{n}y_{n}=r_{n}  
+	\end{align}
+
+其中 :math:`n=1,\cdots,N-1` 。利用边界条件消去式中的 :math:`y_{0}` 和 :math:`y_{N}` 整理到得到下列方程组：
+
+.. math::
+	\begin{align}
+	\left \{\begin{array}{ll}
+	(-2+h^{2}q_{1})y_{1}+(1+\frac{h}{2}p_{1})y_{2}=h^{2}r_{1}-(1-\frac{h}{2}p_{1})\alpha  \\
+	(1-\frac{h}{2}p_{n})y_{n-1}+(-2+h^{2}q_{n})y_{n}+(1+\frac{h}{2}p_{n})y_{n+1}=h^{2}r_{n} & (2\leqslant n\leqslant N-2) \\
+	(1-\frac{h}{2}p_{N-1})y_{N-2}+(-2+h^{2}q_{N-1})y_{N-1}=h^{2}r_{N-1}-(1+\frac{h}{2}p_{N-1})\beta
+	\end{array}\right .
+	\end{align}
+
+如此可以看到归结出来的方程组的系数矩阵是三对角型的，即
+
+.. math::
+	\begin{align}
+	\begin{bmatrix}
+	 -2+h^{2}q_{1} & 1+\frac{h}{2}p_{1}  &  &  & \\
+	1-\frac{h}{2}p_{2}  & -2+h^{2}q_{2} & 1+\frac{h}{2}p_{2}  &  & \\
+	  & \ddots  & \ddots & \ddots & \\
+	  &  & 1-\frac{h}{2}p_{N-2}  & -2+h^{2}q_{N-2} & 1+\frac{h}{2}p_{N-2} \\
+	  &  & & 1-\frac{h}{2}p_{N-1}  & -2+h^{2}q_{N-1} 
+	\end{bmatrix}
+	\end{align}
+
+
+
+
+
+方程求根
+========
+
+
+Newton法
+----------
+
+
+牛顿迭代公式选取了 :math:`\varphi(x) = x - \frac{f(x)}{f'(x)}` ，于是其迭代公式为
+
+.. math::
+	\begin{align}
+	x_{n+1}=x_{n}-\frac{f(x_{n})}{f'(x_{n})} 
+	\end{align}
+
+初始值的选取非常重要，应当离 :math:`x^{*}` 很近。
+
+使用Newton法求方程根的计算步骤如下：
+
+1. 选定初始近似值 :math:`x_{0}` ，计算 :math:`f_{0}=f(x_{0}),~f_{0}'=f'(x_{0})` 。
+2. 按公式 :math:`x_{1}=x_{0}-f_{0}/f'_{0}` 迭代一次，得到新的近似值 :math:`x_{1}` ，计算 :math:`f_{1}=f(x_{1}),~f'_{1}=f'(x_{1})` 。
+3. 如果 :math:`x_{1}` 满足 :math:`|\delta|<\varepsilon_{1}` 或 :math:`|f_{1}|<\varepsilon _{2}` 则终止迭代，以 :math:`x_{1}` 作为所求的根，否则进入下一步。这里的 :math:`\varepsilon _{1},\varepsilon _{2}` 是允许误差，而
+   
+   .. math::
+		\begin{align}
+		\delta = \left \{\begin{array}{ll}
+		|x_{1}-x_{0}|, & \text{当}|x_{1}|<C\text{时} \\
+		\frac{|x_{1}-x_{0}|}{|x_{1}|}, &  \text{当}|x_{1}|\geqslant C\text{时}
+		\end{array}\right .
+		\end{align}
+
+	其中 :math:`C` 是取绝对误差或相对误差的控制系数，一般可以取 :math:`C=1` 。
+
+5. 如果迭代次数达到预定指定的次数 :math:`N` 或者 :math:`f_{1}'=0` ，则方法失败，否则以 :math:`(x_{1},f_{1},f_{1}')` 代替 :math:`(x_{0},f_{0},f'_{0})` 回到步骤2继续迭代。
+   
+
+
+一般来说，Newton法的收敛性依赖于初值 :math:`x_{0}` 的选取，如果 :math:`x_{0}` 偏离所求的根 :math:`x^{*}` 比较远，则Newton法可能发散。为了防止迭代发散，对迭代过程再附加一项要求，即具有单调性：
+
+.. math::
+	\begin{align}
+	|f(x_{k+1})| < |f(x_{k})|
+	\end{align}
+
+满足这项要求的算法称为下山法。将Newton法与下山法结合起来使用，即可在下山法保证函数值稳定下降的前提下，用Newton法加快收敛速度。为此，将Newton法的计算结果 :math:`\overline{x}_{k+1} = x_{k} - \frac{f(x_{k})}{f'(x_{k})}` 与前一步的近似值 :math:`x_{k}` 适当加权平均作为新的改进值，即
+
+.. math::
+	\begin{align}
+	x_{k+1} = \lambda \overline{x}_{k+1} + (1-\lambda)x_{k} 
+	\end{align}
+
+其中 :math:`\lambda~(0<\lambda \leqslant 1)` 称为下山因子。下山因子的选择时个逐步探索的过程。假设从 :math:`\lambda=1`开始反复将 :math:`\lambda` 减半进行试算，如果能定出值 :math:`\lambda` 使单调性条件成立，则称“下山成功”；如果在上述过程中找不到使该条件成立的下山因子，则称“下山失败”，此时需要另外选择初值 :math:`x_{0}` 重算。
+
+
+另外，当 :math:`x^{*}` 是 :math:`f(x)` 的多重根时，分母 :math:`f'(x^{*})=0` 。对于这种重根问题，有两种改良思路：
+
+- 如果已知重数为 :math:`m` ，那么可以改令 :math:`\varphi(x)=x-m\frac{f(x)}{f'(x)}` 。
+- 或者直接令 :math:`u(x)=\frac{f(x)}{f'(x)}` ，此时 :math:`u(x)` 以 :math:`x^{*}` 为单根，对 :math:`u(x)` 应用牛顿法即可。 
+
+
+
+弦截法与抛物线法
+----------------
+
+在用Newton法时要求提供导数值 :math:`f'(x_{k})` 。为了回避导数值的计算，可以考虑使用之前迭代的信息的插值结果。
+
+弦截法是使用 :math:`f(x_{n}),f(x_{n-1})` 构造插值多项式 :math:`P_{1}(x)=f(x_{n})+f[x_{n},x_{n-1}](x-x_{n})` ，用 :math:`P_{1}(x)` 的根来近似 :math:`x^{*}` ，此时
+
+.. math::
+	\begin{align}
+	x_{n+1}=x_{n}-\frac{f(x_{n})}{f[x_{n},x_{n-1}]} 
+	\end{align}
+
+这相当于用 :math:`f[x_{n},x_{n-1}]=\frac{f(x_{n})-f(x_{n-1})}{x_{n}-x_{n-1}}` 。该迭代过程的几何意义为：根据已知两点形成的弦在 :math:`x` 轴的交点作为求得的下一个点的横坐标。
+
+弦截法的计算步骤如下：
+
+1. 选取初值近似值 :math:`x_{0},x_{1}` ，计算相应的函数值 :math:`f_{0}=f(x_{0}),f_{1}=f(x_{1})` 。
+2. 根据公式 :math:`x_{2}=x_{1}-f_{1}/(\frac{f_{1}-f_{0}}{x_{1}-x_{0}} )` 迭代一次得到新的近似值 :math:`x_{2}` ，计算 :math:`f_{2}=f(x_{2})` 。
+3. 如果 :math:`x_{2}` 满足 :math:`|\delta| \leqslant \varepsilon _{1}` 或 :math:`|f_{2}|\leqslant \varepsilon _{2}` 则认为过程收敛，终止迭代而以 :math:`x_{2}` 作为所求的根；否则执行下一步。此处 :math:`\varepsilon _{1},\varepsilon _{2}` 是允许误差，而
+   
+   .. math::
+		\begin{align}
+		\delta = \left \{\begin{array}{ll}
+		|x_{2}-x_{1}|, & \text{当}|x_{2}|<C\text{时} \\
+		\frac{|x_{2}-x_{1}|}{|x_{2}|}, &  \text{当}|x_{2}|\geqslant C\text{时}
+		\end{array}\right .
+		\end{align}
+
+    其中 :math:`C` 是预先指定的控制数。
+4. 如果迭代次数达到预先指定的次数 :math:`N` ，则认为过程不收敛，计算失败；否则以 :math:`(x_{1},f_{1}),(x_{2},f_{2})` 分别代替 :math:`(x_{0},f_{0}),(x_{1},f_{1})` 回到步骤2继续迭代。
+
+
+
+抛物线法是使用 :math:`x_{n},x_{n-1},x_{n-2}` 三个点来构造 :math:`P_{2}(x)` ，把 :math:`P_{2}(x)` 的根作为 :math:`x_{n+1}` ，此时
+
+.. math::
+	\begin{align}
+	x_{n+1} = x_{n} - \frac{2f(x_{n})}{\omega \pm \sqrt{\omega ^{2} - 4f(x_{n}f[x_{n},x_{n-1},x_{n-2}])}}
+	\end{align}
+
+其中 :math:`\omega =f[x_{n},x_{n-1}]+f[x_{n},x_{n-1},x_{n-2}](x_{n}-x_{n-1})` 。根式前的 :math:`\pm` 号选择与 :math:`\omega` 符号一致。
+
+
+
+
+
+
+
+解线性方程组的直接方法
+========================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

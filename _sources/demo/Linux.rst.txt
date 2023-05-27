@@ -1,0 +1,224 @@
+*****
+Linux
+*****
+
+操作系统基本设置
+===================
+
+用户权限
+-----------
+
+参考 `修复Are you root?问题 <https://linux.cn/article-13936-1.html>`_ 
+
+当在终端输入命令后提示Are you root?问题后，在确保自身所用账户确实为root账户后，只需要在所运行命令前都添加 :code:`sudo` 即可。
+
+
+文件操作
+----------
+
+创建文件
+^^^^^^^^^^^
+
+参考 `Linux 创建文件命令总结 <https://www.jianshu.com/p/5c506fc3513c>`_ 
+
+touch命令可以更新现有文件和目录的时间戳以及创建新文件。创建新的空文件的最简单方法是运行touch命令。如果touch命令参数指定的文件不存在，那么touch命令会创建相应文件，否则它将修改已存在的文件时间戳。touch命令也可以同时创建多个文件，只需要在指定多个文件名的时候用空格分隔。
+
+.. code-block:: shell
+
+    touch file1.txt
+    touch file1.txt file2.txt file3.txt
+
+
+
+中文输入法
+-------------
+
+参考 `Linux下安装中文输入法总结 <https://blog.csdn.net/yanhanhui1/article/details/115128309>`_ 
+
+以安装ibus智能拼音输入法为例，首先进入终端输入如下命令安装ibus框架：
+
+.. code-block:: shell
+
+    sudo apt install ibus ibus-libpinyin
+
+然后安装对应的ibus智能拼音输入法：
+
+.. code-block:: shell
+
+    sudo apt install ibus-pinyin
+
+此时要重启系统才能确认安装成功。重启后，进入Settings/Region & Language，在Input Sources中点击+/Chinese/Chinese(Intelligent Pinyin)添加输入法，即可进行使用，之后点击右上角任务栏的输入法图表即可切换中英输入法。
+
+
+如果要安装搜狗输入法，官方地址 `搜狗输入法 <https://shurufa.sogou.com/linux>`_ 。对于ubuntu2004，应该选择x86_64，这样下载得到的安装包就是amd64框架的。
+
+首先在终端输入以下命令更新源：
+
+.. code-block:: shell
+
+    sudo apt update
+
+然后安装fcitx输入法框架：
+
+.. code-block:: shell
+
+    sudo apt install fcitx
+
+然后进入Settings/Region&Language选择Manage Installed Languages，确认Install/Remove Languages选项内将简体中文勾选，然后设置Keyboard input method system为fcitx。
+
+在终端执行如下命令设置fcitx开机自启动：
+
+.. code-block:: shell
+
+    sudo cp /usr/share/applications/fcitx.desktop /etc/xdg/autostart/
+
+卸载系统ibus输入法框架：
+
+.. code-block:: shell
+
+    sudo apt purge ibus
+
+然后进入Downloads文件夹通过安装包安装搜狗输入法：
+
+.. code-block:: shell
+
+    sudo dpkg -i sogouimebs_3.4.0.9780_amd64.deb
+
+如果安装过程中提示缺少相关依赖，则执行如下命令解决：
+
+.. code-block:: shell
+
+    sudo apt -f install
+
+同时还要安装输入法依赖：
+
+.. code-block:: shell
+
+    sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2
+    sudo apt install libgsettings-qt1
+
+之后重启电脑即可。查看右上角，可以看到搜狗字样，通过ctrl+space可以调出搜狗输入法。如果没有看到搜狗，则进入Configure并在Add input method中添加sogou即可。
+
+
+截屏工具
+-------------
+
+输入如下命令安装flameshot：
+
+.. code-block:: shell
+
+    sudo apt-get install flameshot
+
+安装完成后输入如下命令测试该截图工具：
+
+.. code-block:: shell
+
+    flameshot gui
+
+进入Settings/Keyboard Shortcuts添加自定义快捷键，设置ctrl+alt+A为命令flameshot gui的快捷键。
+
+
+安装WPS Office 2019
+----------------------
+
+`WPS Office 2019 For Linux个人版 <https://www.wps.cn/product/wpslinux>`_ 
+
+对于ubuntu20.04版本，需要下载64位Deb格式并选择For X64。然后通过dpkg命令进行安装：
+
+.. code-block:: shell
+
+    sudo dpkg -i wps-office_11.1.0.9615_amd64.deb
+
+这时已经可以在应用中看到WPS软件。打开软件后系统会提示缺少字体，可以按照 `Ubuntu 20.04 下 WPS Office 缺失字体解决方案 <https://zhuanlan.zhihu.com/p/470577265>`_ 提供的方法进行处理。
+
+
+安装微信
+------------
+
+一种简单的、ubuntu20.04可用的版本为 `优麒麟weixin <https://www.ubuntukylin.com/applications/106-cn.html>`_ 。直接下载deb文件包进行安装即可。每次登录需要手机扫码，并且文件同步可能存在问题，需要额外通过手机文件传输助手配合重要文件的获取。
+
+
+
+
+
+安装字体
+-----------
+
+将下载到的TTF文件复制到 :code:`/usr/share/fonts` 文件夹下，然后用下面的命令刷新fontconfig的字体缓存：
+
+.. code-block:: shell
+
+    sudo fc-cache -vf
+
+正在使用的中英文混合等距字体为SARASA MONO SC。
+
+
+声音输出
+----------
+
+参考 `记录Linux 没有声音/Gnome 没有声音输出设备问题 <https://www.cnblogs.com/GengMingYan/p/14853513.html>`_ 
+
+首先在终端输入下面的命令查看声卡：
+
+.. code-block:: shell
+
+    lspci | grep Audio
+
+如果有结果，表示已经识别出声卡。
+
+安装声卡驱动：
+
+.. code-block:: shell
+
+    apt-get install alsa-utils
+
+使用alsamixer测试是否能播出声音：
+
+.. code-block:: shell
+
+    alsamixer
+
+执行后会出现各个音量控制器管理，默认选择在Master下，这时候播放声音，并调整Master控制器，查看是否有声音。
+
+
+
+
+
+
+Python脚本
+==============
+
+
+查看Python信息
+----------------
+
+直接在终端输入 :code:`python` 或 :code:`python3` 查看是否安装Python。通过运行如下命令获取已安装Python3的版本号：
+
+.. code-block:: shell
+
+    python3 --version
+
+如果使用的是Ubuntu 16.10或更新的版本，可以通过以下命令简单地安装Python 3.6:
+
+.. code-block:: shell
+
+    sudo apt-get update
+    sudo apt-get install python3.6
+
+
+运行Python脚本
+-----------------
+
+通过在终端输入如下命令运行指定的Python脚本文件：
+
+.. code-block:: shell
+
+    python3 ./test.py
+
+
+
+安装Python库
+---------------
+
+
+

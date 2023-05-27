@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>稀薄气体动力学 &mdash; MyKnowledge MyKnowledge 文档</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="计算流体力学有限体积法" href="计算流体力学有限体积法.html" />
+    <link rel="prev" title="流体力学" href="流体力学.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MyKnowledge
+          </a>
+              <div class="version">
+                1.01
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="复变函数.html">复变函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="电路原理.html">电路原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数字电路.html">数字电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模拟电路.html">模拟电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数值分析与算法.html">数值分析与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数理方程.html">数理方程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="流体力学.html">流体力学</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">稀薄气体动力学</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">稀薄气体动力学基本概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">稀薄气体动力学的提出</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">分子平均自由程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">流动的领域划分</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">相似准则</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">分子结构与能态</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">双原子分子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">分子的能态分布</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#boltzmann">Boltzmann关系式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">微观态数的计算</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Boltzmann分布</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">分子的内能、内自由度和内能分布函数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">分子动理论基础</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">速度分布函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">宏观量的表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">分子的双体碰撞模型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">碰撞截面与分子模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id18">硬球模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">逆幂律分子模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maxwell">Maxwell分子</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vhs">变径硬球(VHS)模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vss">变径软球(VSS)模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghs">概括化硬球(GHS)模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gss">概括化软球(GSS)模型</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Boltzmann方程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">碰撞积分与气体中分子的总碰撞数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">碰撞积分的计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Maxwell输运方程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="计算流体力学有限体积法.html">计算流体力学有限体积法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutoCAD.html">AutoCAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Latex.html">Latex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM.html">OpenFOAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM算例运行案例.html">OpenFOAM算例运行案例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Salome.html">Salome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solidworks.html">Solidworks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MyKnowledge</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">稀薄气体动力学</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/demo/稀薄气体动力学.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="id1">
+<h1>稀薄气体动力学<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>稀薄气体动力学基本概念<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h3>稀薄气体动力学的提出<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>通常情况下处理气体的流动都采用连续介质模型。用平常的测量仪器观察到的气体的性质是连续和光滑的，因而连续性假设是很自然的。通常条件下的流动特征尺度至少有 <span class="math notranslate nohighlight">\(1~\mathrm{cm}\)</span> ，而气体的物理或动力学性质在 <span class="math notranslate nohighlight">\(10^{-3}~\mathrm{cm}\)</span> 的范围内变化会很小， <span class="math notranslate nohighlight">\(10^{-9}~\mathrm{cm^{3}}\)</span> 的感受体积会给出气体的局地性质的测量。从Loschmidt数 <span class="math notranslate nohighlight">\(n_{0}\)</span> （标准状态下每 <span class="math notranslate nohighlight">\(\mathrm{cm^{3}}\)</span> 气体分子数）为 <span class="math notranslate nohighlight">\(2.687\times 10^{19}~\mathrm{cm^{-3}}\)</span> 可知，在标准状态下这个很小的 <span class="math notranslate nohighlight">\(10^{-9}~\mathrm{cm^{3}}\)</span> 的体积里包含了大约 <span class="math notranslate nohighlight">\(3 \times 10^{10}\)</span> 个分子，这个数目足够大使得气体分子的平均性质不受其具体数目大小的影响。但是，在气体密度非常低的特殊情况下，气体的间断粒子效应就会变得显著起来，此时不得不放弃连续介质假设而采取细观模型或分子气体动力学的方法，或稀薄气体动力学的方法。</p>
+<p>严格地讲，连续介质模型的失效发生在描写介质的质量、动量和能量的守恒方程中的剪切应力和热流不再能由低阶的宏观量（速度、温度）表征出来的时候，即Navier-Stokes方程中的输运系数表达式不再正确的时候，这发生在宏观量梯度的标尺长度变得与分子的平均自由程可以比的时候。宏观量梯度的标尺长度为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+L = \frac{\rho}{\mathrm{d}\rho/\mathrm{d}x}
+\end{align}\]</div>
+<p>引入 <strong>Knudsen数</strong> ，定义为分子平均自由程 <span class="math notranslate nohighlight">\(\lambda\)</span> （一个分子在两次碰撞间走过的距离的平均值）与流动特征长度 <span class="math notranslate nohighlight">\(L\)</span> 的比值</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Kn = \frac{\lambda}{L}
+\end{align}\]</div>
+<p>一般，当 <span class="math notranslate nohighlight">\(Kn &gt; 0.1\)</span> 时，间断分子效应即出现，连续介质模型不再正确，要用分子描述方法。如果 <span class="math notranslate nohighlight">\(L\)</span> 取为流动的某个总体尺度， <span class="math notranslate nohighlight">\(Kn\)</span> 不能表征流场细节的情况；如果 <span class="math notranslate nohighlight">\(L\)</span> 按 <span class="math notranslate nohighlight">\((0-1)\)</span> 取为局部的流场梯度的尺度，则 <span class="math notranslate nohighlight">\(Kn\)</span> 为局部Knudsen数，可以表征当地流场的非连续性的程度。</p>
+</div>
+<div class="section" id="id4">
+<h3>分子平均自由程<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>按照定义，分子平均自由程是分子在两次相继碰撞间走过的平均距离。对于一般分子模型，分子作用力影响范围很大，要靠规定分子偏转角度大于一定值来界定碰撞的发生，所以我们用分子的硬球模型来阐明分子平均自由程的概念。设分子的直径为 <span class="math notranslate nohighlight">\(d\)</span> 的硬球，首先计算单位时间内发生的碰撞次数，即所谓的碰撞频率 <span class="math notranslate nohighlight">\(\nu\)</span> 。考察一个试验分子与其他场分子的碰撞。当场分子的中心位于以试验分子中心为球心以 <span class="math notranslate nohighlight">\(d\)</span> 为半径的球内时，即发生碰撞。显然，试验分子周围以 <span class="math notranslate nohighlight">\(d\)</span> 为半径的球（碰撞截面 <span class="math notranslate nohighlight">\(\sigma_{T} = \pi d^{2}\)</span> ）在单位时间内扫过的体积乘以场分子的数密度 <span class="math notranslate nohighlight">\(n\)</span> ，即我们寻求的 <span class="math notranslate nohighlight">\(\nu\)</span> 。为了求得正确的平均值，假设试验分子以平均相对速度 <span class="math notranslate nohighlight">\(\overline{c_{r}}\)</span> 运动。这时，以 <span class="math notranslate nohighlight">\(d\)</span> 为半径的球单位时间扫过的体积为 <span class="math notranslate nohighlight">\(\overline{c_{r}}\pi d^{2}\)</span> ，而碰撞频率 <span class="math notranslate nohighlight">\(\nu\)</span> 为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\nu = \overline{c_{r}}\sigma_{T}n = \overline{c_{r}}\pi d^{2}n
+\end{align}\]</div>
+<p>由于一个分子单位时间走过的距离为分子的平均热运动速度 <span class="math notranslate nohighlight">\(\overline{c}\)</span> ，显然平均自由程为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\lambda = \frac{\overline{c}}{\nu} = \frac{\overline{c}}{\overline{c_{r}}}\frac{1}{\pi d^{2}n}
+\end{align}\]</div>
+<p>因为 <span class="math notranslate nohighlight">\(\overline{c_{r}} = \sqrt{2}\overline{c}\)</span> ，得到平均自由程的表达式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\lambda = \frac{1}{\sqrt{2}\pi d^{2}n}
+\quad\text{or}\quad
+\lambda = \frac{m}{\sqrt{2}\pi d^{2}\rho}
+\end{align}\]</div>
+<p>由上式可知在气体中 <span class="math notranslate nohighlight">\(\lambda \rho = \text{constant}\)</span> ，即分子的平均自由程与气体密度成反比。</p>
+</div>
+<div class="section" id="id5">
+<h3>流动的领域划分<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>钱学森最先根据稀薄程度将稀薄气体流动分为三大领域，即滑流领域、过渡领域和自由分子流领域。根据合适选择的 <span class="math notranslate nohighlight">\(Kn\)</span> 数的数值范围，这三大领域为</p>
+<ul class="simple">
+<li>滑流领域： <span class="math notranslate nohighlight">\(0.01 &lt; Kn &lt; 0.1\)</span> ；</li>
+<li>过渡领域： <span class="math notranslate nohighlight">\(0.1 &lt; Kn &lt; 10\)</span> ；</li>
+<li>自由分子流： <span class="math notranslate nohighlight">\(Kn &gt; 10\)</span> 。</li>
+</ul>
+<p>在滑流领域中，气体的流动会显现出与一般流动稍有不同的现象，这主要表现在边界附近，出现速度在边界的滑移和温度跳跃。在这一领域中，一般气体动力学的方程仍然有效，或可以借助Chapman-Enskog展开的高阶项得到比Navier-Stokes方程更高阶的方程，但对边界条件要做一些改变。在气体很稀薄，即 <span class="math notranslate nohighlight">\(Kn\)</span> 数很大的那一端，气体分子与物体表面的碰撞占主导地位，当 <span class="math notranslate nohighlight">\(\lambda\)</span> 比 <span class="math notranslate nohighlight">\(L\)</span> 大很多时，由物体反射的分子只有在飞离物体很远以后才与其他分子碰撞，分子来流的速度分布函数不受物体存在影响，是已知的平衡的Maxwell分布，来流对于物体的动量与能量作用容易计算出来。这一领域称为自由分子流领域。当然，要得到完全的解则要对分子在表面的反射规律作一定假设。在滑流领域与自由分子流领域之间的过渡领域中，分子与表面的碰撞和来流中分子的互相碰撞有着同等的重要性，此时分析变得困难，需要借助分子气体动力学的方法。</p>
+<p>在讨论流动的领域划分时，要注意流场中流动参数是很不均匀的。特征长度 <span class="math notranslate nohighlight">\(L\)</span> 取为宏观量梯度的标尺长度 <span class="math notranslate nohighlight">\(\rho/(\mathrm{d}\rho/\mathrm{d}x)\)</span> 时， <span class="math notranslate nohighlight">\(Kn\)</span> 数能够表达出流场的局部性质。按照滑流领域的Kn数划分，为了使Navier-Stokes方程可用，应该令 <span class="math notranslate nohighlight">\(Kn &lt; 0.1\)</span> 但是使连续介质假设为正确的局部Kn数上限或许可以提高到 <span class="math notranslate nohighlight">\(0.2\)</span> 。</p>
+<p>对于高超声速绕流问题，流动满足自由分子流的要求要比 <span class="math notranslate nohighlight">\(Kn &gt; 10\)</span> 严格一些，因为该式的 <span class="math notranslate nohighlight">\(\lambda\)</span> 意味着自由来流中的分子的平均自由程，但是在高超声速绕流问题中，与问题本质相关的是从物体表面散射的分子与来流分子相碰撞的平均自由程 <span class="math notranslate nohighlight">\(\lambda_{ei}\)</span> 这个 <span class="math notranslate nohighlight">\(\lambda_{ei}\)</span> 要比 <span class="math notranslate nohighlight">\(\lambda\)</span> 小得多。现在我们估算一下它的值。由于来流速度是高超声速的来流分子与物体的相对速度要比气体分子的热运动速度大得多，同时假设从物体表面散射的分子速度与来流速度相比也很小，这样散射分子与来流分子的相对速度可以近似地取为来流速度 <span class="math notranslate nohighlight">\(U\)</span> 。如果 <span class="math notranslate nohighlight">\(d\)</span> 是分子的直径，那么在单位时间内散射分子与来流分子碰撞次数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\pi d^{2}U n_{i}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(n_{i}\)</span> 为来流的分子数密度。频率与采取的坐标系无关，但分子平均自由程的大小却因选取的坐标系的不同而改变。在与物体相联系的坐标系中，散射分子的平均速度是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\overline{v_{e}} = \sqrt{\frac{8RT_{e}}{\pi}}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(R\)</span> 是气体常数， <span class="math notranslate nohighlight">\(R=k/m\)</span> ， <span class="math notranslate nohighlight">\(k\)</span> 为Boltzmann常数， <span class="math notranslate nohighlight">\(m\)</span> 为分子质量， <span class="math notranslate nohighlight">\(T_{e}\)</span> 是物体的温度。在此坐标系中，散射分子与来流分子相碰撞的平均自由程是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\lambda_{ei} = \frac{\overline{v_{e}}}{\pi d^{2}U n_{i}}
+\end{align}\]</div>
+<p>与一般的平均自由程表达式相比较可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\lambda_{ei} = \sqrt{2}\frac{\overline{v_{e}}}{U}\lambda
+\end{align}\]</div>
+<p>而自由分子流的基本条件要求</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\lambda_{ei}}{L} &gt; 10
+\quad\Rightarrow\quad
+\frac{\lambda}{L} &gt; 10\frac{U}{\sqrt{2}\overline{v_{e}}}
+\end{align}\]</div>
+<p>对于冷壁，假设 <span class="math notranslate nohighlight">\(U \gg \overline{v_{e}}\)</span> ，此时上式要比 <span class="math notranslate nohighlight">\(Kn&gt;10\)</span> 要严格得多，即要求气体有更高的稀薄程度才能保证自由分子流条件的出现。当物体的温度十分低时( <span class="math notranslate nohighlight">\(T_{e} \approx 0\)</span> )，尽管气体十分稀薄，上式仍可以不满足，也就不会有自由分子流出现，这就是所谓的自由分子流冷壁详谬。</p>
+<p>在高超声速钝体绕流问题中，激波后的平均自由程 <span class="math notranslate nohighlight">\(\lambda_{s}\)</span> 和激波脱体距离 <span class="math notranslate nohighlight">\(\Delta\)</span> 是问题的合适的自由程和特征长度，所以连续介质的根本条件是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\lambda_{s}}{\Delta} \ll 1
+\end{align}\]</div>
+<p>由于高超声速理论给出 <span class="math notranslate nohighlight">\(\Delta\)</span> 与头部半径 <span class="math notranslate nohighlight">\(R_{b}\)</span> 之比的估值为 <span class="math notranslate nohighlight">\(\Delta/R_{b} \sim \rho_{\infty}/\rho_{s}\)</span> ，所以这一根本条件等价于</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\lambda}{R_{b}} \sim \frac{Ma}{Re} \ll 1
+\end{align}\]</div>
+<p>对于非定常运动，讨论流动的领域划分要通过比较平均碰撞时间 <span class="math notranslate nohighlight">\(\tau = \lambda/\overline{c}\)</span> 和运动时间 <span class="math notranslate nohighlight">\(t\)</span> 来进行。以平板瞬动引起的非定常流动（Rayleigh问题）为例，无穷长平板在一瞬间取得速度 <span class="math notranslate nohighlight">\(U\)</span> 沿自己的平面运动，引起其上方的气体的流动。问题是非定常的包含两个自变量，即由开始瞬动算起的时间 <span class="math notranslate nohighlight">\(t\)</span> 和纵坐标 <span class="math notranslate nohighlight">\(y\)</span> 。两次碰撞间的平均时间 <span class="math notranslate nohighlight">\(\tau\)</span> 与时间 <span class="math notranslate nohighlight">\(t\)</span> 的比是一个重要的参数，此比值可以通过Mach数 <span class="math notranslate nohighlight">\(Ma=U/a\)</span> 和Reynolds数 <span class="math notranslate nohighlight">\(Re = \rho U^{2}t/\mu\)</span> 来表达</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{Ma^{2}}{Re} = \frac{U^{2}}{a^{2}}\frac{\mu}{\rho U^{2}t} \approx \frac{\frac{1}{2}\overline{c}\lambda}{a^{2}t} \sim \frac{\tau}{t}
+\end{align}\]</div>
+<p>这里利用了 <span class="math notranslate nohighlight">\(\mu \approx \frac{1}{2}\rho \overline{c}\lambda\)</span> 的表达式。根据此比值大小，可以将运动分为自由分子流领域、过渡领域和连续介质领域。</p>
+<ol class="arabic simple">
+<li>自由分子流领域 <span class="math notranslate nohighlight">\(\frac{\tau}{t} &gt; 1\)</span> ：在运动刚刚开始以后， <span class="math notranslate nohighlight">\(t\)</span> 值还达不到一次平均碰撞的时间，由平板反射出来的分子还来不及与其他分子发生碰撞。不论气体密度多大，在初始阶段均有自由分子流领域出现。</li>
+<li>过渡领域 <span class="math notranslate nohighlight">\(\frac{\tau}{t} = 1\)</span> ：当气体分子间相互碰撞次数与分子和平板表面相互碰撞次数相近时，要用不同于自由分子流的分子气体动力学方法。</li>
+<li>连续介质领域 <span class="math notranslate nohighlight">\(\frac{\tau}{t} \ll 1\)</span> ：气体分子碰撞次数足够多，可以采用一般气体动力学方程。</li>
+</ol>
+<p>又如声波弥散问题中，表征稀薄程度的特征参数为 <span class="math notranslate nohighlight">\(\frac{\rho}{\omega\mu}\)</span> ，其中 <span class="math notranslate nohighlight">\(\omega\)</span> 是声波频率，该参数实际上是碰撞频率和声波频率的比值，亦即声波波长 <span class="math notranslate nohighlight">\(\lambda_{a} = \frac{a}{\omega}\)</span> 与平均自由程的比值</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{p}{\omega\mu} \sim \frac{p}{\omega \rho \overline{c} \lambda} \sim \frac{1/\tau}{\omega} \sim \frac{\lambda_{a}}{\lambda}
+\end{align}\]</div>
+</div>
+<div class="section" id="id6">
+<h3>相似准则<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>前面引入的Knudsen数表征流动中稀薄的程度，它可以与熟知的Mach数 <span class="math notranslate nohighlight">\(Ma = U/a\)</span> 和Reynolds数 <span class="math notranslate nohighlight">\(Re = \rho UL/\mu\)</span> 联系起来。根据分子运动论的计算，气体的粘性系数 <span class="math notranslate nohighlight">\(\mu\)</span> 与密度 <span class="math notranslate nohighlight">\(\rho\)</span> 、热运动平均速度 <span class="math notranslate nohighlight">\(\overline{c}\)</span> 及平均自由程 <span class="math notranslate nohighlight">\(\lambda\)</span> 有如下关系</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu \approx \frac{1}{2}\rho \overline{c} \lambda
+\end{align}\]</div>
+<p>上式精确些应用 <span class="math notranslate nohighlight">\(0.491\)</span> 代替 <span class="math notranslate nohighlight">\(1/2\)</span> 。根据分子运动论有 <span class="math notranslate nohighlight">\(\overline{c} = \sqrt{\frac{8kT}{\pi m}}\)</span> ，而声速为 <span class="math notranslate nohighlight">\(a = \sqrt{\frac{\gamma kT}{m}}\)</span> ，这里 <span class="math notranslate nohighlight">\(T\)</span> 是气体的绝对温度， <span class="math notranslate nohighlight">\(\gamma\)</span> 是比热比， <span class="math notranslate nohighlight">\(k\)</span> 为Boltzmann常数， <span class="math notranslate nohighlight">\(m\)</span> 是分子质量，因此得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+a = \sqrt{\frac{\pi \gamma}{8}}\overline{c}
+\end{align}\]</div>
+<p>联立上面两个式子得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\lambda = 1.26 \frac{\sqrt{\gamma}\mu}{a\rho}
+\end{align}\]</div>
+<p>由此容易得到下面的基本关系式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Kn = \frac{\lambda}{L} = 1.26 \frac{\sqrt{\gamma}Ma}{Re}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(Re = \rho LU/\mu\)</span> 中的特征长度与 <span class="math notranslate nohighlight">\(Kn\)</span> 中相同。这样，两种流动稀薄程度相似，要求 <span class="math notranslate nohighlight">\(Ma/Re\)</span> 比值不变。对于不太高速的流动，两种流动相似要求 <span class="math notranslate nohighlight">\(Ma\)</span> 数和 <span class="math notranslate nohighlight">\(Re\)</span> 数相同，根据上式也就有 <span class="math notranslate nohighlight">\(Kn\)</span> 数相同。由于上式，流动相似要求 <span class="math notranslate nohighlight">\(Ma, Re\)</span> 和 <span class="math notranslate nohighlight">\(Kn\)</span> 数三个参数中任意两个相同。</p>
+<p>针对不同的问题，作为领域划分判据的 <span class="math notranslate nohighlight">\(Kn\)</span> 数要有不同的变形。比如对高超声速绕流问题，自由分子流成立的基本要求是 <span class="math notranslate nohighlight">\(\lambda_{ei}/L &gt; 10\)</span> ，而不再是 <span class="math notranslate nohighlight">\(Kn &gt; 10\)</span> ；Rayleigh问题中相关的 <span class="math notranslate nohighlight">\(Kn\)</span> 数是 <span class="math notranslate nohighlight">\(\tau/t\)</span> 或 <span class="math notranslate nohighlight">\(Ma^{2}/Re\)</span> 等。对于航天领域的高速流动而言，仅有 <span class="math notranslate nohighlight">\(Kn\)</span> 数和 <span class="math notranslate nohighlight">\(Ma\)</span> 数的相似是不够的。高速的或者有时称为高焓的反应流动的相似准则是双尺度律(binary scaling law)，即两种流动的静温相同，且</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+U_{\infty}, \rho_{\infty}L
+\end{align}\]</div>
+<p>相同时为相似。这由Birkhoff首先提出，并称之为双体碰撞模拟律(binary collision modeling law)。这一相似准则要求来流速度相同，仅允许距离尺度和密度成反比变化。对于仅有二体碰撞为重要的流动，这一结论可以从分子运动论中得出。 <span class="math notranslate nohighlight">\(U_{\infty}\)</span> 的相同对实验是极严格的要求，但却是必须满足的，这实际上是要求总焓相同，以保证相似的流动的化学反应有相同的能量供应。 <span class="math notranslate nohighlight">\(\rho_{\infty}L\)</span> 相同则保证了松弛过程的特征距离与物体(流场)特征尺寸之比相同。双尺度律也可以从连续介质方程推导得到。张涵信从有化学反应的Navier-Stokes方程出发得到，当只有二体碰撞重要时的相似参数是</p>
+<ol class="arabic simple">
+<li><span class="math notranslate nohighlight">\(Ma_{\infty}, U_{\infty}, \rho_{\infty}L\)</span> ，当 <span class="math notranslate nohighlight">\(Ma_{\infty} = 10 \sim 13\)</span> 时；</li>
+<li><span class="math notranslate nohighlight">\(\overline{V}'_{\infty}, U_{\infty}, \rho_{\infty}L\)</span> ，当 <span class="math notranslate nohighlight">\(Ma_{\infty} = 13 \sim 15\)</span> 时。</li>
+</ol>
+<p>其中 <span class="math notranslate nohighlight">\(\overline{V}'_{\infty} = \frac{\sqrt{C}Ma_{\infty}}{\sqrt{Re_{\infty}}}\)</span> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">实际上，区分 <span class="math notranslate nohighlight">\(Ma_{\infty}, \overline{V}'_{\infty}\)</span> 相似已无必要。因为如果有第一条相似参数，那么 <span class="math notranslate nohighlight">\(Ma_{\infty}, U_{\infty}\)</span> 相似导致静温相同，而在 <span class="math notranslate nohighlight">\(\rho_{\infty}L, U_{\infty}\)</span> 相似而静温相同时， <span class="math notranslate nohighlight">\(Re_{\infty} = \rho_{\infty}LU_{\infty}/\mu\)</span> 也是相同的，因而 <span class="math notranslate nohighlight">\(\overline{V}'_{\infty}\)</span> 的相似也得到满足。即它们归结为静温相同，且 <span class="math notranslate nohighlight">\(U_{\infty}, \rho_{\infty}L\)</span> 相似，即双体碰撞模拟律，或双尺度律。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>分子结构与能态<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id8">
+<h3>双原子分子<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>描述原子-分子系统的结构和内部能态的出发点是量子力学或波动力学。对于质量为 <span class="math notranslate nohighlight">\(m\)</span> 的质点，波函数 <span class="math notranslate nohighlight">\(\psi\)</span> 描述依赖于坐标 <span class="math notranslate nohighlight">\(x,y,z\)</span> 。Schrodinger提出假说， <span class="math notranslate nohighlight">\(\psi\)</span> 满足如下方程</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial^{2}\psi}{\partial x^{2}}
++ \frac{\partial^{2}\psi}{\partial y^{2}}
++ \frac{\partial^{2}\psi}{\partial z^{2}}
++ \frac{8\pi^{2}m}{\hbar}(E - V)\psi
+= 0
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(V\)</span> 为势能， <span class="math notranslate nohighlight">\(E\)</span> 为质点的能量， <span class="math notranslate nohighlight">\(\hbar = 6.626\times 10^{-34}~\mathrm{Js}\)</span> 为Planck常数。上式称为Schrodinger方程，其解自然应该满足单值、有限、连续并在无穷处为零的条件。这只有在特定的能量值 <span class="math notranslate nohighlight">\(E\)</span> 下才有可能，这样的 <span class="math notranslate nohighlight">\(E\)</span> 值称为本征值，即稳定态的能量值。这样的能量值通常是间断的，即能量是量子化的。相应的方程的解 <span class="math notranslate nohighlight">\(\psi\)</span> 或 <span class="math notranslate nohighlight">\(\Psi = \psi e^{-2\pi\mathrm{i}(E/\hbar)t}\)</span> 称为本征函数。根据Bohr的假说， <span class="math notranslate nohighlight">\(\Psi\Psi^{*}\mathrm{d}\mathbf{r} = |\Psi|^{2}\mathrm{d}\mathbf{r} = |\psi|^{2}\mathrm{d}\mathbf{r}\)</span> 给出在体积元 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中找到该粒子的几率。</p>
+<p>双原子的核由于质子的存在本身是相互排斥的，是外层电子的相互作用使原子保持在一个分子中。控制双原子分子的Schrodinger方程可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{1}{m}\sum_{i}\Big(
+\frac{\partial^{2}\psi}{\partial x_{i}^{2}}
++ \frac{\partial^{2}\psi}{\partial y_{i}^{2}}
++ \frac{\partial^{2}\psi}{\partial z_{i}^{2}}
+\Big)
++ \sum_{k}\frac{1}{M_{k}}\Big(
+\frac{\partial^{2}\psi}{\partial x_{k}^{2}}
++ \frac{\partial^{2}\psi}{\partial y_{k}^{2}}
++ \frac{\partial^{2}\psi}{\partial z_{k}^{2}}
+\Big)
++ \frac{8\pi^{2}}{\hbar^{2}}(E - V)\psi
+= 0
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(m\)</span> 是电子质量， <span class="math notranslate nohighlight">\(M_{k}\)</span> 为原子核的质量， <span class="math notranslate nohighlight">\(x_{i},y_{i},z_{i}\)</span> 为电子坐标， <span class="math notranslate nohighlight">\(x_{k},y_{k},z_{k}\)</span> 为核的坐标， <span class="math notranslate nohighlight">\(E\)</span> 为系统的能量， <span class="math notranslate nohighlight">\(V\)</span> 为系统的势能，即电子势能 <span class="math notranslate nohighlight">\(V_{e}\)</span> (是 <span class="math notranslate nohighlight">\(x_{i},y_{i},z_{i}\)</span> 的函数)及核的Coulomb势能 <span class="math notranslate nohighlight">\(V_{n}\)</span> 之和，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+V = V_{e} + V_{ n}
+\end{align}\]</div>
+</div>
+<div class="section" id="id9">
+<h3>分子的能态分布<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>考察体积 <span class="math notranslate nohighlight">\(V\)</span> 内由 <span class="math notranslate nohighlight">\(N\)</span> 个粒子组成而总能量为 <span class="math notranslate nohighlight">\(E\)</span> 的系统，每个粒子只能具有间断的能级 <span class="math notranslate nohighlight">\(\varepsilon_{1},\varepsilon_{2},\varepsilon_{3},\cdots,\varepsilon_{j},\cdots\)</span> ，各能级相应的简并度为 <span class="math notranslate nohighlight">\(g_{1},g_{2},g_{3},\cdots,g_{j}\cdots\)</span> 在某一特定时刻占据相应能级的分子数为 <span class="math notranslate nohighlight">\(N_{1},N_{2},N_{3},\cdots,N_{j},\cdots\)</span> ，则</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; N = \sum_{j}N_{j} \\
+&amp; E = \sum_{j}N_{j}\varepsilon_{j}
+\end{align}\end{split}\]</div>
+<p>我们要讨论的问题是：能量在各个能级上分配的最可几状态是怎么样的？也就是说，占有能级 <span class="math notranslate nohighlight">\(\varepsilon_{i}\)</span> 的分子数 <span class="math notranslate nohighlight">\(N_{i}\)</span> 在整个粒子数 <span class="math notranslate nohighlight">\(N\)</span> 中大约占多大的比分？或者更根本性的问题，满足上面两个式子条件的 <span class="math notranslate nohighlight">\(N\)</span> 个粒子分配到一定的许可能级 <span class="math notranslate nohighlight">\(\varepsilon_{1},\varepsilon_{2},\varepsilon_{3},\cdots,\varepsilon_{j},\cdots\)</span> 上的可能的不同方式的数目 <span class="math notranslate nohighlight">\(\Omega\)</span> 是多少？如果将与系统的宏观态( <span class="math notranslate nohighlight">\(N, V\)</span> 和 <span class="math notranslate nohighlight">\(E\)</span> )相一致的粒子在许可能级上的任何一种可能分布定义为系统的微观态那么这后一个问题就归结为：对于给定的宏观态存在的微观态数 <span class="math notranslate nohighlight">\(\Omega\)</span> 是多少？</p>
+<p>下面我们就从Boltzmann关系式开始对统计力学的讨论，然后从Bose-Einstein统计和Fermi-Dirac统计出发来求得微观态的总数，并给出我们提出问题的答案，即能量是怎样在各个能级上分配的。</p>
+<div class="section" id="boltzmann">
+<h4>Boltzmann关系式<a class="headerlink" href="#boltzmann" title="永久链接至标题">¶</a></h4>
+<p>Boltzmann关系式是联系统计力学和热力学的重要关系，它将热力学中的熵 <span class="math notranslate nohighlight">\(S\)</span> 通过统计力学的量 <span class="math notranslate nohighlight">\(\Omega\)</span> 表示出来</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S = k\ln\Omega
+\end{align}\]</div>
+<p><span class="math notranslate nohighlight">\(\Omega\)</span> 就是将 <span class="math notranslate nohighlight">\(N\)</span> 个粒子分配到能级 <span class="math notranslate nohighlight">\(\varepsilon_{1},\varepsilon_{2},\varepsilon_{3},\cdots,\varepsilon_{j},\cdots\)</span> 熵的分配方式数，或系统可能的微观态数。下面给出这一关系式的解释：熵 <span class="math notranslate nohighlight">\(S\)</span> 的定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathrm{d}S = \frac{\mathrm{d}Q}{T}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(Q\)</span> 是流入系统的热量，根据热力学第一定律有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathrm{d}Q = \mathrm{d}E + p\mathrm{d}V
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(E\)</span> 为系统内能， <span class="math notranslate nohighlight">\(p\)</span> 为压力。将上式代入到熵的定义式可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathrm{d}S = \frac{1}{T}(\mathrm{d}E + p\mathrm{d}V)
+\end{align}\]</div>
+<p>经过积分，对于完全气体得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S = \frac{R}{\gamma - 1}\ln \frac{p}{\rho\gamma} + \text{const}
+\end{align}\]</div>
+<p>或者</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S = \frac{\gamma R}{\gamma - 1}\ln T - R\ln p + \text{const}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(R\)</span> 为气体常数， <span class="math notranslate nohighlight">\(\gamma\)</span> 为比热比。</p>
+<p>现在举两个封闭系统(系统中的粒子数 <span class="math notranslate nohighlight">\(N\)</span> 保持不变)中熵增加以及相应的分子的无序性或随机性增加的例子。考虑一个完全气体系统，温度不变而其体积增加为 <span class="math notranslate nohighlight">\(V_{2}\)</span> ，是原来体积 <span class="math notranslate nohighlight">\(V_{1}\)</span> 的 <span class="math notranslate nohighlight">\(2\)</span> 倍，压力相应地由 <span class="math notranslate nohighlight">\(p_{1}\)</span> 变为 <span class="math notranslate nohighlight">\(p_{2}=\frac{1}{2}p_{1}\)</span> 。此时系统的熵增加，因为有等温条件，所以可以得到熵增为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S_{2} - S_{1} = R\ln\frac{p_{1}}{p_{2}} = (\ln 2)R
+\end{align}\]</div>
+<p>此时，因为可以在更大的体积中找到气体分子，气体分子的不确定度增加了，而系统的无序性或随机性也相应增加了。</p>
+<p>再考虑一个体积不变的完全气体系统的可逆加热，此时由于体积不变，有 <span class="math notranslate nohighlight">\(p_{2}/p_{1} = T_{2}/T_{1}\)</span> ，容易得知随着温度的增加，熵是增加的。体积为固定，使得气体分子在位置上的不确定度保持不变，但是温度增加意味着热运动速度的增加，即系统中分子的速度的不确定度增加，系统的无序性也增加了。</p>
+<p>这样，如果用微观态数 <span class="math notranslate nohighlight">\(\Omega\)</span> 来量度系统的无序性或随机性，可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S = f(\Omega)
+\end{align}\]</div>
+<p>这里 <span class="math notranslate nohighlight">\(f\)</span> 是 <span class="math notranslate nohighlight">\(\Omega\)</span> 的待定函数。如果将分子数分别为 <span class="math notranslate nohighlight">\(N_{1}\)</span> 和 <span class="math notranslate nohighlight">\(N_{2}\)</span> ，熵分别为 <span class="math notranslate nohighlight">\(S_{1}\)</span> 和 <span class="math notranslate nohighlight">\(S_{2}\)</span> ，微观态数分别为 <span class="math notranslate nohighlight">\(\Omega_{1}\)</span> 和 <span class="math notranslate nohighlight">\(\Omega_{2}\)</span> 的两个系统合并成为一个组合系统，那么这一新系统的熵为 <span class="math notranslate nohighlight">\(S_{1} + S_{2}\)</span> ，而微观态数为 <span class="math notranslate nohighlight">\(\Omega_{1}\Omega_{2}\)</span> ，这就规定了 <span class="math notranslate nohighlight">\(f\)</span> 应该满足条件</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(\Omega_{1}\Omega_{2}) = f(\Omega_{1}) + f(\Omega_{2})
+\end{align}\]</div>
+<p>对该式先对 <span class="math notranslate nohighlight">\(\Omega_{1}\)</span> 微分再对 <span class="math notranslate nohighlight">\(\Omega_{2}\)</span> 微分，可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Omega_{1}\Omega_{2}f''(\Omega_{1}\Omega_{2}) + f'(\Omega_{1}\Omega_{2}) = 0
+\quad\Rightarrow\quad
+\Omega f''(\Omega) + f'(\Omega) = 0
+\end{align}\]</div>
+<p>从而得到通解为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(\Omega) = A\ln\Omega + B
+\end{align}\]</div>
+<p>可以证明 <span class="math notranslate nohighlight">\(A\)</span> 是一个不依赖于系统的粒子数 <span class="math notranslate nohighlight">\(N\)</span> 的绝对常数，将其记为 <span class="math notranslate nohighlight">\(k\)</span> ，即Boltzmann常数。同时可以取 <span class="math notranslate nohighlight">\(B=0\)</span> ，意味着定义完全有序的系统（ <span class="math notranslate nohighlight">\(\Omega=1\)</span> ）的熵值为 <span class="math notranslate nohighlight">\(0\)</span> 。这样就得到了</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S = k\ln\Omega
+\end{align}\]</div>
+<p>即Boltzmann关系式。</p>
+</div>
+<div class="section" id="id10">
+<h4>微观态数的计算<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<p>我们将微观态数 <span class="math notranslate nohighlight">\(\Omega\)</span> 的计算任务分解为三个步骤：</p>
+<ol class="arabic simple">
+<li>计算将 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个粒子分配到能量为 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> 的各个能态 <span class="math notranslate nohighlight">\(g_{j}\)</span> 上的分配方式数量。或者针对更一般的情况，计算将 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个粒子分配到能量值的范围为小量 <span class="math notranslate nohighlight">\((\delta \varepsilon_{i})_{j}\)</span> ，包括许多能态 <span class="math notranslate nohighlight">\(g_{j}\)</span> 的能量区域上的分配方式数量。其中 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> 为该区域能量的平均值。</li>
+<li>对一定的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 组合，将这已知的分配方式数目对所有不同的能量区域 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> 求和，得到与宏观态相一致的一定 <span class="math notranslate nohighlight">\(N_{j}\)</span> 组合下所有可能的微观态总数。</li>
+<li>将第二步的结果对于所有可能的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 组合求和，以得到所求系统的微观态总数。</li>
+</ol>
+<p>第一步的完成，视粒子量子力学性质的不同而需要采用不同的统计方法，即Bose-Einstein统计法或者Fermi-Dirac统计法。Bose-Einstein统计适用于玻色子(boson)，即由偶数个基本粒子(质子、中子和电子)组成的原子或分子。对于玻色子，能级 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> 的任一简并态可以被任意个粒子所占据。Fermi-Dirac统计适用于费米子(fermion)，即由奇数个基本粒子构成的原子或分子，费米子要遵循泡利不相容原理，即一个量子能态最多只能被一个粒子所占据。</p>
+<p>第一个步骤在数学上等价于计算将 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个不可分辨的粒子分配到 <span class="math notranslate nohighlight">\(g_{j}\)</span> 个有标记的容器中的方式数量。或者用两个相邻的竖线之间的区域表示一个容器(第一个竖线的左边以及最后一个竖线的右边的空间也各代表一个容器)，任务就归结为：计算将 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个粒子和 <span class="math notranslate nohighlight">\((g_{j} - 1)\)</span> 条竖线直线排成一列的排列方法数量。</p>
+<p>在Bose-Einstein统计中，竖线间的分子数是不受限制的。首先人为地假设 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个粒子和 <span class="math notranslate nohighlight">\((g_{j} - 1)\)</span> 条竖线是可以区分的，将它们排成一列的排列方式种数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+(N_{j} + g_{j} - 1)!
+\end{align}\]</div>
+<p>但是 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个粒子互相区分的假设是无意义的，它导致上面的方式种数人为地扩大为 <span class="math notranslate nohighlight">\(N_{j}!\)</span> 倍，同样 <span class="math notranslate nohighlight">\((g_{j} - 1)\)</span> 条竖线的相互区分也使得排列方式数人为地增加了 <span class="math notranslate nohighlight">\((g_{j} - 1)!\)</span> 倍。因此，把 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个不可分辨的粒子分配到 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> 能量群中的 <span class="math notranslate nohighlight">\(g_{j}\)</span> 个不同能态上且每个能态中粒子数不限制的不同微观态数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{(N_{j} + g_{j} - 1)!}{N_{j}! (g_{j} - 1)!}
+\end{align}\]</div>
+<p>在Fermi-Dirac统计中，每个容器至多可以放一个粒子，所以有 <span class="math notranslate nohighlight">\(N_{j} \le g_{j}\)</span> 。先假设 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个粒子是可以互相分辨开来的，把它们逐一放到 <span class="math notranslate nohighlight">\(g_{j}\)</span> 个特定的容器中的方式数目显然是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+g_{j}(g_{j}-1)\cdots(g_{j}-N_{j} + 1) = \frac{g_{j}!}{(g_{j} - N_{j})!}
+\end{align}\]</div>
+<p>但是 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个粒子实际上是不可区分的，上面的排列数被夸大为 <span class="math notranslate nohighlight">\(N_{j}!\)</span> 倍。所以，把 <span class="math notranslate nohighlight">\(N_{j}\)</span> 个不可分辨的粒子分配到 <span class="math notranslate nohighlight">\(g_{j}\)</span> 个能态中，且每个能态中最多只有一个粒子的微观态数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{g_{j}!}{(g_{j} - N_{j})!N_{j}!}
+\end{align}\]</div>
+<p>现在进行第二步。对于整个宏观系统，各个能级 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> （或者区间为 <span class="math notranslate nohighlight">\((\delta\varepsilon)_{j}\)</span> 的、以 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> 为平均值的能量区域）的分配方式数是互不相关的。对于满足 <span class="math notranslate nohighlight">\(N = \sum_{i}N_{j}\)</span> 的一定的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 组合，宏观系统能态的分配方式数是各能级的微观态数的连乘，由步骤一的结果可知，Bose-Einstein统计和Fermi-Dirac统计的一定 <span class="math notranslate nohighlight">\(N_{j}\)</span> 值组合下的总微观态数分别为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; W_{BE}(N_{j}) = \prod_{j} \frac{(N_{j} + g_{j} - 1)!}{N_{j}! (g_{j} - 1)!} \\
+&amp; W_{FD}(N_{j}) = \prod_{j} \frac{g_{j}!}{(g_{j} - N_{j})! N_{j}!}
+\end{align}\end{split}\]</div>
+<p>步骤三要对所有可能的微观态求和，即对所有可能的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 组合求和，得到系统的微观态的总数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Omega = \sum_{N_{j}}W(N_{j})
+\end{align}\]</div>
+<p>计算上式看起来很困难，不过当 <span class="math notranslate nohighlight">\(N \to \infty\)</span> 时可以得到封闭的结果，而我们处理的系统的 <span class="math notranslate nohighlight">\(N\)</span> 是非常大的，这时在上式中，只有最大项 <span class="math notranslate nohighlight">\(W_{\max}\)</span> 对 <span class="math notranslate nohighlight">\(\Omega\)</span> 的贡献最重要。具体讲，可以给出一种证明，当 <span class="math notranslate nohighlight">\(\Omega\)</span> 中有 <span class="math notranslate nohighlight">\(N\)</span> 项重要可以表示为 <span class="math notranslate nohighlight">\(NW_{\max}\)</span> 而其他各项可以忽略不计时，有下式成立</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\ln\Omega}{\ln W_{\max}} \Big|_{N \to \infty} \to 1
+\end{align}\]</div>
+<p>这样，在利用Boltzmann关系式时可以用 <span class="math notranslate nohighlight">\(\ln W_{\max}\)</span> 来代替 <span class="math notranslate nohighlight">\(\ln\Omega\)</span> 。</p>
+</div>
+<div class="section" id="id11">
+<h4>Boltzmann分布<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<p>上节中统计出的微观态数 <span class="math notranslate nohighlight">\(W\)</span> 在一特定的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 组合下取为最大值 <span class="math notranslate nohighlight">\(W_{\max}\)</span> ，这一状态定义为最可几宏观态。现在考察 <span class="math notranslate nohighlight">\(\ln W\)</span> 取最大值的条件。从 <span class="math notranslate nohighlight">\(W_{BE}\)</span> 和 <span class="math notranslate nohighlight">\(W_{FD}\)</span> 的表达式可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \ln W_{BE} = \sum_{j}\Big[ \ln(N_{j} + g_{j} - 1)! - \ln(g_{j} - 1)! - \ln N_{j}! \Big] \\
+&amp; \ln W_{FD} = \sum_{j}\Big[ \ln g_{j}! - \ln(g_{j} - N_{j})! - \ln N_{j}! \Big]
+\end{align}\end{split}\]</div>
+<p>借助Stirling公式，当 <span class="math notranslate nohighlight">\(x \to \infty\)</span> 时有 <span class="math notranslate nohighlight">\(\ln x! \approx x\ln x -x\)</span> ，从而讲上面两个式子改写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\ln W = \sum_{j} \Big[ N_{j}\ln\Big( \frac{g_{j}}{N_{j}} \pm 1 \Big) \pm g_{j}\ln \Big( 1 \pm \frac{N_{j}}{g_{j}} \Big) \Big]
+\end{align}\]</div>
+<p><span class="math notranslate nohighlight">\(\ln W\)</span> 取最大值的条件是 <span class="math notranslate nohighlight">\(\mathrm{d}\ln W = \sum \frac{\partial \ln W}{\partial N_{j}}\mathrm{d}N_{j} = 0\)</span> 。利用上式可以得到取最大值的条件具体为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sum_{j}\ln\Big( \frac{g_{j}}{N_{j}} \pm 1 \Big) \mathrm{d}N_{j} = 0
+\end{align}\]</div>
+<p>从 <span class="math notranslate nohighlight">\(N = \sum_{j}N_{j}\)</span> 和 <span class="math notranslate nohighlight">\(E = \sum_{j}N_{j}\varepsilon_{j}\)</span> 还可以得到应该满足的两个物理条件</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \sum\mathrm{d}N_{j} = 0 \\
+&amp; \sum \varepsilon_{j}\mathrm{d}N_{j} = 0
+\end{align}\end{split}\]</div>
+<p>用Lagrange待定系数法，将上面两个式子分别乘以 <span class="math notranslate nohighlight">\(\alpha\)</span> 和 <span class="math notranslate nohighlight">\(\beta\)</span> 与最大值条件组合成为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sum_{j} \Big[ \ln\Big( \frac{g_{j}}{N_{j}} \pm 1 \Big) - \alpha - \beta\varepsilon_{j} \Big]\mathrm{d}N_{j} = 0
+\end{align}\]</div>
+<p>令上式中 <span class="math notranslate nohighlight">\(\mathrm{d}N_{j}\)</span> 的系数为零，可以得到 <span class="math notranslate nohighlight">\(N_{j}\)</span> 应该满足的关系式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\ln\Big( \frac{g_{j}}{N_{j}} \pm 1 \Big) - \alpha - \beta\varepsilon_{j} = 0
+\end{align}\]</div>
+<p>由此得出，使 <span class="math notranslate nohighlight">\(\ln W\)</span> 为最大值 <span class="math notranslate nohighlight">\(\ln W_{\max}\)</span> 的特定的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 值，即最可几宏观态下的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 值为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{N_{j}}{g_{j}} = \frac{1}{e^{\alpha + \beta \varepsilon_{j}} \pm 1}
+\end{align}\]</div>
+<p>从关于双原子分子的具体能级的讨论中可以看出，能级的间隔是很小的，粒子很稀疏地分布在许可的能态上，即有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+g_{j} \gg N_{j}
+\end{align}\]</div>
+<p>这时最可几宏观态下 <span class="math notranslate nohighlight">\(N_{j}\)</span> 值的分母中的因子 <span class="math notranslate nohighlight">\(1\)</span> 可以略去，从而有对于Bose-Einstein统计和Fermi-Dirac统计相同的结果</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{N_{j}^{*}}{g_{j}} = \frac{1}{e^{\alpha + \beta\varepsilon_{j}}}
+\end{align}\]</div>
+<p>这一极限结果称为Boltzmann极限，这也可以用Boltzmann统计法即经典统计法得到。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>只要满足如下条件式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{(3mkT)^{1/2}}{n^{1/3}\hbar} \gg 1
+\end{align}\]</div>
+<p class="last">量子效应即不显著，从而可以用经典方法处理粒子的运动。在我们讨论的问题中，该条件一般是满足的，也就说明在我们讨论的问题中，经典统计法是正确的，即Boltzmann极限成立，因而有 <span class="math notranslate nohighlight">\(g_{j} \gg N_{j}\)</span> 成立。</p>
+</div>
+<p>将Boltzmann极限代入系统的封闭条件式 <span class="math notranslate nohighlight">\(N = \sum_{j}N_{j}\)</span> 和能量条件式 <span class="math notranslate nohighlight">\(E = \sum_{j}N_{j}\varepsilon_{j}\)</span> ，就得到确定 <span class="math notranslate nohighlight">\(\alpha\)</span> 与 <span class="math notranslate nohighlight">\(\beta\)</span> 的方程</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sum \frac{g_{j}}{e^{\alpha + \beta\varepsilon_{j}}} = N
+,\quad
+\sum \frac{g_{j}\varepsilon_{j}}{e^{\alpha + \beta\varepsilon_{j}}} = E
+\end{align}\]</div>
+<p>从上面的第一个式子容易确定 <span class="math notranslate nohighlight">\(\alpha\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e^{-\alpha} = \frac{N}{\sum_{j}g_{j}e^{-\beta \varepsilon_{j}}}
+\end{align}\]</div>
+<p>如果将它代入到Boltzmann极限即可得到粒子在各能级上的最可几分布为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+N_{j}^{*} = N \frac{g_{j}e^{-\beta \varepsilon_{j}}}{\sum_{j} g_{j}e^{-\beta\varepsilon_{j}}}
+\end{align}\]</div>
+<p>而如果将它代入到 <span class="math notranslate nohighlight">\(\alpha\)</span> 与 <span class="math notranslate nohighlight">\(\beta\)</span> 的第二个方程得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+N \frac{\sum \varepsilon_{j}g_{j}e^{-\beta\varepsilon_{j}}}{\sum_{j}g_{j}e^{-\beta\varepsilon_{j}}} = E
+\end{align}\]</div>
+<p>为了确定 <span class="math notranslate nohighlight">\(\beta\)</span> ，我们需要利用Boltzmann关系式，并在计算中利用 <span class="math notranslate nohighlight">\(\ln W_{\max}\)</span> 代替 <span class="math notranslate nohighlight">\(\ln\Omega\)</span> 。为此，我们写出 <span class="math notranslate nohighlight">\(g_{j} \gg N_{j}\)</span> 条件下的 <span class="math notranslate nohighlight">\(\ln W\)</span> 为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\ln W &amp;= \sum_{j} \Big[ N_{j}\ln\Big( \frac{g_{j}}{N_{j}} \pm 1 \Big) \pm g_{j}\ln \Big( 1 \pm \frac{N_{j}}{g_{j}} \Big) \Big] \\
+&amp;\approx \sum \Big( N_{j} \ln \frac{g_{j}}{N_{j}} + N_{j} \Big)
+= \sum N_{j}\Big( \ln\frac{g_{j}}{N_{j}} + 1 \Big)
+\end{align}\end{split}\]</div>
+<p>将 <span class="math notranslate nohighlight">\(N_{j}^{*}\)</span> 值代入上式，得到 <span class="math notranslate nohighlight">\(\ln W_{\max}\)</span> 为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\ln W_{\max} = \sum N_{j}\bigg[ \ln \frac{(\sum g_{j} e^{-\beta \varepsilon_{j}}) \cdot e^{\beta\varepsilon_{j}}}{N} + 1\bigg]
+= \sum N_{j} \bigg( \ln \frac{\sum g_{j}e^{-\beta\varepsilon_{j}}}{N} + \beta\varepsilon_{j} + 1 \bigg)
+= N \bigg( \ln\frac{\sum g_{j}e^{-\beta \varepsilon_{j}}}{N} + 1\bigg) + \beta E
+\end{align}\]</div>
+<p>用上式代替 <span class="math notranslate nohighlight">\(\ln\Omega\)</span> 后Boltzmann关系式给出</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S = k \bigg[ N\Big( \ln \frac{\sum g_{j}e^{-\beta\varepsilon_{j}}}{N} + 1 \Big) + \beta E \bigg]
+\end{align}\]</div>
+<p>现在对上式求微分，这时要注意 <span class="math notranslate nohighlight">\(\beta\)</span> 是关于 <span class="math notranslate nohighlight">\(E\)</span> 的函数</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Big(\frac{\partial S}{\partial E}\Big)_{V,N} = k \cdot \left \{ \beta + \frac{\partial }{\partial \beta} \Big[ N \Big( \ln \frac{\sum g_{j}e^{-\beta \varepsilon_{j}}}{N} + 1 \Big) + \beta E \Big] \frac{\partial \beta}{\partial E} \right \}
+\end{align}\]</div>
+<p>借助前面得出的 <span class="math notranslate nohighlight">\(E\)</span> 关于 <span class="math notranslate nohighlight">\(\beta\)</span> 的表达式，容易看出上式对 <span class="math notranslate nohighlight">\(\beta\)</span> 的偏导数实际为零，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial }{\partial \beta} \Big[ N \Big( \ln \frac{\sum g_{j}e^{-\beta \varepsilon_{j}}}{N} + 1 \Big) + \beta E \Big]
+= N \left ( \frac{- \sum \varepsilon_{j}g_{j}e^{-\beta\varepsilon_{j}}}{\sum g_{j}e^{-\beta \varepsilon_{j}}} \right ) + E
+= -N \frac{E}{N} + E
+= 0
+\end{align}\]</div>
+<p>这样就有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Big( \frac{\partial S}{\partial E} \Big)_{V,N} = k \beta
+\end{align}\]</div>
+<p>而从 <span class="math notranslate nohighlight">\(\mathrm{d}S = \frac{1}{T}(\mathrm{d}E + p\mathrm{d}V)\)</span> 可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Big( \frac{\partial S}{\partial E} \Big)_{V,N} = \frac{1}{T}
+\end{align}\]</div>
+<p>通过对比可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\beta = \frac{1}{kT}
+\end{align}\]</div>
+<p>于是最可几宏观态下的能量在各能级上的分布为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+N_{j}^{*} = N \frac{g_{j}e^{-\varepsilon_{j}/kT}}{\sum g_{j}e^{-\varepsilon_{j}/kT}}
+\end{align}\]</div>
+<p>这就是Boltzmann分布。分母中的和式称为配分函数</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q = \sum_{j} g_{j}e^{-\varepsilon_{j}/kT}
+\end{align}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>这一结果是将 <span class="math notranslate nohighlight">\(\varepsilon_{j}\)</span> 理解为一个能量值范围为 <span class="math notranslate nohighlight">\((\delta \varepsilon_{i})_{j}\)</span> ，其中包括许多能态 <span class="math notranslate nohighlight">\(g_{j}\)</span> 的能量区域的平均值而得到的。如果现在考察这些能量区域中各个能态的能量值 <span class="math notranslate nohighlight">\(\varepsilon_{i}\)</span> 均不同的情况，配分函数可以表达为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q = \sum_{i}e^{-\varepsilon_{i}/kT}
+\end{align}\]</div>
+<p class="last">其中 <span class="math notranslate nohighlight">\(\sum_{i}\)</span> 表示对所有能态求和。</p>
+</div>
+<p>注意到系统的能量 <span class="math notranslate nohighlight">\(E\)</span> 在确定了 <span class="math notranslate nohighlight">\(\beta\)</span> 后并引入配分函数 <span class="math notranslate nohighlight">\(Q\)</span> 可以表达为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+E = \frac{N}{Q}\sum\varepsilon_{j}g_{j}e^{-\varepsilon_{j}/kT}
+\end{align}\]</div>
+<p>实际上，微观态数 <span class="math notranslate nohighlight">\(W\)</span> 作为 <span class="math notranslate nohighlight">\(N_{j}\)</span> 的函数在 <span class="math notranslate nohighlight">\(N_{j}^{*}\)</span> 附近是很陡峭的，正是这些离 <span class="math notranslate nohighlight">\(N_{j}^{*}\)</span> 十分近的 <span class="math notranslate nohighlight">\(N_{j}\)</span> 所对应的 <span class="math notranslate nohighlight">\(W\)</span> 值对于 <span class="math notranslate nohighlight">\(\Omega\)</span> 作出主要的贡献。也就是说，当粒子分布数 <span class="math notranslate nohighlight">\(N_{j}\)</span> 与最可几状态的粒子分布数 <span class="math notranslate nohighlight">\(N_{j}^{*}\)</span> 哪怕只有很小的偏离时，微观态数 <span class="math notranslate nohighlight">\(W\)</span> 也会有十分剧烈的减小。另外，我们要站在统计力学的基本出发点即各态历经(ergodic)原理的基础上，即承认所有可能的微观态具有相同的几率。从这两点出发，我们必然得到这样的结论：由 <span class="math notranslate nohighlight">\(N\)</span> 各粒子构成的总能量为 <span class="math notranslate nohighlight">\(E\)</span> 的系统，在其绝大部分时间必然处于满足Boltzmann分布的宏观态或与其相差很小的宏观态上，也就是说，Boltzmann分布式是最可几的能量分布律。</p>
+<p>现在来证明，当系统的微观态的总数 <span class="math notranslate nohighlight">\(\Omega\)</span> 中有 <span class="math notranslate nohighlight">\(N\)</span> 项重要可以表示为 <span class="math notranslate nohighlight">\(N W_{\max}\)</span> ，而其他各项可以忽略不计时，有 <span class="math notranslate nohighlight">\(\ln\Omega/\ln W_{\max}|_{N\to\infty} \to 1\)</span> 。根据条件 <span class="math notranslate nohighlight">\(\Omega = N W_{\max}\)</span> 有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\ln\Omega}{\ln W_{\max}} = 1 + \frac{\ln N}{\ln W_{\max}}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\ln W_{\max}\)</span> 的表达式我们已经推出，再结合配分函数的表达式，可以将其改写成</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\ln W_{\max} = N(\ln Q - \ln N + 1) + \beta E
+\end{align}\]</div>
+<p>因为 <span class="math notranslate nohighlight">\(E = \sum N_{j}\varepsilon_{j}\)</span> ，应该大于所有平动能均被激发的情况，即 <span class="math notranslate nohighlight">\(E &gt; N\frac{3}{2}kT\)</span> 。同时因为 <span class="math notranslate nohighlight">\(Q,\beta\)</span> 与 <span class="math notranslate nohighlight">\(N\)</span> 无关，所以</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\lim_{N \to \infty}\frac{\ln\Omega}{\ln W_{\max}}
+= \lim_{N \to \infty} \Big( 1 + \frac{\ln N}{\ln W_{\max}}\Big)
+= \lim_{N \to \infty} \Big( 1 + \frac{\ln N}{N(\ln Q - \ln N + 1) + \beta E} \Big)
+= 1
+\end{align}\]</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>分子的内能、内自由度和内能分布函数<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>当忽略能量模式间的相互作用时，分子的内能可以表示为电子能量 <span class="math notranslate nohighlight">\(\varepsilon_{e}\)</span> 、振动能量 <span class="math notranslate nohighlight">\(\varepsilon_{v}\)</span> 和转动能量之和，如果加上分子的动能 <span class="math notranslate nohighlight">\(\varepsilon_{tr}\)</span> ，分子的能量 <span class="math notranslate nohighlight">\(\varepsilon\)</span> 可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\varepsilon = \varepsilon_{e} + \varepsilon_{v} + \varepsilon_{r} + \varepsilon_{tr}
+\end{align}\]</div>
+<p>与此对应，由配分函数 <span class="math notranslate nohighlight">\(Q\)</span> 的表达式的形式可以看到，配分函数具有因子分配性质，即可以表达为相应各能量模式的配分函数的连乘</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q = Q_{e}Q_{v}Q_{r}Q_{tr}
+\end{align}\]</div>
+<p>分子的电子能量量级上虽然较大，但是在不太高的温度下由于分子的最低能级与次低能级的间距远大于 <span class="math notranslate nohighlight">\(kT\)</span> ，故电子能态一般是不激发的，因而 <span class="math notranslate nohighlight">\(Q_{e}\)</span> 近似为常值。由于能量值(以及比能和比热)只与 <span class="math notranslate nohighlight">\(Q\)</span> 的微分有关，所以电子能态对能量和比热的贡献一般可以忽略不计。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">在更高的温度下，电子能态会向更高能级跃迁并在从高能级向低能级跃迁时发生辐射，这时电子能态的贡献要加以考虑。</p>
+</div>
+<p>对于分子运动的动能，可以用分子运动论(动理论)的方法借助对速度分布函数的分析得到详尽的信息，这将在后面讨论。因此，这里讨论的分子的内能主要指振动能 <span class="math notranslate nohighlight">\(\varepsilon_{v}\)</span> 和转动能 <span class="math notranslate nohighlight">\(\varepsilon_{r}\)</span> 。现在尝试从单个分子能量 <span class="math notranslate nohighlight">\(\varepsilon_{v}\)</span> 的表达式和 <span class="math notranslate nohighlight">\(\varepsilon_{r}\)</span> 的表达式</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \varepsilon_{v,n} = \Big( n + \frac{1}{2} \Big)\hbar \nu ,\quad n=0,1,2,3,\cdots \\
+&amp; \varepsilon_{r,J} = \frac{\hbar^{2}}{8\pi^{2}I}J(J+1) ,\quad I=\mu r^{2}, J=0,1,2,\cdots
+\end{align}\end{split}\]</div>
+<p>求出系统的总振动能量 <span class="math notranslate nohighlight">\(E_{v}\)</span> 和总转动能量 <span class="math notranslate nohighlight">\(E_{r}\)</span> ，以及相应地，气体的单位质量的振动能(比振动能) <span class="math notranslate nohighlight">\(e_{v} = \frac{E_{v}}{Nm}\)</span> 和单位质量的转动能(比转动能) <span class="math notranslate nohighlight">\(e_{r} = \frac{E_{r}}{Nm}\)</span> 。最后给出内能分布函数的表达式。这里 <span class="math notranslate nohighlight">\(m\)</span> 表示分子质量。</p>
+<p>为了求总能量，首先注意配分函数对 <span class="math notranslate nohighlight">\(T\)</span> 求微分对可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial Q}{\partial T} = \frac{1}{kT^{2}} \sum \varepsilon_{j}g_{j}e^{-\varepsilon_{j}/kT}
+\end{align}\]</div>
+<p>于是就得到总能量的表达式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+E = \frac{N}{Q}\sum\varepsilon_{j}g_{j}e^{-\varepsilon_{j}/kT}
+= \frac{N}{Q}kT^{2}\frac{\partial Q}{\partial T}
+= N kT^{2}\frac{\partial \ln Q}{\partial T}
+\end{align}\]</div>
+<p>相应的气体单位质量的能量(比能) <span class="math notranslate nohighlight">\(e\)</span> 可以写成</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e = \frac{E}{Nm} = \frac{k}{m}T^{2}\frac{\partial \ln Q}{\partial T} = RT^{2}\frac{\partial \ln Q}{\partial T}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(R = k/m\)</span> 为单位质量的气体常数。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last"><span class="math notranslate nohighlight">\(e\)</span> 是从系统的总能量 <span class="math notranslate nohighlight">\(E\)</span> 计算出来的，所以是平均意义上的能量，比能是单位质量的平均能量。</p>
+</div>
+<p>对于分子的振动能，零点能为 <span class="math notranslate nohighlight">\(\varepsilon_{v,0} = \frac{1}{2}\hbar \nu\)</span> ，但是 <span class="math notranslate nohighlight">\(\varepsilon_{v,0}\)</span> 的值可以忽略不计，因为只有系统的状态变化才是本质的。这样，可以将振动能的许可能态写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\varepsilon_{v,n} = n\hbar \nu ,\quad n=0,1,2,3,\cdots
+\end{align}\]</div>
+<p>结合配分函数的表达式形式，可以得到振动配分函数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q_{v} = \sum_{n=0}^{\infty}e^{-n\hbar\nu/kT}
+\end{align}\]</div>
+<p>如果引入振动特征温度 <span class="math notranslate nohighlight">\(\Theta_{v} = \hbar\nu/k\)</span> 并令 <span class="math notranslate nohighlight">\(x = e^{-\hbar\nu/kT} := e^{-\Theta_{v}/T}\)</span> ，因为有 <span class="math notranslate nohighlight">\(x&lt;1\)</span> ，所以可以将 <span class="math notranslate nohighlight">\(Q_{v}\)</span> 写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q_{v} = \sum_{n=0}^{\infty}x^{n} = 1 + x + x^{2} + \cdots = \frac{1}{1 - x} = \frac{1}{1 - e^{\Theta_{v}/T}}
+\end{align}\]</div>
+<p>根据比能的表达式形式可以得到比振动能为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e_{v} = \frac{R\Theta_{v}}{e^{\Theta_{v}/T} - 1}
+\end{align}\]</div>
+<p>对于转动能，可以将转动配分函数写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q_{r} = \sum_{J=0}^{\infty}(2J + 1)\exp\Big[ \frac{-J(J+1)\hbar^{2}}{8\pi^{2}IkT} \Big]
+\end{align}\]</div>
+<p>如果引入转动特征温度 <span class="math notranslate nohighlight">\(\Theta_{r} = \frac{\hbar^{2}}{8\pi^{2}Ik}\)</span> ，并用对 <span class="math notranslate nohighlight">\(J\)</span> 的积分近似替代对 <span class="math notranslate nohighlight">\(J\)</span> 的求和，可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q_{r} = \int_{0}^{\infty}(2J + 1)e^{-J(J+1)\Theta_{r}/T}\mathrm{d}J
+= \int_{0}^{\infty}e^{-(\Theta_{r}/T)x}~\mathrm{d}x
+= T/\Theta_{r}
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">这一结果仅对于异核分子，即分子是由不同的原子构成的情况才正确。对于氧气分子、氮气分子这样的同核分子，上述结果应该除以2。但是这并不影响 <span class="math notranslate nohighlight">\(e_{r}\)</span> 和 <span class="math notranslate nohighlight">\(c_{v,r}\)</span> 的计算，因为只有 <span class="math notranslate nohighlight">\(\ln Q_{r}\)</span> 的导数在计算中出现。</p>
+</div>
+<p>根据比能的表达式形式，可以得到比转动能为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e_{r} =RT = \frac{k}{m}T
+\end{align}\]</div>
+<p>在后续关于分子运动论(气体动理论)的讨论中，我们将得到单位质量的与平动能关联的内能(比平动能)为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e_{tr} = \frac{3}{2}RT = \frac{3}{2}\frac{k}{m}T
+\end{align}\]</div>
+<p>由于分子的平动能有三个自由度，可以看到每个自由度的能量为 <span class="math notranslate nohighlight">\(\frac{1}{2}\frac{k}{m}T\)</span> 。与比转动能的表达式进行比较可以看到，转动能量完全激发而有两个自由度，这与经典力学的结果是一致的。对于振动能，情况则有所不同，如果设振动自由度为 <span class="math notranslate nohighlight">\(\zeta_{v}\)</span> ，根据能量均分原理可以将比振动能改写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e_{v} = \frac{\zeta_{v}}{2}RT = \frac{\zeta_{v}}{2}\frac{k}{m}T
+\end{align}\]</div>
+<p>与比振动能的具体表达式进行对比，可以得到 <span class="math notranslate nohighlight">\(\zeta_{v}\)</span> 的表达式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\zeta_{v} = \frac{\Theta_{v}/T}{e^{\Theta_{v}/T} - 1}
+\end{align}\]</div>
+<p>只有在很高的温度的情况下 <span class="math notranslate nohighlight">\(\zeta_{v} \to 2\)</span> 。根据平动能、振动能和转动能的表达式可以求得相应的比热 <span class="math notranslate nohighlight">\(c_{v} = \Big(\frac{\partial e}{\partial T}\Big)_{v}\)</span> 为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; c_{v,tr} = \frac{3}{2}R \\
+&amp; c_{v,r} = R \\
+&amp; c_{v,v} = R\Big(\frac{\Theta_{v}}{T}\Big)^{2}\frac{e^{\Theta_{v}/T}}{(e^{\Theta_{v}/T} - 1)}
+\end{align}\end{split}\]</div>
+<p>由此可见，分子的运动和转动对气体的比热的贡献为 <span class="math notranslate nohighlight">\(\frac{5}{2}R\)</span> ，而振动比热是随温度变化的。</p>
+<p>现在我们推导分子内能的分布函数的一般表达式。如果由 <span class="math notranslate nohighlight">\(N\)</span> 个分子构成的系统的某个能量模在 <span class="math notranslate nohighlight">\(\varepsilon_{i}\)</span> 与 <span class="math notranslate nohighlight">\(\varepsilon_{i} + \mathrm{d}\varepsilon_{i}\)</span> 之间的分子数目 <span class="math notranslate nohighlight">\(\mathrm{d}N\)</span> 可以写成</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\mathrm{d}N}{N} = f(\varepsilon_{i})~\mathrm{d}\varepsilon_{i}
+\end{align}\]</div>
+<p>则 <span class="math notranslate nohighlight">\(f(\varepsilon_{i})\)</span> 称为该能量模的分布函数。</p>
+<p>对于转动能，有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\mathrm{d}N}{N} = \frac{(2J + 1)e^{-\varepsilon_{r,J}/kT}\mathrm{d}J}{Q_{r}}
+= \frac{e^{-\varepsilon_{r,J}/kT}(2J + 1)\mathrm{d}J}{T/\Theta_{r}}
+= \frac{e^{-\varepsilon_{r,J}/kT}\mathrm{d}\varepsilon_{r}}{kT}
+\end{align}\]</div>
+<p>也即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(\varepsilon_{r}) = \frac{e^{-\varepsilon_{r,J}/kT}}{kT}
+\end{align}\]</div>
+<p>对于平动能，利用分子运动论的结果，有速度量值的分布函数 <span class="math notranslate nohighlight">\(\chi(c')\)</span> 即速度值在 <span class="math notranslate nohighlight">\(c'\)</span> 和 <span class="math notranslate nohighlight">\(c' + \mathrm{d}c'\)</span> 间的分子数目比分为 <span class="math notranslate nohighlight">\(\chi(c')\mathrm{d}c'\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\mathrm{d}n}{n} = 4\pi \Big(\frac{m}{2\pi kT}\Big)^{3/2}c'^{2} \exp\Big(-\frac{c'^{2}}{2kT}\Big)\mathrm{d}c'
+\end{align}\]</div>
+<p>注意到分子的平动能量 <span class="math notranslate nohighlight">\(\varepsilon_{tr} = mc'^{2}/2\)</span> ，可以将上式改写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\mathrm{d}N}{N} = \frac{2}{\sqrt{\pi}}\frac{1}{(kT)^{3/2}}\varepsilon_{tr}^{1/2}e^{-\varepsilon_{tr}/kT}\mathrm{d}\varepsilon_{tr}
+\end{align}\]</div>
+<p>也即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(\varepsilon_{tr}) = \frac{2}{\sqrt{\pi}}\frac{1}{(kT)^{3/2}}\varepsilon_{tr}^{1/2}e^{-\varepsilon_{tr}/kT}
+\end{align}\]</div>
+<p>根据自由度为2的分子转动能的分布函数 <span class="math notranslate nohighlight">\(f(\varepsilon_{r})\)</span> 与自由度为3的分子平动能的分布函数 <span class="math notranslate nohighlight">\(f(\varepsilon_{tr})\)</span> 的形式，可以设想，一般的自由度为 <span class="math notranslate nohighlight">\(\zeta\)</span> 的能模 <span class="math notranslate nohighlight">\(\varepsilon\)</span> 的分布函数 <span class="math notranslate nohighlight">\(f\)</span> 有如下形式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f = C \frac{\varepsilon^{\frac{\zeta}{2}-1}}{(kT)^{\zeta/2}}e^{-\varepsilon/kT}
+\end{align}\]</div>
+<p>常数 <span class="math notranslate nohighlight">\(C\)</span> 的值由归一化条件确定</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+C \int f\mathrm{d}\varepsilon
+= C \int_{0}^{\infty}\frac{\varepsilon^{\frac{\zeta}{2}-1}}{(kT)^{\zeta/2}}e^{-\varepsilon/kT}~\mathrm{d}\varepsilon
+= C \int_{0}^{\infty}x^{\frac{\zeta}{2}-1}e^{-x}~\mathrm{d}x
+= 1
+\end{align}\]</div>
+<p>也即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+C = \frac{1}{\Gamma(\zeta/2)}
+\end{align}\]</div>
+<p>这样，分子的自由度为 <span class="math notranslate nohighlight">\(\zeta\)</span> 的能量的分布函数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(\varepsilon) = \frac{1}{\Gamma(\zeta/2)}\frac{\varepsilon^{\frac{\zeta}{2}-1}}{(kT)^{\zeta/2}}e^{-\varepsilon/kT}
+\end{align}\]</div>
+<p>这当然也适合于自由度为 <span class="math notranslate nohighlight">\(\zeta_{v}\)</span> 的振动能 <span class="math notranslate nohighlight">\(\varepsilon_{v}\)</span> 。根据上式给出的振动能分布函数可以计算分子的振动能的平均值为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e_{v} = \overline{\varepsilon_{v}}
+= \int_{0}^{\infty}\varepsilon_{v}f(\varepsilon_{v})~\mathrm{d}\varepsilon_{v}
+= \frac{kT}{\Gamma(\zeta/2)}\int_{0}^{\infty}\frac{\varepsilon^{\zeta_{v}/2}}{(kT)^{\zeta_{v}/2 + 1}}e^{-\varepsilon_{v}/kT}\mathrm{d}\varepsilon_{v}
+= \frac{kT}{\Gamma(\zeta/2)}\int_{0}^{\infty} x^{(\zeta_{v}/2 + 1) - 1}e^{-x}\mathrm{d}x
+= \frac{kT}{\Gamma(\zeta/2)}\Gamma(\zeta_{v}/2 + 1)
+= \frac{\zeta_{v}}{2}kT
+\end{align}\]</div>
+<p>这一结果与从分子振动能量 <span class="math notranslate nohighlight">\(\varepsilon_{v}\)</span> 求和得到的 <span class="math notranslate nohighlight">\(E\)</span> 计算出的单位质量的平均振动能相同，也就证明了一般的能量分布函数给出了正确的平均值结果。</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>分子动理论基础<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id14">
+<h3>速度分布函数<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>对于一个由 <span class="math notranslate nohighlight">\(N\)</span> 个单原子分子组成的系统，在任一瞬间，整个系统由 <span class="math notranslate nohighlight">\(6N\)</span> 维相空间(由速度 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 和位置 <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> 组成的空间)中的一点所代表。考察大量这样的系统(或这样系统的系综)，在相空间点 <span class="math notranslate nohighlight">\(\mathbf{c}_{1},\mathbf{c}_{2},\cdots,\mathbf{c}_{N},\mathbf{r}_{1},\mathbf{r}_{2},\cdots,\mathbf{r}_{N}\)</span> 附近的相空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{c}_{2}\cdots\mathrm{d}\mathbf{c}_{N}\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2}\cdots\mathrm{d}\mathbf{r}_{N}\)</span> 中找到系统的概率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+F^{(N)}(\mathbf{c}_{1},\mathbf{c}_{2},\cdots,\mathbf{c}_{N},\mathbf{r}_{1},\mathbf{r}_{2},\cdots,\mathbf{r}_{N}, t)\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{c}_{2}\cdots\mathrm{d}\mathbf{c}_{N}\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2}\cdots\mathrm{d}\mathbf{r}_{N}
+\end{align}\]</div>
+<p>这就是 <span class="math notranslate nohighlight">\(N\)</span> 粒子分布函数的定义。下标 <span class="math notranslate nohighlight">\(1,2,\cdots,N\)</span> 为分子的标号， <span class="math notranslate nohighlight">\(N\)</span> 就是分子数。 <span class="math notranslate nohighlight">\(N\)</span> 个分子中 <span class="math notranslate nohighlight">\(R\)</span> 个分子的简约了的分布函数 <span class="math notranslate nohighlight">\(F^{(R)}\)</span> 定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+F^{(R)}(\mathbf{c}_{1},\mathbf{c}_{2},\cdots,\mathbf{c}_{R},\mathbf{r}_{1},\mathbf{r}_{2},\cdots,\mathbf{r}_{R}, t)
+= \int\limits_{-\infty}^{+\infty}\cdots\int\limits_{-\infty}^{+\infty} F^{(N)}\mathrm{d}\mathbf{c}_{R+1}\cdots\mathrm{d}\mathbf{c}_{N}\mathrm{d}\mathbf{r}_{R+1}\cdots\mathrm{d}\mathbf{r}_{N}
+\end{align}\]</div>
+<p>即不管其他 <span class="math notranslate nohighlight">\((N-R)\)</span> 个分子在相空间的位置如何，在相空间点 <span class="math notranslate nohighlight">\(\mathbf{c}_{1},\mathbf{c}_{2},\cdots,\mathbf{c}_{N},\mathbf{r}_{1},\mathbf{r}_{2},\cdots,\mathbf{r}_{N}\)</span> 附近的相空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{c}_{2}\cdots\mathrm{d}\mathbf{c}_{R}\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2}\cdots\mathrm{d}\mathbf{r}_{R}\)</span> 中找到系统的概率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+F^{(R)}\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{c}_{2}\cdots\mathrm{d}\mathbf{c}_{R}\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2}\cdots\mathrm{d}\mathbf{r}_{R}
+\end{align}\]</div>
+<p>当 <span class="math notranslate nohighlight">\(R=1\)</span> 时就得到了单粒子分布函数 <span class="math notranslate nohighlight">\(F^{(1)}(\mathbf{c}_{1},\mathbf{r},t)\)</span> ，即不管所有其他 <span class="math notranslate nohighlight">\((N-1)\)</span> 个粒子在相空间中的位置如何，标号为1的分子在时间 <span class="math notranslate nohighlight">\(t\)</span> 位于相空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{r}_{1}\)</span> 的概率为 <span class="math notranslate nohighlight">\(F^{(1)}\mathrm{d}\mathbf{c}_{1}\mathbf{r}_{1}\)</span> 。由于整个相空间中分子数为 <span class="math notranslate nohighlight">\(N\)</span> ，而各个分子是全同的，所以在时间 <span class="math notranslate nohighlight">\(t\)</span> 位于相空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{r}_{1}\)</span> 的几率分子数为 <span class="math notranslate nohighlight">\(NF^{(1)}\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{r}_{1}\)</span> 。分子运动论(气体动理论)就是应用单粒子分布函数讨论分子运动规律的。</p>
+<p>我们应用的分布函数就是 <span class="math notranslate nohighlight">\(NF^{(1)}\)</span> ，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(\mathbf{c},\mathbf{r},t) := NF^{(1)}(\mathbf{c},\mathbf{r},t)
+\end{align}\]</div>
+<p>按照分子速度分布函数 <span class="math notranslate nohighlight">\(f(\mathbf{c},\mathbf{r},t)\)</span> 的定义，在时间 <span class="math notranslate nohighlight">\(t\)</span> ，在物理空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r} = \mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> 内，速度在速度空间 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 附近元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c} = \mathrm{d}u\mathrm{d}v\mathrm{d}w\)</span> 内的分子数目是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f(\mathbf{c},\mathbf{r},t)\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}
+\end{align}\]</div>
+<p>实际上相空间 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 中的分子数在时间上会有起伏， <span class="math notranslate nohighlight">\(f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 是平均分子数，上式具有几率的意义。将此表达式对所有速度空间积分就得到了 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中的分子数，而分子在物理空间的数密度显然为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+n = \int f \mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">这里引入的分子速度分布函数 <span class="math notranslate nohighlight">\(f(\mathbf{c},\mathbf{r},t)\)</span> 与Chapman,Cowling的定义是一致的。这个定义从 <span class="math notranslate nohighlight">\(f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 是 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 中的分子数出发，即 <span class="math notranslate nohighlight">\(f\)</span> 定义为相空间中的数密度。有些作者利用 <span class="math notranslate nohighlight">\(f_{K} = f/n\)</span> 定义速度分布函数。要注意两种定义的差异。</p>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>宏观量的表达<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<p>当气体的速度分布函数为已知时，气体动力学中感兴趣的各种宏观量就可以通过对 <span class="math notranslate nohighlight">\(f\)</span> 求矩的办法得到。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">所谓求矩，就是将 <span class="math notranslate nohighlight">\(f\)</span> 乘以分子速度的一定的函数再对整个速度空间积分。</p>
+</div>
+<p>按照 <span class="math notranslate nohighlight">\(f\)</span> 的定义， <span class="math notranslate nohighlight">\(f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r} = f\mathrm{d}u\mathrm{d}v\mathrm{d}w\mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> 是 <span class="math notranslate nohighlight">\(\mathbf{r}(x,y,z)\)</span> 附近物理空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r} = \mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> 内，速度在 <span class="math notranslate nohighlight">\(\mathbf{c}(u,v,w)\)</span> 附近速度空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c} = \mathrm{d}u\mathrm{d}v\mathrm{d}w\)</span> 内的分子数目。将其对于所有速度空间积分，我们得到 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中的分子数，气体在物理空间的密度显然为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\rho = m\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}f\mathrm{d}u\mathrm{d}v\mathrm{d}w
+= m \int\limits_{-\infty}^{\infty}f~\mathrm{d}\mathbf{c}
+= mn
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(m\)</span> 是分子的质量。</p>
+<p>对于单组元气体，我们用 <span class="math notranslate nohighlight">\(\mathbf{c}_{0}\)</span> 标记 <span class="math notranslate nohighlight">\(\mathbf{r},t\)</span> 处的平均分子速度 <span class="math notranslate nohighlight">\(\overline{\mathbf{c}}\)</span> ，物理空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r} = \mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> 中有 <span class="math notranslate nohighlight">\(n\mathrm{d}\mathbf{r}\)</span> 个分子，其质量为 <span class="math notranslate nohighlight">\(\rho\mathrm{d}\mathbf{r} = mn\mathrm{d}\mathbf{r}\)</span> ，每个分子携带的动量为 <span class="math notranslate nohighlight">\(m\mathbf{c}\)</span> 。 <span class="math notranslate nohighlight">\(\mathbf{c}_{0}\)</span> 的定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\rho \mathrm{d}\mathbf{r} \mathbf{c}_{0} = \sum m\mathbf{c}
+\quad\text{or}\quad
+n\mathrm{d}\mathbf{r}\mathbf{c}_{0} = \sum \mathbf{c}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\sum \mathbf{c}\)</span> 是对于 <span class="math notranslate nohighlight">\(n\mathrm{d}\mathbf{r}\)</span> 个分子求和。在 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中速度范围在 <span class="math notranslate nohighlight">\(\mathbf{c},\mathrm{d}\mathbf{c}\)</span> 内的分子数目为 <span class="math notranslate nohighlight">\(f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> ，这些分子所携带的速度值为 <span class="math notranslate nohighlight">\(\mathbf{c}f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> ，对整个速度空间积分，即得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sum \mathbf{c} = \mathrm{d}\mathbf{r} \int \mathbf{c}f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>从而有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{c}_{0} = \overline{\mathbf{c}} = \frac{1}{n}\int \mathbf{c}f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>平均分子速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{0} = \overline{\mathbf{c}}\)</span> 即气体的宏观流动速度，或平均速度，又称质量速度。</p>
+<p>一般地，如果 <span class="math notranslate nohighlight">\(Q(\mathbf{c})\)</span> 是分子速度的任意函数，它在气体中的平均值 <span class="math notranslate nohighlight">\(\overline{Q}\)</span> 定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+n\mathrm{d}\mathbf{r}\overline{Q} = \sum Q
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\sum Q\)</span> 表示对 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中所有 <span class="math notranslate nohighlight">\(n\mathrm{d}\mathbf{r}\)</span> 个分子求和。在 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中速度范围在 <span class="math notranslate nohighlight">\(\mathbf{c},\mathrm{d}\mathbf{c}\)</span> 内的分子数目为 <span class="math notranslate nohighlight">\(f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> ，它们对 <span class="math notranslate nohighlight">\(\sum Q\)</span> 的贡献为 <span class="math notranslate nohighlight">\(Qf\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> ，对整个速度空间求矩，即得到所有 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中分子的 <span class="math notranslate nohighlight">\(Q\)</span> 的总值</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sum Q = \mathrm{d}\mathbf{r} \int Qf\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>所以对于任意 <span class="math notranslate nohighlight">\(Q(\mathbf{c})\)</span> 的平均值有如下表达式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\overline{Q} = \frac{1}{n}\int Qf \mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(Q\)</span> 可以是标量、矢量或张量。</p>
+<p>分子相对于宏观流动速度的速度 <span class="math notranslate nohighlight">\(\mathbf{c} - \mathbf{c}_{0}\)</span> 称为分子的热运动速度，或称分子的特定速度、随机速度，并记为 <span class="math notranslate nohighlight">\(\mathbf{c}'\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{c}' = \mathbf{c} - \mathbf{c}_{0}
+\end{align}\]</div>
+<p>显然平均热运动速度为零</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\overline{\mathbf{c}'} = \overline{\mathbf{c}} - \mathbf{c}_{0} = \overline{\mathbf{c}} - \overline{\mathbf{c}} = \mathbf{0}
+\end{align}\]</div>
+<p>对于与分子运动引起的流动中的质量、动量和能量的输运相关的宏观量，它们均要求计算某量在一定(微元)时间内通过一定(微元)面积的通量。我们首先得到与分子速度相关联的某一个量 <span class="math notranslate nohighlight">\(Q(\mathbf{c})\)</span> 通过气体某一位置上某一小面积元的通量表达式。该面积微元的面积记为 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> ，其单位法向矢量为 <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> 。考察在时间 <span class="math notranslate nohighlight">\(t\)</span> 时位于以 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 为基底的速度在 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 附近的 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\)</span> 中的分子，其在 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内通过边长为 <span class="math notranslate nohighlight">\(\mathbf{c}\mathrm{d}t\)</span> 的柱形，那么 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内穿越 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 的速度在 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 附近的 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\)</span> 中的分子的数目为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f\mathrm{d}\mathbf{c} (\mathbf{c} \cdot \mathbf{l} \mathrm{d}t\mathrm{d}S)
+\end{align}\]</div>
+<p>此类分子携带的量 <span class="math notranslate nohighlight">\(Q\)</span> 在 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内穿过 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 的通量为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Qf\mathrm{d}\mathbf{c} (\mathbf{c} \cdot \mathbf{l} \mathrm{d}t\mathrm{d}S)
+\end{align}\]</div>
+<p>想要求出气体中所有分子所携带的量 <span class="math notranslate nohighlight">\(Q\)</span> 的上述通量，就要将上式对整个速度空间积分，得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathrm{d}t\mathrm{d}S \int Q f \mathbf{c}\cdot \mathbf{l}\mathrm{d}\mathbf{c}
+= \mathrm{d}t\mathrm{d}S n\overline{Q \mathbf{c} \cdot \mathbf{l}}
+\end{align}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这里利用了 <span class="math notranslate nohighlight">\(\overline{Q} = \frac{1}{n}\int Qf \mathrm{d}\mathbf{c}\)</span> 进行化简。</p>
+</div>
+<p>将上式除以 <span class="math notranslate nohighlight">\(\mathrm{d}t\mathrm{d}S\)</span> ，即得到 <span class="math notranslate nohighlight">\(Q\)</span> 的单位时间通过单位面积的通量</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\int Q f \mathbf{c} \cdot \mathbf{l}\mathrm{d}\mathbf{c} = n \overline{Q\mathbf{c}\cdot\mathbf{l}}
+\end{align}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>上式给出的是总通量，它即包含沿 <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> 的正向也包含沿其负向通过 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 的分子的贡献。有时候需要知道仅沿一个方向通过 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 的通量，比如沿 <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> 正向通过的分子给出的 <span class="math notranslate nohighlight">\(Q\)</span> 的通量值为</p>
+<div class="last math notranslate nohighlight">
+\[\begin{align}
+n(\overline{Q\mathbf{c}\cdot\mathbf{l}})_{\mathbf{c}\cdot\mathbf{l} &gt; 0}
+\end{align}\]</div>
+</div>
+<p>由于 <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> 是单位向量，于是可以将上式写为 <span class="math notranslate nohighlight">\(n\overline{Q\mathbf{c}} \cdot \mathbf{l}\)</span> ，将 <span class="math notranslate nohighlight">\(n\overline{Q\mathbf{c}}\)</span> 定义为量 <span class="math notranslate nohighlight">\(Q\)</span> 的通量矢。质量通量矢( <span class="math notranslate nohighlight">\(Q=m\)</span> )为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+nm\overline{\mathbf{c}} = \rho \mathbf{c}_{0}
+\end{align}\]</div>
+<p>对于以下将考察的应力和热流的情况，讨论的是以平均速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{0}\)</span> 运动的气体通过以 <span class="math notranslate nohighlight">\(\mathbf{c}_{0}\)</span> 运动的 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 的分子的动量和能量的输运。所以我们将在以流动速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{0}\)</span> 运动的坐标系中讨论量 <span class="math notranslate nohighlight">\(Q\)</span> 的通量矢，即讨论 <span class="math notranslate nohighlight">\(n\overline{Q\mathbf{c}'}\)</span> 。</p>
+<p>令 <span class="math notranslate nohighlight">\(Q = m\mathbf{c}'\)</span> ，就得到热运动引起的动量输运的表达式，该表达式是具有9个分量的张量，称为压力张量</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{P} = n\overline{m\mathbf{c}'\mathbf{c}'}
+= \rho\overline{\mathbf{c}'\mathbf{c}'}
+= m \int \mathbf{c}'\mathbf{c}'f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>压力张量的物理含义在对它的个别分量了解清楚后可以变得更加清晰。以xy分量为例，考察时间 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内通过法向为 <span class="math notranslate nohighlight">\(y\)</span> 的表面 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 的沿 <span class="math notranslate nohighlight">\(x\)</span> 轴方向的动量的输运，对于速度在 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 附近的 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\)</span> 中的分子，此动量值为 <span class="math notranslate nohighlight">\(mu'\)</span> ，在时间 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内通过 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 的这类分子，位于体积 <span class="math notranslate nohighlight">\(v'\mathrm{d}t\mathrm{d}S\)</span> 的柱形内，其数目为 <span class="math notranslate nohighlight">\(f\mathrm{d}\mathbf{c}v'\mathrm{d}t\mathrm{d}S\)</span> ，携带的 <span class="math notranslate nohighlight">\(x\)</span> 向动量为 <span class="math notranslate nohighlight">\(mfv'u'\mathrm{d}\mathbf{c}\mathrm{d}t\mathrm{d}S\)</span> 。因此，总的 <span class="math notranslate nohighlight">\(mu'\)</span> 的通量为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\int mfu'v'\mathrm{d}\mathbf{c}
+= n\overline{mu'v'}
+= \rho \overline{u'v'}
+= P_{xy}
+\end{align}\]</div>
+<p>类似地可以写出压力张量的各分量为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\mathbf{P} =
+\begin{bmatrix}
+P_{xx} &amp; P_{xy} &amp; P_{xz} \\
+P_{yx} &amp; P_{yy} &amp; P_{yz} \\
+P_{zx} &amp; P_{zy} &amp; P_{zz}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\rho\overline{u'^{2}} &amp; \rho\overline{u'v'} &amp; \rho\overline{u'w'} \\
+\rho\overline{v'u'} &amp; \rho\overline{v'^{2}} &amp; \rho\overline{v'w'} \\
+\rho\overline{w'u'} &amp; \rho\overline{v'w'} &amp; \rho\overline{w'^{2}}
+\end{bmatrix}
+\end{align}\end{split}\]</div>
+<p>显然这是一个对称张量，可以约简地表示为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+P_{ij} = \rho\overline{c_{i}'c_{j}'}
+= m\int (c_{i} - c_{0i})(c_{j}-c_{0j})f\mathrm{d}\mathbf{c}
+,\quad
+i = 1,2,3
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(c_{1}'=u',c_{2}'=v',c_{3}'=w',c_{01}=u_{0},c_{02}=v_{0},c_{03}=w_{0}\)</span> 。</p>
+<p>在气体内部任意一点 <span class="math notranslate nohighlight">\(P\)</span> 内，作用在 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 上并指向此表面的正向的压力(压力通量) <span class="math notranslate nohighlight">\(\mathbf{p}_{l}\)</span> 是单位时间分子动量 <span class="math notranslate nohighlight">\(m\mathbf{c}'\)</span> 沿正向穿过 <span class="math notranslate nohighlight">\(\mathrm{d}S\)</span> 单位面积的通量。为得到此通量，应该在前面得到的一般通量表达式当中取 <span class="math notranslate nohighlight">\(Q = m\mathbf{c}'\)</span> ，同时因为是在与气体流动速度相联系的坐标中考察动量，所以还应该令其中的 <span class="math notranslate nohighlight">\(\mathbf{c} = \mathbf{c}'\)</span> ，于是</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{p}_{l} = n\overline{c'_{l} m\mathbf{c}'}
+= \rho \overline{c_{l}'\mathbf{c}'}
+= \rho \overline{(\mathbf{l}\cdot \mathbf{c}')\mathbf{c'}}
+= \mathbf{l}\cdot \rho\overline{\mathbf{c}'\mathbf{c}'}
+= \mathbf{l} \cdot \mathbf{P}
+\end{align}\]</div>
+<p>这一压力在此表面法向的分量为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{l} \cdot \mathbf{p}_{l}
+= \mathbf{l} \cdot \rho \overline{c_{l}'\mathbf{c}'}
+= \rho \overline{c_{l}'^{2}}
+\end{align}\]</div>
+<p>即这一压力总为正值。考察其定义，这说明气体内部沿某表面的正法向的动量穿过该表面的正向通量总为正，这时外法线为 <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> 的该表面从气体受到的是指向 <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> 相反方向的压力。这个结果表明气体施加于任一表面上的法向力总是压力而不是压力。但是注意，气体施加于表面的压力的方向与动量通量的方向是相反的，而只有表面从气体受到的力是指向表面外法向 <span class="math notranslate nohighlight">\(\mathbf{l}\)</span> 的相反方向时，我们称其为正压力。由于同样的原因，即由于气体施加于表面的应力方向与动量通量的方向是相反的，我们定义粘性应力张量 <span class="math notranslate nohighlight">\(\mathbf{T} := \tau_{ij}\)</span> 为从法向分量重减去静压力 <span class="math notranslate nohighlight">\(p\)</span> 的压力张量之后的负值</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{T} := \tau_{ij} = - (\rho\overline{c_{i}'c_{j}'} - \delta_{ij}p)
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\delta_{ij}\)</span> 为Kronecker张量， <span class="math notranslate nohighlight">\(p\)</span> 为静压力，定义为压力张量的三个法向分量的平均值</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+p = \frac{1}{3}\rho \overline{u'^{2} + v'^{2} + w'^{2}} = \frac{1}{3}\rho \overline{c'^{2}}
+\end{align}\]</div>
+<p>为了得到热流量 <span class="math notranslate nohighlight">\(\mathbf{q} := q_{i}\)</span> 的表达式，我们仍从 <span class="math notranslate nohighlight">\(n\overline{Q\mathbf{c}'}\)</span> 出发，这时需要令 <span class="math notranslate nohighlight">\(Q = \frac{1}{2}mc'^{2} + \varepsilon_{in}\)</span> ，这里 <span class="math notranslate nohighlight">\(\varepsilon_{in}\)</span> 是与一个分子相联系的内自由度(振动、转动)能量，此时</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{q} = \frac{1}{2}\rho \overline{c'^{2}\mathbf{c}'} + n\overline{\varepsilon_{in}\mathbf{c}'}
+= \frac{m}{2}\int \mathbf{c}'c'^{2}f \mathrm{d}\mathbf{c} + \int\mathbf{c}'\varepsilon_{in}f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>或者</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+q_{i} = \frac{m}{2}\int c_{i}'c'^{2}f\mathrm{d}\mathbf{c} + \int c_{i}'\varepsilon_{in}f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>利用平均值的一般表达式，令 <span class="math notranslate nohighlight">\(Q = \frac{1}{2}mc'^{2}\)</span> ，可以得到单位质量的(与平动能关联的)内能的表达式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+e_{tr} = \frac{1}{2}\overline{c'^{2}} = \frac{1}{2n}\int c'^{2}f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>从 <span class="math notranslate nohighlight">\(p\)</span> 的表达式可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+p = \frac{2}{3}\rho e_{tr}
+\end{align}\]</div>
+<p>以上的讨论对气体的状态没有作任何假设，即它们适用于平衡与非平衡状态。</p>
+<p>下面我们讨论本质上是平衡态的气体性质的热力学温度。理想气体的状态方程为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+p = \rho R T = \rho \frac{k}{m}T = nkT
+\end{align}\]</div>
+<p>其中</p>
+<ul class="simple">
+<li><span class="math notranslate nohighlight">\(R\)</span> 为单位质量的气体常数， <span class="math notranslate nohighlight">\(R = \mathscr{R}/\mathscr{M} = k/m\)</span> ；</li>
+<li><span class="math notranslate nohighlight">\(\mathscr{R}\)</span> 是普适气体常数(一克分子气体的气体常数)，有 <span class="math notranslate nohighlight">\(\mathscr{R}=8.3145~\mathrm{Jmol^{-1}K^{-1}}\)</span> ；</li>
+<li><span class="math notranslate nohighlight">\(\mathscr{M}\)</span> 是克分子量；</li>
+<li><span class="math notranslate nohighlight">\(k\)</span> 为Boltzmann常数， <span class="math notranslate nohighlight">\(k = mR = \mathscr{R}/\mathscr{N}\)</span> ，即一个分子的气体常数， <span class="math notranslate nohighlight">\(k=1.38066\times10^{-23}~\mathrm{JK^{-1}}\)</span> ；</li>
+<li><span class="math notranslate nohighlight">\(\mathscr{N}\)</span> 为Avogadro常数， <span class="math notranslate nohighlight">\(\mathscr{N} = 6.0221\times10^{23}~\mathrm{mol^{-1}}\)</span> 。</li>
+</ul>
+<p>据此可以引入下式定义平动动理学温度</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{3}{2}\frac{k}{m}T_{tr} = e_{tr} = \frac{1}{2}\overline{c'^{2}} = \frac{1}{2}(\overline{u'^{2}} +\overline{v'^{2}} + \overline{w'^{2}})
+\end{align}\]</div>
+<p>可以将其改写为分子的平均速度和分子速度的表达式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{3}{2}kT_{tr} = \frac{1}{2}m\overline{c'^{2}} = \frac{1}{2}m(\overline{c^{2}} - c_{0}^{2}) = \frac{1}{2}m(\overline{u^{2}} + \overline{v^{2}} + \overline{w^{2}} - c_{0}^{2})
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">这样的 <span class="math notranslate nohighlight">\(T_{tr}\)</span> 的定义和理想气体状态方程实际上也适用于气体处于非平衡的状态。</p>
+</div>
+<p>可以分别定义三个速度分量的平动分子运动论温度</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+k(T_{tr})_{x} = m\overline{u'^{2}}
+,\quad
+k(T_{tr})_{y} = m\overline{v'^{2}}
+,\quad
+k(T_{tr})_{z} = m\overline{w'^{2}}
+\end{align}\]</div>
+<p>而 <span class="math notranslate nohighlight">\((T_{tr})_{x}, (T_{tr})_{y}, (T_{tr})_{z}\)</span> 与 <span class="math notranslate nohighlight">\(T_{tr}\)</span> 的不同及它们互相之间的不同表征着气体中平动能模态的非平衡程度。</p>
+<p>在单原子分子中 <span class="math notranslate nohighlight">\(T_{tr}\)</span> 即可定义为气体的温度。双原子分子和多原子分子具有转动和振动能量和相应的自由度。根据某一能量模的自由度数 <span class="math notranslate nohighlight">\(\zeta\)</span> 可以与平动温度 <span class="math notranslate nohighlight">\(T_{tr}\)</span> 的定义式相类似地(平动能具有三个自由度)定义这一内能模的温度</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\zeta}{2}\frac{k}{m}T_{int} = e_{int}
+\end{align}\]</div>
+<p>能量均分原理意味着气体平衡态下平动和内能温度相等。在不平衡气体中，可以定义总的(overall)动理学温度</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+T_{ov} = \frac{3T_{tr} + \zeta T_{int}}{3 + \zeta}
+\end{align}\]</div>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p>以上我们详细地给出了宏观量通过速度分布函数的矩表达的推导，这是从速度分布函数一级的描述转换到宏观量描述的重要一步。所得结果汇总如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+n = \int f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\rho = mn = m \int f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+c_{0} = \overline{c} = \frac{1}{n}\int \mathbf{c}f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+P_{ij} = m \int(c_{i} - c_{0i})(c_{j} - c_{0j})f\mathrm{d}\mathbf{c}
+= \rho\overline{c_{i}'c_{j}'}
+= p\delta_{ij} - \tau_{ij}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\tau_{ij} = -(\rho\overline{c_{i}'c_{j}'} - \delta_{ij}p)
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+p = \frac{1}{3}\rho\overline{c'^{2}}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+q_{i} = \int c_{i}' \Big(\frac{1}{2}mc'^{2}\Big)f\mathrm{d}\mathbf{c} + \int c_{i}'\varepsilon_{i}f\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{3}{2}\frac{k}{m}T = e_{tr} = \frac{1}{2n}\int c'^{2}f\mathrm{d}\mathbf{c} = \frac{1}{2}\overline{c}'^{2} = \frac{3}{2}\frac{p}{\rho}
+\end{align}\]</div>
+<p class="last">以上的叙述与推导是针对单组元气体进行的。对于混合气体的推广是直接而简单的。</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h3>分子的双体碰撞模型<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<p>气体因为分子与气体中固体表面边界的碰撞及分子间的碰撞而发生变化。这里将讨论的双体碰撞时最重要的也是容易进行数学讨论的碰撞。首先分析一下三体碰撞不重要而仅有双体碰撞重要的条件。当一个分子(或原子)与一个由两个分子(原子)临时组成的分子对发生碰撞时，可以看做是发生了三体碰撞。两个分子碰撞组成碰撞对的时间的量级为 <span class="math notranslate nohighlight">\(\sigma^{1/2}/\overline{c_{r}}\)</span> ，而分子的碰撞频率 <span class="math notranslate nohighlight">\(\nu \approx n\sigma \overline{c_{r}}\)</span> 。显然，三体碰撞的概率即为分子对存在时间内与另一个分子发生碰撞的几率，其值约为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+(\sigma^{1/2}/\overline{c_{r}}) \cdot n\sigma\overline{c_{r}} \approx \sigma^{3/2}n \approx d^{3}n = d^{3}/\delta^{3}
+\end{align}\]</div>
+<p>即三体碰撞不重要的条件为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+d^{3}/\delta^{3} \ll 1
+\end{align}\]</div>
+<p>由此可见，当稀薄气体条件，即平均分子间隙 <span class="math notranslate nohighlight">\(\delta = n^{-1/3}\)</span> (一个分子平均占有的体积为 <span class="math notranslate nohighlight">\(n^{-1}\)</span> )远大于分子直径 <span class="math notranslate nohighlight">\(d\)</span> 的条件满足时，仅双体碰撞为重要的条件满足。</p>
+<p>对于双体碰撞最简单的情况是弹性碰撞，即没有平动能与内能之间能量交换的情况。这时给定两个分子碰撞前的速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{2}\)</span> ，并应用动量和能量守恒，还不足以决定碰撞后的速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}^{*}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{2}^{*}\)</span> 。完全决定两个分子碰撞后果还需要知道分子互相运动的距离和方位，即所谓命中参数(impact parameters)，包括瞄准距离 <span class="math notranslate nohighlight">\(b\)</span> 和碰撞平面与某一参考平面的夹角 <span class="math notranslate nohighlight">\(\varepsilon\)</span> ，以及分子间的相互作用势。这里我们先得到在不规定命中参数和作用势时的碰撞规律。</p>
+<p>对质量分别为 <span class="math notranslate nohighlight">\(m_{1}\)</span> 和 <span class="math notranslate nohighlight">\(m_{2}\)</span> ，碰撞前速度为 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{2}\)</span> 的两个分子，应用动量和能量守恒</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+m_{1}\mathbf{c}_{1} + m_{2}\mathbf{c}_{2} = m_{1}\mathbf{c}_{1}^{*} + m_{2}\mathbf{c}_{2}^{*} = (m_{1} + m_{2})\mathbf{c}_{m}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+m_{1}c_{1}^{2} + m_{2}c_{2}^{2} = m_{1}c_{1}^{*2} + m_{2}c_{2}^{*2}
+\end{align}\]</div>
+<p>这里引入了分子对质心的速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{m}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mathbf{c}_{m} = \frac{m_{1}\mathbf{c}_{1} + m_{2}\mathbf{c}_{2}}{m_{1} + m_{2}}
+\end{align}\]</div>
+<p>动量方程表明碰撞前后质心速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{m}\)</span> 不变。引入分子碰撞前后的相对速度</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \mathbf{c}_{r} = \mathbf{c}_{1} - \mathbf{c}_{2} \\
+&amp; \mathbf{c}_{r}^{*} = \mathbf{c}_{1}^{*} - \mathbf{c}_{2}^{*}
+\end{align}\end{split}\]</div>
+<p>从以上可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \mathbf{c}_{1} = \mathbf{c}_{m} + \frac{m_{2}}{m_{1} + m_{2}}\mathbf{c}_{r} \\
+&amp; \mathbf{c}_{2} = \mathbf{c}_{m} - \frac{m_{1}}{m_{1} + m_{2}}\mathbf{c}_{r} \\
+&amp; \mathbf{c}_{1}^{*} = \mathbf{c}_{m} + \frac{m_{2}}{m_{1} + m_{2}}\mathbf{c}_{r}^{*} \\
+&amp; \mathbf{c}_{2}^{*} = \mathbf{c}_{m} - \frac{m_{1}}{m_{1} + m_{2}}\mathbf{c}_{r}^{*}
+\end{align}\end{split}\]</div>
+<p>可以看到，在质心坐标系中，碰撞前两分子的速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{1} - \mathbf{c}_{m}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{2} - \mathbf{c}_{m}\)</span> 是反平行的，如果分子是力的中心，则分子间的作用力处于这两个速度所在的平面内。同时，碰撞后的速度在质心坐标中也是反平行的。</p>
+<p>由以上可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; m_{1}c_{1}^{2} + m_{2}c_{2}^{2} = (m_{1} + m_{2})c_{m}^{2} + m_{r}c_{r}^{2} \\
+&amp; m_{1}c_{1}^{*2} + m_{2}c_{2}^{*2} = (m_{1} + m_{2})c_{m}^{2} + m_{r}c_{r}^{*2}
+\end{align}\end{split}\]</div>
+<p>其中引入了折合质量</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+m_{r} = \frac{m_{1}m_{2}}{m_{1} + m_{2}}
+\end{align}\]</div>
+<p>从能量守恒式可以得到碰撞前后的相对速度之值保持不变，即 <span class="math notranslate nohighlight">\(c_{r}^{*} = c_{r}\)</span> ，且有角动量守恒 <span class="math notranslate nohighlight">\(c_{r}b = c_{r}^{*}b^{*}\)</span> 进一步给出，碰撞前后分子间的瞄准距离 <span class="math notranslate nohighlight">\(b\)</span> 保持不变。这样，我们可以将质心坐标系中分子轨迹给为如图所示。可见，只要计算出分子的偏转角 <span class="math notranslate nohighlight">\(\chi\)</span> ，碰撞后的速度就完全确定了。</p>
+<p>标记两分子的位置矢量 <span class="math notranslate nohighlight">\(\mathbf{r}_{1}, \mathbf{r}_{2}\)</span> ，其间的作用力为 <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> ，分子的运动方程为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+m_{1}\ddot{\mathbf{r}}_{1} = \mathbf{F}
+,\quad
+m_{2}\ddot{\mathbf{r}}_{2} = -\mathbf{F}
+\end{align}\]</div>
+<p>引入相对速度矢量 <span class="math notranslate nohighlight">\(\mathbf{c}_{r} = \dot{\mathbf{r}}_{1} - \dot{\mathbf{r}}_{2} := \dot{\mathbf{r}}\)</span> ，可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+m_{r}\ddot{\mathbf{r}} = \mathbf{F}
+\end{align}\]</div>
+<p>即分子 <span class="math notranslate nohighlight">\(m_{1}\)</span> 相对分子 <span class="math notranslate nohighlight">\(m_{2}\)</span> 的运动归结为质量为 <span class="math notranslate nohighlight">\(m_{r}\)</span> 的分子相对于固定的力心的运动，如图所示。</p>
+<p>如果有两个分子碰撞前的速度为 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}^{*}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{2}^{*}\)</span> ，而且它们在质心坐标系中的瞄准距离为 <span class="math notranslate nohighlight">\(b\)</span> ，则由于动量和能量守恒方程对于碰撞前后速度的对称性，它们在碰撞后的速度将是 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{2}\)</span> 。这个碰撞 <span class="math notranslate nohighlight">\((\mathbf{c}_{1}^{*}, \mathbf{c}_{2}^{*} \to \mathbf{c}_{1}, \mathbf{c}_{2})\)</span> 称为正向碰撞 <span class="math notranslate nohighlight">\((\mathbf{c}_{1}, \mathbf{c}_{2} \to \mathbf{c}_{1}^{*}, \mathbf{c}_{2}^{*})\)</span> 的逆碰撞。</p>
+<p>现在我们在分子是中心力心的假设下来计算分子的偏转角 <span class="math notranslate nohighlight">\(\chi\)</span> 。利用折合分子运动图中的极坐标 <span class="math notranslate nohighlight">\(r,\theta\)</span> 可以写出相对以 <span class="math notranslate nohighlight">\(O\)</span> 为力场中心的质量为 <span class="math notranslate nohighlight">\(m_{r}\)</span> 的分子的角动量和能量守恒方程为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+r^{2} \dot{\theta} = bc_{r}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{1}{2}m_{r}(\dot{r}^{2} + r^{2}\dot\theta^{2}) + \phi = \frac{1}{2}m_{r}c_{r}^{2}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(bc_{r}\)</span> 与 <span class="math notranslate nohighlight">\(\frac{1}{2}m_{r}c_{r}^{2}\)</span> 是角动量与能量在 <span class="math notranslate nohighlight">\(r \to \infty\)</span> 时的常值渐进值； <span class="math notranslate nohighlight">\(\phi\)</span> 为分子间作用势，其与球对称力 <span class="math notranslate nohighlight">\(F\)</span> 通过下式联系起来</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+F = -\frac{\mathrm{d}\phi}{\mathrm{d}r}
+\end{align}\]</div>
+<p>可以将角动量和能量守恒方程合并，并将时间变量消去而得到轨道方程</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Big(\frac{\mathrm{d}r}{\mathrm{d}\theta}\Big)^{2} = \frac{r^{4}}{b^{2}} - r^{2} - \frac{\phi r^{4}}{\frac{1}{2}m_{r}c_{r}^{2}b^{2}}
+\end{align}\]</div>
+<p>如果将变量 <span class="math notranslate nohighlight">\(r\)</span> 变换为无量纲量 <span class="math notranslate nohighlight">\(W = b/r\)</span> ，轨道方程相应地变换为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Big(\frac{\mathrm{d}W}{\mathrm{d}\theta}\Big)^{2} = 1 - W^{2} - \frac{\phi}{\frac{1}{2}m_{r}c_{r}^{2}}
+\end{align}\]</div>
+<p>而解可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\theta = \int_{0}^{W}\Big( 1 - W^{2} - \frac{\phi}{\frac{1}{2}m_{r}c_{r}^{2}} \Big)^{-1/2}\mathrm{d}W
+\end{align}\]</div>
+<p>在拱极线 <span class="math notranslate nohighlight">\(OA\)</span> 与轨道的夹角 <span class="math notranslate nohighlight">\(\theta = \theta_{A}\)</span> 处，有 <span class="math notranslate nohighlight">\(\frac{\mathrm{d}W}{\mathrm{d}\theta} = 0\)</span> ，所以可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\theta_{A} = \int_{0}^{W_{1}}\Big( 1 - W^{2} - \frac{\phi}{\frac{1}{2}m_{r}c_{r}^{2}} \Big)^{-1/2}\mathrm{d}W
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(W_{1}\)</span> 是如下方程的正根</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+1 - W^{2} - \frac{\phi}{\frac{1}{2}m_{r}c_{r}^{2}} = 0
+\end{align}\]</div>
+<p>于是得到相对速度的偏转角为 <span class="math notranslate nohighlight">\(\chi = \pi - 2\theta_{A}\)</span> 。有时候用 <span class="math notranslate nohighlight">\(\chi\)</span> 的补角 <span class="math notranslate nohighlight">\(\delta = \pi - \chi = 2\theta_{A}\)</span> 较为方便。</p>
+<p>现在我们将碰撞后的速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}^{*},\mathbf{c}_{2}^{*}\)</span> 通过碰撞前的速度 <span class="math notranslate nohighlight">\(\mathbf{c}_{1},\mathbf{c}_{2}\)</span> 以及 <span class="math notranslate nohighlight">\(\chi\)</span> (或 <span class="math notranslate nohighlight">\(\delta\)</span> )与 <span class="math notranslate nohighlight">\(\varepsilon\)</span> 来表达。根据质心坐标系下的速度表达式，只要求得 <span class="math notranslate nohighlight">\(\mathbf{c}_{r}^{*}\)</span> 即可得到 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}^{*}, \mathbf{c}_{2}^{*}\)</span> 的表达式。</p>
+<p>设 <span class="math notranslate nohighlight">\(OX,OY,OZ\)</span> 为直角坐标系的三个轴， <span class="math notranslate nohighlight">\(OG\)</span> 则给出 <span class="math notranslate nohighlight">\(\mathbf{c}_{r}\)</span> 的相反方向， <span class="math notranslate nohighlight">\(OG^{*}\)</span> 给出 <span class="math notranslate nohighlight">\(\mathbf{c}_{r}^{*}\)</span> 的方向，将 <span class="math notranslate nohighlight">\(X,Y,Z,G,G^{*}\)</span> 各点取在以 <span class="math notranslate nohighlight">\(O\)</span> 为球心、以 <span class="math notranslate nohighlight">\(c_{r}\)</span> 为半径的球面上。将参考平面取为通过 <span class="math notranslate nohighlight">\(c_{r}\)</span> 及 <span class="math notranslate nohighlight">\(OX\)</span> 轴的平面(GOX平面)， <span class="math notranslate nohighlight">\(\varepsilon\)</span> 为碰撞平面 <span class="math notranslate nohighlight">\(GOG^{*}\)</span> 与参考平面的夹角(角 <span class="math notranslate nohighlight">\(G^{*}GX\)</span> )，如图所示。现在考察球面三角形 <span class="math notranslate nohighlight">\(G^{*}GX\)</span> ，根据球面三角原理边的余弦公式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\cos G^{*}X = \cos GX \cos GG^{*} + \sin GX \sin GG^{*} \cos \varepsilon
+\end{align}\]</div>
+<p>显然有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\cos G^{*}X = \frac{u_{r}^{*}}{c_{r}}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\cos GX = -\frac{u_{r}}{c_{r}} ,\quad \sin GX = \frac{\sqrt{v_{r}^{2} + w_{r}^{2}}}{c_{r}}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\cos GG^{*} = \cos \delta ,\quad \sin GG^{*} = \sin \delta
+\end{align}\]</div>
+<p>结合球面三角原理边的余弦公式就得到了</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+u_{r}^{*} = -u_{r}\cos\delta + \sqrt{v_{r}^{2} + w_{r}^{2}}\sin\delta \cos\varepsilon
+\end{align}\]</div>
+<p>类似地，对于球面三角形 <span class="math notranslate nohighlight">\(G^{*}GY\)</span> 有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+v_{r}^{*} = -v_{r}\cos\delta + \sqrt{u_{r}^{2} + w_{r}^{2}}\sin\delta \cos G^{*}GY
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\cos G^{*}GY = \cos(\varepsilon - \xi_{2})\)</span> ，而 <span class="math notranslate nohighlight">\(\xi_{2}\)</span> 标记角 <span class="math notranslate nohighlight">\(XGY\)</span> 。为了得到 <span class="math notranslate nohighlight">\(\cos\xi_{2}\)</span> 的值，考察球面三角形 <span class="math notranslate nohighlight">\(GXY\)</span> ，有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\cos XY = \cos GX \cos GY + \sin GX \sin GY \cos \xi_{2}
+\end{align}\]</div>
+<p>也即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+0 = u_{r}v_{r} + \sqrt{v_{r}^{2} + w_{r}^{2}} \cdot \sqrt{u_{r}^{2} + w_{r}^{2}}\cos\xi_{2}
+\end{align}\]</div>
+<p>从而有</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \cos\xi_{2} = \frac{-u_{r}v_{r}}{\sqrt{v_{r}^{2} + w_{r}^{2}} \cdot \sqrt{u_{r}^{2} + w_{r}^{2}}} \\
+&amp; \sin\xi_{2} = \frac{w_{r}c_{r}}{\sqrt{v_{r}^{2} + w_{r}^{2}} \cdot \sqrt{u_{r}^{2} + w_{r}^{2}}}
+\end{align}\end{split}\]</div>
+<p>于是得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+v_{r}^{*} = -v_{r}\cos\delta + \sin\delta \cdot \frac{w_{r}c_{r}\sin\varepsilon - u_{r}v_{r}\cos\varepsilon}{\sqrt{v_{r}^{2} + w_{r}^{2}}}
+\end{align}\]</div>
+<p>最后，对于球面三角形 <span class="math notranslate nohighlight">\(G^{*}GZ\)</span> 有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+w_{r}^{*} = -w_{r}\cos\delta + \sqrt{u_{r}^{2} + v_{r}^{2}}\sin\delta \cos G^{*}GZ
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\cos G^{*}GZ = \cos(\xi_{3} - \varepsilon)\)</span> ，而从球面三角形 <span class="math notranslate nohighlight">\(GZX\)</span> 可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \cos\xi_{3} = \frac{-u_{r}w_{r}}{\sqrt{v_{r}^{2} + w_{r}^{2}} \cdot \sqrt{u_{r}^{2} + v_{r}^{2}}} \\
+&amp; \sin\xi_{3} = \frac{v_{r}c_{r}}{\sqrt{v_{r}^{2} + w_{r}^{2}} \cdot \sqrt{u_{r}^{2} + v_{r}^{2}}}
+\end{align}\end{split}\]</div>
+<p>于是得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+w_{r}^{*} = -w_{r}\cos\delta + \sin \delta \cdot \frac{v_{r}c_{r}\sin\varepsilon - u_{r}w_{r}\cos\varepsilon}{\sqrt{v_{r}^{2} + w_{r}^{2}}}
+\end{align}\]</div>
+<p>现在我们将碰撞后相对速度 <span class="math notranslate nohighlight">\(c_{r}^{*}\)</span> 的三个分量列在一起，并将 <span class="math notranslate nohighlight">\(\delta\)</span> 换成 <span class="math notranslate nohighlight">\(\chi\)</span> ，就有</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; u_{r}^{*} = u_{r}\cos\chi + \sin\chi\cos\varepsilon \sqrt{v_{r}^{2} + w_{r}^{2}} \\
+&amp; v_{r}^{*} = v_{r}\cos\chi + \sin\chi \frac{c_{r}w_{r}\sin\varepsilon - u_{r}v_{r}\cos\varepsilon}{\sqrt{v_{r}^{2} + w_{r}^{2}}} \\
+&amp; w_{r}^{*} = w_{r}\cos\chi + \sin\chi \frac{c_{r}v_{r}\sin\varepsilon - u_{r}w_{r}\cos\varepsilon}{\sqrt{v_{r}^{2} + w_{r}^{2}}}
+\end{align}\end{split}\]</div>
+<p>进而可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; u_{1}^{*} = u_{1} + (u_{2} - u_{1})\cos^{2}\frac{\chi}{2} + \frac{1}{2}\sqrt{c_{r}^{2} - (u_{2}-u_{1})^{2}}\sin\chi\cos\varepsilon \\
+&amp; v_{1}^{*} = v_{1} + (v_{2} - v_{1})\cos^{2}\frac{\chi}{2} + \frac{\sin \chi}{2} \cdot \frac{c_{r}(w_{2} - w_{1})\sin\varepsilon - (u_{2} - u_{1})(v_{2}-v_{1})\cos\varepsilon}{\sqrt{c_{r}^{2} - (u_{2} - u_{1})^{2}}} \\
+&amp; w_{1}^{*} = w_{1} + (w_{2} - w_{1})\cos^{2}\frac{\chi}{2} + \frac{\sin\chi}{2} \cdot \frac{c_{r}(v_{2} - v_{1})\sin\varepsilon - (u_{2} - u_{1})(w_{2} - w_{1})\cos\varepsilon}{\sqrt{c_{r}^{2} - (u_{2} - u_{1})^{2}}}
+\end{align}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; u_{2}^{*} = u_{2} - (u_{2} - u_{1})\cos^{2}\frac{\chi}{2} - \frac{1}{2}\sqrt{c_{r}^{2} - (u_{2}-u_{1})^{2}}\sin\chi\cos\varepsilon \\
+&amp; v_{2}^{*} = v_{2} - (v_{2} - v_{1})\cos^{2}\frac{\chi}{2} - \frac{\sin \chi}{2} \cdot \frac{c_{r}(w_{2} - w_{1})\sin\varepsilon - (u_{2} - u_{1})(v_{2}-v_{1})\cos\varepsilon}{\sqrt{c_{r}^{2} - (u_{2} - u_{1})^{2}}} \\
+&amp; w_{2}^{*} = w_{2} - (w_{2} - w_{1})\cos^{2}\frac{\chi}{2} - \frac{\sin\chi}{2} \cdot \frac{c_{r}(v_{2} - v_{1})\sin\varepsilon - (u_{2} - u_{1})(w_{2} - w_{1})\cos\varepsilon}{\sqrt{c_{r}^{2} - (u_{2} - u_{1})^{2}}}
+\end{align}\end{split}\]</div>
+</div>
+<div class="section" id="id17">
+<h3>碰撞截面与分子模型<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<p>为了完全确定双体碰撞，即确定碰撞后的速度，除了需要碰撞分子再碰撞前的速度外，还需要知道分子间的相互作用势并给出两个规定两个分子间几何关系的命中参数。一个是瞄准距离 <span class="math notranslate nohighlight">\(b\)</span> ，也就是质心坐标系中，尚未受到两分子相互作用力影响的粒子轨道间的最接近的距离。 <span class="math notranslate nohighlight">\(b\)</span> 越小时，两个分子碰撞的效果越明显， <span class="math notranslate nohighlight">\(b\)</span> 为零时是它们正面碰撞的情况， <span class="math notranslate nohighlight">\(b\)</span> 增加则分子因碰撞而产生的偏转减小，当 <span class="math notranslate nohighlight">\(b\)</span> 超过一定范围外时，分子相互之间完全没有作用。在质心坐标系中，分子轨道所在的平面为碰撞平面，除了 <span class="math notranslate nohighlight">\(b\)</span> 外再确定碰撞平面的方位就完全规定了碰撞，所以可以规定碰撞平面与某一参考平面的交角 <span class="math notranslate nohighlight">\(\varepsilon\)</span> 为另一个命中参数。</p>
+<p>如图所示，考察相对速度为 <span class="math notranslate nohighlight">\(\mathbf{c}_{r}\)</span> 的两个分子的碰撞，就要考察通过微分面积 <span class="math notranslate nohighlight">\(b\mathrm{d}b\mathrm{d}\varepsilon\)</span> 相对速度发生变化的情况。通过这一面积的分子散射到 <span class="math notranslate nohighlight">\(\mathbf{c}_{r}^{*}\)</span> 附近的 <span class="math notranslate nohighlight">\(\mathrm{d}\chi\)</span> 和 <span class="math notranslate nohighlight">\(\mathrm{d}\varepsilon\)</span> 的范围内，或立体角 <span class="math notranslate nohighlight">\(\mathrm{d}\Omega = \sin\chi\mathrm{d}\chi\mathrm{d}\varepsilon\)</span> 之内。 <strong>微分碰撞截面</strong> <span class="math notranslate nohighlight">\(\sigma\)</span> 定义为单位立体角 <span class="math notranslate nohighlight">\(\Omega\)</span> 所对应截面积，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma\mathrm{d}\Omega = b\mathrm{d}b\mathrm{d}\varepsilon
+\end{align}\]</div>
+<p>从而有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma = \frac{b}{\sin\chi}\Big| \frac{\mathrm{d}b}{\mathrm{d}\chi} \Big|
+\end{align}\]</div>
+<p>总碰撞截面 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T} = \int_{0}^{4\pi}\sigma\mathrm{d}\Omega = 2\pi \int_{0}^{\pi}\sigma \sin\chi~\mathrm{d}\chi = 2\pi \int b~\mathrm{d}b
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">求碰撞截面时，当然不能将 <span class="math notranslate nohighlight">\(b\)</span> 看做简单的几何坐标加以积分，而只有在一定的分子作用力的模型下，即已知偏转角 <span class="math notranslate nohighlight">\(\chi\)</span> 与 <span class="math notranslate nohighlight">\(b\)</span> 的关系之后， <span class="math notranslate nohighlight">\(\sigma\)</span> 和 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 的定义才有意义。</p>
+</div>
+<p>在处理分子运动的实际问题的时候，除了总碰撞截面，和气体的输运性质相关的碰撞截面也同样起着重要的租用。这里指的截面是 <strong>粘性碰撞截面</strong> <span class="math notranslate nohighlight">\(\sigma_{\mu}\)</span> 和 <strong>扩散碰撞截面</strong> <span class="math notranslate nohighlight">\(\sigma_{D}\)</span> ，它们分别定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \sigma_{\mu} = \int_{0}^{4\pi}\sin^{2}\chi \sigma \mathrm{d}\Omega
+= \int_{0}^{\pi}\int_{0}^{2\pi}\sin^{2}\chi \sigma \sin\chi\mathrm{d}\varepsilon\mathrm{d}\chi
+= 2\pi \int_{0}^{\pi}\sigma \sin^{3}\chi \mathrm{d}\chi
+= 2\pi \int_{0}^{\pi}\frac{b}{\sin\chi}\frac{\mathrm{d}b}{\mathrm{d}\chi} \sin^{3}\chi \mathrm{d}\chi
+= 2\pi \int \sin^{2}\chi b\mathrm{d}b \\
+&amp; \sigma_{D} = \int_{0}^{4\pi}(1 - \cos\chi)\sigma\mathrm{d}\Omega
+= \int_{0}^{\pi}\int_{0}^{2\pi}(1-\cos\chi)\sigma \sin\chi\mathrm{d}\varepsilon\mathrm{d}\chi
+= 2\pi \int_{0}^{\pi}\sigma(1 - \cos\chi) \sin\chi \mathrm{d}\chi
+= 2\pi \int_{0}^{\pi}\frac{b}{\sin\chi}\frac{\mathrm{d}b}{\mathrm{d}\chi}(1-\cos\chi)\sin\chi\mathrm{d}\chi
+= 2\pi \int (1 - \cos\chi)b\mathrm{d}b
+\end{align}\end{split}\]</div>
+<p>粘性碰撞截面出现在Chapmann-Enskog输运理论粘性系数 <span class="math notranslate nohighlight">\(\mu\)</span> 的表达式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \cfrac{\cfrac{5}{8}\sqrt{\pi m kT}}{\Big(\cfrac{m}{4kT}\Big)^{4} \int_{0}^{\infty}c_{r}^{7}\sigma_{\mu}\exp\Big( \cfrac{-mc_{r}^{2}}{4kT} \Big)\mathrm{d}c_{r}}
+\end{align}\]</div>
+<p>而扩散碰撞截面出现在Chapmann-Eskog输运理论双组分混合气体的扩散系数的表达式中。</p>
+<div class="section" id="id18">
+<h4>硬球模型<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h4>
+<p>最简单的分子模型是硬球模型。当两个分子中心距离小于 <span class="math notranslate nohighlight">\(d_{12} = \frac{1}{2}(d_{1} + d_{2})\)</span> 时，分子互相作用有如两个台球，如图所示，可以看到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; b = d_{12}\sin\theta_{A} = d_{12}\cos\Big(\frac{1}{2}\chi\Big) \\
+&amp; \Big| \frac{\mathrm{d}b}{\mathrm{d}\chi} \Big| = \frac{1}{2}d_{12}\sin\Big(\frac{1}{2}\chi\Big)
+\end{align}\end{split}\]</div>
+<p>于是微分截面为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma = \frac{b}{\sin\chi}\frac{\mathrm{d}b}{\mathrm{d}\chi}
+= \frac{d_{12}\cos(\chi/2)}{\sin\chi}\frac{d_{12}\sin(\chi/2)}{2}
+= d_{12}^{2}/4
+\end{align}\]</div>
+<p>上式表明 <span class="math notranslate nohighlight">\(\sigma\)</span> 不依赖于 <span class="math notranslate nohighlight">\(\chi\)</span> 角，也就是说分子在质心坐标中均匀散步于各个方位， <span class="math notranslate nohighlight">\(\mathbf{c}_{r}^{*}\)</span> 的指向在各个方向上有相等的几率。总碰撞截面则为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T} = \int_{0}^{4\pi} \sigma \mathrm{d}\Omega
+= 2\pi \sigma \int_{0}^{\pi} \sin\chi \mathrm{d}\chi
+= \pi d_{12}^{2}
+\end{align}\]</div>
+<p>这可以从硬球模型直观地得到。以上结果适用于两个分子相同的情况，此时有 <span class="math notranslate nohighlight">\(d_{12} = d\)</span> 。</p>
+<p>显然，对于硬球模型，在 <span class="math notranslate nohighlight">\(\sigma_{\mu}\)</span> 的表达式中， <span class="math notranslate nohighlight">\(\sigma = d_{12}^{2}/4\)</span> 可以提到积分号外面，有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{\mu} = \int_{0}^{4\pi} \sin^{2}\chi \sigma \mathrm{d}\Omega
+= 2\pi \sigma \int_{0}^{\pi} \sin^{3}\chi \mathrm{d}\chi
+= \frac{2}{3}\pi d^{2}
+= \frac{2}{3}\sigma_{T}
+\end{align}\]</div>
+<p>将上式代入Chapman-Eskog输运理论的粘性系数表达式，得到硬球模型中的粘性系数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \frac{5}{16} \frac{\sqrt{\pi mkT}}{\sigma_{T}} = \frac{5}{16}\sqrt{\frac{mkT}{\pi}}\frac{1}{d^{2}}
+\end{align}\]</div>
+<p>如果在参考温度 <span class="math notranslate nohighlight">\(T_{ref}\)</span> 附近使用硬球模型考察气体，而已知 <span class="math notranslate nohighlight">\(T_{ref}\)</span> 下的粘性为 <span class="math notranslate nohighlight">\(\mu_{ref}\)</span> ，可以将 <span class="math notranslate nohighlight">\(d\)</span> 取为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+d = \sqrt{\frac{5}{16}\sqrt{\frac{mkT_{ref}}{\pi}}\frac{1}{\mu_{ref}}}
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">通过对硬球模型气体的粘性系数的Chapman-Enskog理论表达式与真实气体中测得的粘性系数进行比较可以推导出分子的直径，但硬球分子具有固定不变的截面，而真实的分子碰撞截面是随着相对速度而改变的，即随着 <span class="math notranslate nohighlight">\(c_{r}\)</span> 的增加而减小，这是模拟真实气体流动一定要满足的条件，否则不能保证 <span class="math notranslate nohighlight">\(\mu\)</span> 与温度的关系与实际气体中一致。</p>
+</div>
+</div>
+<div class="section" id="id19">
+<h4>逆幂律分子模型<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h4>
+<p>逆幂律分子模型（或称排斥力中心模型）的力和力势由下式给出</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+F = \frac{\kappa}{r^{\eta}}
+,\qquad
+\phi = \int -F~\mathrm{d}r = \frac{\kappa}{(\eta - 1)r^{\eta - 1}}
+\end{align}\]</div>
+<p>为了得到碰撞后的偏转角有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\chi = \pi - 2\theta_{A}
+,\qquad
+\theta_{A} = \int_{0}^{W_{1}}\Big( 1 - W^{2} - \frac{\phi}{\frac{1}{2}m_{r}c_{r}^{2}} \Big)^{-1/2}\mathrm{d}W
+\end{align}\]</div>
+<p>上式中的势能和动能渐进值之比可以通过 <span class="math notranslate nohighlight">\(W\)</span> 写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\phi}{\frac{1}{2}m_{r}c_{r}^{2}}
+= \frac{\kappa}{(\eta - 1)r^{\eta-1}}\frac{1}{\frac{1}{2}mc_{r}^{2}}
+= \frac{2}{\eta - 1}\frac{b^{\eta-1}/r^{\eta-1}}{b^{\eta-1}\cfrac{m_{r}c_{r}^{2}}{\kappa}}
+= \frac{2}{\eta - 1}\Big( \frac{W}{W_{0}} \Big)^{\eta-1}
+\end{align}\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+W_{0} = b\Big(\frac{m_{r}c_{r}^{2}}{\kappa}\Big)^{1/(\eta - 1)}
+\end{align}\]</div>
+<p>这样偏转角 <span class="math notranslate nohighlight">\(\chi\)</span> 就可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\chi = \pi - 2 \int_{0}^{W_{1}}\Big[1 - W^{2} - \frac{2}{\eta - 1}\Big(\frac{W}{W_{0}}\Big)^{\eta-1}\Big]^{-1/2}\mathrm{d}W
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(W_{1}\)</span> 为如下方程的正根</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+1 - W^{2} - \frac{2}{\eta - 1}\Big(\frac{W}{W_{0}}\Big)^{\eta-1} = 0
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">对于逆幂律分子模型，碰撞由唯一的命中参数 <span class="math notranslate nohighlight">\(W_{0}\)</span> 所确定。</p>
+</div>
+<p>这一模型的微分碰撞截面可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma\mathrm{d}\Omega = b\mathrm{d}b\mathrm{d}\varepsilon
+= W_{0} \Big( \frac{\kappa}{m_{r}c_{r}^{2}} \Big)^{1/(\eta-1)} \cdot \mathrm{d}W_{0} \Big( \frac{\kappa}{m_{r}c_{r}^{2}} \Big)^{1/(\eta-1)} \mathrm{d}\varepsilon
+= W_{0}\Big(\frac{\kappa}{m_{r}c_{r}^{2}}\Big)^{\frac{2}{\eta-1}}\mathrm{d}W_{0}\mathrm{d}\varepsilon
+\end{align}\]</div>
+<p>对于 <span class="math notranslate nohighlight">\(\eta\)</span> 为有限值的时候，可以看出总碰撞截面的积分是发散的，这种情况下通常需要对瞄准距离 <span class="math notranslate nohighlight">\(b\)</span> 或偏转角 <span class="math notranslate nohighlight">\(\chi\)</span> 做有限的截断。可以看到，逆幂律下 <span class="math notranslate nohighlight">\(\chi\)</span> 是 <span class="math notranslate nohighlight">\(W_{0}\)</span> 的函数，确定了 <span class="math notranslate nohighlight">\(W_{0}\)</span> 的最大值 <span class="math notranslate nohighlight">\(W_{0,m}\)</span> 也就确定了 <span class="math notranslate nohighlight">\(\chi\)</span> 的截断值，而总碰撞截面为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T} = \int_{0}^{2\pi}\int_{0}^{W_{0,m}}W_{0}\Big(\frac{\kappa}{m_{r}c_{r}^{2}}\Big)^{\frac{2}{\eta - 1}} \mathrm{d}W_{0}\mathrm{d}\varepsilon
+= \pi W_{0,m}^{2}\Big(\frac{\kappa}{m_{r}c_{r}^{2}}\Big)^{\frac{2}{\eta-1}}
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">对瞄准距离 <span class="math notranslate nohighlight">\(b\)</span> 或偏转角 <span class="math notranslate nohighlight">\(\chi\)</span> 做有限的截断，对于逆幂律模型和其他较真实的分子是实际的需要，这不可避免地引入了任意性，而且随之而来的还带来了确定分子直径和平均自由程的任意性。所以这个总碰撞截面不能用来确定实效碰撞频率或分子平均自由程。</p>
+</div>
+<p>逆幂律分子模型下的总碰撞截面的积分式虽然是发散的，但是其粘性和扩散碰撞截面的积分却是收敛的。对于扩散和粘性碰撞截面有</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \sigma_{D} = \int_{0}^{4\pi}(1-\cos\chi)\sigma\mathrm{d}\Omega = 2\pi\Big(\frac{\kappa}{m_{r}}\Big)^{\frac{2}{\eta-1}}c_{r}^{-\frac{4}{\eta-1}}A_{1}(\eta) \\
+&amp; \sigma_{\mu} = \int_{0}^{4\pi}\sin^{2}\chi \sigma\mathrm{d}\Omega = 2\pi \Big( \frac{\kappa}{m_{r}} \Big)^{\frac{2}{\eta-1}}c_{r}^{-\frac{4}{\eta-1}}A_{2}(\eta)
+\end{align}\end{split}\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; A_{1}(\eta) = \int_{0}^{\infty}(1 - \cos\chi)W_{0}\mathrm{d}W_{0} \\
+&amp; A_{2}(\eta) = \int_{0}^{\infty}\sin^{2}\chi W_{0}\mathrm{d}W_{0}
+\end{align}\end{split}\]</div>
+<p>由于前面给出了 <span class="math notranslate nohighlight">\(\chi\)</span> 和 <span class="math notranslate nohighlight">\(W_{0}\)</span> 的函数关系，因此 <span class="math notranslate nohighlight">\(A_{1}(\eta)\)</span> 和 <span class="math notranslate nohighlight">\(A_{2}(\eta)\)</span> 的数值可以通过数值积分的方式得到，其中 <span class="math notranslate nohighlight">\(\eta\)</span> 作为参数出现。进而可以给出逆幂律分子的粘性系数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \frac{5m \sqrt{\cfrac{RT}{\pi}}\Big(\cfrac{2mRT}{\kappa}\Big)^{\frac{2}{\eta-1}}}{8A_{2}(\eta)\Gamma\Big( 4 - \cfrac{2}{\eta-1} \Big)}
+\end{align}\]</div>
+</div>
+<div class="section" id="maxwell">
+<h4>Maxwell分子<a class="headerlink" href="#maxwell" title="永久链接至标题">¶</a></h4>
+<p>逆幂律分子模型当 <span class="math notranslate nohighlight">\(\eta = 5\)</span> 时的特例称为Maxwell分子，此时 <span class="math notranslate nohighlight">\(W_{1}\)</span> 可以显式地给出</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+W_{1} = W_{0}^{2} \sqrt{ \sqrt{1 + \frac{2}{W_{0}^{4}}} - 1 }
+\end{align}\]</div>
+<p>通过积分可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\chi = \pi - \Big( \frac{2}{1 + \frac{2}{W_{0}^{4}}} \Big)^{1/2}K\Big[ \frac{1}{2} - \frac{1}{2}\Big( 1 + \frac{2}{W_{0}^{4}} \Big)^{-1/2} \Big]
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(K(\alpha)\)</span> 为第一类完全椭圆积分</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+K(\alpha) = \int_{0}^{\frac{\pi}{2}}(1 - \alpha \sin^{2}y)^{-1/2}\mathrm{d}y
+\end{align}\]</div>
+<p>微分碰撞截面的表达式变为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma\mathrm{d}\Omega = \frac{W_{0}}{c_{r}}\Big(\frac{\kappa}{m_{r}}\Big)^{1/2}\mathrm{d}W_{0}\mathrm{d}\varepsilon
+\end{align}\]</div>
+<p>即碰撞截面与 <span class="math notranslate nohighlight">\(c_{r}\)</span> 成反比。而在前面的讨论中我们已经表明，碰撞频率正比于碰撞截面与相对速度的乘积，于是Maxwell分子模型下气体中碰撞频率与相对速度无关。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>上面的这个特点给解析方法带来简化的可能，因而Maxwell分子模型得到广泛的应用。但是Maxwell分子气体的粘性系数与温度成线性正比关系，令 <span class="math notranslate nohighlight">\(\eta = 5\)</span> 有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \frac{2kT}{3\pi A_{2}(5)}\Big(\frac{m}{2k}\Big)^{1/2}
+\end{align}\]</div>
+<p class="last">这是不真实的，所以Maxwell分子模型有很大局限性。</p>
+</div>
+</div>
+<div class="section" id="vhs">
+<h4>变径硬球(VHS)模型<a class="headerlink" href="#vhs" title="永久链接至标题">¶</a></h4>
+<p>为了解决经典分子运动论的任何一种分子模型都不同时具有有限的碰撞截面又能再现粘性系数与温度的依赖关系的问题，Bird建议了一种变径硬球(variable hard sphere, VHS)模型。在该模型的假设下，分子具有硬球一样的均匀的散射几率，但它的碰撞截面像逆幂律分子一样是分子间相对速度的函数。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">具有硬球一样的散射规律使得在计算碰撞后的速度方向散步时取样十分简单，而分析和数值研究的实际应用表明，分子的散射方式对流场的影响是很小的。将碰撞截面或分子直径取为分子间相对速度的一定逆幂次，可以使所导出的粘性系数随温度的一定的幂次变化，比如可以使 <span class="math notranslate nohighlight">\(\mu\)</span> 正比于接近温度的 <span class="math notranslate nohighlight">\(0.75\)</span> 次方，即真正气体中会表现出的规律。实际的应用证明，碰撞截面的这种依赖关系对流场的性态影响是根本性的。</p>
+</div>
+<p>VHS模型令碰撞截面正比于相对速度的逆幂次。引入总碰撞截面 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 、分子直径 <span class="math notranslate nohighlight">\(d\)</span> 、相对速度 <span class="math notranslate nohighlight">\(c_{r}\)</span> 和相对平动能量 <span class="math notranslate nohighlight">\(\varepsilon_{t} = \frac{1}{2}m_{r}c_{r}^{2}\)</span> 的参考值，分别记为 <span class="math notranslate nohighlight">\(\sigma_{T,ref}, d_{ref}, c_{r,ref}\)</span> 和 <span class="math notranslate nohighlight">\(\varepsilon_{t,ref}\)</span> ，其中 <span class="math notranslate nohighlight">\(\sigma_{T,ref}\)</span> 和 <span class="math notranslate nohighlight">\(d_{ref}\)</span> 是相对速度为 <span class="math notranslate nohighlight">\(c_{r,ref}\)</span> 时的值，可以如下定义VHS模型</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\sigma_{T}}{\sigma_{T,ref}} = \Big(\frac{d}{d_{ref}}\Big)^{2}
+= \Big(\frac{c_{r}}{c_{r,ref}}\Big)^{-2\xi}
+= \Big( \frac{\varepsilon_{t}}{\varepsilon_{t,ref}} \Big)^{-\xi}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\xi\)</span> 是碰撞截面 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 依赖于平动能量 <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> 的规律中的方幂 <span class="math notranslate nohighlight">\(\frac{2}{\eta-1}\)</span> 。</p>
+<p>偏转角和硬球模型的规律相同</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+b = d \cos\frac{\chi}{2}
+\end{align}\]</div>
+<p>即 <span class="math notranslate nohighlight">\(\chi\)</span> 不显式地依赖 <span class="math notranslate nohighlight">\(c_{r}\)</span> 。于是在VHS模型中，与硬球模型类似的，粘性碰撞截面的积分当中 <span class="math notranslate nohighlight">\(\sigma\)</span> 可以提到积分号外面，从而</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{\mu} = \frac{2}{3}\sigma_{T}
+\end{align}\]</div>
+<p>此时结合 <span class="math notranslate nohighlight">\(\sigma_{T} = (c_{r}/c_{r,ref})^{-2\xi} \cdot \sigma_{T,ref}\)</span> ，代入 <span class="math notranslate nohighlight">\(\mu\)</span> 的表达式可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \frac{\frac{15}{8}(\pi mk)^{1/2}(4k/m)^{\xi}T^{1/2+\xi}}{\Gamma(4-\xi) \sigma_{T,ref} c_{r,ref}^{2\xi}}
+\end{align}\]</div>
+<p>可以看到，在VHS模型当中 <span class="math notranslate nohighlight">\(\mu\)</span> 正比于 <span class="math notranslate nohighlight">\(T\)</span> 的 <span class="math notranslate nohighlight">\((\frac{1}{2} + \xi)\)</span> 次方。通过调节VHS模型定义式中的幂次 <span class="math notranslate nohighlight">\(\xi\)</span> ，可以得到所需要的粘性系数正比于温度的幂次 <span class="math notranslate nohighlight">\(\omega\)</span> ，为此只需要令 <span class="math notranslate nohighlight">\(\frac{1}{2} + \xi = \omega\)</span> ，也即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\omega = \frac{1}{2}\frac{\eta + 3}{\eta - 1}
+\end{align}\]</div>
+<p>从而可以得到粘性系数以 <span class="math notranslate nohighlight">\(\mu \propto T^{\omega}\)</span> 规律变化的气体当在温度 <span class="math notranslate nohighlight">\(T_{ref}\)</span> 下粘性系数为 <span class="math notranslate nohighlight">\(\mu_{ref}\)</span> 时的分子直径与碰撞中相对平动能 <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> 的关系</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+d_{VHS} = \sqrt{\frac{\frac{15}{8}(m/\pi)^{1/2}(kT_{ref})^{\omega}}{\Gamma(9/2 - \omega) \mu_{ref} \varepsilon_{t}^{\omega-\frac{1}{2}}}}
+\end{align}\]</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">对于硬球模型和VHS模型，均有 <span class="math notranslate nohighlight">\(\sigma_{\mu} = \frac{2}{3}\sigma_{T}\)</span> 和 <span class="math notranslate nohighlight">\(\sigma_{D} = \sigma_{T}\)</span> ，即它们都给出 <span class="math notranslate nohighlight">\(\sigma_{\mu}\)</span> 和 <span class="math notranslate nohighlight">\(\sigma_{D}\)</span> 不变的比值。但在比较现实的逆幂律分子模型下， <span class="math notranslate nohighlight">\(\sigma_{D}\)</span> 和 <span class="math notranslate nohighlight">\(\sigma_{\mu}\)</span> 的比值为 <span class="math notranslate nohighlight">\(A_{1}(\eta)/A_{2}(\eta)\)</span> ，它们之间相差还是很大的，这导致在考虑多组元混合气体中扩散起重要作用的情况下VHS模型会给出与实际偏离较大的结果。</p>
+</div>
+</div>
+<div class="section" id="vss">
+<h4>变径软球(VSS)模型<a class="headerlink" href="#vss" title="永久链接至标题">¶</a></h4>
+<p>为了克服VHS模型在扩散情形下的缺点，Koura和Matsumoto引入了变径软球(variable soft sphere, VSS)模型。他们建议，总碰撞截面或分子直径仍如VHS模型一样，依赖于碰撞中的能量，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\sigma_{T}}{\sigma_{T,ref}} = \Big(\frac{d}{d_{ref}}\Big)^{2}
+= \Big(\frac{c_{r}}{c_{r,ref}}\Big)^{-2\xi}
+= \Big( \frac{\varepsilon_{t}}{\varepsilon_{t,ref}} \Big)^{-\xi}
+\end{align}\]</div>
+<p>依然成立，但是VSS模型分子的散射规律选择为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+b = d \cos^{\alpha}\frac{\chi}{2}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(d\)</span> 和 <span class="math notranslate nohighlight">\(\alpha\)</span> 均依赖于碰撞中相对的能量， <span class="math notranslate nohighlight">\(\alpha\)</span> 是散射中偏转角余弦的幂次。因为 <span class="math notranslate nohighlight">\(d\)</span> 可变，以及当 <span class="math notranslate nohighlight">\(\alpha &gt; 1\)</span> 时模型的偏转角 <span class="math notranslate nohighlight">\(\chi_{VSS}\)</span> 小于VHS模型的偏转角 <span class="math notranslate nohighlight">\(\chi_{VHS}\)</span> ，故得名变径软球模型。</p>
+<p>对于VSS模型，容易得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T} = 2\pi \int b ~\mathrm{d}b
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{\mu} = 2\pi d^{2} \int (1 - \cos^{2}\chi)\cos^{\alpha}\frac{\chi}{2} \mathrm{d}(\cos^{\alpha}\frac{\chi}{2})
+= S_{\mu}(\frac{2}{3}\pi d^{2})
+= S_{\mu}\frac{2}{3}\sigma_{T}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{D} = 2\pi d^{2} \int (1 - \cos\chi) \cos^{\alpha}\frac{\chi}{2} \mathrm{d}(\cos^{\alpha}\frac{\chi}{2})
+= S_{D}\pi d^{2} = S_{D}\sigma_{T}
+\end{align}\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+S_{\mu} = \frac{6\alpha}{(\alpha + 1)(\alpha + 2)}
+,\quad
+S_{D} = \frac{2}{\alpha + 1}
+\end{align}\]</div>
+<p>并分别称为粘性和扩散碰撞截面的柔软系数。令VSS模型的 <span class="math notranslate nohighlight">\(\sigma_{\mu}/\sigma_{D} = \frac{2}{3}S_{\mu}/S_{D}\)</span> 与逆幂律分子模型的 <span class="math notranslate nohighlight">\(\sigma_{\mu}/\sigma_{D} = A_{2}(\eta)/A_{1}(\eta)\)</span> 相等，可以确定出令VSS模型的 <span class="math notranslate nohighlight">\(\sigma_{\mu}/\sigma_{D}\)</span> 按照逆幂律分子模型的规律变化的 <span class="math notranslate nohighlight">\(\alpha\)</span> 的值</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\alpha = \Big[ \frac{A_{1}(\eta)}{A_{2}(\eta)} - \frac{1}{2} \Big]^{-1}
+\end{align}\]</div>
+<p>VSS模型下的粘性系数可以得到为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu_{\text{VSS}} = \mu_{\text{VHS}}/S_{\mu}
+= \frac{5(\alpha + 1)(\alpha + 2)(\pi mk)^{1/2}(4k/m)^{\xi}T^{1/2+\xi}}{16\alpha \Gamma(4-\xi)\sigma_{T,ref}c_{r,ref}^{2\xi}}
+\end{align}\]</div>
+<p>相应地可以得到VSS模型下由粘性系数确定的分子直径为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+d_{\text{VSS}} = d_{\text{VHS}}/S_{\mu}^{1/2}
+= \sqrt{\frac{5(\alpha+1)(\alpha+2)(m/\pi)^{1/2}(kT_{ref})^{\omega}}{16\alpha \Gamma(9/2 - \omega)\mu_{ref}\varepsilon_{t}^{\omega-1/2}}}
+\end{align}\]</div>
+</div>
+<div class="section" id="ghs">
+<h4>概括化硬球(GHS)模型<a class="headerlink" href="#ghs" title="永久链接至标题">¶</a></h4>
+<p>逆幂律时用单纯的排斥力描述分子间的作用。对于再入流场，温度变化很大，粘性对温度的依赖靠一个方幂已经不能完全描述。分子间的相互作用除了近距的排斥力外，在较大分子间距处吸引力也显现出来。因而如果有一个能够再现包括吸引和排斥的分子作用势的分子模型是可取的。Hassan和Hash引进的概括化硬球(generalized hard sphere, GHS)模型就是对VHS模型和VSS模型概念的一种推广，包含了同时具有吸引和排斥的分子间作用力。它的散射律与硬球模型(或软球模型)相同，但其总碰撞截面 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 与碰撞中相对动能 <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> 的关系则允许能够反映出吸收排斥作用势。具体来说，GHS模型假设 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T}/\rho^{2} = \sum \alpha_{j}\Big(\frac{\varepsilon_{t}}{\varepsilon}\Big)^{-\xi_{j}}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\varepsilon\)</span> 量纲为能量， <span class="math notranslate nohighlight">\(\rho\)</span> 量纲为长度，是依赖于气体组分的参量， <span class="math notranslate nohighlight">\(\varepsilon_{t} = \frac{1}{2}m_{r}c_{r}^{2}\)</span> 。如果在上式中仅取一项，可以看出它与VHS模型的定义式其实是相同的，只不过常数定义不同而已。</p>
+<p>如果散射律取为如同硬球一样，则 <span class="math notranslate nohighlight">\(\sigma_{\mu}\)</span> 与 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 的关系式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{\mu} = \frac{2}{3}\sigma_{T}
+\end{align}\]</div>
+<p>代入到粘性系数的表达式中得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \frac{\frac{15}{8}(\pi m k T)^{1/2} /\rho^{2}}{\sum \alpha_{j} \Gamma(4 - \xi_{j}) (kT/\varepsilon)^{-\xi_{j}}}
+\end{align}\]</div>
+<p>针对常用的粘性和作用势表达式，则仅在前面给出的 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 式中取两项</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T}/\rho^{2} = \alpha_{1}\Big(\frac{\varepsilon_{t}}{\varepsilon}\Big)^{-\xi_{1}} + \alpha_{2}\Big(\frac{\varepsilon_{t}}{\varepsilon}\Big)^{-\xi_{2}}
+\end{align}\]</div>
+<p>于是此时</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \frac{\mu_{0}}{1 + ST^{\xi_{2}-\xi_{1}}}
+\end{align}\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu_{0} = \frac{15}{8}\frac{(\pi m k T)^{1/2} (kT)^{\xi_{1}}}{\alpha_{1}\Gamma(4 - \xi_{1}) \rho^{2}}
+,\qquad
+S = \frac{\alpha_{2}}{\alpha_{1}}
+\frac{\Gamma(4-\xi_{2})}{\Gamma(4-\xi_{1})}\Big(\frac{k}{\varepsilon}\Big)^{\xi_{1}-\xi_{2}}
+\end{align}\]</div>
+<p>在上式中，如果令 <span class="math notranslate nohighlight">\(\xi_{1} = 0, \xi_{2} = 1\)</span> 就得到了Sutherland粘性律。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>Chapman和Cowling给出了Lennard-Jones分子作用势</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+F = \frac{\kappa_{12}}{r^{\eta}} - \frac{\kappa_{12}'}{r^{\eta'}} ,\quad \eta &gt; \eta'
+\end{align}\]</div>
+<p>条件下的粘性系数的表达式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\mu = \frac{\mu_{\text{IPL}}}{1 + ST^{-\frac{\eta - \eta'}{\eta - 1}}}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\mu_{\text{IPL}}\)</span> 是逆幂律下的粘性系数表达式。与GHS模型给出的粘性系数表达式进行比较，可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\xi_{1} = \frac{2}{\eta - 1}
+,\quad
+\xi_{2} = \frac{2 - \eta' + \eta}{\eta - 1}
+\end{align}\]</div>
+<p class="last">对于12-6模型， <span class="math notranslate nohighlight">\(\xi_{1} = 1/6, \xi_{2} = 2/3\)</span> 。</p>
+</div>
+</div>
+<div class="section" id="gss">
+<h4>概括化软球(GSS)模型<a class="headerlink" href="#gss" title="永久链接至标题">¶</a></h4>
+<p>同时采用GHS模型的 <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 依赖于 <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> 的关系式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T}/\rho^{2} = \sum \alpha_{j}\Big(\frac{\varepsilon_{t}}{\varepsilon}\Big)^{-\xi_{j}}
+\end{align}\]</div>
+<p>以及VSS模型的分子散射规律式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+b = d \cos^{\alpha}\frac{\chi}{2}
+\end{align}\]</div>
+<p>就可以自然地得到概括化软球(generalized soft sphere, GSS)模型。在GSS模型中， <span class="math notranslate nohighlight">\(\sigma_{T}\)</span> 通过显式依赖于 <span class="math notranslate nohighlight">\(c_{r}\)</span> 的表达式计算出来：</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\sigma_{T}/\rho^{2} = \alpha_{1}\Big(\frac{\varepsilon_{t}}{\varepsilon}\Big)^{-\xi_{1}} + \alpha_{2}\Big(\frac{\varepsilon_{t}}{\varepsilon}\Big)^{-\xi_{2}}
+\end{align}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\varepsilon\)</span> 与 <span class="math notranslate nohighlight">\(\rho\)</span> 对于Lennand-Jones 6-12分子模型在文献中有所给出。GSS模型中的碰撞偏转则由</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+b = d \cos^{\alpha}\frac{\chi}{2}
+\quad\text{or}\quad
+\cos\chi = 2 \Big[\Big(\frac{b}{d}\Big)^{2}\Big]^{1/\alpha} - 1
+\end{align}\]</div>
+<p>确定。结合 <span class="math notranslate nohighlight">\(\simga_{\mu} = S_{\mu}\frac{2}{3}\sigma_{T}\)</span> 可以得到 <span class="math notranslate nohighlight">\(\mu\)</span> 的表达式。</p>
+<p>通过与用Lennand-Jones 6-12模型计算出来的结果，可以决定出 <span class="math notranslate nohighlight">\(\alpha = 1.5, \alpha_{1} = 3.962, \alpha_{2} = 4.558, \xi_{1} = 0.133, \xi_{2} = 1.25\)</span> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">用GSS模型计算出的粘性系数、自扩散系数和扩散系数在整个温度变化范围给出与实验数值相符的结果，而VHS、VSS与GHS在低温和过高温度下则与实验数据有一定差异，GSS模型在低温和极性分子的情况下是特别有意义的。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3>Boltzmann方程<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h3>
+<p>Boltzmann方程给出了速度分布函数对空间位置和时间的变化率的关系。注意到我们考察的 <span class="math notranslate nohighlight">\(f\)</span> 是给定速度 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 附近的分子数，因而不同于一般的守恒的量，而由于碰撞 <span class="math notranslate nohighlight">\(f\)</span> 会发生变化，这时推导Boltzmann方程不同于推导守恒方程的特殊之处。</p>
+<p>考察 <span class="math notranslate nohighlight">\(f(\mathbf{c},\mathbf{r},t)\)</span> ，在时刻 <span class="math notranslate nohighlight">\(t\)</span> 、物理空间体积元 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}=\mathrm{d}x\mathrm{d}y\mathrm{d}z\)</span> 内、速度在 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 附近的速度空间体积元 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}=\mathrm{d}u\mathrm{d}v\mathrm{d}w\)</span> 内的分子数为 <span class="math notranslate nohighlight">\(f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> ，在固定的相空间体积之内，分子数目的时间变化率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial }{\partial t} f(\mathbf{c},\mathbf{r},t)\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}
+\end{align}\]</div>
+<p>这一变化率是由三种过程引起的：</p>
+<ul class="simple">
+<li>分子通过 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 的表面的对流；</li>
+<li>分子通过 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\)</span> 的表面的对流；</li>
+<li>体积元 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 内分子间的碰撞使 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子不再具有 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 的速度以及使原本不是 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类的分子碰撞后获得 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 速度。</li>
+</ul>
+<p>首先考虑通过 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 各表面的对流。 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 时间内通过与 <span class="math notranslate nohighlight">\(x\)</span> 垂直的表面 <span class="math notranslate nohighlight">\(\mathrm{d}y\mathrm{d}z\)</span> 进入 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 的分子数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+f \mathrm{d}\mathbf{c} \cdot u\mathrm{d}t \mathrm{d}y\mathrm{d}z
+\end{align}\]</div>
+<p>在距此表面 <span class="math notranslate nohighlight">\(\mathrm{d}x\)</span> 处沿同一方向在 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内通过 <span class="math notranslate nohighlight">\(\mathrm{d}y\mathrm{d}z\)</span> 离开 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 的分子数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Big[ uf + \frac{\partial (uf)}{\partial x}\mathrm{d}x \Big] \mathrm{d}\mathbf{c} \mathrm{d}t \mathrm{d}y\mathrm{d}z
+\end{align}\]</div>
+<p>这样，通过 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 与 <span class="math notranslate nohighlight">\(x\)</span> 垂直的两个表面的通量引起 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子数的增加为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+-\frac{\partial }{\partial}(uf) \mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>考虑 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 所有表面，则分子数的增加为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+- \Big[ \frac{\partial }{\partial x}(uf) + \frac{\partial }{\partial y}(vf) + \frac{\partial }{\partial z}(wf) \Big]\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>由于 <span class="math notranslate nohighlight">\(u,v,w\)</span> 与 <span class="math notranslate nohighlight">\(x,y,z\)</span> 是平等的 <span class="math notranslate nohighlight">\(f\)</span> 的自变量，上式可以改写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+- \Big( u\frac{\partial }{\partial x} + v\frac{\partial }{\partial y} + w\frac{\partial }{\partial z} \Big) f\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r} \mathrm{d}t
+= -\mathbf{c} \cdot \frac{\partial f}{\partial \mathbf{r}} \mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>其次来考察通过 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\)</span> 各表面的对流。在气体中作用有外力，其量值为每单位质量上作用外力 <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> 。 <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> 使分子产生加速度，其在 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 相空间中对 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 的改变的作用，类似于速度 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 在物理空间中对 <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> 的变化所起的作用。利用这种类比关系，可以写出时间 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内通过 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\)</span> 的所有表面的 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子的数目变化</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+- \Big( F_{x}\frac{\partial }{\partial u} + F_{y}\frac{\partial }{\partial v} + F_{z}\frac{\partial }{\partial w} \Big) f \cdot \mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r} \mathrm{d}t
+= - \mathbf{F} \cdot \frac{\partial f}{\partial \mathbf{c}} \mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>现在来考察 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\)</span> 中分子的碰撞引起的 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子数的变化 <span class="math notranslate nohighlight">\(\Big(\frac{\partial f}{\partial t}\Big)_{c}\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\mathrm{d}t\)</span> 。我们考察 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子和 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 类分子的碰撞，在碰撞后它们的速度分别变为 <span class="math notranslate nohighlight">\(\mathbf{c}^{*}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}^{*}\)</span> 。我们将 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子视为以相对速度 <span class="math notranslate nohighlight">\(c_{r}\)</span> 在 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 类分子群中运动。在时间 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内，一个 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子扫过的体积为 <span class="math notranslate nohighlight">\(c_{r} \sigma \mathrm{d}\Omega \mathrm{d}t\)</span> ，而 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 类分子的数密度为 <span class="math notranslate nohighlight">\(f_{1}\mathrm{d}\mathbf{c}_{1}\)</span> 。显然，一个 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子与 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 类分子在 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内的碰撞数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+c_{r} f_{1} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1} \mathrm{d}t
+\end{align}\]</div>
+<p>但是在相空间元素 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 中共有 <span class="math notranslate nohighlight">\(f \mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 个 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子，所以在时间 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内在相空间元中 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类与 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 类分子的碰撞次数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+c_{r} f f_{1} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1} \mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>这是 <span class="math notranslate nohighlight">\((\mathbf{c},\mathbf{c}_{1} \to \mathbf{c}^{*},\mathbf{c}_{1}^{*})\)</span> 这类碰撞在 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内在 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 相空间内的碰撞次数。而对于 <span class="math notranslate nohighlight">\((\mathbf{c},\mathbf{c}_{1} \to \mathbf{c}^{*},\mathbf{c}_{1}^{*})\)</span> 这类正碰撞存在着 <span class="math notranslate nohighlight">\((\mathbf{c}^{*},\mathbf{c}_{1}^{*} \to \mathbf{c},\mathbf{c}_{1})\)</span> 一类逆碰撞。将 <span class="math notranslate nohighlight">\(\mathbf{c}^{*}\)</span> 类和 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}^{*}\)</span> 类分子的速度分布函数标记为 <span class="math notranslate nohighlight">\(f^{*}\)</span> 和 <span class="math notranslate nohighlight">\(f_{1}^{*}\)</span> ，与上式进行类比，可以写出 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 时间内在相空间元 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}^{*}\mathrm{d}\mathbf{r}\)</span> 中逆碰撞 <span class="math notranslate nohighlight">\((\mathbf{c}^{*},\mathbf{c}_{1}^{*} \to \mathbf{c},\mathbf{c}_{1})\)</span> 的碰撞次数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+c_{r}^{*} f^{*} f_{1}^{*} (\sigma \mathrm{d}\Omega)^{*} \mathrm{d}\mathbf{c}^{*} \mathrm{d}\mathbf{c}_{1}^{*} \mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>而 <span class="math notranslate nohighlight">\(c_{r}^{*} = c_{r}\)</span> ，这种正碰撞和逆碰撞之间的对称性保证了微分碰撞截面和相空间元乘积 <span class="math notranslate nohighlight">\(\sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{r}\)</span> 在正碰撞和逆碰撞间作变换时的变换行列式为1</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\big| (\sigma \mathrm{d}\Omega) \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1} \big|
+= \big| (\sigma \mathrm{d}\Omega)^{*} \mathrm{d}\mathbf{c}^{*} \mathrm{d}\mathbf{c}_{1}^{*} \big|
+\end{align}\]</div>
+<p>从而逆碰撞的碰撞次数可以改写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+c_{r} f^{*} f_{1}^{*} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1} \mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>注意到 <span class="math notranslate nohighlight">\((\mathbf{c},\mathbf{c}_{1} \to \mathbf{c}^{*},\mathbf{c}_{1}^{*})\)</span> 碰撞导致 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子的减少， <span class="math notranslate nohighlight">\((\mathbf{c}^{*},\mathbf{c}_{1}^{*} \to \mathbf{c},\mathbf{c}_{1})\)</span> 碰撞导致 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子的增加，从而得到相空间中由于与 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 类分子碰撞在 <span class="math notranslate nohighlight">\(t\)</span> 空间内 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子的增加数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+(f^{*} f_{1}^{*} - f f_{1}) c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1} \mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>上面我们在统计一个 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子在 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内所扫过的体积时用了微分截面 <span class="math notranslate nohighlight">\(\sigma \mathrm{d}\Omega = b \mathrm{d}b \mathrm{d}\varepsilon\)</span> ，为了得到 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 中在 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子的总的增加数，应该对整个碰撞截面积分，同时因为需要考虑到 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子与所有分子的碰撞，所以也应对 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 积分。这样，在相空间元 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 内 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子因为碰撞产生的增加数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Big(\frac{\partial f}{\partial t}\Big)_{c} \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{r} \mathrm{d}t
+= \Big( \int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} (f^{*} f_{1}^{*} - f f_{1})c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1} \Big) \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{r} \mathrm{d}t
+\end{align}\]</div>
+<p>将三个因素的式子之和除以 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> ，即得到相应的由对流和碰撞引起 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 类分子数目在 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 相空间内随时间的变化率(单位时间内分子数目的变化)。将分子数目的时间变化率与以上各式平衡，并将由对流引起的项移向方程的左端即得到单组分气体的Boltzmann方程</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{\partial f}{\partial t} + \mathbf{c} \cdot \frac{\partial f}{\partial \mathbf{r}} + \mathbf{F} \cdot \frac{\partial f}{\partial \mathbf{c}}
+= \Big( \frac{\partial f}{\partial t} \Big)_{c}
+:= \int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} (f^{*} f_{1}^{*} - f f_{1})c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>这是分子气体动力学的基本方程，在整个稀薄气体动力学中占据着中心的地位。</p>
+</div>
+<div class="section" id="id21">
+<h3>碰撞积分与气体中分子的总碰撞数<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h3>
+<p>将Boltzmann方程的右端项乘以另一个分子相关联的速度的函数 <span class="math notranslate nohighlight">\(Q(c)\)</span> 并对整个速度空间 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 求积分，可以得到称为碰撞积分的表达式</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} Q (f^{*} f_{1}^{*} - f f_{1}) c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1} \mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>为了以后应用的方便，现在来讨论一下这个积分的几个变形。</p>
+<p>在上式中令 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 与 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 交换位置，并将 <span class="math notranslate nohighlight">\(Q := Q(\mathbf{c})\)</span> 用 <span class="math notranslate nohighlight">\(Q_{}1 := Q(\mathbf{c}_{1})\)</span> 替换，积分的值不变，因为这只是改变了碰撞中两个分子的标记，所以有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} Q (f_{1}^{*} f^{*} - f_{1} f) c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>在上面这个积分中将 <span class="math notranslate nohighlight">\(\mathbf{c},\mathbf{c}_{1},f,f_{1}\)</span> 用 <span class="math notranslate nohighlight">\(\mathbf{c}^{*},\mathbf{c}_{1}^{*},f^{*},f_{1}^{*}\)</span> 替换，而 <span class="math notranslate nohighlight">\(Q_{1}:=Q(\mathbf{c}_{1})\)</span> 用 <span class="math notranslate nohighlight">\(Q_{1}^{*}:=Q(\mathbf{c}_{1}^{*})\)</span> 替换，积分的值也不会变。这是因为有逆碰撞存在，每一个碰撞都是另外的某一个碰撞的逆碰撞，在对整个 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 空间和 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 空间求和与对整个 <span class="math notranslate nohighlight">\(\mathbf{c}^{*}\)</span> 空间和 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}^{*}\)</span> 空间求和的效果是一样的。在这里应用了正逆碰撞间作变换时变换行列式为1的事实得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} Q_{1}^{*} (f_{1} f - f_{1}^{*} f^{*}) c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>在此积分中再次改变 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 与 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 的标记，有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} Q^{*} (f f_{1} - f^{*} f_{1}^{*}) c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>从上面四个式子容易求出</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \frac{1}{4} \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} (Q + Q_{1} - Q^{*} - Q_{1}^{*}) (f^{*} f_{1}^{*} - f f_{1}) c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>还可以将第一个式子写成为更容易显示其物理意义的形式，为此首先将其写成</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} Q f^{*} f_{1}^{*} c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1} \mathrm{d}\mathbf{c} - \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} Q f f_{1} c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1} \mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>对右端第一项，再次应用正逆碰撞间作变换时变换行列式为1的事实，可以将其中的 <span class="math notranslate nohighlight">\(Qf^{*}f_{1}^{*}\)</span> 用 <span class="math notranslate nohighlight">\(Q^{*}ff_{1}\)</span> 替换，从而有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} (Q^{*} - Q)f_{1} f c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>在上式中简单地改变 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 与 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 的标记得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} (Q_{1}^{*} - Q_{1}) f_{1} f c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>将以上两式相加后除以2可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = \frac{1}{2} \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} (Q^{*} + Q_{1}^{*} - Q - Q_{1}) f_{1} f c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>上式表明 <span class="math notranslate nohighlight">\(\Delta[Q]\)</span> 是 <span class="math notranslate nohighlight">\(Q\)</span> 量在碰撞中的变化对所有碰撞的求和。其之所以有 <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> 出现，是因为在积分中对碰撞作了两次计算。 <span class="math notranslate nohighlight">\(Q\)</span> 在一次 <span class="math notranslate nohighlight">\((\mathbf{c},\mathbf{c}_{1} \to \mathbf{c}^{*},\mathbf{c}_{1}^{*})\)</span> 碰撞中的变化为 <span class="math notranslate nohighlight">\((Q^{*} + Q_{1}^{*} - Q - Q_{1})\)</span> 。而容易看出，积分</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\frac{1}{2} \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} f_{1} f c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c} \mathrm{d}\mathbf{c}_{1}
+= \frac{1}{2} \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty} \sigma_{T} c_{r} f_{1} f \mathrm{d}\mathbf{c}_{r} \mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>是气体单位体积内单位时间内的碰撞数。因为在推导Boltzmann方程的过程中已经看到， <span class="math notranslate nohighlight">\(f_{1}f c_{r}\sigma\mathrm{d}\Omega\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{r}\mathrm{d}t\)</span> 是 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 时间内在 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{c}\mathrm{d}\mathbf{r}\)</span> 相空间内 <span class="math notranslate nohighlight">\((\mathbf{c},\mathbf{c}_{1} \to \mathbf{c}^{*},\mathbf{c}_{1}^{*})\)</span> 这类碰撞的碰撞数，将其对 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf{c}_{1}\)</span> 积分并对整个碰撞截面积分，就得到 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 时间内在空间 <span class="math notranslate nohighlight">\(\mathrm{d}t\)</span> 内的被统计了两次的各类分子间的总碰撞数。将其除以 <span class="math notranslate nohighlight">\(\mathrm{d}\mathbf{r}\mathrm{d}t\)</span> 并除以2就得到了上述表达式，它代表着单位体积单位时间内分子的总碰撞数 <span class="math notranslate nohighlight">\(N_{c}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+N_{c} = \frac{1}{2} \int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty} \sigma_{T} c_{r} f_{1} f \mathrm{d}\mathbf{c}_{1}\mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>类似于气体中平均值 <span class="math notranslate nohighlight">\(\overline{Q}\)</span> 的定义式，与两个速度分布函数相关的平均值定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\overline{Q(c_{r})} = \frac{1}{n^{2}} \iint Q(c_{r}) f_{1} f \mathrm{d}\mathbf{c}_{1} \mathrm{d}\mathbf{c}
+\end{align}\]</div>
+<p>这样总碰撞数可以改写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+N_{c} = \frac{1}{2}n^{2} \overline{\sigma_{T} c_{r}}
+\end{align}\]</div>
+</div>
+<div class="section" id="id22">
+<h3>碰撞积分的计算<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h3>
+<p>当 <span class="math notranslate nohighlight">\(Q\)</span> 是碰撞中的不变量，即质量 <span class="math notranslate nohighlight">\(m\)</span> 、动量 <span class="math notranslate nohighlight">\(m\mathbf{c}\)</span> 或者动能 <span class="math notranslate nohighlight">\(\frac{1}{2}mc^{2}\)</span> 时，碰撞中的质量、动量和能量守恒给出</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q + Q_{1} - Q^{*} - Q_{1}^{*} = 0
+\end{align}\]</div>
+<p>此时显然有</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = 0 ,\quad \text{when}~ Q=(1,u,v,w,c^{2})
+\end{align}\]</div>
+<p>满足上面两个式子的 <span class="math notranslate nohighlight">\(Q\)</span> 称为求和不变量。可以证明，碰撞不变量 <span class="math notranslate nohighlight">\((1,u,v,w,c^{2})\)</span> 或它们的线性组合是仅有的求和不变量，也即</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\Delta[Q] = 0 ,\quad \text{当且仅当}~ Q=Ac^{2} + \mathbf{B} \cdot \mathbf{c} + C
+\end{align}\]</div>
+</div>
+<div class="section" id="id23">
+<h3>Maxwell输运方程<a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h3>
+<p>将Boltzmann方程乘以 <span class="math notranslate nohighlight">\(Q\)</span> 得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Q\frac{\partial f}{\partial t}
++ Q\mathbf{c} \cdot \frac{\partial f}{\partial \mathbf{r}}
++ Q\mathbf{F} \cdot \frac{\partial f}{\partial \mathbf{c}}
+= Q\int\limits_{-\infty}^{+\infty}\int\limits_{0}^{4\pi} (f^{*} f_{1}^{*} - f f_{1})c_{r} \sigma \mathrm{d}\Omega \mathrm{d}\mathbf{c}_{1}
+\end{align}\]</div>
+<p>为了得到矩方程应该将此方程各项对整个 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 速度空间积分。因为 <span class="math notranslate nohighlight">\(Q\)</span> 仅是 <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> 的函数，第一项积分的结果可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+\int_{-\infty}^{+\infty} Q\frac{\partial f}{\partial t} \mathrm{d}\mathbf{c}
+= \int_{-\infty}^{+\infty} \frac{\partial }{\partial t}(Qf) \mathrm{d}\mathbf{c}
+= \frac{\partial }{\partial t} \Big[\int_{-\infty}^{+\infty}(Qf) \mathrm{d}\mathbf{c}\Big]
+= \frac{\partial }{\partial t} (n \overline{Q})
+\end{align}\]</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="流体力学.html" class="btn btn-neutral float-left" title="流体力学" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="计算流体力学有限体积法.html" class="btn btn-neutral float-right" title="计算流体力学有限体积法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022-2023, Koishi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

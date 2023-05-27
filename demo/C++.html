@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C++ &mdash; MyKnowledge MyKnowledge 文档</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Latex" href="Latex.html" />
+    <link rel="prev" title="AutoCAD" href="AutoCAD.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MyKnowledge
+          </a>
+              <div class="version">
+                1.01
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="复变函数.html">复变函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="电路原理.html">电路原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数字电路.html">数字电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模拟电路.html">模拟电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数值分析与算法.html">数值分析与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数理方程.html">数理方程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="流体力学.html">流体力学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="计算流体力学有限体积法.html">计算流体力学有限体积法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutoCAD.html">AutoCAD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">变量和基本类型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">基本内置类型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">算术类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">类型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">字面值常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">复合类型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">引用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">指针</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#const">const限定符</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Latex.html">Latex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM.html">OpenFOAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM算例运行案例.html">OpenFOAM算例运行案例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Salome.html">Salome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solidworks.html">Solidworks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MyKnowledge</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">C++</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/demo/C++.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="c">
+<h1>C++<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>变量和基本类型<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>基本内置类型<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id3">
+<h4>算术类型<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h4>
+<p>算术类型分为两类：整型(包括字符和布尔类型)和浮点型。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="37%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">类型</th>
+<th class="head">含义</th>
+<th class="head">最小尺寸</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>bool</td>
+<td>布尔类型</td>
+<td>未定义</td>
+</tr>
+<tr class="row-odd"><td>char</td>
+<td>字符</td>
+<td>8位</td>
+</tr>
+<tr class="row-even"><td>wchar_t</td>
+<td>宽字符</td>
+<td>16位</td>
+</tr>
+<tr class="row-odd"><td>char16_t</td>
+<td>Unicode字符</td>
+<td>16位</td>
+</tr>
+<tr class="row-even"><td>char32_t</td>
+<td>Unicode字符</td>
+<td>32位</td>
+</tr>
+<tr class="row-odd"><td>short</td>
+<td>短整型</td>
+<td>16位</td>
+</tr>
+<tr class="row-even"><td>int</td>
+<td>整型</td>
+<td>16位</td>
+</tr>
+<tr class="row-odd"><td>long</td>
+<td>长整型</td>
+<td>32位</td>
+</tr>
+<tr class="row-even"><td>long long</td>
+<td>长整型</td>
+<td>64位</td>
+</tr>
+<tr class="row-odd"><td>float</td>
+<td>单精度浮点数</td>
+<td>6位有效数字</td>
+</tr>
+<tr class="row-even"><td>double</td>
+<td>双精度浮点数</td>
+<td>10位有效数字</td>
+</tr>
+<tr class="row-odd"><td>long double</td>
+<td>扩展精度浮点数</td>
+<td>10位有效数字</td>
+</tr>
+</tbody>
+</table>
+<p>除了布尔型和拓展的字符型之外，其他整型可以划分为带符号的(signed)和无符号的(unsigned)两种。类型int、short、long和long long都是带符号的，通过在这些类型名前添加unsigned就可以得到无符号类型。与其他整型不同，字符型被分为了三种：char、signed char和unsigned char。不过，字符表现形式却只有两种：带符号的和无符号的。类型char实际上会表现为上述两种形式中的一种，具体是哪种由编译器决定。</p>
+<p>无符号类型中所有比特都用来存储值，例如8比特的unsigned char可以表示0至255区间内的值；8比特的signed char的表示范围为-128至127。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>当明确知道数值不可能是负的情况时，选用无符号类型。</li>
+<li>使用int执行整数运算。在实际应用中，short常常位数太小，而long一般和int有一样的尺寸。如果数值超过了int的表示范围，就需要选用long long类型。</li>
+<li>在算术表达式中不要使用char或bool，只有在存放字符或布尔值时才使用它们。如果需要使用一个不大的整数，那么明确指定它的类型是signed char或者unsigned char。</li>
+<li>执行浮点数运算选用double，因为float常常精度不够，而long double精度一般没必要且运行消耗不容忽视。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>类型转换<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>类型所能表示的值的范围决定了转换的过程：</p>
+<ul class="simple">
+<li>当把一个非布尔类型的算术值赋给布尔类型时，初始值为0则结果为false，否则结果为true。</li>
+<li>当把一个布尔值赋给非布尔类型时，初始值为false则结果为0，初始值为true则结果为1。</li>
+<li>当把一个浮点数赋给整数类型时，进行了近似处理。结果值将仅保留浮点数中小数点之前的部分。</li>
+<li>当把整数值赋给浮点类型时，小数部分记为0。如果该整数所占的空间超过了浮点类型的容量，精度可能有损失。</li>
+<li>当赋给无符号类型一个超出它表示范围的值时，结果是初始值对无符号类型表示数值总数取模后的余数。</li>
+<li>当赋给带符号类型一个超出它表示范围的值时，结果是未定义的。</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h4>字面值常量<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>可以将整型字面值写作十进制数、八进制数或十六进制数的形式。以0开头的整数表示八进制，以0x或0X开头的表示十六进制数。例如数值20可以分别表示为：十进制20；八进制024；十六进制0x14。</p>
+<p>一些特殊字符不能直接使用进行打印，这时需要用到转义序列。C++规定的转义序列包括：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="18%" />
+<col width="15%" />
+<col width="17%" />
+<col width="18%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">含义</th>
+<th class="head">符号</th>
+<th class="head">含义</th>
+<th class="head">符号</th>
+<th class="head">含义</th>
+<th class="head">符号</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>换行符</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\n</span></code></td>
+<td>横向制表符</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\t</span></code></td>
+<td>报警(响铃)符</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\a</span></code></td>
+</tr>
+<tr class="row-odd"><td>纵向制表符</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\v</span></code></td>
+<td>退格符</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\b</span></code></td>
+<td>双引号</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\&quot;</span></code></td>
+</tr>
+<tr class="row-even"><td>反斜线</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\\\</span></code></td>
+<td>问号</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\?</span></code></td>
+<td>单引号</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\'</span></code></td>
+</tr>
+<tr class="row-odd"><td>回车符</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\r</span></code></td>
+<td>进纸符</td>
+<td><code class="code docutils literal notranslate"><span class="pre">\\f</span></code></td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>字符和字符串字面值可以通过前缀符号指定类型：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="64%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">前缀</th>
+<th class="head">含义</th>
+<th class="head">类型</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>u</td>
+<td>Unicode16字符</td>
+<td>char16_t</td>
+</tr>
+<tr class="row-odd"><td>U</td>
+<td>Unicode32字符</td>
+<td>char32_t</td>
+</tr>
+<tr class="row-even"><td>L</td>
+<td>宽字符</td>
+<td>wchar_t</td>
+</tr>
+<tr class="row-odd"><td>u8</td>
+<td>UTF-8(仅用于字符串字面常量)</td>
+<td>char</td>
+</tr>
+</tbody>
+</table>
+<p>整型字面值和浮点型字面值通过后缀符号来指定类型：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">后缀</th>
+<th class="head">类型</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>u或U</td>
+<td>unsigned</td>
+</tr>
+<tr class="row-odd"><td>l或L</td>
+<td>long</td>
+</tr>
+<tr class="row-even"><td>ll或LL</td>
+<td>long long</td>
+</tr>
+<tr class="row-odd"><td>f或F</td>
+<td>float</td>
+</tr>
+<tr class="row-even"><td>l或L</td>
+<td>long double</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>复合类型<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id7">
+<h4>引用<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<p>引用是为对象起了另外一个名字，声明符号将写成 <code class="code docutils literal notranslate"><span class="pre">&amp;d</span></code> 的形式，其中 <code class="code docutils literal notranslate"><span class="pre">d</span></code> 是声明的变量名：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span><span class="n">refVal</span> <span class="o">=</span> <span class="n">ival</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">使用引用时必须初始化。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>指针<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h4>
+<p>定义指针类型的方法是将声明符写成 <code class="code docutils literal notranslate"><span class="pre">*d</span></code> 的形式，其中 <code class="code docutils literal notranslate"><span class="pre">d</span></code> 是变量名。如果在一条语句中定义了多个指针变量，那么每个变量前面都必须有符号 <code class="code docutils literal notranslate"><span class="pre">*</span></code> ：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span><span class="n">ipl</span><span class="p">,</span> <span class="o">*</span><span class="n">ip2</span><span class="p">;</span>        <span class="c1">// ip1和ip2都是指向int型对象的指针</span>
+<span class="kt">double</span> <span class="n">dp</span><span class="p">,</span> <span class="o">*</span><span class="n">dp2</span><span class="p">;</span>       <span class="c1">// dp2是指向double型对象的指针，dp是double型对象</span>
+</pre></div>
+</div>
+<p>指针存放某个对象的地址，而获取地址需要使用取地址符 <code class="code docutils literal notranslate"><span class="pre">&amp;</span></code> ：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ival</span><span class="p">;</span>      <span class="c1">// p存放变量ival的地址，或者说p是指向变量ival的指针</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">因为在声明语句中指针的类型实际上被用于指定它所指向对象的类型，所以二者必须匹配。如果指针指向了一个其他类型的对象，对该对象的操作将发生错误。</p>
+</div>
+<p>如果指针指向了一个对象，则允许使用解引用符 <code class="code docutils literal notranslate"><span class="pre">*</span></code> 来访问该对象，之后就可以进行打印输出或赋值等操作：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">ival</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ival</span><span class="p">;</span>      <span class="c1">// p存放着变量ival的地址，或者说p是指向变量ival的指针</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>          <span class="c1">// 由符号*得到指针p所指的对象，输出42</span>
+<span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>              <span class="c1">// 由符号*得到指针p所指的对象，即可经由p为变量ival赋值</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>          <span class="c1">// 输出0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">像 <code class="code docutils literal notranslate"><span class="pre">&amp;</span></code> 和 <code class="code docutils literal notranslate"><span class="pre">*</span></code> 这样的符号，既能用作表达式里的运算符，也能作为声明的一部分出现，符号的上下文决定了符号的意义。</p>
+</div>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>         <span class="c1">// &amp;紧随类型名出现，因此是声明的一部分，r是一个引用</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>             <span class="c1">// *紧随类型名出现，因此是声明的一部分，p是一个指针</span>
+<span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>             <span class="c1">// &amp;出现在表达式中，是一个取地址符</span>
+<span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>             <span class="c1">// *出现在表达式中，是一个解引用符</span>
+<span class="kt">int</span> <span class="o">&amp;</span><span class="n">r2</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>       <span class="c1">// &amp;是声明的一部分，*是一个解引用符</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="const">
+<h3>const限定符<a class="headerlink" href="#const" title="永久链接至标题">¶</a></h3>
+<p>有时候需要定义一种不被调整的变量，那么就可以用关键词 <code class="code docutils literal notranslate"><span class="pre">const</span></code> 对变量的类型加以限定，之后任何试图给其进行赋值的行为都会引发错误。因为const对象一旦创建之后其值就不能再改变，所以const对象必须初始化：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">get_size</span><span class="p">();</span>           <span class="c1">// 运行时初始化</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>                   <span class="c1">// 编译时初始化</span>
+</pre></div>
+</div>
+<p>可以把引用绑定到const对象上，称为对常量的引用。不过，对常量的引用不能被用作修改它所绑定的对象：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">rl</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>      <span class="c1">// 正确：引用及其对应的对象都是常量</span>
+<span class="n">rl</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>                 <span class="c1">// 错误：rl是对常量的引用</span>
+<span class="kt">int</span> <span class="o">&amp;</span><span class="n">r2</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>            <span class="c1">// 错误：试图让一个非常量引用指向一个常量对象</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="AutoCAD.html" class="btn btn-neutral float-left" title="AutoCAD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Latex.html" class="btn btn-neutral float-right" title="Latex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022-2023, Koishi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoCAD &mdash; MyKnowledge MyKnowledge 文档</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="C++" href="C++.html" />
+    <link rel="prev" title="计算流体力学有限体积法" href="计算流体力学有限体积法.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MyKnowledge
+          </a>
+              <div class="version">
+                1.01
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="复变函数.html">复变函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="电路原理.html">电路原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数字电路.html">数字电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模拟电路.html">模拟电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数值分析与算法.html">数值分析与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数理方程.html">数理方程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="流体力学.html">流体力学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="计算流体力学有限体积法.html">计算流体力学有限体积法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AutoCAD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">工程绘图基础</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">图线的线型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">图形的投影</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">直线、平面之间的相对位置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">三视图</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">回转体上的取点方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">平面与回转体相交</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">立体与立体相交</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">特殊视图</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">向视图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">局部视图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">剖视图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">断面图</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">规定画法和简化画法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">肋板剖视</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">均匀分布的肋、轮辐及孔的画法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">断裂画法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">对称结构的画法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">回转体上平面的画法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">交线(相贯线)省略条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">相同结构要素的简化画法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">尺寸标注</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">螺纹的规定画法与标注</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id24">螺纹的规定画法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">螺纹的标注</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">零件图</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">表面粗糙度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">尺寸极限与配合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id29">基本绘图操作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">偏移</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">修剪</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id32">基本图形元素的绘制</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id33">圆弧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">直线</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">圆角</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">圆</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id37">三维绘制</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">案例：绘制三维轴承座</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">案例：路径管道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">案例：风扇叶</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Latex.html">Latex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM.html">OpenFOAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM算例运行案例.html">OpenFOAM算例运行案例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Salome.html">Salome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solidworks.html">Solidworks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MyKnowledge</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">AutoCAD</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/demo/AutoCAD.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="autocad">
+<h1>AutoCAD<a class="headerlink" href="#autocad" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>工程绘图基础<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>图线的线型<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>工程绘图主要有7种线型，各图线的宽度和用途如下表所示。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">图线名称</th>
+<th class="head">图线宽度</th>
+<th class="head">主要用途</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>粗实线</td>
+<td>b</td>
+<td>可见轮廓线</td>
+</tr>
+<tr class="row-odd"><td>细实线</td>
+<td>b/2</td>
+<td>尺寸线、尺寸界线、剖面线、辅助线、重合剖面的轮廓线、引出线等</td>
+</tr>
+<tr class="row-even"><td>虚线</td>
+<td>b/2</td>
+<td>不可见轮廓线</td>
+</tr>
+<tr class="row-odd"><td>点划线</td>
+<td>b/2</td>
+<td>轴线、对称中心线</td>
+</tr>
+<tr class="row-even"><td>双点划线</td>
+<td>b/2</td>
+<td>假想轮廓线、极限位置的轮廓线</td>
+</tr>
+<tr class="row-odd"><td>波浪线</td>
+<td>b/2</td>
+<td>断裂处的边界线、视图和剖视的分界线</td>
+</tr>
+<tr class="row-even"><td>双折线</td>
+<td>b/2</td>
+<td>断裂处的边界线</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center">
+<img alt="../_images/各线型的用途.png" src="../_images/各线型的用途.png" />
+</div>
+<p><em>Figure 各线型的用途</em></p>
+<p>同一图样中，同类项的图线宽度应一致。虚线、点画线等的线段长和间隔应尽量一致。</p>
+<p>绘制圆的轴线时，圆心应为线段的交线。点画线、双点划线的首尾应为线段，且超出轮廓线2-5mm。</p>
+<p>在较小的图形上可以用细实线代替点画线。</p>
+<p>当虚线与虚线，或虚线与粗实线相交，应该是线段相交。当虚线是粗实线的延长线时，在连线处应断开。</p>
+<div class="figure align-center">
+<img alt="../_images/部分线型的使用注意事项.png" src="../_images/部分线型的使用注意事项.png" />
+</div>
+<p><em>Figure 部分线型的使用注意事项</em></p>
+</div>
+<div class="section" id="id3">
+<h3>图形的投影<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>投影面分为三个：正立投影面（V面）、水平投影面（H面）、侧立投影面（W面），如下图所示。</p>
+<div class="figure align-center">
+<img alt="../_images/三个投影面.png" src="../_images/三个投影面.png" />
+</div>
+<p><em>Figure 三个投影面</em></p>
+<p>根据直线与三个投影面的位置关系，可以将直线分为三种：投影面平行线、投影面垂直线和一般位置直线。</p>
+<p>对于投影面平行线，平行于H面的称为 <strong>水平线</strong> ，平行于V面的称为 <strong>正平线</strong> ，平行于W面的称为 <strong>侧平线</strong> 。</p>
+<p>对于投影面垂直线，垂直于H面的称为 <strong>铅垂线</strong> ，垂直于V面的称为 <strong>正垂线</strong> ，垂直于W面的称为 <strong>侧垂线</strong> 。</p>
+<div class="figure align-center">
+<img alt="../_images/特殊位置直线的投影.png" src="../_images/特殊位置直线的投影.png" />
+</div>
+<p><em>Figure 特殊位置直线的投影</em></p>
+<p><strong>例题</strong> 在平面ABC内作一条水平线，使其到H面的距离为10mm。</p>
+<p><strong>解</strong> 根据水平线要求，从V面入手：</p>
+<div class="figure align-center">
+<img alt="../_images/作一条水平线使其到H面的距离为十毫米.png" src="../_images/作一条水平线使其到H面的距离为十毫米.png" />
+</div>
+<p>根据平面与三个投影面的位置关系，可以将平面分为三种：投影面垂直面、投影面平行面和一般位置平面。</p>
+<p>只垂直于一个投影面而与其他两个投影面都处于倾斜位置的平面称为投影面垂直面。其中，垂直于V面，同时与H面和W面处于倾斜位置的平面，称为 <strong>正垂面</strong> ；垂直于H面，同时与V面和W面处于倾斜位置的平面，称为 <strong>铅垂面</strong> ；垂直于W面，同时与H面和V面处于倾斜位置的平面，称为 <strong>侧垂面</strong> 。</p>
+<p>平行于某一投影面的平面称为投影面平行面。其中，平行于V面的称为 <strong>正平面</strong> ；平行于H面的称为 <strong>水平面</strong> ；平行于W面的称为 <strong>侧平面</strong> 。</p>
+</div>
+<div class="section" id="id4">
+<h3>直线、平面之间的相对位置<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="figure align-center">
+<img alt="../_images/两平面的交线与可见性.png" src="../_images/两平面的交线与可见性.png" />
+</div>
+<p><em>Figure 两平面的交线与可见性</em></p>
+<p><strong>例题</strong> 已知AB∥CD∥EF∥MH，判断平面ABDC与平面EFHM是否平行。</p>
+<p><strong>解</strong> 由于ek不平行于ac，故两平面不平行。</p>
+<div class="figure align-center">
+<img alt="../_images/判断平面ABCD与平面EFHM是否平行.png" src="../_images/判断平面ABCD与平面EFHM是否平行.png" />
+</div>
+</div>
+<div class="section" id="id5">
+<h3>三视图<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id6">
+<h4>回转体上的取点方式<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h4>
+<p>在圆柱面上取点的方式如下，利用了投影的积聚性。</p>
+<div class="figure align-center">
+<img alt="../_images/圆柱面上取点.png" src="../_images/圆柱面上取点.png" />
+</div>
+<p><em>Figure 圆柱面上取点</em></p>
+<p>在圆锥面上取点有两种方式，一种是使用辅助直线法（过锥顶作一条素线），另一种是辅助圆法。</p>
+<div class="figure align-center">
+<img alt="../_images/圆锥面上取点.png" src="../_images/圆锥面上取点.png" />
+</div>
+<p><em>Figure 圆锥面上取点</em></p>
+</div>
+<div class="section" id="id7">
+<h4>平面与回转体相交<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<p>截平面与圆柱面的截交线的空间形状取决于截平面与圆柱轴线的相对位置。</p>
+<div class="figure align-center">
+<img alt="../_images/截平面与圆柱面的截交线.png" src="../_images/截平面与圆柱面的截交线.png" />
+</div>
+<p><em>Figure 截平面与圆柱面的截交线</em></p>
+<div class="figure align-center">
+<img alt="../_images/圆柱体的一些经典截切面.png" src="../_images/圆柱体的一些经典截切面.png" />
+</div>
+<p><em>Figure 圆柱体的一些经典截切面</em></p>
+<p>绘制圆柱面斜截出来的椭圆的步骤是：找特殊点，补充中间点，光滑连接各点，轮廓素线的投影。特别地，当截平面是45°时，其投影不再是椭圆而是正圆。</p>
+<div class="figure align-center">
+<img alt="../_images/圆柱面的椭圆绘制方式.png" src="../_images/圆柱面的椭圆绘制方式.png" />
+</div>
+<p><em>Figure 圆柱面的椭圆绘制方式</em></p>
+<p>截平面与圆锥面的交线有五种形状。</p>
+<div class="figure align-center">
+<img alt="../_images/截平面与圆锥面的交线.png" src="../_images/截平面与圆锥面的交线.png" />
+</div>
+<p><em>Figure 截平面与圆锥面的交线</em></p>
+<div class="figure align-center">
+<img alt="../_images/圆锥面的斜截面绘制方式.png" src="../_images/圆锥面的斜截面绘制方式.png" />
+</div>
+<p><em>Figure 圆锥面的斜截面绘制方式</em></p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>立体与立体相交<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>相贯线是由平面曲线或直线组成的空间折线，每一段是平面体表面与回转体表面的交线。求相贯线的实质是求平面体各面与回转面的截交线。</p>
+<div class="figure align-center">
+<img alt="../_images/平面体与回转体相贯.png" src="../_images/平面体与回转体相贯.png" />
+</div>
+<p><em>Figure 平面体与回转体相贯</em></p>
+<p>回转体与回转体相贯的相贯线一般为光滑封闭的空间曲线，它是两回转体表面的共有线。</p>
+<p>直径不相等的两正交圆柱相贯，相贯线在平行于两圆柱轴线的投影面上的投影为双曲线。曲线的弯曲趋势总是向大圆柱投影内弯曲。</p>
+<div class="figure align-center">
+<img alt="../_images/圆柱与圆柱的正交相贯线.png" src="../_images/圆柱与圆柱的正交相贯线.png" />
+</div>
+<p><em>Figure 圆柱与圆柱的正交相贯线</em></p>
+<div class="figure align-center">
+<img alt="../_images/局部相贯简单结构.png" src="../_images/局部相贯简单结构.png" />
+</div>
+<p><em>Figure 局部相贯简单结构</em></p>
+</div>
+<div class="section" id="id9">
+<h3>特殊视图<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id10">
+<h4>向视图<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<p>六个基本视图的投影对应关系如下图所示，长相等且对正，高相等且平齐，宽相等且对应。除了后视图外，靠近主视图的一边是物体的后面，远离主视图的一边是物体的前面。</p>
+<div class="figure align-center">
+<img alt="../_images/六个基本视图的投影对应关系.png" src="../_images/六个基本视图的投影对应关系.png" />
+</div>
+<p><em>Figure 六个基本视图的投影对应关系</em></p>
+<p>按照上面的规定进行配置则视图不需要标注，而如果想要自由配置基本视图的摆放位置，则可以使用向视图。向视图使用箭头在主视图中指明投射方向，并标注大写字母，在向视图的上方标注相同的字母。</p>
+<div class="figure align-center">
+<img alt="../_images/向视图.png" src="../_images/向视图.png" />
+</div>
+<p><em>Figure 向视图</em></p>
+</div>
+<div class="section" id="id11">
+<h4>局部视图<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<p>局部视图是将物体的某一部分向基本投影面投射所得的视图（画的是面而非体）。范围用 <strong>波浪线</strong> 表示。当表示的局部结构是完整的且外轮廓封闭时，波浪线可省。用带字母的箭头指明要表达的部位和投射方向，并注明视图名称。</p>
+<div class="figure align-center">
+<img alt="../_images/局部视图.png" src="../_images/局部视图.png" />
+</div>
+<p><em>Figure 局部视图</em></p>
+</div>
+<div class="section" id="id12">
+<h4>剖视图<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h4>
+<p>当机件的内部形状较复杂时，视图上将出现许多虚线，不便于画图、看图和标注尺寸。这个时候就需要使用剖视图。用一假想剖切面将机件剖开，移去剖切面和观察者之间的部分，将其余部分向投影面投射，并在剖面区域内画上剖面符号（剖面线）。</p>
+<p>剖视图需要有其标注。剖切符号表示剖切面起、止和转折，画作5毫米短粗实线，其起止箭头表明投射方向。起止和转折处标大写字母，剖视图上标X-X。剖视图按基本视图关系配置时，可省略箭头。单一剖切面通过机件的对称平面时，可不标注。</p>
+<div class="figure align-center">
+<img alt="../_images/剖视图的画法.png" src="../_images/剖视图的画法.png" />
+</div>
+<p><em>Figure 剖视图的画法</em></p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>确定剖切面的位置，剖切平面一般选择通过机件的对称面或轴线，且通常平行于投影面。</li>
+<li>剖面区域和剖切面后方的可见部分全部都要画出。</li>
+<li>剖切是一种假想，其它视图仍应完整画出。</li>
+<li>在剖视图上已经表达清楚的结构，在其它视图上此部分结构的投影为虚线时， <strong>其虚线省略不画</strong> 。但少数没有表示清楚的结构，允许画少量虚线。</li>
+<li>按照机件材料，选择剖面符号。不需在剖面区域中表示材料类别时，采用通用剖面线表示。通用剖面线为与主要轮廓或剖面区域对称线成45°的平行等距细实线。同一物体的各个剖面区域，其剖面线画法应一致。</li>
+<li>当画出的剖面线与图形的主要轮廓线或剖面区域的轴线平行时，该图形的剖面线应画成与水平(主要轮廓或剖面区域对称线)成30°或60°角。</li>
+</ul>
+</div>
+<p>上面展示的是全剖视，是用剖切面完全地剖开物体所得的剖视图，适用于外形较为简单、内形较为复杂、剖切投影面内的图形不对称的情况。如果使用全剖视不能很好地表达出外形，则可以使用半剖视。半剖视以对称线为界，一半画视图，一半画剖视，适用于内外形都需要表达、剖切投影面内的形状对称或基本对称的情况。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>与全剖图类似，已表达清楚的内形虚线不画。</li>
+<li>表示对称轴之类的点画线不能被遮挡(重合)，当对称机件的轮廓线与中心线重合，不宜采用半剖视，应该改用全剖或局部剖。</li>
+<li>在用半剖视表示形状基本对称的机件时，不对称部分一定要另有图形表达清楚。</li>
+</ul>
+</div>
+<div class="figure align-center">
+<img alt="../_images/半剖视图.png" src="../_images/半剖视图.png" />
+</div>
+<p><em>Figure 半剖视图</em></p>
+<p>当有许多不对称结构的时候，可以改用局部剖。局部剖是一种灵活的表示方法，适用于只有局部内形需要剖切表示（不对称的机件）、实心杆上有孔槽的情况。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>波浪线不能与图上的其它图线重合。</li>
+<li>波浪线不能穿空而过，也不能超出视图的轮廓线。</li>
+<li>一个视图中，局部剖的数量不宜过多。</li>
+</ul>
+</div>
+<div class="figure align-center">
+<img alt="../_images/局部剖.png" src="../_images/局部剖.png" />
+</div>
+<p><em>Figure 局部剖</em></p>
+</div>
+<div class="section" id="id13">
+<h4>断面图<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h4>
+<p>断面图假想用剖切面将物体的某处切断，只画出剖切面与物体接触部分（剖面区域）的图形，分为移出断面图和重合断面图。</p>
+<p>移出断面图画在视图之外，轮廓线用粗实线绘制。配置在剖切线的延长线上或其他适当的位置，需要标注剖切符号(箭头)、断面图的名称。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>断面图按基本视图放置时，箭头可省略。</li>
+<li>断面图摆放在剖切线延长线上时可以省略名称。</li>
+<li>在剖切线延长线上的对称的移出断面图，可不标注。</li>
+<li>剖切面通过回转面形成的孔或凹坑的轴线时，应按剖视画。</li>
+<li>当剖切面导致断面图完全分离时，这些结构按剖视画。</li>
+<li>用两个或多个相交的剖切平面剖切得出的移出断面，中间一般应断开。（剖切面垂直于轮廓）</li>
+</ul>
+</div>
+<div class="figure align-center">
+<img alt="../_images/断面图.png" src="../_images/断面图.png" />
+</div>
+<p><em>Figure 断面图</em></p>
+<p>重合断面图画在视图之内，轮廓线用细实线绘制。原有轮廓线不受影响。不对称的重合断面图，可不注名称；对称的重合断面图，可不标注。</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>规定画法和简化画法<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id15">
+<h4>肋板剖视<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h4>
+<p>对于机件的肋板，如按纵向剖切（对称面），剖面部分按不剖画。该原则同样适用于轮辐和薄板等结构。</p>
+<div class="figure align-center">
+<img alt="../_images/肋板剖视.png" src="../_images/肋板剖视.png" />
+</div>
+<p><em>Figure 肋板剖视</em></p>
+</div>
+<div class="section" id="id16">
+<h4>均匀分布的肋、轮辐及孔的画法<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h4>
+<p>均匀分布的孔，画出一个或几个，其余用点划线标中心位置。回转体机件上均匀分布的孔、肋板等未处于剖切平面上时，可将这些结构旋转到剖切平面上画出。</p>
+<div class="figure align-center">
+<img alt="../_images/均匀分布的肋、轮辐及孔的画法.png" src="../_images/均匀分布的肋、轮辐及孔的画法.png" />
+</div>
+<p><em>Figure 均匀分布的肋、轮辐及孔的画法</em></p>
+</div>
+<div class="section" id="id17">
+<h4>断裂画法<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h4>
+<p>轴、杆类较长的机件，当沿长度方向形状相同或按一定规律变化时，允许断裂画出（细实线波浪线或双折线）。标注尺寸时，仍注实长。</p>
+<div class="figure align-center">
+<img alt="../_images/断裂画法.png" src="../_images/断裂画法.png" />
+</div>
+<p><em>Figure 断裂画法</em></p>
+</div>
+<div class="section" id="id18">
+<h4>对称结构的画法<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h4>
+<p>在不致引起误解时，可只画一半或四分之一。并在对称中心线的两端画出两条与其垂直的平行细实线（对称符号）。对称符号使用细实线，长6-10mm，间距2-3mm。</p>
+<div class="figure align-center">
+<img alt="../_images/对称结构的画法.png" src="../_images/对称结构的画法.png" />
+</div>
+<p><em>Figure 对称结构的画法</em></p>
+</div>
+<div class="section" id="id19">
+<h4>回转体上平面的画法<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h4>
+<p>回转体机件上的平面在已有视图中不能充分表达时，可用相交的两条细实线表示。</p>
+<div class="figure align-center">
+<img alt="../_images/回转体上平面的画法.png" src="../_images/回转体上平面的画法.png" />
+</div>
+<p><em>Figure 回转体上平面的画法</em></p>
+</div>
+<div class="section" id="id20">
+<h4>交线(相贯线)省略条件<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h4>
+<p>圆柱体上的小孔、铣键槽等出现的交线（相贯线），在其他视图清楚地表示了孔、槽的形状，允许省略。</p>
+<div class="figure align-center">
+<img alt="../_images/交线相贯线省略画法.png" src="../_images/交线相贯线省略画法.png" />
+</div>
+<p><em>Figure 交线相贯线省略画法</em></p>
+</div>
+<div class="section" id="id21">
+<h4>相同结构要素的简化画法<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h4>
+<p>若干相同的结构要素按一定的规律分布时，只需画出几个完整的结构要素，其余的用点划线画出其中心位置（细实线部分相交）。</p>
+<div class="figure align-center">
+<img alt="../_images/相同结构要素的简化画法.png" src="../_images/相同结构要素的简化画法.png" />
+</div>
+<p><em>Figure 相同结构要素的简化画法</em></p>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>尺寸标注<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h3>
+<p>尺寸是制造和检验零件的重要依据，尺寸与图形一起描述零件的形状、大小和制造要求。要符合国家标准的有关规定，标注制造零件所需要的全部尺寸，不遗漏，不重复。尺寸界线和尺寸线的要求为：</p>
+<ul class="simple">
+<li>尺寸界线和尺寸线均为细实线。</li>
+<li>尺寸界线由轮廓线、轴线或对称中心线处引出或直接利用上述图线，不能选择虚线轮廓。</li>
+<li>尺寸界线一般与尺寸线垂直。</li>
+<li>尺寸线不能用其他图线代替或与图线重合，尺寸线之间不能相互交叉。</li>
+<li>线性尺寸的尺寸线应平行于所标注的线段。</li>
+</ul>
+<p>尺寸数字的要求为：</p>
+<ul class="simple">
+<li>尺寸数字反映零件真实大小，与绘图比例无关。</li>
+<li>以毫米为单位，其他单位要注明。每个尺寸标注一次。</li>
+<li>一般应注在尺寸线的上方，也可注在尺寸线的中断处。</li>
+<li>水平方向字头向上，垂直方向字头向左。</li>
+<li>线性尺寸数字的方向应按下图所示方向注写，并尽可能避免在图示30°范围内标注尺寸，无法避免时应引出标注。</li>
+<li>尺寸数字不可被任何图线所通过，否则必须将该图线断开。</li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/线性尺寸数字的标注方法.png" src="../_images/线性尺寸数字的标注方法.png" />
+</div>
+<p><em>Figure 线性尺寸数字的标注方法</em></p>
+<p>在遇到狭小部位，没有足够位置画箭头或注写数字时，可以用圆点或斜线代替箭头。</p>
+<div class="figure align-center">
+<img alt="../_images/狭小部位尺寸的注法.png" src="../_images/狭小部位尺寸的注法.png" />
+</div>
+<p><em>Figure 狭小部位尺寸的注法</em></p>
+<p>角度尺寸的要求为：</p>
+<ul class="simple">
+<li>尺寸线应画成圆弧，其圆心是该角的顶点。尺寸界线沿径向引出。</li>
+<li>角度数字一律水平写，一般写在尺寸线的中断处。</li>
+<li>必要时也可以写在尺寸线的上方或外面，也可以引出标注。</li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/角度尺寸的注法.png" src="../_images/角度尺寸的注法.png" />
+</div>
+<p><em>Figure 角度尺寸的注法</em></p>
+<p>在标注尺寸时，应该尽可能使用符号和缩写词，下面是一些常用符号。</p>
+<div class="figure align-center">
+<img alt="../_images/尺寸标注中的常用符号或缩写词.png" src="../_images/尺寸标注中的常用符号或缩写词.png" />
+</div>
+<p><em>Figure 尺寸标注中的常用符号或缩写词</em></p>
+<p>直径尺寸的要求为：</p>
+<ul class="simple">
+<li>当大于半圆时应当标注直径，且应当在直径尺寸数字前加注直径的符号。</li>
+<li>直径尺寸可以标注在投影为圆的视图，此时多通过圆心；也可以标注在非圆视图上。</li>
+<li>大于半球时标注球的直径，小于等于半球时标注球的半径。</li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/直径尺寸的注法.png" src="../_images/直径尺寸的注法.png" />
+</div>
+<p><em>Figure 直径尺寸的注法</em></p>
+<p>半径尺寸的要求为：</p>
+<ul class="simple">
+<li>小于等于半圆时应当标注半径，且应当在半径尺寸数字前加注半径符号。</li>
+<li>半径必须在投影为圆弧的视图上标注。</li>
+<li>当圆弧半径过大或在图纸范围内无法注出圆心位置时可以如图方式标注。</li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/半径尺寸的注法.png" src="../_images/半径尺寸的注法.png" />
+</div>
+<p><em>Figure 半径尺寸的注法</em></p>
+<p>对于均匀分布的孔有相应的简略画法，分别适用于沿直线均匀分布和沿圆周均匀分布的情况。</p>
+<div class="figure align-center">
+<img alt="../_images/均匀分布的孔的标注.png" src="../_images/均匀分布的孔的标注.png" />
+</div>
+<p><em>Figure 均匀分布的孔的标注</em></p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>定位尺寸标注前必须选定尺寸基准。长、宽、高三个方向，至少各有一个基准。常选用底面、端面、对称面和轴线作为基准。</li>
+<li>总体尺寸与定位尺寸和定形尺寸可能重复（冗余），这时需作调整，以免出现封闭尺寸链。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id23">
+<h3>螺纹的规定画法与标注<a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id24">
+<h4>螺纹的规定画法<a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h4>
+<p>螺纹的五要素包括：牙型、直径、线数、螺距与导程、旋向。单线螺纹指沿一条螺旋线形成螺纹，双线及多线螺纹沿两条或多条、在轴向等距分布的螺旋线形成。螺距是相邻两牙中径线上对应两点间的轴向距离；导程是同一螺纹相邻两牙中径线上对应两点间的轴向距离。只有上述各要素完全相同的内、外螺纹才能可靠旋合。</p>
+<p>外螺纹注意三条线画法：牙顶线、牙底线、螺纹终止线，以大径尺寸为基础。</p>
+<ul class="simple">
+<li>大径为粗实线，小径为细实线。</li>
+<li>小径为0.85倍大径，45°倒角底边长度为0.1倍大径，螺纹终止线距离端口2倍大径。</li>
+<li>倒角会让端部存在倒角粗实线，小径细实线 <strong>需要穿过</strong> 该倒角实线。</li>
+<li>牙顶圆(大径圆)为完整粗实线圆，牙底圆(小径圆)为3/4细实线圆，倒角圆不画。</li>
+<li>在画外螺纹的剖视图时，倒角粗实线将消失，剖面线要画到大径线，螺纹终止线即使在剖面处也要画一小段。</li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/外螺纹的画法.png" src="../_images/外螺纹的画法.png" />
+</div>
+<p><em>Figure 外螺纹的画法</em></p>
+<p>内螺纹同样要注意三条线画法：牙顶线、牙底线、螺纹终止线。</p>
+<ul class="simple">
+<li>一般都会画成剖视图，剖面线要画到粗实线（即小径线处）。</li>
+<li>大径为细实线，小径为粗实线。</li>
+<li>小径为0.85倍大径，45°倒角底边长度为0.1倍大径，螺纹终止线距离端口2倍大径。</li>
+<li>倒角会让端部存在倒角粗实线，大径细实线 <strong>不能穿过</strong> 倒角的粗实线。</li>
+<li>牙顶圆(大径圆)为完整粗实线圆，牙底圆(小径圆)为3/4细实线圆，倒角圆不画。</li>
+<li>盲孔螺纹的要求类似，只是多了尾部角度120°的要求。</li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/内螺纹画法.png" src="../_images/内螺纹画法.png" />
+</div>
+<p><em>Figure 内螺纹画法</em></p>
+<p>内外螺纹连接时，大径线和大径线对齐；小径线和小径线对齐。旋合部分按外螺纹画；其余部分按各自的规定画。因此应该先画外螺纹，然后根据内螺纹的钻孔深度和螺孔深度按各自画法分别画出。另外，内、外螺纹剖面线方向垂直。</p>
+<div class="figure align-center">
+<img alt="../_images/螺纹连接的画法.png" src="../_images/螺纹连接的画法.png" />
+</div>
+<p><em>Figure 螺纹连接的画法</em></p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">牙顶用粗实线表示，可以理解为用手摸得着的直径，外螺纹大径线，内螺纹小径线。牙底用细实线表示，可以理解为用手摸不着的直径，外螺纹小径线，内螺纹大径线。</p>
+</div>
+</div>
+<div class="section" id="id25">
+<h4>螺纹的标注<a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h4>
+<p>螺纹的画法相同，为便于区分必须进行标注。</p>
+<div class="figure align-center">
+<img alt="../_images/螺纹的完整标注格式.png" src="../_images/螺纹的完整标注格式.png" />
+</div>
+<p><em>Figure 螺纹的完整标注格式</em></p>
+<ul class="simple">
+<li>除管螺纹外，公称直径即大经。</li>
+<li>粗牙普通螺纹不标螺距，细牙普通螺纹需要标注螺距。</li>
+<li>右旋不标注，左旋标注LH。</li>
+<li>螺纹的制造精度用中径和顶径控制，分别是中径公差带代号和顶径公差带代号。外螺纹用小写字母，内螺纹用大写字母。</li>
+<li>旋合长度分为短S、中等N、长L，其中N常常省略不标。</li>
+</ul>
+<p>常用标准螺纹标记如下：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="11%" />
+<col width="15%" />
+<col width="17%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">螺纹类别</th>
+<th class="head">标准编号</th>
+<th class="head">特征代号</th>
+<th class="head">标记示例</th>
+<th class="head">附注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2">普通螺纹</td>
+<td>GB 197-2003</td>
+<td>M</td>
+<td>M10-5g6g-S</td>
+<td>普通螺纹粗牙不标注螺距，中等旋合长度不标N(以下同)</td>
+</tr>
+<tr class="row-odd"><td colspan="2">非螺纹密封管螺纹</td>
+<td>GB 7307-2001</td>
+<td>G</td>
+<td>G1½</td>
+<td>外螺纹公差等级分A级和B级，内螺纹公差等级只有一种</td>
+</tr>
+<tr class="row-even"><td rowspan="3">用螺纹密封管螺纹</td>
+<td>圆锥外螺纹</td>
+<td>GB 7306-2000</td>
+<td>R</td>
+<td>R½-LH</td>
+<td>内螺纹公差等级只有一种</td>
+</tr>
+<tr class="row-odd"><td>圆锥内螺纹</td>
+<td>GB 7306-2000</td>
+<td><span class="math notranslate nohighlight">\(\mathrm{R_{c}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\mathrm{R_{c}1}\)</span> ½</td>
+<td>内螺纹公差等级只有一种</td>
+</tr>
+<tr class="row-even"><td>圆柱内螺纹</td>
+<td>GB 7306-2000</td>
+<td><span class="math notranslate nohighlight">\(\mathrm{R_{p}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\mathrm{R_{p}}\)</span> ½</td>
+<td>内螺纹公差等级只有一种</td>
+</tr>
+<tr class="row-odd"><td colspan="2">梯形螺纹</td>
+<td>GB 5796.4-2005</td>
+<td>Tr</td>
+<td>Tr40×14(P7)Lh-7e</td>
+<td>多线螺纹螺距和导程均可参考此格式标注</td>
+</tr>
+<tr class="row-even"><td colspan="2">锯齿形螺纹</td>
+<td>GB/T 13576-2008</td>
+<td>B</td>
+<td>B40×7-7A</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>螺纹尺寸的标注应当标注在大径上。比较特殊的是管螺纹，其采用“特征代号 公称直径 公差等级”的方式进行标注，其中公称直径为管子的通径，单位为英寸，并且使用指引线来标注，指引线指在螺纹大径处。</p>
+<div class="figure align-center">
+<img alt="../_images/螺纹的注法.png" src="../_images/螺纹的注法.png" />
+</div>
+<p><em>Figure 螺纹的注法</em></p>
+</div>
+</div>
+<div class="section" id="id26">
+<h3>零件图<a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id27">
+<h4>表面粗糙度<a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h4>
+<p>零件的表面结构包括在有限区域上的粗糙度、波纹度、表面缺陷和形状误差，是评定零件加工质量的重要指标之一。零件实际轮廓则由粗糙度轮廓、波纹度轮廓和形状轮廓叠加而成。表面粗糙度参数R是最常用的评定参数，包括轮廓的算术平均偏差Ra和轮廓的最大高度Rz。其标注原则为：</p>
+<ul class="simple">
+<li>每一表面只标注一次并尽量标在相应尺寸及其公差的同一视图上。</li>
+<li>标注在可见轮廓线、尺寸线、尺寸界线或它们的延长线上。也可以标注在几何公差框格上方。</li>
+<li>符号应从材料外指向并接触表面。</li>
+<li>注写和读取方向与尺寸的注写和读取方向一致。</li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/表面粗糙度的注法.png" src="../_images/表面粗糙度的注法.png" />
+</div>
+<p><em>Figure 表面粗糙度的注法</em></p>
+</div>
+<div class="section" id="id28">
+<h4>尺寸极限与配合<a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h4>
+<p>基本尺寸是设计时确定的尺寸，实际尺寸是零件制成后实际测得的尺寸，极限尺寸是允许零件实际尺寸变化的两个界限值。最大极限尺寸指允许实际尺寸的最大值，最小极限尺寸指允许实际尺寸的最小值。零件合格的条件：最大极限尺寸≥实际尺寸≥最小极限尺寸。</p>
+<p>尺寸偏差是某尺寸减去基本尺寸的差。上偏差=最大极限尺寸-基本尺寸，孔代号为ES，轴代号为es；下偏差=最小极限尺寸-基本尺寸，孔代号为EI，轴代号为ei。上偏差和下偏差统称极限偏差。偏差可正可负。</p>
+<p>尺寸公差(简称公差)是允许实际尺寸的变动量。公差=最大极限尺寸-最小极限尺寸=上偏差-下偏差。公差恒为正。</p>
+<div class="figure align-center">
+<img alt="../_images/公差带图.png" src="../_images/公差带图.png" />
+</div>
+<p><em>Figure 公差带图</em></p>
+<p>标准公差是公差带的宽度大小，代号为IT，共20个等级：IT01、IT0、IT1～IT18。标准公差的数值由基本尺寸和公差等级确定。基本偏差是确定公差带相对于零线的位置，一般为靠近零线的那个偏差。在代号使用上，孔用大写字母，轴用小字母表示。下图展示了基本偏差系列，确定了孔和轴的公差带位置。公差带代号基本偏差代号和标准公差等级代号组成。</p>
+<div class="figure align-center">
+<img alt="../_images/基本偏差系列.png" src="../_images/基本偏差系列.png" />
+</div>
+<p><em>Figure 基本偏差系列</em></p>
+<div class="figure align-center">
+<img alt="../_images/公差标注.png" src="../_images/公差标注.png" />
+</div>
+<p><em>Figure 公差标注</em></p>
+<p>配合是基本尺寸相同相互结合的孔和轴的公差带之间的关系。对于 <span class="math notranslate nohighlight">\(\delta\)</span> =孔的实际尺寸-轴的实际尺寸，当 <span class="math notranslate nohighlight">\(\delta \geqslant 0\)</span> 时为间隙配合，当 <span class="math notranslate nohighlight">\(\delta \leqslant 0\)</span> 为过盈配合。</p>
+<p>对于基孔制，a～h形成间隙配合，j～m一般形成过渡配合，r～zc 一般形成过盈配合。对于基轴制，A～H形成间隙配合，J～M 形成过渡配合，R～ZC形成过盈配合。过渡配合是可能具有间隙或过盈的配合，孔的公差带与轴的公差带相互交叠。</p>
+<p>基孔制配合是基本偏差为一定的孔的公差带(H)，与不同基本偏差的轴的公差带形成各种配合的制度。孔比轴难加工，因此一般采用基孔制。基轴制配合是基本偏差为一定的轴的公差带(h)与不同基本偏差的孔的公差带形成各种配合的制度。同一轴上安装不同配合要求的零件时会采用基轴制。</p>
+<p>装配图中配合的标注形式为： <span class="math notranslate nohighlight">\(\text{基本尺寸}\frac{\text{孔的公差带代号}}{\text{轴的公差带代号}}\)</span> 。采用基孔制配合时，分子为基准孔的公差带代号(H)；采用基轴制配合时，分母为基准轴的公差带代号(h)。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<ul class="last simple">
+<li>机械图纸上的未注尺寸公差并不等于没有公差，机械图纸上的未标注的尺寸公差按(IT13)级公差检验。</li>
+<li>根据GB/T 1804-92的规定，线性尺寸未注公差的极限偏差采用对称偏差，比如公差值是150 <span class="math notranslate nohighlight">\(\mu \mathrm{m}\)</span> ，则检验标准就是在原尺寸上±0.075mm。</li>
+<li>对于未注尺寸公差的孔和轴，孔取H13， 轴取h13。</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id29">
+<h2>基本绘图操作<a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id30">
+<h3>偏移<a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h3>
+<p>偏移的命令为 <code class="code docutils literal notranslate"><span class="pre">offset</span></code> ，可以将指定对象向指定的轴向方向移动。常用来绘制点划线和参考线。基本的操作步骤如下：</p>
+<ol class="arabic simple">
+<li>输入命令 <code class="code docutils literal notranslate"><span class="pre">offset</span></code> ，回车确认。</li>
+<li>输入偏移距离。[通过(T)/删除(E)/图层(L)]默认为&lt;通过&gt;。</li>
+<li>选择需要进行偏移的对象。</li>
+<li>指定要偏移的那一侧平面上的空白处。[退出(E)/多个(M)/放弃(U)]默认为&lt;退出&gt;。</li>
+<li>回车确认绘制，退出。</li>
+</ol>
+</div>
+<div class="section" id="id31">
+<h3>修剪<a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h3>
+<p>修剪的命令为 <code class="code docutils literal notranslate"><span class="pre">trim</span></code> ，可以删除掉指定的的绘图元素。基本的操作步骤如下：</p>
+<ol class="arabic simple">
+<li>输入命令 <code class="code docutils literal notranslate"><span class="pre">trim</span></code> ，回车确认。</li>
+<li>选择要修剪的对象。</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id32">
+<h2>基本图形元素的绘制<a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id33">
+<h3>圆弧<a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h3>
+<p>绘制圆弧的命令为 <code class="code docutils literal notranslate"><span class="pre">arc</span></code> 。如果中间不进行任何额外选择，默认是进行三点画圆弧。基本的操作步骤如下：</p>
+<ol class="arabic simple">
+<li>输入命令 <code class="code docutils literal notranslate"><span class="pre">arc</span></code> ，回车确认。</li>
+<li>指定圆弧的起点。</li>
+<li>指定圆弧的第二个点。</li>
+<li>指定圆弧的端点。</li>
+<li>回车确认绘制，退出。</li>
+</ol>
+<p>根据圆心进行绘制的基本操作步骤如下：</p>
+<ol class="arabic simple">
+<li>输入命令 <code class="code docutils literal notranslate"><span class="pre">arc</span></code> ，回车确认。</li>
+<li>根据[圆心(C)]输入 <code class="code docutils literal notranslate"><span class="pre">c</span></code> ，回车确认。</li>
+<li>指定圆弧的圆心。</li>
+<li>指定圆弧的起点。</li>
+<li>指定圆弧的端点。</li>
+<li>回车确认绘制，退出。</li>
+</ol>
+<p>在进行圆弧绘制的过程中，可以根据提示按住 <code class="code docutils literal notranslate"><span class="pre">Ctrl</span></code> 切换圆弧方向。也可以根据[角度(A)/弦长(L)]进行选择来精确绘制确定长度的圆弧。</p>
+</div>
+<div class="section" id="id34">
+<h3>直线<a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h3>
+<p>绘制直线的命令为 <code class="code docutils literal notranslate"><span class="pre">line</span></code> ，一般使用就是依次指定两个点确认即可。</p>
+<p>如果要绘制指定长度和角度的直线，下面以绘制长度为60，与x轴夹角为120度的直线为例，其步骤如下：</p>
+<ol class="arabic simple">
+<li>输入命令 <code class="code docutils literal notranslate"><span class="pre">line</span></code> ，回车确认。</li>
+<li>指定第一个点。</li>
+<li>输入 <code class="code docutils literal notranslate"><span class="pre">&#64;60&lt;120</span></code> ，回车确认。</li>
+<li>按 <code class="code docutils literal notranslate"><span class="pre">ESC</span></code> 退出绘制。</li>
+</ol>
+</div>
+<div class="section" id="id35">
+<h3>圆角<a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h3>
+<p>绘制圆角的命令为 <code class="code docutils literal notranslate"><span class="pre">fillet</span></code> ，一般的使用步骤如下：</p>
+<ol class="arabic simple">
+<li>输入命令 <code class="code docutils literal notranslate"><span class="pre">fillet</span></code> ，回车确认。</li>
+<li>根据[放弃(U)/多段线(P)/半径(R)/修剪(T)/多个(M)]输入 <code class="code docutils literal notranslate"><span class="pre">r</span></code> 回车确认。</li>
+<li>输入圆角半径，回车确认。</li>
+<li>选择第一个对象（边）。</li>
+<li>选择第二个对象（边）。</li>
+</ol>
+</div>
+<div class="section" id="id36">
+<h3>圆<a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h3>
+<p>绘制圆的命令为 <code class="code docutils literal notranslate"><span class="pre">circle</span></code> ，常常的使用情形时根据圆心和半径来绘制，其基本使用步骤如下：</p>
+<ol class="arabic simple">
+<li>输入命令 <code class="code docutils literal notranslate"><span class="pre">circle</span></code> ，回车确认。</li>
+<li>指定圆的圆心。[三点(3P)/两点(2P)/切点、切点、半径(T)]默认&lt;圆心&gt;。</li>
+<li>输入圆的半径。[直径(D)]默认&lt;半径&gt;。</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id37">
+<h2>三维绘制<a class="headerlink" href="#id37" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id38">
+<h3>案例：绘制三维轴承座<a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h3>
+<p>在界面当中，在左下角选择一个布局标签，默认第一个布局为“模型”，进入后在视图左上角会看到有 <strong>视图控件</strong> ，默认是「俯视」「二维线框」，分别将其修改成 <strong>西南等轴测</strong> 和 <strong>灰度</strong> 。当然，中途也可以随时切换视图为前视图俯视图之类的，或者按住 <code class="code docutils literal notranslate"><span class="pre">shift</span></code> 和鼠标中键来旋转视图。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">视图控件选择的视图方向决定了后续使用命令绘制图形所在的平面，即使进行过自由旋转视图，所在平面依然是之前选择的视图控件视角方向（这一点可以开启背景网格来确认）。如果要修改绘制图形的所在平面，就要通过视图控件来选择对应的视图方向。</p>
+</div>
+<p>输入 <code class="code docutils literal notranslate"><span class="pre">rec</span></code> 选择绘制矩形命令，首先输入第一个坐标，即 <code class="code docutils literal notranslate"><span class="pre">0</span></code> &gt; 逗号 &gt; <code class="code docutils literal notranslate"><span class="pre">0</span></code> 从而指定矩形的一个角位于原点，然后输入 <code class="code docutils literal notranslate"><span class="pre">&#64;</span></code> &gt; <code class="code docutils literal notranslate"><span class="pre">60</span></code> &gt; 逗号 &gt; <code class="code docutils literal notranslate"><span class="pre">45</span></code> 来绘制出长为60宽为45的矩形。然后选择该矩形，输入命令 <code class="code docutils literal notranslate"><span class="pre">ext</span></code> 选择三维拉伸命令，鼠标向上移动，输入拉伸数值 <code class="code docutils literal notranslate"><span class="pre">18</span></code> 确认，即可得到一个长方体。</p>
+<p>接着输入命令 <code class="code docutils literal notranslate"><span class="pre">circ</span></code> 选择圆命令，通过吸附选择长方体底边的中点，然后输入 <code class="code docutils literal notranslate"><span class="pre">15</span></code> 确认，即得到半径为15的圆。然后选择该圆，输入命令 <code class="code docutils literal notranslate"><span class="pre">ext</span></code> 选择三维拉伸命令，鼠标向上移动，输入拉伸数值 <code class="code docutils literal notranslate"><span class="pre">18</span></code> 确认，即可得到一个圆柱体。</p>
+<p>接着要从长方体切除掉圆柱体的交集。输入 <code class="code docutils literal notranslate"><span class="pre">su</span></code> 选择切除命令，首先选择长方体，回车确认，然后选择圆柱体，再回车确认，这时长方体就切除掉了圆柱体交集。</p>
+<p>然后从底部切除扁长方体。首先用直线命令绘制出对应的长为60、宽为21的矩形，由于这是通过 <code class="code docutils literal notranslate"><span class="pre">line</span></code> 命令得到的，所以还要输入 <code class="code docutils literal notranslate"><span class="pre">reg</span></code> 命令选择四条边将其整合成一个完整面对象，之后用 <code class="code docutils literal notranslate"><span class="pre">ext</span></code> 命令拉伸8即可得到所需长方体。完成后，输入 <code class="code docutils literal notranslate"><span class="pre">m</span></code> 使用移动命令，选择长方体对象，空格，选择底边中点作为参考点，空格，移动将底边中点与所需位置中点对其，确认即可。</p>
+<p>接着要从长方体切除掉扁长方体的交集。输入 <code class="code docutils literal notranslate"><span class="pre">su</span></code> 选择切除命令，首先选择长方体，回车确认，然后选择扁长方体，再回车确认，这时长方体就切除掉了扁长方体交集。</p>
+<p>接下来通过视图控件进入后视图，通过直线和圆命令绘制出轴承的二维形状，注意直线与圆相切吸附。然后输入 <code class="code docutils literal notranslate"><span class="pre">bo</span></code> 选择边界命令，切换对象类型为面域，拾取立板面中的一处，回车确认将其填充为面。然后选择两个圆和这个面，通过 <code class="code docutils literal notranslate"><span class="pre">move</span></code> 命令移动到对应位置。之后拉伸成对应的形状即可。</p>
+<p>最上面的孔可以先在外部画出足够长的圆柱体，然后通过 <code class="code docutils literal notranslate"><span class="pre">move</span></code> 命令充分利用圆心、中点以及相对距离逐步将其移动到所需位置，再切除掉即可。完成后，再输入 <code class="code docutils literal notranslate"><span class="pre">uni</span></code> 选择合并命令将三个部分合并起来成为一个整体模型。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">有时候由于实体阻挡，不好将图形放置到所需位置，这时可以将视图控件切换为「线框」，从而能够直接在所需位置绘制图形，进而进行切除合并操作。</p>
+</div>
+<div class="figure align-center">
+<img alt="../_images/三维绘制得到的轴承座.png" src="../_images/三维绘制得到的轴承座.png" />
+</div>
+<p><em>Figure 三维绘制得到的轴承座</em></p>
+</div>
+<div class="section" id="id39">
+<h3>案例：路径管道<a class="headerlink" href="#id39" title="永久链接至标题">¶</a></h3>
+<p>首先利用 <code class="code docutils literal notranslate"><span class="pre">line</span></code> 命令绘制出基础的形状，该形状有两个长方形组成，两个长方形夹角为 <span class="math notranslate nohighlight">\(60^{\circ}\)</span> 。之后利用 <code class="code docutils literal notranslate"><span class="pre">fillet</span></code> 圆角命令将直角变为半径为20的圆角。然后全选所有线段，使用 <code class="code docutils literal notranslate"><span class="pre">join</span></code> 命令，将所有线段组合成一个整体，也就是我们要用的路径。</p>
+<p>然后随便在一个地方画一个直径为10的圆，接着使用 <code class="code docutils literal notranslate"><span class="pre">sweep</span></code> 命令，先选择要进行扫掠的圆，回车确认，然后选择路径曲线，即可得到所需的路径管道模型。</p>
+<div class="figure align-center">
+<img alt="../_images/三维绘制的路径管道.png" src="../_images/三维绘制的路径管道.png" />
+</div>
+<p><em>Figure 三维绘制的路径管道</em></p>
+</div>
+<div class="section" id="id40">
+<h3>案例：风扇叶<a class="headerlink" href="#id40" title="永久链接至标题">¶</a></h3>
+<p>首先建立一大一小的同心圆，然后中间绘制一条线段，输入 <code class="code docutils literal notranslate"><span class="pre">ar</span></code> 选择阵列命令，选择极轴方式阵列，选择圆心位置，调整阵列数量为5，确认阵列，即可得到类似轮辐的形状。然后输入 <code class="code docutils literal notranslate"><span class="pre">bo</span></code> 选择边界命令，选择多段线，拾取对应面得到边界线，继续输入 <code class="code docutils literal notranslate"><span class="pre">m</span></code> 选择移动命令，将上述边界移动出来得到基础风扇叶形状。</p>
+<p>接着对风扇叶边界使用 <code class="code docutils literal notranslate"><span class="pre">offset</span></code> 命令往内部偏移2，然后使用 <code class="code docutils literal notranslate"><span class="pre">arc</span></code> 命令在一侧画一个往内凹的圆弧线，使之与偏移得到的扇形边线相切，然后就可以删除掉这个扇形了。</p>
+<p>选择风扇叶边界，输入命令 <code class="code docutils literal notranslate"><span class="pre">x</span></code> 来将这个整体边线炸开，然后将多余的线删除。接着用 <code class="code docutils literal notranslate"><span class="pre">fillet</span></code> 命令分别做2圆角和3圆角，让形状更像风扇叶。然后就可以用 <code class="code docutils literal notranslate"><span class="pre">reg</span></code>
+命令将这些线条合并形成面域。</p>
+<p>在中心处画一个半径为2的圆，然后画一条线段，从圆周的一点出发，沿半径方向向外延伸，长度超过风扇叶大小。接着使用 <code class="code docutils literal notranslate"><span class="pre">helix</span></code> 命令，从刚才画的线段的端点起始，创建出一条螺旋上升的线，然后通过 <code class="code docutils literal notranslate"><span class="pre">sweep</span></code> 命令将线段沿着螺旋线扫掠得到螺旋扇面。这个扇面将下面的风扇叶完全盖住。通过 <code class="code docutils literal notranslate"><span class="pre">thicken</span></code> 命令将这个螺旋扇面加厚为0.2。接着就可以通过将风扇叶向上拉伸，输入 <code class="code docutils literal notranslate"><span class="pre">intersect</span></code> 命令取两个实体的交集，得到风扇叶实体。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">使用 <code class="code docutils literal notranslate"><span class="pre">helix</span></code> 命令取的第一个点就是螺旋线的起始点。在使用 <code class="code docutils literal notranslate"><span class="pre">sweep</span></code> 扫掠时，旋转轴是由视图控件规定视角决定的，如果发生无法扫掠或者扫掠方向错误的情况，可能是视图控件视角不正确，也可能是扫掠时默认以图形中点沿路径扫掠导致过程相交，通过调整对应视角或者调整基点可以解决这一问题。</p>
+</div>
+<p>进入俯视图，输入 <code class="code docutils literal notranslate"><span class="pre">ar</span></code> 对上述风扇叶实体使用阵列命令，选择极轴，根据圆心处进行阵列，同时注意调整 <code class="code docutils literal notranslate"><span class="pre">AS</span></code> 选择取消关联，从而得到5个风扇叶的实体分布（如果没有取消关联则会得到圆环阵列对象，而不是三维实体对象）。拉伸中间的圆得到圆柱体，然后输入 <code class="code docutils literal notranslate"><span class="pre">uni</span></code> 选择合并命令将所有部件合并为一个整体。</p>
+<div class="figure align-center">
+<img alt="../_images/三维绘制的风扇叶.png" src="../_images/三维绘制的风扇叶.png" />
+</div>
+<p><em>Figure 三维绘制的风扇叶</em></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="计算流体力学有限体积法.html" class="btn btn-neutral float-left" title="计算流体力学有限体积法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="C++.html" class="btn btn-neutral float-right" title="C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022-2023, Koishi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

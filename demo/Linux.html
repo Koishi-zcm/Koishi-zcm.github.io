@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux &mdash; MyKnowledge MyKnowledge 文档</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="OpenFOAM" href="OpenFOAM.html" />
+    <link rel="prev" title="Latex" href="Latex.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MyKnowledge
+          </a>
+              <div class="version">
+                1.01
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="复变函数.html">复变函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="电路原理.html">电路原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数字电路.html">数字电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模拟电路.html">模拟电路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数值分析与算法.html">数值分析与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数理方程.html">数理方程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="流体力学.html">流体力学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="稀薄气体动力学.html">稀薄气体动力学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="计算流体力学有限体积法.html">计算流体力学有限体积法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutoCAD.html">AutoCAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Latex.html">Latex</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Linux</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">操作系统基本设置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">用户权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">文件操作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">创建文件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">中文输入法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">截屏工具</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wps-office-2019">安装WPS Office 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">安装微信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">安装字体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">声音输出</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#python">Python脚本</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">查看Python信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">运行Python脚本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">安装Python库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM.html">OpenFOAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OpenFOAM算例运行案例.html">OpenFOAM算例运行案例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Salome.html">Salome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solidworks.html">Solidworks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MyKnowledge</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Linux</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/demo/Linux.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="linux">
+<h1>Linux<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>操作系统基本设置<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>用户权限<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>参考 <a class="reference external" href="https://linux.cn/article-13936-1.html">修复Are you root?问题</a></p>
+<p>当在终端输入命令后提示Are you root?问题后，在确保自身所用账户确实为root账户后，只需要在所运行命令前都添加 <code class="code docutils literal notranslate"><span class="pre">sudo</span></code> 即可。</p>
+</div>
+<div class="section" id="id3">
+<h3>文件操作<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id4">
+<h4>创建文件<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>参考 <a class="reference external" href="https://www.jianshu.com/p/5c506fc3513c">Linux 创建文件命令总结</a></p>
+<p>touch命令可以更新现有文件和目录的时间戳以及创建新文件。创建新的空文件的最简单方法是运行touch命令。如果touch命令参数指定的文件不存在，那么touch命令会创建相应文件，否则它将修改已存在的文件时间戳。touch命令也可以同时创建多个文件，只需要在指定多个文件名的时候用空格分隔。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>touch file1.txt
+touch file1.txt file2.txt file3.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>中文输入法<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>参考 <a class="reference external" href="https://blog.csdn.net/yanhanhui1/article/details/115128309">Linux下安装中文输入法总结</a></p>
+<p>以安装ibus智能拼音输入法为例，首先进入终端输入如下命令安装ibus框架：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install ibus ibus-libpinyin
+</pre></div>
+</div>
+<p>然后安装对应的ibus智能拼音输入法：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install ibus-pinyin
+</pre></div>
+</div>
+<p>此时要重启系统才能确认安装成功。重启后，进入Settings/Region &amp; Language，在Input Sources中点击+/Chinese/Chinese(Intelligent Pinyin)添加输入法，即可进行使用，之后点击右上角任务栏的输入法图表即可切换中英输入法。</p>
+<p>如果要安装搜狗输入法，官方地址 <a class="reference external" href="https://shurufa.sogou.com/linux">搜狗输入法</a> 。对于ubuntu2004，应该选择x86_64，这样下载得到的安装包就是amd64框架的。</p>
+<p>首先在终端输入以下命令更新源：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt update
+</pre></div>
+</div>
+<p>然后安装fcitx输入法框架：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install fcitx
+</pre></div>
+</div>
+<p>然后进入Settings/Region&amp;Language选择Manage Installed Languages，确认Install/Remove Languages选项内将简体中文勾选，然后设置Keyboard input method system为fcitx。</p>
+<p>在终端执行如下命令设置fcitx开机自启动：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo cp /usr/share/applications/fcitx.desktop /etc/xdg/autostart/
+</pre></div>
+</div>
+<p>卸载系统ibus输入法框架：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt purge ibus
+</pre></div>
+</div>
+<p>然后进入Downloads文件夹通过安装包安装搜狗输入法：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo dpkg -i sogouimebs_3.4.0.9780_amd64.deb
+</pre></div>
+</div>
+<p>如果安装过程中提示缺少相关依赖，则执行如下命令解决：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt -f install
+</pre></div>
+</div>
+<p>同时还要安装输入法依赖：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2
+sudo apt install libgsettings-qt1
+</pre></div>
+</div>
+<p>之后重启电脑即可。查看右上角，可以看到搜狗字样，通过ctrl+space可以调出搜狗输入法。如果没有看到搜狗，则进入Configure并在Add input method中添加sogou即可。</p>
+</div>
+<div class="section" id="id9">
+<h3>截屏工具<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>输入如下命令安装flameshot：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install flameshot
+</pre></div>
+</div>
+<p>安装完成后输入如下命令测试该截图工具：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flameshot gui
+</pre></div>
+</div>
+<p>进入Settings/Keyboard Shortcuts添加自定义快捷键，设置ctrl+alt+A为命令flameshot gui的快捷键。</p>
+</div>
+<div class="section" id="wps-office-2019">
+<h3>安装WPS Office 2019<a class="headerlink" href="#wps-office-2019" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://www.wps.cn/product/wpslinux">WPS Office 2019 For Linux个人版</a></p>
+<p>对于ubuntu20.04版本，需要下载64位Deb格式并选择For X64。然后通过dpkg命令进行安装：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo dpkg -i wps-office_11.1.0.9615_amd64.deb
+</pre></div>
+</div>
+<p>这时已经可以在应用中看到WPS软件。打开软件后系统会提示缺少字体，可以按照 <a class="reference external" href="https://zhuanlan.zhihu.com/p/470577265">Ubuntu 20.04 下 WPS Office 缺失字体解决方案</a> 提供的方法进行处理。</p>
+</div>
+<div class="section" id="id10">
+<h3>安装微信<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>一种简单的、ubuntu20.04可用的版本为 <a class="reference external" href="https://www.ubuntukylin.com/applications/106-cn.html">优麒麟weixin</a> 。直接下载deb文件包进行安装即可。每次登录需要手机扫码，并且文件同步可能存在问题，需要额外通过手机文件传输助手配合重要文件的获取。</p>
+</div>
+<div class="section" id="id11">
+<h3>安装字体<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>将下载到的TTF文件复制到 <code class="code docutils literal notranslate"><span class="pre">/usr/share/fonts</span></code> 文件夹下，然后用下面的命令刷新fontconfig的字体缓存：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo fc-cache -vf
+</pre></div>
+</div>
+<p>正在使用的中英文混合等距字体为SARASA MONO SC。</p>
+</div>
+<div class="section" id="id12">
+<h3>声音输出<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>参考 <a class="reference external" href="https://www.cnblogs.com/GengMingYan/p/14853513.html">记录Linux 没有声音/Gnome 没有声音输出设备问题</a></p>
+<p>首先在终端输入下面的命令查看声卡：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>lspci <span class="p">|</span> grep Audio
+</pre></div>
+</div>
+<p>如果有结果，表示已经识别出声卡。</p>
+<p>安装声卡驱动：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>apt-get install alsa-utils
+</pre></div>
+</div>
+<p>使用alsamixer测试是否能播出声音：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>alsamixer
+</pre></div>
+</div>
+<p>执行后会出现各个音量控制器管理，默认选择在Master下，这时候播放声音，并调整Master控制器，查看是否有声音。</p>
+</div>
+</div>
+<div class="section" id="python">
+<h2>Python脚本<a class="headerlink" href="#python" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id13">
+<h3>查看Python信息<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>直接在终端输入 <code class="code docutils literal notranslate"><span class="pre">python</span></code> 或 <code class="code docutils literal notranslate"><span class="pre">python3</span></code> 查看是否安装Python。通过运行如下命令获取已安装Python3的版本号：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 --version
+</pre></div>
+</div>
+<p>如果使用的是Ubuntu 16.10或更新的版本，可以通过以下命令简单地安装Python 3.6:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get update
+sudo apt-get install python3.6
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>运行Python脚本<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>通过在终端输入如下命令运行指定的Python脚本文件：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 ./test.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>安装Python库<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Latex.html" class="btn btn-neutral float-left" title="Latex" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="OpenFOAM.html" class="btn btn-neutral float-right" title="OpenFOAM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022-2023, Koishi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
